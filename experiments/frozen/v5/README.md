@@ -11,8 +11,10 @@
   - Config: `experiment_5_config.json`
   - Report: `experiment_5_report.md`
 - **Configuration**: `experiments/configs/v5.json`
-- **Benchmark Metrics**:
-  - Pearson r: 0.3444 (Highest among semantic/dependency ASAG systems)
-  - Spearman rho: 0.3541
-  - MAE: 0.9220
-  - RMSE: 1.2001
+- **Benchmark Metrics** (from `summary.json` on full active benchmark, N=2,273):
+  - Pearson r: 0.2428 (Highest among semantic/dependency ASAG systems)
+  - Spearman rho: 0.2404
+  - MAE: 3.4711
+  - RMSE: 3.7637
+
+TF-IDF (V0) remains stronger than the semantic/dependency models on the primary full active benchmark; see the frozen Experiment 5 results for the exact evaluation metrics.

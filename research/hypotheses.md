@@ -15,10 +15,10 @@
 ### Hypothesis 3 (H3 — Improvement Over Base ASAG)
 - **Statement**: Incorporating proposition-level evaluations into scoring improves agreement with human grades compared to the Base ASAG (Basak et al. 2019-inspired) system.
 - **Empirical Status**: **CONFIRMED**.
-  - V5 achieves Pearson r = 0.3444, Spearman rho = 0.3541, MAE = 0.9220, RMSE = 1.2001, outperforming V1 Base ASAG (r = 0.3013, rho = 0.3129, MAE = 1.2185, RMSE = 1.5457).
+  - On the frozen full active benchmark ($N=2,273$), V5 achieves Pearson r = 0.2428, Spearman rho = 0.2404, MAE = 3.4711, RMSE = 3.7637, consistently outperforming V1 Base ASAG (r = 0.1379, rho = 0.1181, MAE = 3.8050, RMSE = 4.0373).
 
 ### Hypothesis 4 (H4 — Superiority Over Lexical Baseline)
 - **Statement**: Proposition-level semantic ASAG outperforms a simple TF-IDF cosine baseline on holistic human grade correlation.
 - **Empirical Status**: **REFUTED / NOT SUPPORTED**.
-  - V0 (TF-IDF Baseline) achieves Pearson r = 0.4485 and Spearman rho = 0.4357 on the Mohler benchmark.
-  - While V5 is the strongest semantic/dependency ASAG model, TF-IDF remains globally superior in correlation due to human grading heuristics favoring exact topical vocabulary overlap over structural entailment.
+  - TF-IDF (V0) remains stronger than the semantic/dependency models on the primary full active benchmark; see the frozen Experiment 5 results for the exact evaluation metrics.
+  - While V5 is the strongest semantic/dependency ASAG model, TF-IDF (V0: Pearson r = 0.4184, Spearman rho = 0.4424) achieves higher correlation on holistic human grades due to human grading heuristics favoring exact topical vocabulary overlap over structural entailment.

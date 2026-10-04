@@ -13,9 +13,10 @@ Final proposed model of this research project:
    bounded additional information credit.
 
 Research Note:
-V5 is the strongest semantic/dependency ASAG model developed in this project
-(Pearson r = 0.3444, Spearman rho = 0.3541, MAE = 0.9220).
-All parameters and behavior are FROZEN.
+V5 is the final proposed semantic/dependency ASAG model developed in this project.
+TF-IDF (V0) remains stronger than the semantic/dependency models on the primary
+full active benchmark; see the frozen Experiment 5 results for the exact evaluation
+metrics. All parameters and behavior are FROZEN.
 """
 from typing import Any, Dict, Optional
 from common.types import GradingResult

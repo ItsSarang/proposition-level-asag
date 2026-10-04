@@ -11,8 +11,8 @@
   - Manifest: `experiment_4_manifest.json`
   - Report: `experiment_4_report.md`
 - **Configuration**: `experiments/configs/v4.json`
-- **Benchmark Metrics**:
-  - Pearson r: 0.3204
-  - Spearman rho: 0.3340
-  - MAE: 0.9234
-  - RMSE: 1.2065
+- **Benchmark Metrics** (from `summary.json` on full active benchmark, N=2,273):
+  - Pearson r: 0.2055
+  - Spearman rho: 0.2033
+  - MAE: 3.6288
+  - RMSE: 3.9270
