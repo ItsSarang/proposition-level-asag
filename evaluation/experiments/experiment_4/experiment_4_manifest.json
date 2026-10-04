@@ -1,0 +1,83 @@
+{
+  "experiment_name": "Experiment 4: Severity-Aware Proposed ASAG",
+  "experiment_version": "1.0.0-frozen",
+  "timestamp": "2026-10-04T13:30:00Z",
+  "status": "FROZEN_BENCHMARK_CONFIGURATION",
+  "environment": {
+    "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "git_commit": "uncommitted-main",
+    "dependencies": {
+      "spacy": "3.8.16",
+      "nltk": "3.10.3",
+      "scikit-learn": "1.9.1",
+      "numpy": "2.5.3"
+    }
+  },
+  "dataset": {
+    "name": "UNT Computer Science Short Answer Dataset v2.0 (Mohler et al., 2011)",
+    "active_csv_file": "data/processed/mohler_asag/mohler_asag_active.csv",
+    "active_csv_sha256": "3af0a16648cbd0d1684c3acc100c6c998002c0993bf7da78d55f8c3387e1e5f8",
+    "total_active_records": 2273,
+    "active_questions": 81,
+    "assignments_1_10_records": 1721,
+    "exams_11_12_records": 552,
+    "sentential_ref_questions": 48,
+    "sentential_ref_records": 1341,
+    "non_sentential_ref_questions": 33,
+    "non_sentential_ref_records": 932,
+    "target_variable": "score_ave",
+    "score_scale": "0.0 - 5.0"
+  },
+  "pipeline_configuration": {
+    "representation": "HybridProposition (RobustProposition: S-P-O triples, non-finite clausal fragments, modifiers, prepositional arguments)",
+    "semantic_matcher": "SemanticMatcherV2 (multi-tier: exact, lemma, WordNet derivation, domain equivalences)",
+    "matching_strategy": "Hungarian bipartite global matching with predicate-gated cross-slot matching",
+    "alignment_threshold": 0.50,
+    "entailment_analyzer": "PropositionalEntailmentAnalyzer (polarity-aware: ENTAILS=1.0, UNCERTAIN=0.5, CONTRADICTS=0.0)",
+    "relevance_analyzer": "QuestionAwareRelevanceAnalyzer (relevance_threshold=0.35)",
+    "contradiction_detector": "PropertyContradictionDetector (conservative, incompatible property value sets, antonym resolution, explicit negation)",
+    "evidence_verifier": "PropositionEvidenceVerifier (CuratedDomainKnowledge)",
+    "classifier": "RobustAdditionalInfoClassifier (4-step epistemic classification: CORRECT_ADDITIONAL, IRRELEVANT, UNCERTAIN, INCORRECT)",
+    "frozen_domain_rules": [
+      "PK_NOT_NULL",
+      "BST_INORDER_SORTED",
+      "COMPILER_INTERMEDIATE_REP"
+    ]
+  },
+  "severity_estimator_configuration": {
+    "estimator": "InterpretableSeverityEstimator",
+    "defining_properties": {
+      "PRIMARY_KEY": ["uniqueness", "nullability"],
+      "BST": ["relative_size", "sort_order", "ordering"],
+      "COMPILER": ["translation", "execution_discipline", "translate"]
+    },
+    "severity_levels": {
+      "CORE_CONTRADICTION": 1.00,
+      "MODERATE": 0.60,
+      "MINOR": 0.25,
+      "UNRESOLVED": 0.00,
+      "NONE": 0.00
+    },
+    "sigma_core_threshold": 0.90
+  },
+  "scorer_configuration": {
+    "model_name": "SeverityAwareScorer (Model D Core/Additional Decomposition with Gated Compensation)",
+    "parameters": {
+      "max_positive_bonus": 0.25,
+      "core_invalidation_discount": 0.50,
+      "minor_penalty_weight": 0.20,
+      "diminishing_rate": 0.50,
+      "sigma_core_threshold": 0.90,
+      "max_points": 5.0
+    },
+    "formula": {
+      "core_invalidation": "S_core_effective = S_base * ((1.0 - core_invalidation_discount) ** n_core)",
+      "gated_positive_bonus": "pos_adj = min(M_pos * (r * n_correct / (1 + r * n_correct)), 0.50 * S_core_effective)",
+      "minor_penalties": "minor_pen = sum(minor_penalty_weight * severity_i for severity_i < sigma_core_threshold)",
+      "raw_score": "S_raw = S_core_effective + pos_adj - minor_pen",
+      "clipped_score": "S_final = clip(S_raw, 0.0, 1.0)",
+      "scaled_grade": "Grade = S_final * max_points"
+    }
+  }
+}

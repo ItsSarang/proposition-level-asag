@@ -1,0 +1,34 @@
+case_id,domain,case_name,base_score_normalized,base_score_scaled,model_a_final_norm,model_a_final_scaled,model_a_delta,model_b_final_norm,model_b_final_scaled,model_b_delta,model_c_final_norm,model_c_final_scaled,model_c_delta,model_d_final_norm,model_d_final_scaled,model_d_delta
+PK-01,PRIMARY_KEY,PK-01 (Correct core only),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+PK-02,PRIMARY_KEY,PK-02 (Correct core + correct additional),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+PK-03,PRIMARY_KEY,PK-03 (Correct core + irrelevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+PK-04,PRIMARY_KEY,PK-04 (Correct core + unsupported relevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+PK-05,PRIMARY_KEY,PK-05 (Correct core + minor incorrect),1.0,5.0,0.8667,4.3333,-0.6667,0.9125,4.5625,-0.4375,0.9481,4.7407,-0.2593,0.95,4.75,-0.25
+PK-06,PRIMARY_KEY,PK-06 (Correct core + serious contradiction),1.0,5.0,0.8667,4.3333,-0.6667,0.65,3.25,-1.75,0.8147,4.0735,-0.9265,0.5,2.5,-2.5
+PK-07,PRIMARY_KEY,PK-07 (Correct core + multiple minor incorrect),1.0,5.0,0.8,4.0,-1.0,0.8327,4.1633,-0.8367,0.9034,4.5172,-0.4828,0.9,4.5,-0.5
+PK-08,PRIMARY_KEY,PK-08 (Correct core + serious contradiction + irrelevant),1.0,5.0,0.8667,4.3333,-0.6667,0.65,3.25,-1.75,0.8147,4.0735,-0.9265,0.5,2.5,-2.5
+PK-09,PRIMARY_KEY,PK-09 (Partial core + serious contradiction),0.8333,4.1667,0.7,3.5,-0.6667,0.5417,2.7083,-1.4583,0.648,3.2402,-0.9265,0.4167,2.0833,-2.0833
+PK-10,PRIMARY_KEY,PK-10 (Partial core + minor incorrect),0.8333,4.1667,0.7,3.5,-0.6667,0.7604,3.8021,-0.3646,0.7815,3.9074,-0.2593,0.7833,3.9167,-0.25
+BST-01,BST,BST-01 (Correct core only),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+BST-02,BST,BST-02 (Correct core + correct additional),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+BST-03,BST,BST-03 (Correct core + irrelevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+BST-04,BST,BST-04 (Correct core + unsupported relevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+BST-05,BST,BST-05 (Correct core + minor incorrect),1.0,5.0,0.8667,4.3333,-0.6667,0.9125,4.5625,-0.4375,0.9481,4.7407,-0.2593,0.95,4.75,-0.25
+BST-06,BST,BST-06 (Correct core + direct contradiction),1.0,5.0,0.8667,4.3333,-0.6667,0.65,3.25,-1.75,0.8147,4.0735,-0.9265,0.5,2.5,-2.5
+BST-07,BST,BST-07 (Correct core + multiple contradictions),1.0,5.0,0.8,4.0,-1.0,0.5135,2.5675,-2.4325,0.751,3.7552,-1.2448,0.38,1.9,-3.1
+BST-08,BST,BST-08 (Partial core + contradiction),0.8333,4.1667,0.7,3.5,-0.6667,0.5417,2.7083,-1.4583,0.648,3.2402,-0.9265,0.4167,2.0833,-2.0833
+CMP-01,COMPILER,CMP-01 (Correct core only),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+CMP-02,COMPILER,CMP-02 (Correct core + correct additional),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+CMP-03,COMPILER,CMP-03 (Correct core + irrelevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+CMP-04,COMPILER,CMP-04 (Correct core + unsupported relevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+CMP-05,COMPILER,CMP-05 (Correct core + minor incorrect),1.0,5.0,0.8667,4.3333,-0.6667,0.9125,4.5625,-0.4375,0.9481,4.7407,-0.2593,0.95,4.75,-0.25
+CMP-06,COMPILER,CMP-06 (Correct core + direct contradiction),1.0,5.0,0.8667,4.3333,-0.6667,0.65,3.25,-1.75,0.8224,4.1119,-0.8881,0.5,2.5,-2.5
+CMP-07,COMPILER,CMP-07 (Correct core + multiple incorrect additions),1.0,5.0,0.8,4.0,-1.0,0.5135,2.5675,-2.4325,0.7569,3.7846,-1.2154,0.38,1.9,-3.1
+CMP-08,COMPILER,CMP-08 (Partial core + incorrect addition),0.8333,4.1667,0.7,3.5,-0.6667,0.5417,2.7083,-1.4583,0.6636,3.3182,-0.8485,0.4167,2.0833,-2.0833
+MIX-01,MIXED,MIX-01 (Correct additional + irrelevant),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+MIX-02,MIXED,MIX-02 (Correct additional + incorrect),1.0,5.0,0.9667,4.8333,-0.1667,0.715,3.575,-1.425,0.9147,4.5735,-0.4265,0.5833,2.9167,-2.0833
+MIX-03,MIXED,MIX-03 (Correct additional + uncertain),1.0,5.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+MIX-04,MIXED,MIX-04 (Incorrect + irrelevant),1.0,5.0,0.8667,4.3333,-0.6667,0.65,3.25,-1.75,0.8147,4.0735,-0.9265,0.5,2.5,-2.5
+MIX-05,MIXED,MIX-05 (Minor incorrect + core contradiction),1.0,5.0,0.8,4.0,-1.0,0.5931,2.9656,-2.0344,0.7861,3.9306,-1.0694,0.45,2.25,-2.75
+MIX-06,MIXED,MIX-06 (Correct additional + minor incorrect + irrelevant),1.0,5.0,0.9667,4.8333,-0.1667,1.0,5.0,0.0,1.0,5.0,0.0,1.0,5.0,0.0
+MIX-07,MIXED,MIX-07 (Correct additional + core contradiction across BST),1.0,5.0,0.9667,4.8333,-0.1667,0.715,3.575,-1.425,0.9147,4.5735,-0.4265,0.5833,2.9167,-2.0833

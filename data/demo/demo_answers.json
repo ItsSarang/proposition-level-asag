@@ -1,0 +1,37 @@
+{
+  "dataset_notice": "DEMO DATA — NOT RESEARCH DATA. Strictly for implementation verification and pipeline sanity testing. No human grades assigned.",
+  "question": "What is the purpose of a primary key?",
+  "reference_answer": "A primary key uniquely identifies each record in a table.",
+  "examples": [
+    {
+      "id": "demo_1_identical",
+      "type": "Very similar / correct answer",
+      "description": "Exact match to reference answer with identical wording.",
+      "student_answer": "A primary key uniquely identifies each record in a table."
+    },
+    {
+      "id": "demo_2_near_verbatim",
+      "type": "Very similar / correct answer",
+      "description": "Near-verbatim match with minor stylistic variation.",
+      "student_answer": "The primary key uniquely identifies each record in the database table."
+    },
+    {
+      "id": "demo_3_paraphrased",
+      "type": "Paraphrased answer",
+      "description": "Semantically equivalent answer using synonymous terms (every row instead of each record).",
+      "student_answer": "A primary key uniquely identifies every row in a table."
+    },
+    {
+      "id": "demo_4_partially_overlapping",
+      "type": "Partially overlapping answer",
+      "description": "Shares key terminology (table, key) but omits the core uniqueness condition.",
+      "student_answer": "A key is used to organize records inside a table."
+    },
+    {
+      "id": "demo_5_unrelated",
+      "type": "Unrelated answer",
+      "description": "Completely off-topic response discussing an unrelated historical fact.",
+      "student_answer": "Photosynthesis is the process by which green plants use sunlight to synthesize nutrients."
+    }
+  ]
+}

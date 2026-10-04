@@ -1,0 +1,1466 @@
+{
+  "PK-CORE-01": {
+    "case_id": "PK-CORE-01",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "uniqueness",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Contradiction targets defining domain property: 'uniqueness'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'."
+    }
+  },
+  "PK-CORE-02": {
+    "case_id": "PK-CORE-02",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "uniqueness",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Contradiction targets defining domain property: 'uniqueness'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'."
+    }
+  },
+  "PK-CORE-03": {
+    "case_id": "PK-CORE-03",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.85,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "uniquely",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Explicit negation of core defining predicate identified."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'uniquely' of target entity 'PRIMARY_KEY'."
+    }
+  },
+  "PK-CORE-04": {
+    "case_id": "PK-CORE-04",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "uniqueness",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Contradiction targets defining domain property: 'uniqueness'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'."
+    }
+  },
+  "PK-CORE-05": {
+    "case_id": "PK-CORE-05",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "nullability",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Contradiction targets defining domain property: 'nullability'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'nullability' of target entity 'PRIMARY_KEY'."
+    }
+  },
+  "PK-MOD-01": {
+    "case_id": "PK-MOD-01",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "data_type_restriction",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "PK-MOD-02": {
+    "case_id": "PK-MOD-02",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.75,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "composite",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "PK-MOD-03": {
+    "case_id": "PK-MOD-03",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "auto-increment",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'."
+        ]
+      },
+      "explanation": "MODERATE: Unclassified contradiction with moderate conceptual impact."
+    }
+  },
+  "PK-MOD-04": {
+    "case_id": "PK-MOD-04",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.75,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "multiple primary keys",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.25,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "PK-MOD-05": {
+    "case_id": "PK-MOD-05",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "lifecycle",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "PK-MIN-01": {
+    "case_id": "PK-MIN-01",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.65,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "naming",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "PK-MIN-02": {
+    "case_id": "PK-MIN-02",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.65,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "first column",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "PK-MIN-03": {
+    "case_id": "PK-MIN-03",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "syntax style",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.375,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "PK-MIN-04": {
+    "case_id": "PK-MIN-04",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "date",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "PK-MIN-05": {
+    "case_id": "PK-MIN-05",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "key",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "bytes",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'PRIMARY_KEY'.",
+          "Contradiction directly links to reference proposition: 'A primary key uniquely identifies each record in a table.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "PK-ADV-01": {
+    "case_id": "PK-ADV-01",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "UNRESOLVED",
+    "estimated_result": {
+      "severity": "UNRESOLVED",
+      "severity_score": 0.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": false,
+        "entity_name": "foreign key",
+        "core_link": false,
+        "defining_property_target": true,
+        "conflicting_property": "uniqueness",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.25,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity confusion detected: statement discusses 'foreign key' rather than target 'PRIMARY_KEY'.",
+          "Contradiction targets defining domain property: 'uniqueness'."
+        ]
+      },
+      "explanation": "UNRESOLVED: Proposition discusses confused adjacent entity 'foreign key' rather than target entity 'PRIMARY_KEY'. Does not constitute core contradiction of target."
+    }
+  },
+  "PK-ADV-02": {
+    "case_id": "PK-ADV-02",
+    "domain": "PRIMARY_KEY",
+    "controlled_severity": "NONE",
+    "estimated_result": {
+      "severity": "NONE",
+      "severity_score": 0.0,
+      "evidence": {
+        "is_contradicted": false,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "entity_grounded": false,
+        "entity_name": "",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": null,
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.0,
+        "reference_coverage_weight": 0.0,
+        "rationale_reasons": [
+          "Proposition is not contradictory: severity is NONE."
+        ]
+      },
+      "explanation": "No factual contradiction detected; proposition does not incur contradiction severity."
+    }
+  },
+  "BST-CORE-01": {
+    "case_id": "BST-CORE-01",
+    "domain": "BST",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "relative_size",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Contradiction targets defining domain property: 'relative_size'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'."
+    }
+  },
+  "BST-CORE-02": {
+    "case_id": "BST-CORE-02",
+    "domain": "BST",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "ordering",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Contradiction targets defining domain property: 'ordering'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'ordering' of target entity 'BST'."
+    }
+  },
+  "BST-CORE-03": {
+    "case_id": "BST-CORE-03",
+    "domain": "BST",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.85,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "store",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Explicit negation of core defining predicate identified."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'store' of target entity 'BST'."
+    }
+  },
+  "BST-CORE-04": {
+    "case_id": "BST-CORE-04",
+    "domain": "BST",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "relative_size",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.8333,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Contradiction targets defining domain property: 'relative_size'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'."
+    }
+  },
+  "BST-CORE-05": {
+    "case_id": "BST-CORE-05",
+    "domain": "BST",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.85,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "ordering",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Contradiction targets defining domain property: 'ordering'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'ordering' of target entity 'BST'."
+    }
+  },
+  "BST-MOD-01": {
+    "case_id": "BST-MOD-01",
+    "domain": "BST",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.75,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "traversal",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "BST-MOD-02": {
+    "case_id": "BST-MOD-02",
+    "domain": "BST",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "constant time",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "BST-MOD-03": {
+    "case_id": "BST-MOD-03",
+    "domain": "BST",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.75,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "balanced",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.8333,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "BST-MOD-04": {
+    "case_id": "BST-MOD-04",
+    "domain": "BST",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.8,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "three children",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "BST-MOD-05": {
+    "case_id": "BST-MOD-05",
+    "domain": "BST",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "integer data type",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'."
+        ]
+      },
+      "explanation": "MODERATE: Unclassified contradiction with moderate conceptual impact."
+    }
+  },
+  "BST-MIN-01": {
+    "case_id": "BST-MIN-01",
+    "domain": "BST",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.65,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "pointers",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "BST-MIN-02": {
+    "case_id": "BST-MIN-02",
+    "domain": "BST",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "recursion",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "BST-MIN-03": {
+    "case_id": "BST-MIN-03",
+    "domain": "BST",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "year",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.3333,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "BST-MIN-04": {
+    "case_id": "BST-MIN-04",
+    "domain": "BST",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "color",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "BST-MIN-05": {
+    "case_id": "BST-MIN-05",
+    "domain": "BST",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.55,
+        "entity_grounded": true,
+        "entity_name": "binary search tree",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "diagram",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.6667,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "BST-ADV-01": {
+    "case_id": "BST-ADV-01",
+    "domain": "BST",
+    "controlled_severity": "UNRESOLVED",
+    "estimated_result": {
+      "severity": "UNRESOLVED",
+      "severity_score": 0.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.85,
+        "entity_grounded": false,
+        "entity_name": "general binary tree",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "ordering",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity confusion detected: statement discusses 'general binary tree' rather than target 'BST'.",
+          "Contradiction directly links to reference proposition: 'A binary search tree stores smaller values in the left subtree.'.",
+          "Contradiction targets defining domain property: 'ordering'."
+        ]
+      },
+      "explanation": "UNRESOLVED: Proposition discusses confused adjacent entity 'general binary tree' rather than target entity 'BST'. Does not constitute core contradiction of target."
+    }
+  },
+  "BST-ADV-02": {
+    "case_id": "BST-ADV-02",
+    "domain": "BST",
+    "controlled_severity": "NONE",
+    "estimated_result": {
+      "severity": "NONE",
+      "severity_score": 0.0,
+      "evidence": {
+        "is_contradicted": false,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "entity_grounded": false,
+        "entity_name": "",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": null,
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.0,
+        "reference_coverage_weight": 0.0,
+        "rationale_reasons": [
+          "Proposition is not contradictory: severity is NONE."
+        ]
+      },
+      "explanation": "No factual contradiction detected; proposition does not incur contradiction severity."
+    }
+  },
+  "CMP-CORE-01": {
+    "case_id": "CMP-CORE-01",
+    "domain": "COMPILER",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.85,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "translate",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Contradiction targets defining domain property: 'translate'.",
+          "Explicit negation of core defining predicate identified."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'translate' of target entity 'COMPILER'."
+    }
+  },
+  "CMP-CORE-02": {
+    "case_id": "CMP-CORE-02",
+    "domain": "COMPILER",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "translation",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Contradiction targets defining domain property: 'translation'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'translation' of target entity 'COMPILER'."
+    }
+  },
+  "CMP-CORE-03": {
+    "case_id": "CMP-CORE-03",
+    "domain": "COMPILER",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "translation",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Contradiction targets defining domain property: 'translation'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'translation' of target entity 'COMPILER'."
+    }
+  },
+  "CMP-CORE-04": {
+    "case_id": "CMP-CORE-04",
+    "domain": "COMPILER",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.85,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "translation",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Contradiction targets defining domain property: 'translation'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'translation' of target entity 'COMPILER'."
+    }
+  },
+  "CMP-CORE-05": {
+    "case_id": "CMP-CORE-05",
+    "domain": "COMPILER",
+    "controlled_severity": "CORE_CONTRADICTION",
+    "estimated_result": {
+      "severity": "CORE_CONTRADICTION",
+      "severity_score": 1.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.85,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "translation",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Contradiction targets defining domain property: 'translation'."
+        ]
+      },
+      "explanation": "CORE_CONTRADICTION: Directly contradicts core defining property 'translation' of target entity 'COMPILER'."
+    }
+  },
+  "CMP-MOD-01": {
+    "case_id": "CMP-MOD-01",
+    "domain": "COMPILER",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.75,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "line by line",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "CMP-MOD-02": {
+    "case_id": "CMP-MOD-02",
+    "domain": "COMPILER",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": "cpu",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "CMP-MOD-03": {
+    "case_id": "CMP-MOD-03",
+    "domain": "COMPILER",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.75,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": "detect syntax",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "CMP-MOD-04": {
+    "case_id": "CMP-MOD-04",
+    "domain": "COMPILER",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "only translates c",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'."
+        ]
+      },
+      "explanation": "MODERATE: Unclassified contradiction with moderate conceptual impact."
+    }
+  },
+  "CMP-MOD-05": {
+    "case_id": "CMP-MOD-05",
+    "domain": "COMPILER",
+    "controlled_severity": "MODERATE",
+    "estimated_result": {
+      "severity": "MODERATE",
+      "severity_score": 0.6,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.7,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "optimization",
+        "is_peripheral": false,
+        "is_relational_confusion": true,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Proposition targets behavioral/relational operational attribute."
+        ]
+      },
+      "explanation": "MODERATE: Conflicts with operational behavior or secondary property, without inverting the defining invariant."
+    }
+  },
+  "CMP-MIN-01": {
+    "case_id": "CMP-MIN-01",
+    "domain": "COMPILER",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.65,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": "class",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "CMP-MIN-02": {
+    "case_id": "CMP-MIN-02",
+    "domain": "COMPILER",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.65,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": "extension",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "CMP-MIN-03": {
+    "case_id": "CMP-MIN-03",
+    "domain": "COMPILER",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": "year",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "CMP-MIN-04": {
+    "case_id": "CMP-MIN-04",
+    "domain": "COMPILER",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.6,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": true,
+        "defining_property_target": false,
+        "conflicting_property": "ram",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "CMP-MIN-05": {
+    "case_id": "CMP-MIN-05",
+    "domain": "COMPILER",
+    "controlled_severity": "MINOR",
+    "estimated_result": {
+      "severity": "MINOR",
+      "severity_score": 0.25,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.55,
+        "entity_grounded": true,
+        "entity_name": "compiler",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": "root directory",
+        "is_peripheral": true,
+        "is_relational_confusion": false,
+        "question_centrality": 0.5,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity successfully grounded to target 'COMPILER'.",
+          "Proposition contains peripheral/syntactic naming or formatting markers."
+        ]
+      },
+      "explanation": "MINOR: Peripheral misconception regarding secondary naming, formatting, or convention. Does not invalidate central entity concept."
+    }
+  },
+  "CMP-ADV-01": {
+    "case_id": "CMP-ADV-01",
+    "domain": "COMPILER",
+    "controlled_severity": "UNRESOLVED",
+    "estimated_result": {
+      "severity": "UNRESOLVED",
+      "severity_score": 0.0,
+      "evidence": {
+        "is_contradicted": true,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.85,
+        "entity_grounded": false,
+        "entity_name": "interpreter",
+        "core_link": true,
+        "defining_property_target": true,
+        "conflicting_property": "translation",
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.0,
+        "reference_coverage_weight": 1.0,
+        "rationale_reasons": [
+          "Entity confusion detected: statement discusses 'interpreter' rather than target 'COMPILER'.",
+          "Contradiction directly links to reference proposition: 'A compiler translates source code into machine code.'.",
+          "Contradiction targets defining domain property: 'translation'."
+        ]
+      },
+      "explanation": "UNRESOLVED: Proposition discusses confused adjacent entity 'interpreter' rather than target entity 'COMPILER'. Does not constitute core contradiction of target."
+    }
+  },
+  "CMP-ADV-02": {
+    "case_id": "CMP-ADV-02",
+    "domain": "COMPILER",
+    "controlled_severity": "NONE",
+    "estimated_result": {
+      "severity": "NONE",
+      "severity_score": 0.0,
+      "evidence": {
+        "is_contradicted": false,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "entity_grounded": false,
+        "entity_name": "",
+        "core_link": false,
+        "defining_property_target": false,
+        "conflicting_property": null,
+        "is_peripheral": false,
+        "is_relational_confusion": false,
+        "question_centrality": 0.0,
+        "reference_coverage_weight": 0.0,
+        "rationale_reasons": [
+          "Proposition is not contradictory: severity is NONE."
+        ]
+      },
+      "explanation": "No factual contradiction detected; proposition does not incur contradiction severity."
+    }
+  }
+}

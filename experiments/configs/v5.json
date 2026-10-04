@@ -1,0 +1,10 @@
+{
+  "version": "V5",
+  "name": "Final Proposition-Level ASAG",
+  "scale": 5.0,
+  "scorer": "Model D2",
+  "core_recovery": true,
+  "canonical_fragments": true,
+  "guards": true,
+  "status": "FROZEN"
+}

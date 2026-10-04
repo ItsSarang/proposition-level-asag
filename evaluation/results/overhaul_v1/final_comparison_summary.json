@@ -1,0 +1,79 @@
+{
+  "timestamp": "2026-10-03T08:07:55.904061+00:00",
+  "dataset_version": "UNT CS Short Answer Dataset v2.0 (Mohler et al., 2011)",
+  "total_evaluated": 2273,
+  "elapsed_seconds": 230.1,
+  "subset": "active",
+  "overall_metrics": {
+    "baseline": {
+      "system_name": "System 1: TF-IDF Baseline",
+      "n_samples": 2273,
+      "mae": 2.6571,
+      "rmse": 2.9178,
+      "pearson_r": 0.4184,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.4424,
+      "spearman_p": 0.0,
+      "qwk": 0.1151,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 1.5316,
+      "predicted_std": 1.157
+    },
+    "base_asag": {
+      "system_name": "System 2: Base ASAG",
+      "n_samples": 2273,
+      "mae": 3.7794,
+      "rmse": 4.0179,
+      "pearson_r": 0.1419,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.1177,
+      "spearman_p": 0.0,
+      "qwk": 0.0191,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 0.4173,
+      "predicted_std": 1.0377
+    },
+    "historical_proposed": {
+      "system_name": "System 3: Historical Proposed ASAG",
+      "n_samples": 2273,
+      "mae": 3.2036,
+      "rmse": 3.5101,
+      "pearson_r": 0.1377,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.0797,
+      "spearman_p": 0.000142,
+      "qwk": 0.0252,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 1.0129,
+      "predicted_std": 1.1933
+    },
+    "overhaul_proposed": {
+      "system_name": "System 4: Overhauled Proposed ASAG",
+      "n_samples": 2273,
+      "mae": 3.3476,
+      "rmse": 3.6476,
+      "pearson_r": 0.2201,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.2108,
+      "spearman_p": 0.0,
+      "qwk": 0.0424,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 0.8528,
+      "predicted_std": 1.2734
+    }
+  },
+  "diagnostic_error_counts": {
+    "EXTRACTION_FAILURE": 0,
+    "SEMANTIC_SIMILARITY_FAILURE": 0,
+    "PROPOSITION_ALIGNMENT_FAILURE": 1052,
+    "RELEVANCE_FAILURE": 0,
+    "CONTRADICTION_FAILURE": 0,
+    "ADDITIONAL_INFO_CLASSIFICATION_FAILURE": 0,
+    "SCORING_AGGREGATION_FAILURE": 0,
+    "DATASET_REFERENCE_REPRESENTATION_ISSUE": 487
+  }
+}

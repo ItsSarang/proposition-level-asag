@@ -1,0 +1,7 @@
+{
+  "version": "V1",
+  "name": "Base ASAG",
+  "scale": 5.0,
+  "alignment_threshold": 0.55,
+  "status": "FROZEN"
+}

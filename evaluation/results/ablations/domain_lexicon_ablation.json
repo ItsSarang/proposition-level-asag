@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-10-03T09:03:22.495408+00:00",
+  "total_records_evaluated": 2273,
+  "domain_lexicon_terms_count": 13,
+  "results": {
+    "Proposed_Overhaul_WITH_Domain_Lexicon": {
+      "condition_key": "Proposed_Overhaul_WITH_Domain_Lexicon",
+      "description": "Full Proposed Overhaul (V2 matcher WITH 13 CS domain equivalences)",
+      "use_domain_equivalence": true,
+      "sample_count": 2273,
+      "elapsed_seconds": 49.49,
+      "metrics": {
+        "system_name": "Proposed_Overhaul_WITH_Domain_Lexicon",
+        "n_samples": 2273,
+        "mae": 3.3484,
+        "rmse": 3.6485,
+        "pearson_r": 0.2196,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.2095,
+        "spearman_p": 0.0,
+        "qwk": 0.0422,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.852,
+        "predicted_std": 1.2732
+      }
+    },
+    "Proposed_Overhaul_WITHOUT_Domain_Lexicon": {
+      "condition_key": "Proposed_Overhaul_WITHOUT_Domain_Lexicon",
+      "description": "Full Proposed Overhaul (V2 matcher WITHOUT CS domain equivalences)",
+      "use_domain_equivalence": false,
+      "sample_count": 2273,
+      "elapsed_seconds": 48.8,
+      "metrics": {
+        "system_name": "Proposed_Overhaul_WITHOUT_Domain_Lexicon",
+        "n_samples": 2273,
+        "mae": 3.3499,
+        "rmse": 3.6493,
+        "pearson_r": 0.2193,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.2095,
+        "spearman_p": 0.0,
+        "qwk": 0.0421,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.8505,
+        "predicted_std": 1.2709
+      }
+    },
+    "Base_ASAG_V2_WITH_Domain_Lexicon": {
+      "condition_key": "Base_ASAG_V2_WITH_Domain_Lexicon",
+      "description": "Base ASAG with V2 matcher WITH CS domain equivalences",
+      "use_domain_equivalence": true,
+      "sample_count": 2273,
+      "elapsed_seconds": 22.9,
+      "metrics": {
+        "system_name": "Base_ASAG_V2_WITH_Domain_Lexicon",
+        "n_samples": 2273,
+        "mae": 3.8551,
+        "rmse": 4.072,
+        "pearson_r": 0.1409,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.1208,
+        "spearman_p": 0.0,
+        "qwk": 0.0182,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.3378,
+        "predicted_std": 0.9361
+      }
+    },
+    "Base_ASAG_V2_WITHOUT_Domain_Lexicon": {
+      "condition_key": "Base_ASAG_V2_WITHOUT_Domain_Lexicon",
+      "description": "Base ASAG with V2 matcher WITHOUT CS domain equivalences",
+      "use_domain_equivalence": false,
+      "sample_count": 2273,
+      "elapsed_seconds": 23.02,
+      "metrics": {
+        "system_name": "Base_ASAG_V2_WITHOUT_Domain_Lexicon",
+        "n_samples": 2273,
+        "mae": 3.8566,
+        "rmse": 4.0728,
+        "pearson_r": 0.1405,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.1208,
+        "spearman_p": 0.0,
+        "qwk": 0.0181,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.3363,
+        "predicted_std": 0.9323
+      }
+    }
+  },
+  "proposed_overhaul_deltas": {
+    "mae_delta": -0.0015,
+    "rmse_delta": -0.0008,
+    "pearson_delta": 0.0003,
+    "spearman_delta": 0.0,
+    "qwk_delta": 0.0001
+  }
+}

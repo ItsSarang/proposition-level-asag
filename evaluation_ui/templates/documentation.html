@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Documentation &bull; ASAG Evaluation Lab{% endblock %}
+
+{% block content %}
+<div class="view-header">
+    <h1>Research Architecture & Methodology Documentation</h1>
+    <p class="view-description">
+        Methodological details, mathematical formulas, and epistemic boundaries of the Automatic Short Answer Grading research engine.
+    </p>
+</div>
+
+<div class="card info-card">
+    <div class="card-header">
+        <h3>1. Central Research Question</h3>
+    </div>
+    <div class="card-body">
+        <blockquote class="research-quote">
+            "Can an interpretable proposition-level extension of a classical semantic/dependency-based ASAG system evaluate unmatched student information as correct additional, irrelevant, or incorrect information, and does incorporating this evaluation improve agreement with human grading?"
+        </blockquote>
+        <p>
+            <strong>Epistemic Mandate:</strong> This is a formal scientific hypothesis. The presence of interactive examples in this Evaluation Lab does NOT claim or prove that the extension improves human agreement. That question is evaluated empirically via the benchmark metrics on the Mohler ASAG dataset.
+        </p>
+    </div>
+</div>
+
+<div class="card info-card">
+    <div class="card-header">
+        <h3>2. Four Systems Under Comparison</h3>
+    </div>
+    <div class="table-responsive">
+        <table class="lab-table">
+            <thead>
+                <tr>
+                    <th>Version</th>
+                    <th>System Name</th>
+                    <th>Methodology & Paradigm</th>
+                    <th>Unmatched Information Handling</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>V0</strong></td>
+                    <td>TF-IDF Baseline</td>
+                    <td>Bag-of-words token vectorization and cosine similarity. Syntactically unaware.</td>
+                    <td>Counted purely as unweighted token overlap.</td>
+                </tr>
+                <tr>
+                    <td><strong>V1</strong></td>
+                    <td>Base ASAG</td>
+                    <td>Simplified Basak-inspired semantic/dependency pipeline. Clausal SPO dependency triples, WordNet path similarity, greedy alignment, reference proposition coverage.</td>
+                    <td>Completely discarded. Additions contribute exactly +0.00 to the grade.</td>
+                </tr>
+                <tr>
+                    <td><strong>V2</strong></td>
+                    <td>Historical Proposed ASAG</td>
+                    <td>Stage 14 additive scoring extension over Base ASAG. Computes linear bonuses and penalties.</td>
+                    <td>Linear additive adjustment: Base + (0.10 &times; Correct) - (0.20 &times; Incorrect).</td>
+                </tr>
+                <tr>
+                    <td><strong>V3</strong></td>
+                    <td>Current Overhauled Proposed ASAG</td>
+                    <td>Hybrid proposition representation (clausal + nominal fragments + infinitives), Semantic Matcher V2 (morphological derivation + 13 curated CS domain equivalences), Hungarian global bipartite alignment, question-aware relevance filtering, property contradiction detection, and horizontal-asymptote bounded scoring.</td>
+                    <td>Diminishing marginal returns scoring with strict horizontal asymptote at +0.30, cutting verbosity bias by 50%.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card info-card">
+    <div class="card-header">
+        <h3>3. Bounded Scoring Mathematics (Model C / V3)</h3>
+    </div>
+    <div class="card-body">
+        <p>
+            To prevent verbosity inflation ("e-rater gaming") where students write extraneous text to accumulate linear bonuses,
+            the Current Proposed system implements a saturating horizontal-asymptote formula:
+        </p>
+        <div class="math-box">
+            <code>bonus(N) = B_max &times; (r &times; N) / (1 + r &times; N)</code>
+        </div>
+        <p>
+            Where:
+            <ul>
+                <li><code>B_max = 0.30</code>: Maximum allowable positive bonus (30% of question points).</li>
+                <li><code>r = 0.50</code>: Diminishing rate parameter.</li>
+                <li>For <code>N = 1</code>: Bonus = +0.100</li>
+                <li>For <code>N = 2</code>: Bonus = +0.150</li>
+                <li>For <code>N = 5</code>: Bonus = +0.214</li>
+                <li>For <code>N = 20</code>: Bonus = +0.273</li>
+                <li>As <code>N &rarr; &infin;</code>, the bonus strictly asymptotically approaches <code>0.30</code> and never exceeds it.</li>
+                <li>Irrelevant additions contribute strictly <code>+0.00</code>.</li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<div class="card info-card">
+    <div class="card-header">
+        <h3>4. Known Limitations & Research Boundaries</h3>
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Non-Clausal Reference Answer Fragments:</strong> 40.7% of reference answers in the Mohler dataset consist of nominal fragments rather than complete clausal sentences, requiring hybrid representations.</li>
+            <li><strong>Holistic vs Proposition-Level Ground Truth:</strong> The Mohler dataset contains holistic 0–5 marks, not proposition-level gold labels. Proposition classification accuracy must be judged via our double-blind annotation study.</li>
+            <li><strong>Zero LLM Black-Boxes:</strong> The entire system uses interpretable NLP (spaCy, WordNet, Hungarian matching, domain lexicons) without calling proprietary LLM APIs or prompt-based grading.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

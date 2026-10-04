@@ -1,0 +1,2733 @@
+{
+  "PK-01": {
+    "case_id": "PK-01",
+    "domain": "PRIMARY_KEY",
+    "category_type": "A_CORRECT_CORE",
+    "case_name": "PK-01 (Correct core only)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 0,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "PK-02": {
+    "case_id": "PK-02",
+    "domain": "PRIMARY_KEY",
+    "category_type": "B_CORRECT_ADDITIONAL",
+    "case_name": "PK-02 (Correct core + correct additional)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and cannot contain NULL values.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0833,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "cannot contain NULL values",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0833, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "PK-03": {
+    "case_id": "PK-03",
+    "domain": "PRIMARY_KEY",
+    "category_type": "C_IRRELEVANT",
+    "case_name": "PK-03 (Correct core + irrelevant)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table. SQL was developed in the 1970s.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "SQL was developed",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "PK-04": {
+    "case_id": "PK-04",
+    "domain": "PRIMARY_KEY",
+    "category_type": "D_UNCERTAIN",
+    "case_name": "PK-04 (Correct core + unsupported relevant)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and is usually indexed using a B-tree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "is usually indexed using a B-tree",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "PK-05": {
+    "case_id": "PK-05",
+    "domain": "PRIMARY_KEY",
+    "category_type": "E_MINOR_INCORRECT",
+    "case_name": "PK-05 (Correct core + minor incorrect)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table. A primary key is always named ID in database schemas.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key is always named",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 4.75,
+      "score_difference": 0.25,
+      "expected_severity": "MINOR",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+    }
+  },
+  "PK-06": {
+    "case_id": "PK-06",
+    "domain": "PRIMARY_KEY",
+    "category_type": "G_CORE_CONTRADICTION",
+    "case_name": "PK-06 (Correct core + serious contradiction)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and can contain duplicate values.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "implicit_entity",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.125,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.5,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "PK-07": {
+    "case_id": "PK-07",
+    "domain": "PRIMARY_KEY",
+    "category_type": "J_MULTIPLE_MINOR",
+    "case_name": "PK-07 (Correct core + multiple minor incorrect)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table. A primary key is always named ID. The key was invented in 1999.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 2,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key is always named",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key was invented",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 4.5,
+      "score_difference": 0.5,
+      "expected_severity": "MINOR",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Epistemic divergence (+0.50): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+    }
+  },
+  "PK-08": {
+    "case_id": "PK-08",
+    "domain": "PRIMARY_KEY",
+    "category_type": "G_CORE_CONTRADICTION",
+    "case_name": "PK-08 (Correct core + serious contradiction + irrelevant)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and can contain duplicate values. SQL was developed in the 1970s.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 1,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "implicit_entity",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.125,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      },
+      {
+        "proposition_text": "SQL was developed",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.5,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "PK-09": {
+    "case_id": "PK-09",
+    "domain": "PRIMARY_KEY",
+    "category_type": "H_PARTIAL_CORE_CONTRADICTION",
+    "case_name": "PK-09 (Partial core + serious contradiction)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key determines each record in a table. It can contain duplicate values.",
+    "base_score_normalized": 0.8333,
+    "base_score_scaled": 4.1667,
+    "final_score_normalized": 0.4167,
+    "final_score_scaled": 2.0833,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.4167,
+    "net_adjustment": -0.4167,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key determines each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "It can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "implicit_entity",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.0,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=0.8333 -> Effective Core=0.4167 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.4167 (Grade=2.08/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.0833,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.08/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "PK-10": {
+    "case_id": "PK-10",
+    "domain": "PRIMARY_KEY",
+    "category_type": "E_MINOR_INCORRECT",
+    "case_name": "PK-10 (Partial core + minor incorrect)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key determines each record in a table. A primary key is always named ID in database schemas.",
+    "base_score_normalized": 0.8333,
+    "base_score_scaled": 4.1667,
+    "final_score_normalized": 0.8333,
+    "final_score_scaled": 4.1667,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key determines each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key is always named",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=0.8333 -> Effective Core=0.8333 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.8333 (Grade=4.17/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 3.9167,
+      "score_difference": 0.25,
+      "expected_severity": "MINOR",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+    }
+  },
+  "BST-01": {
+    "case_id": "BST-01",
+    "domain": "BST",
+    "category_type": "A_CORRECT_CORE",
+    "case_name": "BST-01 (Correct core only)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 0,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "BST-02": {
+    "case_id": "BST-02",
+    "domain": "BST",
+    "category_type": "B_CORRECT_ADDITIONAL",
+    "case_name": "BST-02 (Correct core + correct additional)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. BST inorder traversal yields sorted order.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0833,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "BST inorder",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "yields sorted order",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0833, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "BST-03": {
+    "case_id": "BST-03",
+    "domain": "BST",
+    "category_type": "C_IRRELEVANT",
+    "case_name": "BST-03 (Correct core + irrelevant)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. Binary search was published in 1946.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "search was published",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "BST-04": {
+    "case_id": "BST-04",
+    "domain": "BST",
+    "category_type": "D_UNCERTAIN",
+    "case_name": "BST-04 (Correct core + unsupported relevant)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. AVL trees perform rotations to maintain height balance.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "trees perform rotations",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "BST-05": {
+    "case_id": "BST-05",
+    "domain": "BST",
+    "category_type": "E_MINOR_INCORRECT",
+    "case_name": "BST-05 (Correct core + minor incorrect)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. A binary search tree always requires four pointers per node.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "tree always requires four pointers",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 4.75,
+      "score_difference": 0.25,
+      "expected_severity": "MINOR",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+    }
+  },
+  "BST-06": {
+    "case_id": "BST-06",
+    "domain": "BST",
+    "category_type": "G_CORE_CONTRADICTION",
+    "case_name": "BST-06 (Correct core + direct contradiction)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. A binary search tree places larger values in the left subtree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "tree places larger values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "binary search tree",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "relative_size",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.5,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'BST'.",
+            "Contradiction directly links to reference proposition: 'tree stores smaller values'.",
+            "Contradiction targets defining domain property: 'relative_size'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.5,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "BST-07": {
+    "case_id": "BST-07",
+    "domain": "BST",
+    "category_type": "K_MULTIPLE_CONTRADICTIONS",
+    "case_name": "BST-07 (Correct core + multiple contradictions)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. A binary search tree places larger values in the left subtree. Inorder traversal yields random order.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "tree places larger values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "binary search tree",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "relative_size",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.5,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'BST'.",
+            "Contradiction directly links to reference proposition: 'tree stores smaller values'.",
+            "Contradiction targets defining domain property: 'relative_size'."
+          ]
+        }
+      },
+      {
+        "proposition_text": "traversal yields random order",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 1.9,
+      "score_difference": 0.6,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Score divergence (+0.60): Phase 4B Model D (1.90) vs Phase 4D (2.50)."
+    }
+  },
+  "BST-08": {
+    "case_id": "BST-08",
+    "domain": "BST",
+    "category_type": "H_PARTIAL_CORE_CONTRADICTION",
+    "case_name": "BST-08 (Partial core + contradiction)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree keeps values in the left subtree. A binary search tree places larger values in the left subtree.",
+    "base_score_normalized": 0.8333,
+    "base_score_scaled": 4.1667,
+    "final_score_normalized": 0.4167,
+    "final_score_scaled": 2.0833,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.4167,
+    "net_adjustment": -0.4167,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree keeps values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "tree places larger values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "binary search tree",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "relative_size",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.5,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'BST'.",
+            "Contradiction directly links to reference proposition: 'tree stores smaller values'.",
+            "Contradiction targets defining domain property: 'relative_size'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=0.8333 -> Effective Core=0.4167 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.4167 (Grade=2.08/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.0833,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.08/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "CMP-01": {
+    "case_id": "CMP-01",
+    "domain": "COMPILER",
+    "category_type": "A_CORRECT_CORE",
+    "case_name": "CMP-01 (Correct core only)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 0,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "CMP-02": {
+    "case_id": "CMP-02",
+    "domain": "COMPILER",
+    "category_type": "B_CORRECT_ADDITIONAL",
+    "case_name": "CMP-02 (Correct core + correct additional)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. A compiler generates an intermediate representation.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0833,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler generates an intermediate representation",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0833, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "CMP-03": {
+    "case_id": "CMP-03",
+    "domain": "COMPILER",
+    "category_type": "C_IRRELEVANT",
+    "case_name": "CMP-03 (Correct core + irrelevant)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. Dennis Ritchie created the C programming language.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "Ritchie created the C programming language",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "CMP-04": {
+    "case_id": "CMP-04",
+    "domain": "COMPILER",
+    "category_type": "D_UNCERTAIN",
+    "case_name": "CMP-04 (Correct core + unsupported relevant)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. A compiler uses LLVM optimization passes.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler uses LLVM optimization passes",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "optimization passes",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "CMP-05": {
+    "case_id": "CMP-05",
+    "domain": "COMPILER",
+    "category_type": "E_MINOR_INCORRECT",
+    "case_name": "CMP-05 (Correct core + minor incorrect)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. A compiler always generates output files with exe extension.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler always generates output files",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 4.75,
+      "score_difference": 0.25,
+      "expected_severity": "MINOR",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+    }
+  },
+  "CMP-06": {
+    "case_id": "CMP-06",
+    "domain": "COMPILER",
+    "category_type": "G_CORE_CONTRADICTION",
+    "case_name": "CMP-06 (Correct core + direct contradiction)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. A compiler does not translate source code.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler does not translate source code",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.85,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'translate' of target entity 'COMPILER'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "EXPLICIT_NEGATION",
+          "evidence_strength": 0.85,
+          "entity_grounded": true,
+          "entity_name": "compiler",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "translate",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.25,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'COMPILER'.",
+            "Contradiction directly links to reference proposition: 'compiler translates source code'.",
+            "Contradiction targets defining domain property: 'translate'.",
+            "Explicit negation of core defining predicate identified."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.5,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "CMP-07": {
+    "case_id": "CMP-07",
+    "domain": "COMPILER",
+    "category_type": "K_MULTIPLE_CONTRADICTIONS",
+    "case_name": "CMP-07 (Correct core + multiple incorrect additions)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. A compiler does not translate source code. It executes machine code directly without translation.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler does not translate source code",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "EXPLICIT_NEGATION",
+        "evidence_strength": 0.85,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'translate' of target entity 'COMPILER'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "EXPLICIT_NEGATION",
+          "evidence_strength": 0.85,
+          "entity_grounded": true,
+          "entity_name": "compiler",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "translate",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.25,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'COMPILER'.",
+            "Contradiction directly links to reference proposition: 'compiler translates source code'.",
+            "Contradiction targets defining domain property: 'translate'.",
+            "Explicit negation of core defining predicate identified."
+          ]
+        }
+      },
+      {
+        "proposition_text": "It executes machine code directly",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 1.9,
+      "score_difference": 0.6,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Score divergence (+0.60): Phase 4B Model D (1.90) vs Phase 4D (2.50)."
+    }
+  },
+  "CMP-08": {
+    "case_id": "CMP-08",
+    "domain": "COMPILER",
+    "category_type": "H_PARTIAL_CORE_CONTRADICTION",
+    "case_name": "CMP-08 (Partial core + incorrect addition)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler modifies source code into machine code. A compiler executes code directly at runtime.",
+    "base_score_normalized": 0.8333,
+    "base_score_scaled": 4.1667,
+    "final_score_normalized": 0.8333,
+    "final_score_scaled": 4.1667,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler modifies source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler executes code",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=0.8333 -> Effective Core=0.8333 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.8333 (Grade=4.17/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.0833,
+      "score_difference": 2.0834,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Score divergence (+2.08): Phase 4B Model D (2.08) vs Phase 4D (4.17)."
+    }
+  },
+  "MIX-01": {
+    "case_id": "MIX-01",
+    "domain": "MIXED",
+    "category_type": "B_CORRECT_ADDITIONAL",
+    "case_name": "MIX-01 (Correct additional + irrelevant)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and cannot contain NULL values. SQL was developed in the 1970s.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0833,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "SQL was developed",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "cannot contain NULL values",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0833, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "MIX-02": {
+    "case_id": "MIX-02",
+    "domain": "MIXED",
+    "category_type": "I_CORRECT_ADD_CORE_CONTRADICTION",
+    "case_name": "MIX-02 (Correct additional + incorrect)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and cannot contain NULL values. It can contain duplicate values.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5833,
+    "final_score_scaled": 2.9167,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.4167,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "It can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "implicit_entity",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.0,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      },
+      {
+        "proposition_text": "cannot contain NULL values",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0833, -MinorPen=0.0000 -> Final=0.5833 (Grade=2.92/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.9167,
+      "score_difference": -0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.92/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "MIX-03": {
+    "case_id": "MIX-03",
+    "domain": "MIXED",
+    "category_type": "B_CORRECT_ADDITIONAL",
+    "case_name": "MIX-03 (Correct additional + uncertain)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and cannot contain NULL values. It is usually indexed using a B-tree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0833,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "It is usually indexed",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "cannot contain NULL values",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0833, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "NONE",
+      "predicted_severity": "NONE",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE)."
+    }
+  },
+  "MIX-04": {
+    "case_id": "MIX-04",
+    "domain": "MIXED",
+    "category_type": "G_CORE_CONTRADICTION",
+    "case_name": "MIX-04 (Incorrect + irrelevant)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and can contain duplicate values. SQL was developed in the 1970s.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 1,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "implicit_entity",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.125,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      },
+      {
+        "proposition_text": "SQL was developed",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.5,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "MIX-05": {
+    "case_id": "MIX-05",
+    "domain": "MIXED",
+    "category_type": "G_CORE_CONTRADICTION",
+    "case_name": "MIX-05 (Minor incorrect + core contradiction)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table. A primary key is always named ID in database schemas. It can contain duplicate values.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key is always named",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "It can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'uniqueness' of target entity 'PRIMARY_KEY'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "implicit_entity",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.0,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.25,
+      "score_difference": 0.25,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Score divergence (+0.25): Phase 4B Model D (2.25) vs Phase 4D (2.50)."
+    }
+  },
+  "MIX-06": {
+    "case_id": "MIX-06",
+    "domain": "MIXED",
+    "category_type": "B_CORRECT_ADDITIONAL",
+    "case_name": "MIX-06 (Correct additional + minor incorrect + irrelevant)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table and cannot contain NULL values. A primary key is always named ID in database schemas. SQL was developed in the 1970s.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0833,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key is always named",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "SQL was developed",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "cannot contain NULL values",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0833, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 5.0,
+      "score_difference": 0.0,
+      "expected_severity": "MINOR",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Exact score agreement (5.00/5.00); severity difference had neutral score impact."
+    }
+  },
+  "MIX-07": {
+    "case_id": "MIX-07",
+    "domain": "MIXED",
+    "category_type": "I_CORRECT_ADD_CORE_CONTRADICTION",
+    "case_name": "MIX-07 (Correct additional + core contradiction across BST)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. BST inorder traversal yields sorted order. A binary search tree places larger values in the left subtree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5833,
+    "final_score_scaled": 2.9167,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0833,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.4167,
+    "counts": {
+      "correct_additional": 1,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "BST inorder",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "tree places larger values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "binary search tree",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "relative_size",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.5,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'BST'.",
+            "Contradiction directly links to reference proposition: 'tree stores smaller values'.",
+            "Contradiction targets defining domain property: 'relative_size'."
+          ]
+        }
+      },
+      {
+        "proposition_text": "yields sorted order",
+        "classification": "CORRECT_ADDITIONAL",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0833,
+        "rationale": "CORRECT_ADDITIONAL: Gated positive bonus (+0.0833).",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0833, -MinorPen=0.0000 -> Final=0.5833 (Grade=2.92/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": 2.9167,
+      "score_difference": -0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Exact score agreement (2.92/5.00); automatic severity matches expected label (CORE_CONTRADICTION)."
+    }
+  },
+  "PK-MOD": {
+    "case_id": "PK-MOD",
+    "domain": "PRIMARY_KEY",
+    "category_type": "F_MODERATE_INCORRECT",
+    "case_name": "PK-MOD (Correct core + moderate error: integer type)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table. A primary key must always be an integer data type.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key must always be an integer data type",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "MODERATE",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  },
+  "BST-MOD": {
+    "case_id": "BST-MOD",
+    "domain": "BST",
+    "category_type": "F_MODERATE_INCORRECT",
+    "case_name": "BST-MOD (Correct core + moderate error: random traversal)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. A binary search tree inorder traversal yields random order.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 1,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "inorder traversal yields random order",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "random order",
+        "classification": "IRRELEVANT",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "IRRELEVANT: Neutral off-topic proposition produces zero score effect.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "MODERATE",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  },
+  "CMP-MOD": {
+    "case_id": "CMP-MOD",
+    "domain": "COMPILER",
+    "category_type": "F_MODERATE_INCORRECT",
+    "case_name": "CMP-MOD (Correct core + moderate error: line-by-line interpretation)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. A compiler interprets code line by line at runtime.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "compiler interprets code line",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "MODERATE",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  },
+  "PK-ADV-01": {
+    "case_id": "PK-ADV-01",
+    "domain": "PRIMARY_KEY",
+    "category_type": "L_ENTITY_CONFUSION",
+    "case_name": "PK-ADV-01 (Entity confusion: foreign key duplicates)",
+    "question": "What is the purpose of a primary key?",
+    "reference_answer": "A primary key uniquely identifies each record in a table.",
+    "student_answer": "A primary key uniquely identifies each record in a table. A foreign key can contain duplicate values.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "key uniquely identifies each record",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "key can contain duplicate values",
+        "classification": "INCORRECT",
+        "severity_level": "UNRESOLVED",
+        "severity_score": 0.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": 0.0,
+        "rationale": "UNRESOLVED contradiction (UNRESOLVED: Proposition discusses confused adjacent entity 'foreign key' rather than target entity 'PRIMARY_KEY'. Does not constitute core contradiction of target.); produces zero deduction on target entity.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": false,
+          "entity_name": "foreign key",
+          "core_link": false,
+          "defining_property_target": true,
+          "conflicting_property": "uniqueness",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.125,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity confusion detected: statement discusses 'foreign key' rather than target 'PRIMARY_KEY'.",
+            "Contradiction targets defining domain property: 'uniqueness'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "UNRESOLVED",
+      "predicted_severity": "UNRESOLVED",
+      "severity_agreement": true,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  },
+  "BST-ADV-01": {
+    "case_id": "BST-ADV-01",
+    "domain": "BST",
+    "category_type": "L_ENTITY_CONFUSION",
+    "case_name": "BST-ADV-01 (Entity confusion: general binary tree)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. A general binary tree must store smaller values in the left subtree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "matched": 0,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "UNRESOLVED",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  },
+  "CMP-ADV-01": {
+    "case_id": "CMP-ADV-01",
+    "domain": "COMPILER",
+    "category_type": "L_ENTITY_CONFUSION",
+    "case_name": "CMP-ADV-01 (Entity confusion: interpreter)",
+    "question": "What is a compiler?",
+    "reference_answer": "A compiler translates source code into machine code.",
+    "student_answer": "A compiler translates source code into machine code. An interpreter compiles source code into machine files.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 1.0,
+    "final_score_scaled": 5.0,
+    "has_core_invalidation": false,
+    "core_contradiction_count": 0,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.0,
+    "net_adjustment": 0.0,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 0,
+      "uncertain": 1,
+      "matched": 1,
+      "core_contradictions": 0,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "compiler translates source code",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "interpreter compiles source code",
+        "classification": "UNCERTAIN",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 0.0,
+        "adjustment_value": 0.0,
+        "rationale": "UNCERTAIN: Unverified proposition receives zero factual bonus and zero penalty.",
+        "severity_evidence": null
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=1.0000 (invalidation=False, n_core=0), +Bonus=0.0000, -MinorPen=0.0000 -> Final=1.0000 (Grade=5.00/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "UNRESOLVED",
+      "predicted_severity": "NONE",
+      "severity_agreement": false,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  },
+  "BST-CORE-MULTI": {
+    "case_id": "BST-CORE-MULTI",
+    "domain": "BST",
+    "category_type": "K_MULTIPLE_CONTRADICTIONS",
+    "case_name": "BST-CORE-MULTI (Two direct core contradictions)",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary search tree stores smaller values in the left subtree.",
+    "student_answer": "A binary search tree stores smaller values in the left subtree. A binary search tree places larger values in the left subtree. A binary search tree stores smaller values in the right subtree.",
+    "base_score_normalized": 1.0,
+    "base_score_scaled": 5.0,
+    "final_score_normalized": 0.5,
+    "final_score_scaled": 2.5,
+    "has_core_invalidation": true,
+    "core_contradiction_count": 1,
+    "positive_adjustment": 0.0,
+    "negative_adjustment": 0.5,
+    "net_adjustment": -0.5,
+    "counts": {
+      "correct_additional": 0,
+      "irrelevant": 0,
+      "incorrect": 1,
+      "uncertain": 0,
+      "matched": 1,
+      "core_contradictions": 1,
+      "minor_penalties_count": 0
+    },
+    "itemized_adjustments": [
+      {
+        "proposition_text": "tree stores smaller values",
+        "classification": "MATCHED_BY_BASE_ASAG",
+        "severity_level": "NONE",
+        "severity_score": 0.0,
+        "contradiction_type": "NONE",
+        "evidence_strength": 1.0,
+        "adjustment_value": 0.0,
+        "rationale": "MATCHED: Matched to reference proposition by Base ASAG; included in base coverage.",
+        "severity_evidence": null
+      },
+      {
+        "proposition_text": "tree places larger values",
+        "classification": "INCORRECT",
+        "severity_level": "CORE_CONTRADICTION",
+        "severity_score": 1.0,
+        "contradiction_type": "VALUE_CONFLICT",
+        "evidence_strength": 0.9,
+        "adjustment_value": -0.5,
+        "rationale": "CORE INVALIDATION: CORE_CONTRADICTION: Directly contradicts core defining property 'relative_size' of target entity 'BST'.",
+        "severity_evidence": {
+          "is_contradicted": true,
+          "contradiction_type": "VALUE_CONFLICT",
+          "evidence_strength": 0.9,
+          "entity_grounded": true,
+          "entity_name": "binary search tree",
+          "core_link": true,
+          "defining_property_target": true,
+          "conflicting_property": "relative_size",
+          "is_peripheral": false,
+          "is_relational_confusion": false,
+          "question_centrality": 0.5,
+          "reference_coverage_weight": 1.0,
+          "rationale_reasons": [
+            "Entity successfully grounded to target 'BST'.",
+            "Contradiction directly links to reference proposition: 'tree stores smaller values'.",
+            "Contradiction targets defining domain property: 'relative_size'."
+          ]
+        }
+      }
+    ],
+    "explanation": "SeverityAwareScorer (Model D): Base=1.0000 -> Effective Core=0.5000 (invalidation=True, n_core=1), +Bonus=0.0000, -MinorPen=0.0000 -> Final=0.5000 (Grade=2.50/5.00)",
+    "phase4b_comparison": {
+      "phase4b_model_d_scaled": null,
+      "score_difference": 0.0,
+      "expected_severity": "CORE_CONTRADICTION",
+      "predicted_severity": "CORE_CONTRADICTION",
+      "severity_agreement": true,
+      "explanation": "Phase 4D dedicated extension case; no direct Phase 4B antecedent."
+    }
+  }
+}

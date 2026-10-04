@@ -1,0 +1,916 @@
+{
+  "timestamp": "2026-10-03T09:05:57.070834+00:00",
+  "description": "Scoring Stability and High-Verbosity Stress Analysis",
+  "models_evaluated": {
+    "A_BASE_ONLY": "Strict reference proposition coverage. Zero effect from unmatched statements.",
+    "B_UNBOUNDED_LINEAR": "Linear addition per proposition (+0.10 / -0.20), hard boundary clip only.",
+    "C_BOUNDED_SATURATING": "Horizontal asymptote at +0.30 via non-linear diminishing returns.",
+    "D_DECOMPOSED_CORE": "Decomposed Core + Bounded Additional - Bounded Contradiction."
+  },
+  "controlled_synthetic_stress_tests": {
+    "irrelevant_bombardment": {
+      "base_0.00": [
+        {
+          "k_irrelevant": 0,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_irrelevant": 1,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_irrelevant": 2,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_irrelevant": 5,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_irrelevant": 10,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_irrelevant": 20,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        }
+      ],
+      "base_0.20": [
+        {
+          "k_irrelevant": 0,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_irrelevant": 1,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_irrelevant": 2,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_irrelevant": 5,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_irrelevant": 10,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_irrelevant": 20,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        }
+      ],
+      "base_0.50": [
+        {
+          "k_irrelevant": 0,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_irrelevant": 1,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_irrelevant": 2,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_irrelevant": 5,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_irrelevant": 10,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_irrelevant": 20,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        }
+      ],
+      "base_0.80": [
+        {
+          "k_irrelevant": 0,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_irrelevant": 1,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_irrelevant": 2,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_irrelevant": 5,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_irrelevant": 10,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_irrelevant": 20,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        }
+      ],
+      "base_1.00": [
+        {
+          "k_irrelevant": 0,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_irrelevant": 1,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_irrelevant": 2,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_irrelevant": 5,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_irrelevant": 10,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_irrelevant": 20,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        }
+      ]
+    },
+    "correct_addition_accumulation": {
+      "base_0.00": [
+        {
+          "k_correct": 0,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_correct": 1,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.1,
+          "model_c_saturating": 0.1,
+          "model_d_decomposed": 0.1
+        },
+        {
+          "k_correct": 2,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.15,
+          "model_d_decomposed": 0.15
+        },
+        {
+          "k_correct": 5,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.2143,
+          "model_d_decomposed": 0.2143
+        },
+        {
+          "k_correct": 10,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.25,
+          "model_d_decomposed": 0.25
+        },
+        {
+          "k_correct": 20,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.2727,
+          "model_d_decomposed": 0.2727
+        }
+      ],
+      "base_0.20": [
+        {
+          "k_correct": 0,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_correct": 1,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.3,
+          "model_c_saturating": 0.3,
+          "model_d_decomposed": 0.3
+        },
+        {
+          "k_correct": 2,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.4,
+          "model_c_saturating": 0.35,
+          "model_d_decomposed": 0.35
+        },
+        {
+          "k_correct": 5,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.7,
+          "model_c_saturating": 0.4143,
+          "model_d_decomposed": 0.4143
+        },
+        {
+          "k_correct": 10,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.45,
+          "model_d_decomposed": 0.45
+        },
+        {
+          "k_correct": 20,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.4727,
+          "model_d_decomposed": 0.4727
+        }
+      ],
+      "base_0.50": [
+        {
+          "k_correct": 0,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_correct": 1,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.6,
+          "model_c_saturating": 0.6,
+          "model_d_decomposed": 0.6
+        },
+        {
+          "k_correct": 2,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.7,
+          "model_c_saturating": 0.65,
+          "model_d_decomposed": 0.65
+        },
+        {
+          "k_correct": 5,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.7143,
+          "model_d_decomposed": 0.7143
+        },
+        {
+          "k_correct": 10,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.75,
+          "model_d_decomposed": 0.75
+        },
+        {
+          "k_correct": 20,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.7727,
+          "model_d_decomposed": 0.7727
+        }
+      ],
+      "base_0.80": [
+        {
+          "k_correct": 0,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_correct": 1,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.9,
+          "model_c_saturating": 0.9,
+          "model_d_decomposed": 0.9
+        },
+        {
+          "k_correct": 2,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.95,
+          "model_d_decomposed": 0.95
+        },
+        {
+          "k_correct": 5,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 10,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 20,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        }
+      ],
+      "base_1.00": [
+        {
+          "k_correct": 0,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 1,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 2,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 5,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 10,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_correct": 20,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        }
+      ]
+    },
+    "contradiction_accumulation": {
+      "base_0.00": [
+        {
+          "k_contradictions": 0,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 1,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 2,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 5,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 10,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 20,
+          "model_a_base_only": 0.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        }
+      ],
+      "base_0.20": [
+        {
+          "k_contradictions": 0,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2,
+          "model_d_decomposed": 0.2
+        },
+        {
+          "k_contradictions": 1,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0667,
+          "model_d_decomposed": 0.0667
+        },
+        {
+          "k_contradictions": 2,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 5,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 10,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        },
+        {
+          "k_contradictions": 20,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0,
+          "model_d_decomposed": 0.0
+        }
+      ],
+      "base_0.50": [
+        {
+          "k_contradictions": 0,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5,
+          "model_d_decomposed": 0.5
+        },
+        {
+          "k_contradictions": 1,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.3,
+          "model_c_saturating": 0.3667,
+          "model_d_decomposed": 0.3667
+        },
+        {
+          "k_contradictions": 2,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.1,
+          "model_c_saturating": 0.3,
+          "model_d_decomposed": 0.3
+        },
+        {
+          "k_contradictions": 5,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.2143,
+          "model_d_decomposed": 0.2143
+        },
+        {
+          "k_contradictions": 10,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.1667,
+          "model_d_decomposed": 0.1667
+        },
+        {
+          "k_contradictions": 20,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.1364,
+          "model_d_decomposed": 0.1364
+        }
+      ],
+      "base_0.80": [
+        {
+          "k_contradictions": 0,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_contradictions": 1,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.6,
+          "model_c_saturating": 0.6667,
+          "model_d_decomposed": 0.6667
+        },
+        {
+          "k_contradictions": 2,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.4,
+          "model_c_saturating": 0.6,
+          "model_d_decomposed": 0.6
+        },
+        {
+          "k_contradictions": 5,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.5143,
+          "model_d_decomposed": 0.5143
+        },
+        {
+          "k_contradictions": 10,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.4667,
+          "model_d_decomposed": 0.4667
+        },
+        {
+          "k_contradictions": 20,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.4364,
+          "model_d_decomposed": 0.4364
+        }
+      ],
+      "base_1.00": [
+        {
+          "k_contradictions": 0,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 1.0,
+          "model_d_decomposed": 1.0
+        },
+        {
+          "k_contradictions": 1,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8667,
+          "model_d_decomposed": 0.8667
+        },
+        {
+          "k_contradictions": 2,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 0.6,
+          "model_c_saturating": 0.8,
+          "model_d_decomposed": 0.8
+        },
+        {
+          "k_contradictions": 5,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.7143,
+          "model_d_decomposed": 0.7143
+        },
+        {
+          "k_contradictions": 10,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.6667,
+          "model_d_decomposed": 0.6667
+        },
+        {
+          "k_contradictions": 20,
+          "model_a_base_only": 1.0,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.6364,
+          "model_d_decomposed": 0.6364
+        }
+      ]
+    },
+    "mixed_stress": {
+      "base_0.20": [
+        {
+          "k_each": 0,
+          "total_props": 1,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.0,
+          "model_c_saturating": 0.0667,
+          "model_d_decomposed": 0.0667
+        },
+        {
+          "k_each": 1,
+          "total_props": 3,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.1,
+          "model_c_saturating": 0.1667,
+          "model_d_decomposed": 0.1667
+        },
+        {
+          "k_each": 2,
+          "total_props": 5,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.2,
+          "model_c_saturating": 0.2167,
+          "model_d_decomposed": 0.2167
+        },
+        {
+          "k_each": 5,
+          "total_props": 11,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.281,
+          "model_d_decomposed": 0.281
+        },
+        {
+          "k_each": 10,
+          "total_props": 21,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.3167,
+          "model_d_decomposed": 0.3167
+        },
+        {
+          "k_each": 20,
+          "total_props": 41,
+          "model_a_base_only": 0.2,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.3394,
+          "model_d_decomposed": 0.3394
+        }
+      ],
+      "base_0.50": [
+        {
+          "k_each": 0,
+          "total_props": 1,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.3,
+          "model_c_saturating": 0.3667,
+          "model_d_decomposed": 0.3667
+        },
+        {
+          "k_each": 1,
+          "total_props": 3,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.4,
+          "model_c_saturating": 0.4667,
+          "model_d_decomposed": 0.4667
+        },
+        {
+          "k_each": 2,
+          "total_props": 5,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.5,
+          "model_c_saturating": 0.5167,
+          "model_d_decomposed": 0.5167
+        },
+        {
+          "k_each": 5,
+          "total_props": 11,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.581,
+          "model_d_decomposed": 0.581
+        },
+        {
+          "k_each": 10,
+          "total_props": 21,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.6167,
+          "model_d_decomposed": 0.6167
+        },
+        {
+          "k_each": 20,
+          "total_props": 41,
+          "model_a_base_only": 0.5,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.6394,
+          "model_d_decomposed": 0.6394
+        }
+      ],
+      "base_0.80": [
+        {
+          "k_each": 0,
+          "total_props": 1,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.6,
+          "model_c_saturating": 0.6667,
+          "model_d_decomposed": 0.6667
+        },
+        {
+          "k_each": 1,
+          "total_props": 3,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.7,
+          "model_c_saturating": 0.7667,
+          "model_d_decomposed": 0.7667
+        },
+        {
+          "k_each": 2,
+          "total_props": 5,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 0.8,
+          "model_c_saturating": 0.8167,
+          "model_d_decomposed": 0.8167
+        },
+        {
+          "k_each": 5,
+          "total_props": 11,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.881,
+          "model_d_decomposed": 0.881
+        },
+        {
+          "k_each": 10,
+          "total_props": 21,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.9167,
+          "model_d_decomposed": 0.9167
+        },
+        {
+          "k_each": 20,
+          "total_props": 41,
+          "model_a_base_only": 0.8,
+          "model_b_linear": 1.0,
+          "model_c_saturating": 0.9394,
+          "model_d_decomposed": 0.9394
+        }
+      ]
+    }
+  },
+  "empirical_benchmark_verbosity": {
+    "sample_count": 2273,
+    "evaluation_metrics": {
+      "model_a_base_only": {
+        "system_name": "Model_A_Base_Only",
+        "n_samples": 2273,
+        "mae": 3.5744,
+        "rmse": 3.8689,
+        "pearson_r": 0.2087,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.2053,
+        "spearman_p": 0.0,
+        "qwk": 0.0411,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.6253,
+        "predicted_std": 1.3036
+      },
+      "model_b_linear": {
+        "system_name": "Model_B_Linear",
+        "n_samples": 2273,
+        "mae": 3.3163,
+        "rmse": 3.6228,
+        "pearson_r": 0.2163,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.2071,
+        "spearman_p": 0.0,
+        "qwk": 0.0427,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.8859,
+        "predicted_std": 1.2872
+      },
+      "model_c_saturating": {
+        "system_name": "Model_C_Saturating",
+        "n_samples": 2273,
+        "mae": 3.3484,
+        "rmse": 3.6485,
+        "pearson_r": 0.2196,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.2095,
+        "spearman_p": 0.0,
+        "qwk": 0.0422,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.852,
+        "predicted_std": 1.2732
+      },
+      "model_d_decomposed": {
+        "system_name": "Model_D_Decomposed",
+        "n_samples": 2273,
+        "mae": 3.3484,
+        "rmse": 3.6485,
+        "pearson_r": 0.2196,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.2095,
+        "spearman_p": 0.0,
+        "qwk": 0.0422,
+        "ground_truth_mean": 4.1839,
+        "ground_truth_std": 1.0964,
+        "predicted_mean": 0.852,
+        "predicted_std": 1.2732
+      }
+    },
+    "length_correlations": {
+      "human_score_vs_word_length": 0.0699,
+      "model_a_vs_word_length": -0.0349,
+      "model_b_vs_word_length": 0.065,
+      "model_c_vs_word_length": 0.0327,
+      "model_d_vs_word_length": 0.0327,
+      "human_score_vs_prop_count": 0.0457,
+      "model_a_vs_prop_count": 0.1425,
+      "model_b_vs_prop_count": 0.2467,
+      "model_c_vs_prop_count": 0.2125,
+      "model_d_vs_prop_count": 0.2125
+    },
+    "verbosity_gap": {
+      "shortest_decile_avg_words": 2.4,
+      "longest_decile_avg_words": 51.1,
+      "human_score_gap": 0.4471,
+      "model_a_score_gap": -0.7712,
+      "model_b_score_gap": -0.2949,
+      "model_c_score_gap": -0.4155,
+      "model_d_score_gap": -0.4155
+    }
+  }
+}

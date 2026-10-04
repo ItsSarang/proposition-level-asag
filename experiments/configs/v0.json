@@ -1,0 +1,8 @@
+{
+  "version": "V0",
+  "name": "TF-IDF Baseline",
+  "scale": 5.0,
+  "lowercase": true,
+  "analyzer": "word",
+  "status": "FROZEN"
+}

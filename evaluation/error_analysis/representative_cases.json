@@ -1,0 +1,3172 @@
+{
+  "aggregate_proposition_statistics": {
+    "total_records": 2273,
+    "total_unmatched_propositions": 3611,
+    "classification_counts": {
+      "CORRECT_ADDITIONAL": 2818,
+      "CORRECT_ADDITIONAL_pct": 78.04,
+      "IRRELEVANT": 780,
+      "IRRELEVANT_pct": 21.6,
+      "INCORRECT": 12,
+      "INCORRECT_pct": 0.33,
+      "UNCERTAIN": 1,
+      "UNCERTAIN_pct": 0.03
+    },
+    "answer_adjustment_counts": {
+      "positive_adjustment_answers": 1472,
+      "positive_adjustment_pct": 64.76,
+      "negative_adjustment_answers": 6,
+      "negative_adjustment_pct": 0.26,
+      "zero_adjustment_answers": 795,
+      "zero_adjustment_pct": 34.98,
+      "clipped_upper_count": 48,
+      "clipped_lower_count": 3
+    },
+    "net_adjustment_normalized": {
+      "mean": 0.1229,
+      "std": 0.1369,
+      "min": -0.2,
+      "max": 1.7,
+      "percentiles": {
+        "p0": -0.2,
+        "p25": 0.0,
+        "p50": 0.1,
+        "p75": 0.2,
+        "p90": 0.3,
+        "p95": 0.4,
+        "p99": 0.5,
+        "p100": 1.7
+      }
+    },
+    "net_adjustment_grade_scale_0_5": {
+      "mean": 0.6146,
+      "std": 0.6845,
+      "min": -1.0,
+      "max": 8.5,
+      "percentiles": {
+        "p0": -1.0,
+        "p25": 0.0,
+        "p50": 0.5,
+        "p75": 1.0,
+        "p90": 1.5,
+        "p95": 2.0,
+        "p99": 2.5,
+        "p100": 8.5
+      }
+    }
+  },
+  "representative_cases": {
+    "base_asag_quadrant_A_zero_ref_prop": {
+      "metadata": {
+        "category": "Base ASAG FN (Zero Reference Propositions)",
+        "question_id": "1.1",
+        "student_index": 9,
+        "assignment": 1
+      },
+      "question": "What is the role of a prototype program in problem solving?",
+      "reference_answer": "To simulate the behaviour of portions of the desired software product.",
+      "student_answer": "Simulating the behavior of only a portion of the desired software product.",
+      "human_score": 5.0,
+      "baseline_grade": 2.769,
+      "base_grade": 0.0,
+      "proposed_grade": 0.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.0,
+      "net_adjustment": 0.0,
+      "extracted_reference_propositions": [],
+      "extracted_student_propositions": [],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [],
+      "entailment_results": [],
+      "proposed_adjustments": []
+    },
+    "base_asag_quadrant_A_matching_gap": {
+      "metadata": {
+        "category": "Base ASAG FN (Relational Matching Gap)",
+        "question_id": "1.2",
+        "student_index": 9,
+        "assignment": 1
+      },
+      "question": "What stages in the software life cycle are influenced by the testing stage?",
+      "reference_answer": "The testing stage can influence both the coding stage (phase 5) and the solution refinement stage (phase 7)",
+      "student_answer": "Refining and Coding",
+      "human_score": 5.0,
+      "baseline_grade": 0.641,
+      "base_grade": 0.0,
+      "proposed_grade": 0.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.0,
+      "net_adjustment": 0.0,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "stage",
+            "influence",
+            "stage"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [
+        [
+          "stage",
+          "influence",
+          "stage"
+        ]
+      ],
+      "unmatched_student_propositions": [],
+      "entailment_results": [],
+      "proposed_adjustments": []
+    },
+    "base_asag_quadrant_B_overprediction": {
+      "metadata": {
+        "category": "Base ASAG FP (Over-prediction on Partial/Incorrect Content)",
+        "question_id": "1.6",
+        "student_index": 5,
+        "assignment": 1
+      },
+      "question": "Where are variables declared in a C++ program?",
+      "reference_answer": "Variables can be declared anywhere in a program. They can be declared inside a function (local variables) or outside the functions (global variables)",
+      "student_answer": "For good programing practice they should be declared before main(), but should at least be declared before they are used.",
+      "human_score": 2.5,
+      "baseline_grade": 0.904,
+      "base_grade": 3.75,
+      "proposed_grade": 4.25,
+      "base_normalized": 0.75,
+      "proposed_normalized": 0.85,
+      "net_adjustment": 0.1,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "Variables",
+            "declared",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "They",
+            "declared",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "they",
+            "declared",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "they",
+            "declared",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "they",
+            "used",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [
+        {
+          "reference": [
+            "They",
+            "declared",
+            null
+          ],
+          "student": [
+            "they",
+            "declared",
+            null
+          ],
+          "score": 1.0,
+          "method": "exact_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "They",
+              "target_text": "they",
+              "source_lemma": "they",
+              "target_lemma": "they",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": true,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "EXACT_MATCH",
+              "similarity_score": 1.0,
+              "method": "exact_match",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "declared",
+              "target_text": "declared",
+              "source_lemma": "declare",
+              "target_lemma": "declare",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": true,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "EXACT_MATCH",
+              "similarity_score": 1.0,
+              "method": "exact_match",
+              "synset_source": null,
+              "synset_target": null
+            }
+          }
+        },
+        {
+          "reference": [
+            "Variables",
+            "declared",
+            null
+          ],
+          "student": [
+            "they",
+            "declared",
+            null
+          ],
+          "score": 0.5,
+          "method": "semantic_path_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "Variables",
+              "target_text": "they",
+              "source_lemma": "variable",
+              "target_lemma": "they",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "NO_SYNSET",
+              "similarity_score": 0.0,
+              "method": "wordnet_path",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "declared",
+              "target_text": "declared",
+              "source_lemma": "declare",
+              "target_lemma": "declare",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": true,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "EXACT_MATCH",
+              "similarity_score": 1.0,
+              "method": "exact_match",
+              "synset_source": null,
+              "synset_target": null
+            }
+          }
+        }
+      ],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "they",
+          "used",
+          null
+        ]
+      ],
+      "entailment_results": [
+        {
+          "reference_relation": {
+            "subject": "They",
+            "predicate": "declared",
+            "object": null,
+            "subject_lemma": "they",
+            "predicate_lemma": "declare",
+            "object_lemma": null,
+            "relation_type": "PASSIVE_SP",
+            "source_dependency_relations": [
+              "nsubjpass"
+            ],
+            "subject_index": 0,
+            "predicate_index": 3,
+            "object_index": null
+          },
+          "student_relation": {
+            "subject": "they",
+            "predicate": "declared",
+            "object": null,
+            "subject_lemma": "they",
+            "predicate_lemma": "declare",
+            "object_lemma": null,
+            "relation_type": "PASSIVE_SP",
+            "source_dependency_relations": [
+              "nsubjpass"
+            ],
+            "subject_index": 4,
+            "predicate_index": 7,
+            "object_index": null
+          },
+          "relation": "ENTAILS",
+          "confidence": 1.0,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "POSITIVE",
+          "subject_evidence": {
+            "source_text": "They",
+            "target_text": "they",
+            "source_lemma": "they",
+            "target_lemma": "they",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": true,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "EXACT_MATCH",
+            "similarity_score": 1.0,
+            "method": "exact_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "declared",
+            "target_text": "declared",
+            "source_lemma": "declare",
+            "target_lemma": "declare",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": true,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "EXACT_MATCH",
+            "similarity_score": 1.0,
+            "method": "exact_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "object_evidence": null,
+          "triple_score": 1.0,
+          "reasons": [
+            "Polarity is compatible (both propositions are POSITIVE).",
+            "Subject slot satisfies minimum similarity (1.0000 >= 0.50) via exact_match.",
+            "Predicate slot satisfies minimum similarity (1.0000 >= 0.50) via exact_match.",
+            "Intransitive SP relation: no object slot required.",
+            "Composite triple alignment score (1.0000) meets entailment threshold (0.70)."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          }
+        },
+        {
+          "reference_relation": {
+            "subject": "Variables",
+            "predicate": "declared",
+            "object": null,
+            "subject_lemma": "variable",
+            "predicate_lemma": "declare",
+            "object_lemma": null,
+            "relation_type": "PASSIVE_SP",
+            "source_dependency_relations": [
+              "nsubjpass"
+            ],
+            "subject_index": 0,
+            "predicate_index": 3,
+            "object_index": null
+          },
+          "student_relation": {
+            "subject": "they",
+            "predicate": "declared",
+            "object": null,
+            "subject_lemma": "they",
+            "predicate_lemma": "declare",
+            "object_lemma": null,
+            "relation_type": "PASSIVE_SP",
+            "source_dependency_relations": [
+              "nsubjpass"
+            ],
+            "subject_index": 4,
+            "predicate_index": 18,
+            "object_index": null
+          },
+          "relation": "UNCERTAIN",
+          "confidence": 0.5,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "POSITIVE",
+          "subject_evidence": {
+            "source_text": "Variables",
+            "target_text": "they",
+            "source_lemma": "variable",
+            "target_lemma": "they",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "NO_SYNSET",
+            "similarity_score": 0.0,
+            "method": "wordnet_path",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "declared",
+            "target_text": "declared",
+            "source_lemma": "declare",
+            "target_lemma": "declare",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": true,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "EXACT_MATCH",
+            "similarity_score": 1.0,
+            "method": "exact_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "object_evidence": null,
+          "triple_score": 0.5,
+          "reasons": [
+            "Polarity is compatible (both propositions are POSITIVE), but semantic support is inconclusive.",
+            "Composite triple score (0.5000) is below entailment threshold (0.70).",
+            "Subject similarity (0.0000) for 'Variables' <-> 'they' is below slot threshold (0.50)."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          }
+        }
+      ],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "they are used",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        }
+      ]
+    },
+    "base_asag_quadrant_C_concordant_high": {
+      "metadata": {
+        "category": "Base ASAG TP (Concordant High Score 5.0/5.0)",
+        "question_id": "1.7",
+        "student_index": 1,
+        "assignment": 1
+      },
+      "question": "What is the main difference between a while and a do...while statement?",
+      "reference_answer": "The block inside a do...while statement will execute at least once.",
+      "student_answer": "do...while statements evaluate whether or not to loop after running the block contained within it at least once. So the main differance is that while statements have a possibility of never being used. Do ... while statements on the other hand are always run at least once before evaluating whether to run again.",
+      "human_score": 5.0,
+      "baseline_grade": 1.741,
+      "base_grade": 5.0,
+      "proposed_grade": 5.0,
+      "base_normalized": 1.0,
+      "proposed_normalized": 1.0,
+      "net_adjustment": 0.4,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "statement",
+            "execute",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "statements",
+            "evaluate",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "block",
+            "contained",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "differance",
+            "is",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "statements",
+            "have",
+            "possibility"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "statements",
+            "run",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [
+        {
+          "reference": [
+            "statement",
+            "execute",
+            null
+          ],
+          "student": [
+            "statements",
+            "run",
+            null
+          ],
+          "score": 1.0,
+          "method": "semantic_synonym_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "statement",
+              "target_text": "statements",
+              "source_lemma": "statement",
+              "target_lemma": "statement",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": false,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "LEMMA_MATCH",
+              "similarity_score": 1.0,
+              "method": "lemma_match",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "execute",
+              "target_text": "run",
+              "source_lemma": "execute",
+              "target_lemma": "run",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "WORDNET_SYNONYM",
+              "similarity_score": 1.0,
+              "method": "wordnet_synonym",
+              "synset_source": "run.v.19",
+              "synset_target": "run.v.19"
+            }
+          }
+        }
+      ],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "statements",
+          "evaluate",
+          null
+        ],
+        [
+          "block",
+          "contained",
+          null
+        ],
+        [
+          "differance",
+          "is",
+          null
+        ],
+        [
+          "statements",
+          "have",
+          "possibility"
+        ]
+      ],
+      "entailment_results": [
+        {
+          "reference_relation": {
+            "subject": "statement",
+            "predicate": "execute",
+            "object": null,
+            "subject_lemma": "statement",
+            "predicate_lemma": "execute",
+            "object_lemma": null,
+            "relation_type": "SP",
+            "source_dependency_relations": [
+              "nsubj"
+            ],
+            "subject_index": 7,
+            "predicate_index": 9,
+            "object_index": null
+          },
+          "student_relation": {
+            "subject": "statements",
+            "predicate": "run",
+            "object": null,
+            "subject_lemma": "statement",
+            "predicate_lemma": "run",
+            "object_lemma": null,
+            "relation_type": "PASSIVE_SP",
+            "source_dependency_relations": [
+              "nsubjpass"
+            ],
+            "subject_index": 3,
+            "predicate_index": 10,
+            "object_index": null
+          },
+          "relation": "ENTAILS",
+          "confidence": 1.0,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "POSITIVE",
+          "subject_evidence": {
+            "source_text": "statement",
+            "target_text": "statements",
+            "source_lemma": "statement",
+            "target_lemma": "statement",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": false,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "LEMMA_MATCH",
+            "similarity_score": 1.0,
+            "method": "lemma_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "execute",
+            "target_text": "run",
+            "source_lemma": "execute",
+            "target_lemma": "run",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "WORDNET_SYNONYM",
+            "similarity_score": 1.0,
+            "method": "wordnet_synonym",
+            "synset_source": "run.v.19",
+            "synset_target": "run.v.19"
+          },
+          "object_evidence": null,
+          "triple_score": 1.0,
+          "reasons": [
+            "Polarity is compatible (both propositions are POSITIVE).",
+            "Subject slot satisfies minimum similarity (1.0000 >= 0.50) via lemma_match.",
+            "Predicate slot satisfies minimum similarity (1.0000 >= 0.50) via wordnet_synonym.",
+            "Intransitive SP relation: no object slot required.",
+            "Composite triple alignment score (1.0000) meets entailment threshold (0.70)."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          }
+        }
+      ],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "statements evaluate",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "block contained",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "main differance is",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "statements have a possibility",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        }
+      ]
+    },
+    "base_asag_quadrant_D_concordant_low": {
+      "metadata": {
+        "category": "Base ASAG TN (Concordant Low Score 0.0/0.0)",
+        "question_id": "1.4",
+        "student_index": 7,
+        "assignment": 1
+      },
+      "question": "Where do C++ programs begin to execute?",
+      "reference_answer": "At the main function.",
+      "student_answer": "in the testing phase",
+      "human_score": 0.0,
+      "baseline_grade": 0.722,
+      "base_grade": 0.0,
+      "proposed_grade": 0.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.0,
+      "net_adjustment": 0.0,
+      "extracted_reference_propositions": [],
+      "extracted_student_propositions": [],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [],
+      "entailment_results": [],
+      "proposed_adjustments": []
+    },
+    "proposed_asag_case_A_improves_mae": {
+      "metadata": {
+        "category": "Proposed ASAG Case A (Substantial Error Reduction)",
+        "question_id": "3.7",
+        "student_index": 3,
+        "assignment": 3
+      },
+      "question": "What are the similarities between iteration and recursion?",
+      "reference_answer": "They both involve repetition; they both have termination tests; they can both occur infinitely.",
+      "student_answer": "Both are based on a control statement - Iteration-repetition structure - Recursion-selection structure Both involve repetition -Iteration-explicitly uses repetition structure -Recursion-repeated function calls Both involve a termination test -Iteration-loop-termination test -Recursion-base case Both gradually approach termination -Iteration-modifies counter until loop-termination test fails -Recursion-produces progressively simpler versions of problem Both can occur indefinitely -Iteration-if loop-continuation condition never fails -Recursion-if recursion step does not simplify the problem",
+      "human_score": 5.0,
+      "baseline_grade": 1.175,
+      "base_grade": 0.8335,
+      "proposed_grade": 4.8335,
+      "base_normalized": 0.1667,
+      "proposed_normalized": 0.9667,
+      "net_adjustment": 0.8,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "They",
+            "involve",
+            "repetition"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "they",
+            "have",
+            "tests"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "they",
+            "occur",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "Both",
+            "based",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "Both",
+            "involve",
+            "-Iteration"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "function",
+            "calls",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "Both",
+            "involve",
+            "case"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "Both",
+            "approach",
+            "counter"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "test",
+            "fails",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "-Recursion",
+            "produces",
+            "versions"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "Both",
+            "occur",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "condition",
+            "fails",
+            "-Recursion"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "step",
+            "simplify",
+            "problem"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [
+        {
+          "reference": [
+            "they",
+            "occur",
+            null
+          ],
+          "student": [
+            "Both",
+            "occur",
+            null
+          ],
+          "score": 0.5,
+          "method": "semantic_path_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "they",
+              "target_text": "Both",
+              "source_lemma": "they",
+              "target_lemma": "both",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "NO_SYNSET",
+              "similarity_score": 0.0,
+              "method": "wordnet_path",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "occur",
+              "target_text": "occur",
+              "source_lemma": "occur",
+              "target_lemma": "occur",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": true,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "EXACT_MATCH",
+              "similarity_score": 1.0,
+              "method": "exact_match",
+              "synset_source": null,
+              "synset_target": null
+            }
+          }
+        }
+      ],
+      "unmatched_reference_propositions": [
+        [
+          "They",
+          "involve",
+          "repetition"
+        ],
+        [
+          "they",
+          "have",
+          "tests"
+        ]
+      ],
+      "unmatched_student_propositions": [
+        [
+          "Both",
+          "based",
+          null
+        ],
+        [
+          "Both",
+          "involve",
+          "-Iteration"
+        ],
+        [
+          "function",
+          "calls",
+          null
+        ],
+        [
+          "Both",
+          "involve",
+          "case"
+        ],
+        [
+          "Both",
+          "approach",
+          "counter"
+        ],
+        [
+          "test",
+          "fails",
+          null
+        ],
+        [
+          "-Recursion",
+          "produces",
+          "versions"
+        ],
+        [
+          "condition",
+          "fails",
+          "-Recursion"
+        ],
+        [
+          "step",
+          "simplify",
+          "problem"
+        ]
+      ],
+      "entailment_results": [
+        {
+          "reference_relation": {
+            "subject": "they",
+            "predicate": "occur",
+            "object": null,
+            "subject_lemma": "they",
+            "predicate_lemma": "occur",
+            "object_lemma": null,
+            "relation_type": "SP",
+            "source_dependency_relations": [
+              "nsubj"
+            ],
+            "subject_index": 11,
+            "predicate_index": 14,
+            "object_index": null
+          },
+          "student_relation": {
+            "subject": "Both",
+            "predicate": "occur",
+            "object": null,
+            "subject_lemma": "both",
+            "predicate_lemma": "occur",
+            "object_lemma": null,
+            "relation_type": "SP",
+            "source_dependency_relations": [
+              "nsubj"
+            ],
+            "subject_index": 68,
+            "predicate_index": 70,
+            "object_index": null
+          },
+          "relation": "UNCERTAIN",
+          "confidence": 0.5,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "POSITIVE",
+          "subject_evidence": {
+            "source_text": "they",
+            "target_text": "Both",
+            "source_lemma": "they",
+            "target_lemma": "both",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "NO_SYNSET",
+            "similarity_score": 0.0,
+            "method": "wordnet_path",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "occur",
+            "target_text": "occur",
+            "source_lemma": "occur",
+            "target_lemma": "occur",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": true,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "EXACT_MATCH",
+            "similarity_score": 1.0,
+            "method": "exact_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "object_evidence": null,
+          "triple_score": 0.5,
+          "reasons": [
+            "Polarity is compatible (both propositions are POSITIVE), but semantic support is inconclusive.",
+            "Composite triple score (0.5000) is below entailment threshold (0.70).",
+            "Subject similarity (0.0000) for 'they' <-> 'Both' is below slot threshold (0.50)."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          }
+        }
+      ],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "Both are based",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "Both involve repetition -Iteration",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "repeated function calls",
+          "confidence": 0.475,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "Both involve a termination test -Iteration-loop-termination test -Recursion-base case",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "Both gradually approach termination -Iteration-modifies counter",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "termination test fails",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "fails -Recursion-produces progressively simpler versions",
+          "confidence": 0.6898,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "continuation condition never fails -Recursion",
+          "confidence": 0.4472,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "recursion step does not simplify the problem",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        }
+      ]
+    },
+    "proposed_asag_case_B_worsens_mae": {
+      "metadata": {
+        "category": "Proposed ASAG Case B (Verbosity Inflation / Worsened MAE)",
+        "question_id": "2.6",
+        "student_index": 1,
+        "assignment": 2
+      },
+      "question": "What is the difference between a function prototype and a function definition?",
+      "reference_answer": "A function prototype includes the function signature, i.e., the name of the function, the return type, and the parameters' type. The function definition includes the actual body of the function.",
+      "student_answer": "The FUNCTION PROTOTYPE is where the programmer declares that he/she is using a function other than main( ). This is like declaring a variable, the programmer knows that he/she will be using in the future, but has yet to say where they are going to use it, or how. This is answers the question who, it gives the function a name and character. The function prototype, by common practice is placed at the beginning of the program after the #includes and before main( ). The FUNCTION DEFINITION is the guts of the function. This is where the programmer decides what the function is going to do and tells it how to do it. It takes whatever information it is given and performs the operations. It works sort of like the brain, the brain takes in input and based upon that input performs in some way producing an output. The function defintion is placed outside of main( ) and any other functions. A function is its own entity and should be thought of as such.",
+      "human_score": 2.5,
+      "baseline_grade": 2.866,
+      "base_grade": 1.25,
+      "proposed_grade": 5.0,
+      "base_normalized": 0.25,
+      "proposed_normalized": 1.0,
+      "net_adjustment": 1.7,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "prototype",
+            "includes",
+            "signature"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "definition",
+            "includes",
+            "body"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "PROTOTYPE",
+            "is",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "programmer",
+            "declares",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "he",
+            "using",
+            "function"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "This",
+            "is",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "programmer",
+            "knows",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "he",
+            "using",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "programmer",
+            "has",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "they",
+            "going",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "This",
+            "is",
+            "answers"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "it",
+            "gives",
+            "name"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "practice",
+            "placed",
+            "prototype"
+          ],
+          "relation_type": "PASSIVE_SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "#",
+            "includes",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "DEFINITION",
+            "is",
+            "guts"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "This",
+            "is",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "programmer",
+            "decides",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "function",
+            "going",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "programmer",
+            "tells",
+            "it"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "It",
+            "takes",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "it",
+            "given",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "it",
+            "performs",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "It",
+            "works",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "brain",
+            "takes",
+            "input"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "brain",
+            "based",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "input",
+            "performs",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "defintion",
+            "placed",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "function",
+            "is",
+            "entity"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "function",
+            "thought",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [
+        {
+          "reference": [
+            "definition",
+            "includes",
+            "body"
+          ],
+          "student": [
+            "DEFINITION",
+            "is",
+            "guts"
+          ],
+          "score": 0.5111,
+          "method": "semantic_path_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "definition",
+              "target_text": "DEFINITION",
+              "source_lemma": "definition",
+              "target_lemma": "definition",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": true,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "EXACT_MATCH",
+              "similarity_score": 1.0,
+              "method": "exact_match",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "includes",
+              "target_text": "is",
+              "source_lemma": "include",
+              "target_lemma": "be",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "WORDNET_PATH",
+              "similarity_score": 0.333333,
+              "method": "wordnet_path",
+              "synset_source": "include.v.01",
+              "synset_target": "be.v.01"
+            },
+            "object": {
+              "source_text": "body",
+              "target_text": "guts",
+              "source_lemma": "body",
+              "target_lemma": "gut",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "WORDNET_PATH",
+              "similarity_score": 0.2,
+              "method": "wordnet_path",
+              "synset_source": "torso.n.01",
+              "synset_target": "intestine.n.01"
+            }
+          }
+        }
+      ],
+      "unmatched_reference_propositions": [
+        [
+          "prototype",
+          "includes",
+          "signature"
+        ]
+      ],
+      "unmatched_student_propositions": [
+        [
+          "PROTOTYPE",
+          "is",
+          null
+        ],
+        [
+          "programmer",
+          "declares",
+          null
+        ],
+        [
+          "he",
+          "using",
+          "function"
+        ],
+        [
+          "This",
+          "is",
+          null
+        ],
+        [
+          "programmer",
+          "knows",
+          null
+        ],
+        [
+          "he",
+          "using",
+          null
+        ],
+        [
+          "programmer",
+          "has",
+          null
+        ],
+        [
+          "they",
+          "going",
+          null
+        ],
+        [
+          "This",
+          "is",
+          "answers"
+        ],
+        [
+          "it",
+          "gives",
+          "name"
+        ],
+        [
+          "practice",
+          "placed",
+          "prototype"
+        ],
+        [
+          "#",
+          "includes",
+          null
+        ],
+        [
+          "This",
+          "is",
+          null
+        ],
+        [
+          "programmer",
+          "decides",
+          null
+        ],
+        [
+          "function",
+          "going",
+          null
+        ],
+        [
+          "programmer",
+          "tells",
+          "it"
+        ],
+        [
+          "It",
+          "takes",
+          null
+        ],
+        [
+          "it",
+          "given",
+          null
+        ],
+        [
+          "it",
+          "performs",
+          null
+        ],
+        [
+          "It",
+          "works",
+          null
+        ],
+        [
+          "brain",
+          "takes",
+          "input"
+        ],
+        [
+          "brain",
+          "based",
+          null
+        ],
+        [
+          "input",
+          "performs",
+          null
+        ],
+        [
+          "defintion",
+          "placed",
+          null
+        ],
+        [
+          "function",
+          "is",
+          "entity"
+        ],
+        [
+          "function",
+          "thought",
+          null
+        ]
+      ],
+      "entailment_results": [
+        {
+          "reference_relation": {
+            "subject": "definition",
+            "predicate": "includes",
+            "object": "body",
+            "subject_lemma": "definition",
+            "predicate_lemma": "include",
+            "object_lemma": "body",
+            "relation_type": "SPO",
+            "source_dependency_relations": [
+              "nsubj",
+              "dobj"
+            ],
+            "subject_index": 2,
+            "predicate_index": 3,
+            "object_index": 6
+          },
+          "student_relation": {
+            "subject": "DEFINITION",
+            "predicate": "is",
+            "object": "guts",
+            "subject_lemma": "definition",
+            "predicate_lemma": "be",
+            "object_lemma": "gut",
+            "relation_type": "SPO",
+            "source_dependency_relations": [
+              "nsubj",
+              "attr"
+            ],
+            "subject_index": 2,
+            "predicate_index": 3,
+            "object_index": 5
+          },
+          "relation": "UNCERTAIN",
+          "confidence": 0.5111,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "POSITIVE",
+          "subject_evidence": {
+            "source_text": "definition",
+            "target_text": "DEFINITION",
+            "source_lemma": "definition",
+            "target_lemma": "definition",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": true,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "EXACT_MATCH",
+            "similarity_score": 1.0,
+            "method": "exact_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "includes",
+            "target_text": "is",
+            "source_lemma": "include",
+            "target_lemma": "be",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "WORDNET_PATH",
+            "similarity_score": 0.333333,
+            "method": "wordnet_path",
+            "synset_source": "include.v.01",
+            "synset_target": "be.v.01"
+          },
+          "object_evidence": {
+            "source_text": "body",
+            "target_text": "guts",
+            "source_lemma": "body",
+            "target_lemma": "gut",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "WORDNET_PATH",
+            "similarity_score": 0.2,
+            "method": "wordnet_path",
+            "synset_source": "torso.n.01",
+            "synset_target": "intestine.n.01"
+          },
+          "triple_score": 0.511111,
+          "reasons": [
+            "Polarity is compatible (both propositions are POSITIVE), but semantic support is inconclusive.",
+            "Composite triple score (0.5111) is below entailment threshold (0.70).",
+            "Predicate similarity (0.3333) for 'includes' <-> 'is' is below slot threshold (0.50).",
+            "Object similarity (0.2000) for 'body' <-> 'guts' is below slot threshold (0.50)."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          }
+        }
+      ],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "FUNCTION PROTOTYPE is",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "programmer declares",
+          "confidence": 0.7533,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "he/she is using a function other",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "This is",
+          "confidence": 0.75,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "programmer knows",
+          "confidence": 0.6756,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "he/she will be using",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "has yet",
+          "confidence": 0.82,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "they are going",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "This is answers",
+          "confidence": 0.5,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "it gives the function a name",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "function prototype, by common practice is placed",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "#includes",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "This is",
+          "confidence": 1.0,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "programmer decides",
+          "confidence": 0.6756,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "function is going",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "tells it",
+          "confidence": 0.6756,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "It takes",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "it is given",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "performs",
+          "confidence": 0.6667,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "It works",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "brain takes in input",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "based",
+          "confidence": 0.6709,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "input performs",
+          "confidence": 0.4708,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "function defintion is placed",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "function is its own entity",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "should be thought",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        }
+      ]
+    },
+    "proposed_asag_case_C_divergence": {
+      "metadata": {
+        "category": "Proposed ASAG Case C (Score Shift on Low Human Grade)",
+        "question_id": "11.8",
+        "student_index": 1,
+        "assignment": 11
+      },
+      "question": "What is the main difference between a string of characters that is read into a variable of type string versus a variable of type char[]?",
+      "reference_answer": "The char[] will automatically add a null \\0 character at the end of the string.",
+      "student_answer": "a variable char is basically any non command key on the keyboard that you can press. A string is a collection of letters or numbers that is stored together to be used later. Comonly strings are used for words. Chars can be used for less but can have opperations performed on them in a useful way.",
+      "human_score": 2.0,
+      "baseline_grade": 0.7225,
+      "base_grade": 2.5,
+      "proposed_grade": 4.5,
+      "base_normalized": 0.5,
+      "proposed_normalized": 0.9,
+      "net_adjustment": 0.4,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "char",
+            "add",
+            "character"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "char",
+            "is",
+            "key"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "press",
+            "that"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "string",
+            "is",
+            "collection"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "that",
+            "stored",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "strings",
+            "used",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "Chars",
+            "used",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "Chars",
+            "have",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "opperations",
+            "performed",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [
+        {
+          "reference": [
+            "char",
+            "add",
+            "character"
+          ],
+          "student": [
+            "char",
+            "is",
+            "key"
+          ],
+          "score": 0.5111,
+          "method": "semantic_path_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "char",
+              "target_text": "char",
+              "source_lemma": "char",
+              "target_lemma": "char",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": true,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "EXACT_MATCH",
+              "similarity_score": 1.0,
+              "method": "exact_match",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "add",
+              "target_text": "is",
+              "source_lemma": "add",
+              "target_lemma": "be",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "WORDNET_PATH",
+              "similarity_score": 0.333333,
+              "method": "wordnet_path",
+              "synset_source": "add.v.06",
+              "synset_target": "constitute.v.01"
+            },
+            "object": {
+              "source_text": "character",
+              "target_text": "key",
+              "source_lemma": "character",
+              "target_lemma": "key",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "WORDNET_PATH",
+              "similarity_score": 0.2,
+              "method": "wordnet_path",
+              "synset_source": "character.n.05",
+              "synset_target": "key.n.07"
+            }
+          }
+        }
+      ],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "you",
+          "press",
+          "that"
+        ],
+        [
+          "string",
+          "is",
+          "collection"
+        ],
+        [
+          "that",
+          "stored",
+          null
+        ],
+        [
+          "strings",
+          "used",
+          null
+        ],
+        [
+          "Chars",
+          "used",
+          null
+        ],
+        [
+          "Chars",
+          "have",
+          null
+        ],
+        [
+          "opperations",
+          "performed",
+          null
+        ]
+      ],
+      "entailment_results": [
+        {
+          "reference_relation": {
+            "subject": "char",
+            "predicate": "add",
+            "object": "character",
+            "subject_lemma": "char",
+            "predicate_lemma": "add",
+            "object_lemma": "character",
+            "relation_type": "SPO",
+            "source_dependency_relations": [
+              "nsubj",
+              "dobj"
+            ],
+            "subject_index": 1,
+            "predicate_index": 6,
+            "object_index": 10
+          },
+          "student_relation": {
+            "subject": "char",
+            "predicate": "is",
+            "object": "key",
+            "subject_lemma": "char",
+            "predicate_lemma": "be",
+            "object_lemma": "key",
+            "relation_type": "SPO",
+            "source_dependency_relations": [
+              "nsubj",
+              "attr"
+            ],
+            "subject_index": 2,
+            "predicate_index": 3,
+            "object_index": 8
+          },
+          "relation": "UNCERTAIN",
+          "confidence": 0.5111,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "POSITIVE",
+          "subject_evidence": {
+            "source_text": "char",
+            "target_text": "char",
+            "source_lemma": "char",
+            "target_lemma": "char",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": true,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "EXACT_MATCH",
+            "similarity_score": 1.0,
+            "method": "exact_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "add",
+            "target_text": "is",
+            "source_lemma": "add",
+            "target_lemma": "be",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "WORDNET_PATH",
+            "similarity_score": 0.333333,
+            "method": "wordnet_path",
+            "synset_source": "add.v.06",
+            "synset_target": "constitute.v.01"
+          },
+          "object_evidence": {
+            "source_text": "character",
+            "target_text": "key",
+            "source_lemma": "character",
+            "target_lemma": "key",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "WORDNET_PATH",
+            "similarity_score": 0.2,
+            "method": "wordnet_path",
+            "synset_source": "character.n.05",
+            "synset_target": "key.n.07"
+          },
+          "triple_score": 0.511111,
+          "reasons": [
+            "Polarity is compatible (both propositions are POSITIVE), but semantic support is inconclusive.",
+            "Composite triple score (0.5111) is below entailment threshold (0.70).",
+            "Predicate similarity (0.3333) for 'add' <-> 'is' is below slot threshold (0.50).",
+            "Object similarity (0.2000) for 'character' <-> 'key' is below slot threshold (0.50)."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          }
+        }
+      ],
+      "proposed_adjustments": [
+        {
+          "classification": "IRRELEVANT",
+          "text": "that you can press",
+          "confidence": 0.7,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "string is a collection",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "that is stored",
+          "confidence": 0.6845,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "Comonly strings are used",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "Chars can be used",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "can have",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "opperations performed",
+          "confidence": 0.6976,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        }
+      ]
+    },
+    "proposed_asag_case_D_neutral_unmatched": {
+      "metadata": {
+        "category": "Proposed ASAG Case D (Neutral Adjustment on Irrelevant Propositions)",
+        "question_id": "1.3",
+        "student_index": 16,
+        "assignment": 1
+      },
+      "question": "What are the main advantages associated with object-oriented programming?",
+      "reference_answer": "Abstraction and reusability.",
+      "student_answer": "Variables can remain private. The code is easily modified and reusable, as well as easily implemented. Not to mention easier to read and follow along as an observer.",
+      "human_score": 4.5,
+      "baseline_grade": 0.5185,
+      "base_grade": 0.0,
+      "proposed_grade": 0.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.0,
+      "net_adjustment": 0.0,
+      "extracted_reference_propositions": [],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "Variables",
+            "remain",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "code",
+            "modified",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "code",
+            "implemented",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "Variables",
+          "remain",
+          null
+        ],
+        [
+          "code",
+          "modified",
+          null
+        ],
+        [
+          "code",
+          "implemented",
+          null
+        ]
+      ],
+      "entailment_results": [],
+      "proposed_adjustments": [
+        {
+          "classification": "IRRELEVANT",
+          "text": "Variables can remain",
+          "confidence": 0.6778,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "code is easily modified",
+          "confidence": 0.6917,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "easily implemented",
+          "confidence": 0.6942,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        }
+      ]
+    },
+    "proposed_asag_case_E_correct_additional": {
+      "metadata": {
+        "category": "Proposed ASAG Case E (Valid Domain Content as CORRECT_ADDITIONAL)",
+        "question_id": "12.9",
+        "student_index": 13,
+        "assignment": 12
+      },
+      "question": "How do you delete a node from a binary search tree?",
+      "reference_answer": "Find the node, then replace it with the leftmost node from its right subtree (or the rightmost node from its left subtree).",
+      "student_answer": "In a binary search tree, you must first establish a proper replacement for the node you are about to delete, usually a child from the soon to be deleted node. Once that replacement node has been found, you simply reassign it to where the node that is going to be deleted is. After the deleted node has been usurped, you remove the deleted node from memory so it may be used again.",
+      "human_score": 4.0,
+      "baseline_grade": 1.5065,
+      "base_grade": 0.0,
+      "proposed_grade": 4.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.8,
+      "net_adjustment": 0.8,
+      "extracted_reference_propositions": [],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "you",
+            "establish",
+            "replacement"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "are",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "node",
+            "found",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "reassign",
+            "it"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "node",
+            "going",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "node",
+            "is",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "node",
+            "been",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "remove",
+            "node"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "it",
+            "used",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "you",
+          "establish",
+          "replacement"
+        ],
+        [
+          "you",
+          "are",
+          null
+        ],
+        [
+          "node",
+          "found",
+          null
+        ],
+        [
+          "you",
+          "reassign",
+          "it"
+        ],
+        [
+          "node",
+          "going",
+          null
+        ],
+        [
+          "node",
+          "is",
+          null
+        ],
+        [
+          "node",
+          "been",
+          null
+        ],
+        [
+          "you",
+          "remove",
+          "node"
+        ],
+        [
+          "it",
+          "used",
+          null
+        ]
+      ],
+      "entailment_results": [],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "you must first establish a proper replacement",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "you are",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "replacement node has been found",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "you simply reassign it",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "node that is going",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "node that is going to be deleted is",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "deleted node has been",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "you remove the deleted node",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "it may be used",
+          "confidence": 0.6889,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        }
+      ]
+    },
+    "proposed_asag_case_F_irrelevant": {
+      "metadata": {
+        "category": "Proposed ASAG Case F (Off-Topic Digression as IRRELEVANT)",
+        "question_id": "1.3",
+        "student_index": 0,
+        "assignment": 1
+      },
+      "question": "What are the main advantages associated with object-oriented programming?",
+      "reference_answer": "Abstraction and reusability.",
+      "student_answer": "Modularability, the ability to reuse parts of the program later in another program sometimes with completely different goals for the program. Also it makes it easier to debug code by dividing up the code into classes that each do a specific job and when the program fails at one job you only have one class to debug. Good for security purposes because it allows you to let someone use a program which sorts lists without having to give them access to the source code. ALso allows you to use inheritance and polymorphism.",
+      "human_score": 4.5,
+      "baseline_grade": 0.2165,
+      "base_grade": 0.0,
+      "proposed_grade": 2.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.4,
+      "net_adjustment": 0.4,
+      "extracted_reference_propositions": [],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "ability",
+            "reuse",
+            "parts"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "it",
+            "makes",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "each",
+            "do",
+            "job"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "program",
+            "fails",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "have",
+            "class"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "it",
+            "allows",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "let",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "someone",
+            "use",
+            "program"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "program",
+            "sorts",
+            "lists"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "you",
+            "use",
+            "inheritance"
+          ],
+          "relation_type": "SPO",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "ability",
+          "reuse",
+          "parts"
+        ],
+        [
+          "it",
+          "makes",
+          null
+        ],
+        [
+          "each",
+          "do",
+          "job"
+        ],
+        [
+          "program",
+          "fails",
+          null
+        ],
+        [
+          "you",
+          "have",
+          "class"
+        ],
+        [
+          "it",
+          "allows",
+          null
+        ],
+        [
+          "you",
+          "let",
+          null
+        ],
+        [
+          "someone",
+          "use",
+          "program"
+        ],
+        [
+          "program",
+          "sorts",
+          "lists"
+        ],
+        [
+          "you",
+          "use",
+          "inheritance"
+        ]
+      ],
+      "entailment_results": [],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "ability to reuse parts",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "it makes",
+          "confidence": 0.6667,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "each do a specific job",
+          "confidence": 0.68,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "program fails",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "you only have one class",
+          "confidence": 0.6971,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "it allows",
+          "confidence": 0.75,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "you to let",
+          "confidence": 0.775,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "someone use a program",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "program which sorts lists",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "you to use inheritance",
+          "confidence": 0.6945,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        }
+      ]
+    },
+    "proposed_asag_case_G_incorrect_polarity": {
+      "metadata": {
+        "category": "Proposed ASAG Case G (Antonymy Polarity Inversion / False INCORRECT)",
+        "question_id": "7.2",
+        "student_index": 9,
+        "assignment": 7
+      },
+      "question": "What is the main advantage of linked lists over arrays?",
+      "reference_answer": "The linked lists can be of variable length.",
+      "student_answer": "A linked list is not fixed in size, and does not require the shifting of items during insertions and deletions.",
+      "human_score": 5.0,
+      "baseline_grade": 0.627,
+      "base_grade": 0.0,
+      "proposed_grade": 0.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.0,
+      "net_adjustment": -0.2,
+      "extracted_reference_propositions": [
+        {
+          "tuple": [
+            "lists",
+            "be",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        }
+      ],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "list",
+            "fixed",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "list",
+            "require",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [
+        {
+          "reference": [
+            "lists",
+            "be",
+            null
+          ],
+          "student": [
+            "list",
+            "require",
+            null
+          ],
+          "score": 0.75,
+          "method": "semantic_path_triple",
+          "slot_evidence": {
+            "subject": {
+              "source_text": "lists",
+              "target_text": "list",
+              "source_lemma": "list",
+              "target_lemma": "list",
+              "source_pos": "NOUN",
+              "target_pos": "NOUN",
+              "exact_match": false,
+              "lemma_match": true,
+              "pos_compatible": true,
+              "semantic_relation": "LEMMA_MATCH",
+              "similarity_score": 1.0,
+              "method": "lemma_match",
+              "synset_source": null,
+              "synset_target": null
+            },
+            "predicate": {
+              "source_text": "be",
+              "target_text": "require",
+              "source_lemma": "be",
+              "target_lemma": "require",
+              "source_pos": "VERB",
+              "target_pos": "VERB",
+              "exact_match": false,
+              "lemma_match": false,
+              "pos_compatible": true,
+              "semantic_relation": "WORDNET_PATH",
+              "similarity_score": 0.5,
+              "method": "wordnet_path",
+              "synset_source": "be.v.01",
+              "synset_target": "want.v.02"
+            }
+          }
+        }
+      ],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "list",
+          "fixed",
+          null
+        ]
+      ],
+      "entailment_results": [
+        {
+          "reference_relation": {
+            "subject": "lists",
+            "predicate": "be",
+            "object": null,
+            "subject_lemma": "list",
+            "predicate_lemma": "be",
+            "object_lemma": null,
+            "relation_type": "SP",
+            "source_dependency_relations": [
+              "nsubj"
+            ],
+            "subject_index": 2,
+            "predicate_index": 4,
+            "object_index": null
+          },
+          "student_relation": {
+            "subject": "list",
+            "predicate": "require",
+            "object": null,
+            "subject_lemma": "list",
+            "predicate_lemma": "require",
+            "object_lemma": null,
+            "relation_type": "PASSIVE_SP",
+            "source_dependency_relations": [
+              "nsubjpass"
+            ],
+            "subject_index": 2,
+            "predicate_index": 12,
+            "object_index": null
+          },
+          "relation": "CONTRADICTS",
+          "confidence": 0.75,
+          "reference_polarity": "POSITIVE",
+          "student_polarity": "NEGATED",
+          "subject_evidence": {
+            "source_text": "lists",
+            "target_text": "list",
+            "source_lemma": "list",
+            "target_lemma": "list",
+            "source_pos": "NOUN",
+            "target_pos": "NOUN",
+            "exact_match": false,
+            "lemma_match": true,
+            "pos_compatible": true,
+            "semantic_relation": "LEMMA_MATCH",
+            "similarity_score": 1.0,
+            "method": "lemma_match",
+            "synset_source": null,
+            "synset_target": null
+          },
+          "predicate_evidence": {
+            "source_text": "be",
+            "target_text": "require",
+            "source_lemma": "be",
+            "target_lemma": "require",
+            "source_pos": "VERB",
+            "target_pos": "VERB",
+            "exact_match": false,
+            "lemma_match": false,
+            "pos_compatible": true,
+            "semantic_relation": "WORDNET_PATH",
+            "similarity_score": 0.5,
+            "method": "wordnet_path",
+            "synset_source": "be.v.01",
+            "synset_target": "want.v.02"
+          },
+          "object_evidence": null,
+          "triple_score": 0.75,
+          "reasons": [
+            "Reference proposition expresses a positive claim.",
+            "Student proposition contains explicit negation (not).",
+            "Underlying proposition terms are sufficiently aligned (triple score: 0.7500 >= 0.50).",
+            "Explicit polarity contradiction on structurally corresponding dependency relations."
+          ],
+          "reference_polarity_info": {
+            "polarity": "POSITIVE",
+            "is_negated": false,
+            "negation_tokens": [],
+            "evidence": "No negation markers detected; proposition has positive polarity."
+          },
+          "student_polarity_info": {
+            "polarity": "NEGATED",
+            "is_negated": true,
+            "negation_tokens": [
+              "not"
+            ],
+            "evidence": "Negation marker 'not' (dep=neg) attached to predicate 'require'."
+          }
+        }
+      ],
+      "proposed_adjustments": [
+        {
+          "classification": "INCORRECT",
+          "text": "linked list is not fixed",
+          "confidence": 0.625,
+          "applied_adjustment": -0.2,
+          "reason": "Deduction for incorrect/misconception proposition: -0.2000."
+        }
+      ]
+    },
+    "tfidf_vs_base_lexical_superiority": {
+      "metadata": {
+        "category": "TF-IDF Outperformance (Noun-Phrase Fragment / Lexical Match)",
+        "question_id": "1.3",
+        "student_index": 4,
+        "assignment": 1
+      },
+      "question": "What are the main advantages associated with object-oriented programming?",
+      "reference_answer": "Abstraction and reusability.",
+      "student_answer": "Some advantages are existing classes can be reused and program maintenance and verification are easier to accomplish.",
+      "human_score": 3.5,
+      "baseline_grade": 0.733,
+      "base_grade": 0.0,
+      "proposed_grade": 1.0,
+      "base_normalized": 0.0,
+      "proposed_normalized": 0.2,
+      "net_adjustment": 0.2,
+      "extracted_reference_propositions": [],
+      "extracted_student_propositions": [
+        {
+          "tuple": [
+            "advantages",
+            "are",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "classes",
+            "reused",
+            null
+          ],
+          "relation_type": "PASSIVE_SP",
+          "dep": null
+        },
+        {
+          "tuple": [
+            "maintenance",
+            "are",
+            null
+          ],
+          "relation_type": "SP",
+          "dep": null
+        }
+      ],
+      "matched_propositions": [],
+      "unmatched_reference_propositions": [],
+      "unmatched_student_propositions": [
+        [
+          "advantages",
+          "are",
+          null
+        ],
+        [
+          "classes",
+          "reused",
+          null
+        ],
+        [
+          "maintenance",
+          "are",
+          null
+        ]
+      ],
+      "entailment_results": [],
+      "proposed_adjustments": [
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "advantages are",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        },
+        {
+          "classification": "IRRELEVANT",
+          "text": "existing classes can be reused",
+          "confidence": 0.684,
+          "applied_adjustment": 0.0,
+          "reason": "Irrelevant proposition: neutral adjustment (+0.0000)."
+        },
+        {
+          "classification": "CORRECT_ADDITIONAL",
+          "text": "program maintenance and verification are",
+          "confidence": 0.75,
+          "applied_adjustment": 0.1,
+          "reason": "Bonus for correct additional proposition: +0.1000."
+        }
+      ]
+    }
+  }
+}

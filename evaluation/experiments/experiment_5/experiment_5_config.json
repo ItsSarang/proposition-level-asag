@@ -1,0 +1,46 @@
+{
+  "experiment": "Experiment 5",
+  "description": "Core Paraphrase Recovery, Canonical Fragments, Contradiction Guards, and Model D2 Scorer",
+  "variants": {
+    "V4": {
+      "core_recovery": false,
+      "canonical_fragments": false,
+      "contradiction_guards": false,
+      "scorer": "Model D"
+    },
+    "V5-A": {
+      "core_recovery": true,
+      "canonical_fragments": true,
+      "contradiction_guards": false,
+      "scorer": "Model D"
+    },
+    "V5-B": {
+      "core_recovery": true,
+      "canonical_fragments": true,
+      "contradiction_guards": true,
+      "scorer": "Model D"
+    },
+    "V5-C": {
+      "core_recovery": false,
+      "canonical_fragments": false,
+      "contradiction_guards": false,
+      "scorer": "Model D2"
+    },
+    "V5": {
+      "core_recovery": true,
+      "canonical_fragments": true,
+      "contradiction_guards": true,
+      "scorer": "Model D2"
+    }
+  },
+  "model_d2_parameters": {
+    "tau_gate": 0.3,
+    "gamma": 0.25,
+    "max_positive_bonus": 0.25,
+    "diminishing_rate": 0.5,
+    "core_invalidation_discount": 0.5,
+    "minor_penalty_weight": 0.2,
+    "max_points": 5.0,
+    "sigma_core_threshold": 0.9
+  }
+}

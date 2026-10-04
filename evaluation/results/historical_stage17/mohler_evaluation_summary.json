@@ -1,0 +1,166 @@
+{
+  "summary": {
+    "total_evaluated_records": 2273,
+    "active_records_evaluated": 2273,
+    "assignments_1_10_records": 1721,
+    "exams_records": 552,
+    "total_failures": 0,
+    "duration_seconds": 182.06,
+    "seconds_per_record": 0.0801
+  },
+  "configuration": {
+    "use_cleaned_text": true,
+    "max_points": 5.0,
+    "proposed_scorer_config": {
+      "correct_additional_weight": 0.1,
+      "incorrect_additional_penalty": 0.2,
+      "irrelevant_adjustment": 0.0,
+      "uncertain_adjustment": 0.0,
+      "evidence_weighted": false,
+      "max_positive_adjustment": null,
+      "max_negative_adjustment": null
+    }
+  },
+  "metrics_all": {
+    "baseline": {
+      "system_name": "TF-IDF + Cosine Baseline",
+      "n_samples": 2273,
+      "mae": 2.6571,
+      "rmse": 2.9178,
+      "pearson_r": 0.4184,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.4424,
+      "spearman_p": 0.0,
+      "qwk": 0.1151,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 1.5316,
+      "predicted_std": 1.157
+    },
+    "base_asag": {
+      "system_name": "Base ASAG (System 2)",
+      "n_samples": 2273,
+      "mae": 3.7794,
+      "rmse": 4.0179,
+      "pearson_r": 0.1419,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.1177,
+      "spearman_p": 0.0,
+      "qwk": 0.0191,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 0.4173,
+      "predicted_std": 1.0377
+    },
+    "proposed_asag": {
+      "system_name": "Proposed ASAG (System 3)",
+      "n_samples": 2273,
+      "mae": 3.2036,
+      "rmse": 3.5101,
+      "pearson_r": 0.1377,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.0797,
+      "spearman_p": 0.000142,
+      "qwk": 0.0252,
+      "ground_truth_mean": 4.1839,
+      "ground_truth_std": 1.0964,
+      "predicted_mean": 1.0129,
+      "predicted_std": 1.1933
+    }
+  },
+  "metrics_assignments_1_10": {
+    "baseline": {
+      "system_name": "TF-IDF + Cosine Baseline",
+      "n_samples": 1721,
+      "mae": 2.6472,
+      "rmse": 2.9073,
+      "pearson_r": 0.4177,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.4451,
+      "spearman_p": 0.0,
+      "qwk": 0.1126,
+      "ground_truth_mean": 4.1784,
+      "ground_truth_std": 1.0689,
+      "predicted_mean": 1.5353,
+      "predicted_std": 1.1701
+    },
+    "base_asag": {
+      "system_name": "Base ASAG (System 2)",
+      "n_samples": 1721,
+      "mae": 3.7707,
+      "rmse": 3.996,
+      "pearson_r": 0.1385,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.1233,
+      "spearman_p": 0.0,
+      "qwk": 0.018,
+      "ground_truth_mean": 4.1784,
+      "ground_truth_std": 1.0689,
+      "predicted_mean": 0.4211,
+      "predicted_std": 1.0024
+    },
+    "proposed_asag": {
+      "system_name": "Proposed ASAG (System 3)",
+      "n_samples": 1721,
+      "mae": 3.2168,
+      "rmse": 3.5078,
+      "pearson_r": 0.1412,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.0899,
+      "spearman_p": 0.000188,
+      "qwk": 0.0245,
+      "ground_truth_mean": 4.1784,
+      "ground_truth_std": 1.0689,
+      "predicted_mean": 0.9939,
+      "predicted_std": 1.1724
+    }
+  },
+  "metrics_exams": {
+    "baseline": {
+      "system_name": "TF-IDF + Cosine Baseline",
+      "n_samples": 552,
+      "mae": 2.6877,
+      "rmse": 2.9502,
+      "pearson_r": 0.424,
+      "pearson_p": 0.0,
+      "spearman_rho": 0.4338,
+      "spearman_p": 0.0,
+      "qwk": 0.1226,
+      "ground_truth_mean": 4.2011,
+      "ground_truth_std": 1.1778,
+      "predicted_mean": 1.5201,
+      "predicted_std": 1.1148
+    },
+    "base_asag": {
+      "system_name": "Base ASAG (System 2)",
+      "n_samples": 552,
+      "mae": 3.8066,
+      "rmse": 4.0855,
+      "pearson_r": 0.1505,
+      "pearson_p": 0.000388,
+      "spearman_rho": 0.1093,
+      "spearman_p": 0.010147,
+      "qwk": 0.0225,
+      "ground_truth_mean": 4.2011,
+      "ground_truth_std": 1.1778,
+      "predicted_mean": 0.4053,
+      "predicted_std": 1.1404
+    },
+    "proposed_asag": {
+      "system_name": "Proposed ASAG (System 3)",
+      "n_samples": 552,
+      "mae": 3.1626,
+      "rmse": 3.5173,
+      "pearson_r": 0.1278,
+      "pearson_p": 0.002621,
+      "spearman_rho": 0.0438,
+      "spearman_p": 0.304341,
+      "qwk": 0.0273,
+      "ground_truth_mean": 4.2011,
+      "ground_truth_std": 1.1778,
+      "predicted_mean": 1.0725,
+      "predicted_std": 1.2546
+    }
+  },
+  "failures": []
+}

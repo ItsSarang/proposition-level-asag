@@ -1,0 +1,12 @@
+{
+  "version": "V3",
+  "name": "Enhanced Proposition-Level ASAG",
+  "scale": 5.0,
+  "matching_strategy": "global",
+  "alignment_threshold": 0.5,
+  "scoring_strategy": "saturating",
+  "max_positive_bonus": 0.3,
+  "max_negative_penalty": 0.4,
+  "diminishing_rate": 0.5,
+  "status": "FROZEN"
+}

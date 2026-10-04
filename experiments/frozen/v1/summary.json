@@ -1,0 +1,21 @@
+{
+  "version": "V1",
+  "name": "Base ASAG (Basak-inspired)",
+  "records_evaluated": 2273,
+  "metrics": {
+    "system_name": "V1: Base ASAG",
+    "n_samples": 2273,
+    "mae": 3.805,
+    "rmse": 4.0373,
+    "pearson_r": 0.1379,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.1181,
+    "spearman_p": 0.0,
+    "qwk": 0.018,
+    "ground_truth_mean": 4.1839,
+    "ground_truth_std": 1.0964,
+    "predicted_mean": 0.3917,
+    "predicted_std": 1.0114
+  },
+  "status": "FROZEN"
+}

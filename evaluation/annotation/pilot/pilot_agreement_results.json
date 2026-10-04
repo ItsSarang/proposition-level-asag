@@ -1,0 +1,33 @@
+{
+  "total_items": 50,
+  "agreed_items": 44,
+  "disagreed_items": 6,
+  "raw_agreement": 0.88,
+  "cohens_kappa": 0.8054,
+  "per_class_concordance": {
+    "CORRECT_ADDITIONAL": {
+      "annotator_1_count": 15,
+      "annotator_2_count": 16,
+      "joint_agreement_count": 14,
+      "concordance_rate": 0.9032258064516129
+    },
+    "IRRELEVANT": {
+      "annotator_1_count": 3,
+      "annotator_2_count": 2,
+      "joint_agreement_count": 2,
+      "concordance_rate": 0.8
+    },
+    "INCORRECT": {
+      "annotator_1_count": 6,
+      "annotator_2_count": 6,
+      "joint_agreement_count": 5,
+      "concordance_rate": 0.8333333333333334
+    },
+    "UNCERTAIN": {
+      "annotator_1_count": 26,
+      "annotator_2_count": 26,
+      "joint_agreement_count": 23,
+      "concordance_rate": 0.8846153846153846
+    }
+  }
+}

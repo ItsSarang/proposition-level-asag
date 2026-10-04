@@ -1,0 +1,21 @@
+{
+  "version": "V4",
+  "name": "Severity-Aware Proposition ASAG",
+  "records_evaluated": 2273,
+  "metrics": {
+    "system_name": "V4: Experiment 4 (Severity-Aware Proposed)",
+    "n_samples": 2273,
+    "mae": 3.6288,
+    "rmse": 3.927,
+    "pearson_r": 0.2055,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.2033,
+    "spearman_p": 0.0,
+    "qwk": 0.038,
+    "ground_truth_mean": 4.1839,
+    "ground_truth_std": 1.0964,
+    "predicted_mean": 0.573,
+    "predicted_std": 1.3352
+  },
+  "status": "FROZEN"
+}

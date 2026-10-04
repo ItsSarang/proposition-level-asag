@@ -1,0 +1,941 @@
+{
+  "metadata": {
+    "dataset": "Mohler CS Short Answer Dataset v2.0",
+    "study_type": "Double-Blind Proposition-Level Human Annotation Study",
+    "date_generated": "2026-10-03T14:26:19.497442",
+    "total_propositions": 50,
+    "questions_covered": 10,
+    "stratification": {
+      "question_distribution": {
+        "1.1": 5,
+        "1.3": 6,
+        "1.4": 4,
+        "1.7": 6,
+        "2.2": 5,
+        "2.3": 6,
+        "3.1": 4,
+        "5.1": 5,
+        "8.1": 5,
+        "9.1": 4
+      },
+      "system_classification_distribution": {
+        "UNCERTAIN": 6,
+        "CORRECT_ADDITIONAL": 22,
+        "IRRELEVANT": 19,
+        "INCORRECT": 3
+      },
+      "proposition_type_distribution": {
+        "TRIPLE": 47,
+        "PROPERTY": 3
+      }
+    },
+    "status": "PENDING_HUMAN_ANNOTATIONS",
+    "blinded_files": [
+      "evaluation/annotation/annotator_1.csv",
+      "evaluation/annotation/annotator_2.csv"
+    ],
+    "master_file": "evaluation/annotation/mohler_unmatched_master.csv"
+  },
+  "items": [
+    {
+      "proposition_id": "PROP_001",
+      "question_id": "1.1",
+      "answer_id": "1.1_3",
+      "assignment": 1,
+      "student_index": 3,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "prototype stimulates the behavior",
+      "char_span": [
+        37,
+        70
+      ],
+      "system_prediction": {
+        "classification": "UNCERTAIN",
+        "rationale": "Borderline evidence strength (0.36). Relevance is marginal and evidence is insufficient for definitive positive credit.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_002",
+      "question_id": "1.1",
+      "answer_id": "1.1_25",
+      "assignment": 1,
+      "student_index": 25,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "problems that may arise",
+      "char_span": [
+        52,
+        75
+      ],
+      "system_prediction": {
+        "classification": "UNCERTAIN",
+        "rationale": "Borderline evidence strength (0.40). Relevance is marginal and evidence is insufficient for definitive positive credit.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_003",
+      "question_id": "1.1",
+      "answer_id": "1.1_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "problems are address",
+      "char_span": [
+        10,
+        30
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.46 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_004",
+      "question_id": "1.1",
+      "answer_id": "1.1_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "program is",
+      "char_span": [
+        78,
+        88
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_005",
+      "question_id": "1.1",
+      "answer_id": "1.1_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "prototype may also be used",
+      "char_span": [
+        101,
+        127
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.41 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_006",
+      "question_id": "1.3",
+      "answer_id": "1.3_3",
+      "assignment": 1,
+      "student_index": 3,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "Objects can determine appropriate operations",
+      "char_span": [
+        235,
+        279
+      ],
+      "system_prediction": {
+        "classification": "UNCERTAIN",
+        "rationale": "Borderline evidence strength (0.35). Relevance is marginal and evidence is insufficient for definitive positive credit.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_007",
+      "question_id": "1.3",
+      "answer_id": "1.3_5",
+      "assignment": 1,
+      "student_index": 5,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "programming allows",
+      "char_span": [
+        16,
+        34
+      ],
+      "system_prediction": {
+        "classification": "UNCERTAIN",
+        "rationale": "Borderline evidence strength (0.39). Relevance is marginal and evidence is insufficient for definitive positive credit.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_008",
+      "question_id": "1.3",
+      "answer_id": "1.3_2",
+      "assignment": 1,
+      "student_index": 2,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "advantages to object-oriented programming are",
+      "char_span": [
+        9,
+        54
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.53 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_009",
+      "question_id": "1.3",
+      "answer_id": "1.3_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "ability to reuse parts",
+      "char_span": [
+        20,
+        42
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_010",
+      "question_id": "1.3",
+      "answer_id": "1.3_3",
+      "assignment": 1,
+      "student_index": 3,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "advantages is",
+      "char_span": [
+        4,
+        17
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.53 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_011",
+      "question_id": "1.3",
+      "answer_id": "1.3_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "it makes",
+      "char_span": [
+        147,
+        155
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.05 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_012",
+      "question_id": "1.4",
+      "answer_id": "1.4_1",
+      "assignment": 1,
+      "student_index": 1,
+      "proposition_type": "PROPERTY",
+      "proposition_text": "Function main",
+      "char_span": [
+        4,
+        17
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.55 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_013",
+      "question_id": "1.4",
+      "answer_id": "1.4_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "PROPERTY",
+      "proposition_text": "main ()\u00e2\u20ac\u2122",
+      "char_span": [
+        19,
+        29
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.33 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_014",
+      "question_id": "1.4",
+      "answer_id": "1.4_2",
+      "assignment": 1,
+      "student_index": 2,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "programs begin",
+      "char_span": [
+        4,
+        18
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.59 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_015",
+      "question_id": "1.4",
+      "answer_id": "1.4_5",
+      "assignment": 1,
+      "student_index": 5,
+      "proposition_type": "PROPERTY",
+      "proposition_text": "Int main",
+      "char_span": [
+        0,
+        8
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.33 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_016",
+      "question_id": "1.7",
+      "answer_id": "1.7_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "statement first evaluates the condition",
+      "char_span": [
+        14,
+        53
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.41 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_017",
+      "question_id": "1.7",
+      "answer_id": "1.7_0",
+      "assignment": 1,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "it evaluates the condition",
+      "char_span": [
+        189,
+        215
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_018",
+      "question_id": "1.7",
+      "answer_id": "1.7_1",
+      "assignment": 1,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "statements evaluate",
+      "char_span": [
+        11,
+        30
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.46 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_019",
+      "question_id": "1.7",
+      "answer_id": "1.7_1",
+      "assignment": 1,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "block contained",
+      "char_span": [
+        72,
+        87
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.25 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_020",
+      "question_id": "1.7",
+      "answer_id": "1.7_1",
+      "assignment": 1,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "statements have a possibility",
+      "char_span": [
+        150,
+        179
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.46 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_021",
+      "question_id": "1.7",
+      "answer_id": "1.7_1",
+      "assignment": 1,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "differance is",
+      "char_span": [
+        125,
+        138
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_022",
+      "question_id": "2.2",
+      "answer_id": "2.2_0",
+      "assignment": 2,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "members are the data components",
+      "char_span": [
+        5,
+        36
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.44 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_023",
+      "question_id": "2.2",
+      "answer_id": "2.2_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "that is declared",
+      "char_span": [
+        31,
+        47
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_024",
+      "question_id": "2.2",
+      "answer_id": "2.2_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "variable is a variable",
+      "char_span": [
+        8,
+        30
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.53 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_025",
+      "question_id": "2.2",
+      "answer_id": "2.2_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "that isdeclared",
+      "char_span": [
+        102,
+        117
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_026",
+      "question_id": "2.2",
+      "answer_id": "2.2_2",
+      "assignment": 2,
+      "student_index": 2,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "members stored",
+      "char_span": [
+        166,
+        180
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.44 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_027",
+      "question_id": "2.3",
+      "answer_id": "2.3_0",
+      "assignment": 2,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "constructor initializes an object",
+      "char_span": [
+        2,
+        35
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.53 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_028",
+      "question_id": "2.3",
+      "answer_id": "2.3_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "class you are using",
+      "char_span": [
+        179,
+        198
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_029",
+      "question_id": "2.3",
+      "answer_id": "2.3_0",
+      "assignment": 2,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "function of a class performs a task",
+      "char_span": [
+        61,
+        96
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.42 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_030",
+      "question_id": "2.3",
+      "answer_id": "2.3_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "You can change",
+      "char_span": [
+        200,
+        214
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_031",
+      "question_id": "2.3",
+      "answer_id": "2.3_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "constructors are functions",
+      "char_span": [
+        4,
+        30
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.72 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_032",
+      "question_id": "2.3",
+      "answer_id": "2.3_1",
+      "assignment": 2,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "what it does",
+      "char_span": [
+        256,
+        268
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_033",
+      "question_id": "3.1",
+      "answer_id": "3.1_0",
+      "assignment": 3,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "It includes the name",
+      "char_span": [
+        0,
+        20
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.52 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_034",
+      "question_id": "3.1",
+      "answer_id": "3.1_0",
+      "assignment": 3,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "it can take",
+      "char_span": [
+        60,
+        71
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.07 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_035",
+      "question_id": "3.1",
+      "answer_id": "3.1_0",
+      "assignment": 3,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "It should also include a brief description",
+      "char_span": [
+        73,
+        115
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.52 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_036",
+      "question_id": "3.1",
+      "answer_id": "3.1_3",
+      "assignment": 3,
+      "student_index": 3,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "This tells you the general information",
+      "char_span": [
+        57,
+        95
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.05 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_037",
+      "question_id": "5.1",
+      "answer_id": "5.1_1",
+      "assignment": 5,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "sort divides the list",
+      "char_span": [
+        10,
+        31
+      ],
+      "system_prediction": {
+        "classification": "UNCERTAIN",
+        "rationale": "Borderline evidence strength (0.35). Relevance is marginal and evidence is insufficient for definitive positive credit.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_038",
+      "question_id": "5.1",
+      "answer_id": "5.1_4",
+      "assignment": 5,
+      "student_index": 4,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "list is sorted",
+      "char_span": [
+        56,
+        70
+      ],
+      "system_prediction": {
+        "classification": "UNCERTAIN",
+        "rationale": "Borderline evidence strength (0.38). Relevance is marginal and evidence is insufficient for definitive positive credit.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_039",
+      "question_id": "5.1",
+      "answer_id": "5.1_1",
+      "assignment": 5,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "sort divides the list into sorted and unsorted regions, then takes each item",
+      "char_span": [
+        10,
+        86
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.46 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_040",
+      "question_id": "5.1",
+      "answer_id": "5.1_0",
+      "assignment": 5,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "they will switch",
+      "char_span": [
+        112,
+        128
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.05 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_041",
+      "question_id": "5.1",
+      "answer_id": "5.1_6",
+      "assignment": 5,
+      "student_index": 6,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "sort is",
+      "char_span": [
+        10,
+        17
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.53 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_042",
+      "question_id": "8.1",
+      "answer_id": "8.1_5",
+      "assignment": 8,
+      "student_index": 5,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "stack use a last",
+      "char_span": [
+        92,
+        108
+      ],
+      "system_prediction": {
+        "classification": "INCORRECT",
+        "rationale": "Proposition contradicts reference evidence via ANTONYM_CONFLICT: Lexical antonymy conflict: 'last' directly opposes reference concept 'first'.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_043",
+      "question_id": "8.1",
+      "answer_id": "8.1_1",
+      "assignment": 8,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "stack is an abstract data type",
+      "char_span": [
+        2,
+        32
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.52 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_044",
+      "question_id": "8.1",
+      "answer_id": "8.1_0",
+      "assignment": 8,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "that can be implemented",
+      "char_span": [
+        87,
+        110
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_045",
+      "question_id": "8.1",
+      "answer_id": "8.1_1",
+      "assignment": 8,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "element removed",
+      "char_span": [
+        128,
+        143
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.40 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_046",
+      "question_id": "8.1",
+      "answer_id": "8.1_1",
+      "assignment": 8,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "that is based",
+      "char_span": [
+        33,
+        46
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.04 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_047",
+      "question_id": "9.1",
+      "answer_id": "9.1_12",
+      "assignment": 9,
+      "student_index": 12,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "queue is a first",
+      "char_span": [
+        2,
+        18
+      ],
+      "system_prediction": {
+        "classification": "INCORRECT",
+        "rationale": "Proposition contradicts reference evidence via ANTONYM_CONFLICT: Lexical antonymy conflict: 'first' directly opposes reference concept 'last'.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_048",
+      "question_id": "9.1",
+      "answer_id": "9.1_20",
+      "assignment": 9,
+      "student_index": 20,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "Queue is a \"first",
+      "char_span": [
+        2,
+        19
+      ],
+      "system_prediction": {
+        "classification": "INCORRECT",
+        "rationale": "Proposition contradicts reference evidence via ANTONYM_CONFLICT: Lexical antonymy conflict: 'first' directly opposes reference concept 'last'.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_049",
+      "question_id": "9.1",
+      "answer_id": "9.1_1",
+      "assignment": 9,
+      "student_index": 1,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "queue is a list",
+      "char_span": [
+        2,
+        17
+      ],
+      "system_prediction": {
+        "classification": "CORRECT_ADDITIONAL",
+        "rationale": "Proposition is relevant to the question (0.52 >= 0.4), does not contradict reference assertions, and possesses sufficient semantic support under the implemented method.",
+        "score_effect": 0.0
+      }
+    },
+    {
+      "proposition_id": "PROP_050",
+      "question_id": "9.1",
+      "answer_id": "9.1_0",
+      "assignment": 9,
+      "student_index": 0,
+      "proposition_type": "TRIPLE",
+      "proposition_text": "structure in c++ which is a collection",
+      "char_span": [
+        7,
+        45
+      ],
+      "system_prediction": {
+        "classification": "IRRELEVANT",
+        "rationale": "Low question-domain relevance (0.25 < threshold 0.35). Proposition is off-topic or peripheral.",
+        "score_effect": 0.0
+      }
+    }
+  ]
+}

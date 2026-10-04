@@ -1,0 +1,8 @@
+{
+  "version": "V2",
+  "name": "Proposition-Level ASAG",
+  "scale": 5.0,
+  "correct_additional_weight": 0.1,
+  "incorrect_additional_penalty": 0.2,
+  "status": "FROZEN"
+}

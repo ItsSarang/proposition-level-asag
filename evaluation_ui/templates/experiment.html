@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}Batch Experiment &bull; ASAG Evaluation Lab{% endblock %}
+
+{% block content %}
+<div class="view-header flex-between">
+    <div>
+        <h1>Batch Experiment & Error Analysis</h1>
+        <p class="view-description">
+            Upload CSV datasets, evaluate across all four ASAG engines simultaneously, compute empirical agreement metrics,
+            and conduct diagnostic error analysis.
+        </p>
+    </div>
+    {% if experiment_data %}
+    <div>
+        <a href="{{ url_for('experiment_download', exp_id=experiment_data.exp_id) }}" class="btn btn-primary">
+            Download Predictions CSV &darr;
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% if error %}
+<div class="alert alert-error">
+    <strong>Error:</strong> {{ error }}
+</div>
+{% endif %}
+
+<!-- Upload Card -->
+<div class="card upload-card">
+    <div class="card-header">
+        <h3>Upload Benchmark CSV Dataset</h3>
+    </div>
+    <form action="{{ url_for('experiment_upload') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+        <div class="upload-grid">
+            <div class="form-group file-group">
+                <label for="csv_file"><strong>Select CSV File:</strong></label>
+                <input type="file" id="csv_file" name="csv_file" accept=".csv" required class="form-control-file">
+                <span class="text-muted small">
+                    Requires: <code>question_id</code>, <code>question</code>, <code>reference_answer</code>, <code>student_answer</code>.
+                    Optional: <code>human_grade</code> (enables MAE/RMSE/Pearson/Spearman/QWK).
+                </span>
+            </div>
+            <div class="form-group limit-group">
+                <label for="max_records"><strong>Max Records (Optional Limit):</strong></label>
+                <input type="number" id="max_records" name="max_records" min="1" max="5000" placeholder="e.g. 50 (blank for all)" class="form-control">
+                <span class="text-muted small">Limit to a pilot slice for rapid inspection during live demo.</span>
+            </div>
+            <div class="form-group submit-group">
+                <label>&nbsp;</label>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Execute Batch Evaluation
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% if experiment_data %}
+{% set batch = experiment_data.batch_result %}
+
+<!-- Batch Overview Stats -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-label">Total Records</div>
+        <div class="stat-val">{{ batch.total_records }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Successfully Evaluated</div>
+        <div class="stat-val text-success">{{ batch.evaluated_count }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Failed Count</div>
+        <div class="stat-val {% if batch.failed_count > 0 %}text-danger{% endif %}">{{ batch.failed_count }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Human Target Status</div>
+        <div class="stat-val">
+            {% if batch.has_human_grades %}
+            <span class="badge badge-success">Human Grades Present</span>
+            {% else %}
+            <span class="badge badge-neutral">No Human Grades</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Metrics Table (ONLY IF HUMAN GRADES PRESENT) -->
+{% if batch.has_human_grades and batch.metrics %}
+<div class="card table-card metrics-card">
+    <div class="card-header">
+        <h3>Empirical Agreement Metrics Against Human Target (0.0 &ndash; 5.0 Scale)</h3>
+    </div>
+    <div class="table-responsive">
+        <table class="lab-table metrics-table">
+            <thead>
+                <tr>
+                    <th>Evaluation System</th>
+                    <th>MAE &darr;</th>
+                    <th>RMSE &darr;</th>
+                    <th>Pearson r &uarr;</th>
+                    <th>Spearman &rho; &uarr;</th>
+                    <th>QWK &uarr;</th>
+                    <th>Evaluated N</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set sys_metrics = batch.metrics.systems %}
+                <tr>
+                    <td><strong>V0: TF-IDF Baseline</strong></td>
+                    <td>{{ "%.4f"|format(sys_metrics.v0_baseline.mae) if sys_metrics.v0_baseline.mae is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v0_baseline.rmse) if sys_metrics.v0_baseline.rmse is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v0_baseline.pearson_r) if sys_metrics.v0_baseline.pearson_r is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v0_baseline.spearman_rho) if sys_metrics.v0_baseline.spearman_rho is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v0_baseline.qwk) if sys_metrics.v0_baseline.qwk is not none else "N/A" }}</td>
+                    <td>{{ sys_metrics.v0_baseline.n_samples }}</td>
+                </tr>
+                <tr>
+                    <td><strong>V1: Base ASAG</strong></td>
+                    <td>{{ "%.4f"|format(sys_metrics.v1_base_asag.mae) if sys_metrics.v1_base_asag.mae is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v1_base_asag.rmse) if sys_metrics.v1_base_asag.rmse is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v1_base_asag.pearson_r) if sys_metrics.v1_base_asag.pearson_r is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v1_base_asag.spearman_rho) if sys_metrics.v1_base_asag.spearman_rho is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v1_base_asag.qwk) if sys_metrics.v1_base_asag.qwk is not none else "N/A" }}</td>
+                    <td>{{ sys_metrics.v1_base_asag.n_samples }}</td>
+                </tr>
+                <tr>
+                    <td><strong>V2: Historical Proposed (Linear)</strong></td>
+                    <td>{{ "%.4f"|format(sys_metrics.v2_historical_proposed.mae) if sys_metrics.v2_historical_proposed.mae is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v2_historical_proposed.rmse) if sys_metrics.v2_historical_proposed.rmse is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v2_historical_proposed.pearson_r) if sys_metrics.v2_historical_proposed.pearson_r is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v2_historical_proposed.spearman_rho) if sys_metrics.v2_historical_proposed.spearman_rho is not none else "N/A" }}</td>
+                    <td>{{ "%.4f"|format(sys_metrics.v2_historical_proposed.qwk) if sys_metrics.v2_historical_proposed.qwk is not none else "N/A" }}</td>
+                    <td>{{ sys_metrics.v2_historical_proposed.n_samples }}</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>V3: Current Proposed (Saturating)</strong></td>
+                    <td><strong>{{ "%.4f"|format(sys_metrics.v3_overhauled_proposed.mae) if sys_metrics.v3_overhauled_proposed.mae is not none else "N/A" }}</strong></td>
+                    <td><strong>{{ "%.4f"|format(sys_metrics.v3_overhauled_proposed.rmse) if sys_metrics.v3_overhauled_proposed.rmse is not none else "N/A" }}</strong></td>
+                    <td><strong>{{ "%.4f"|format(sys_metrics.v3_overhauled_proposed.pearson_r) if sys_metrics.v3_overhauled_proposed.pearson_r is not none else "N/A" }}</strong></td>
+                    <td><strong>{{ "%.4f"|format(sys_metrics.v3_overhauled_proposed.spearman_rho) if sys_metrics.v3_overhauled_proposed.spearman_rho is not none else "N/A" }}</strong></td>
+                    <td><strong>{{ "%.4f"|format(sys_metrics.v3_overhauled_proposed.qwk) if sys_metrics.v3_overhauled_proposed.qwk is not none else "N/A" }}</strong></td>
+                    <td>{{ sys_metrics.v3_overhauled_proposed.n_samples }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <strong>Notice:</strong> The uploaded batch contains no human grade column (e.g. <code>human_grade</code> or <code>score_ave</code>).
+    In accordance with research integrity standards, agreement metrics (MAE, RMSE, Pearson r, Spearman &rho;, QWK) are withheld because no human target exists.
+</div>
+{% endif %}
+
+<!-- Phase 9: Diagnostic Error Sorting -->
+{% if batch.has_human_grades %}
+<div class="card error-sort-card">
+    <div class="flex-between">
+        <div>
+            <h3>Phase 9: Diagnostic Error Analysis Sorting</h3>
+            <span class="text-muted">Isolate specific prediction quadrants to inspect failure modes</span>
+        </div>
+        <div class="sort-actions">
+            <span class="sort-label">Sort By:</span>
+            <a href="{{ url_for('experiment', exp_id=experiment_data.exp_id, sort_by='absolute_error') }}" class="btn btn-sm {% if experiment_data.sort_by == 'absolute_error' %}btn-primary{% else %}btn-outline{% endif %}">
+                Largest Absolute Error
+            </a>
+            <a href="{{ url_for('experiment', exp_id=experiment_data.exp_id, sort_by='underprediction') }}" class="btn btn-sm {% if experiment_data.sort_by == 'underprediction' %}btn-primary{% else %}btn-outline{% endif %}">
+                Underpredictions (Pred &lt;&lt; Human)
+            </a>
+            <a href="{{ url_for('experiment', exp_id=experiment_data.exp_id, sort_by='overprediction') }}" class="btn btn-sm {% if experiment_data.sort_by == 'overprediction' %}btn-primary{% else %}btn-outline{% endif %}">
+                Overpredictions (Pred &gt;&gt; Human)
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Records Table -->
+<div class="card table-card">
+    <div class="card-header flex-between">
+        <h3>Evaluated Records ({{ experiment_data.records|length }} items)</h3>
+    </div>
+    <div class="table-responsive">
+        <table class="lab-table batch-records-table">
+            <thead>
+                <tr>
+                    <th style="width: 8%;">ID</th>
+                    <th style="width: 8%;">QID</th>
+                    <th style="width: 28%;">Question & Student Answer</th>
+                    {% if batch.has_human_grades %}
+                    <th style="width: 8%;">Human</th>
+                    {% endif %}
+                    <th style="width: 10%;">V0 TF-IDF</th>
+                    <th style="width: 10%;">V1 Base</th>
+                    <th style="width: 10%;">V2 Hist</th>
+                    <th style="width: 10%;">V3 Current</th>
+                    {% if batch.has_human_grades %}
+                    <th style="width: 8%;">Error (V3)</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for rec in experiment_data.records %}
+                <tr>
+                    <td><code>{{ rec.record_id }}</code></td>
+                    <td><span class="badge badge-neutral">{{ rec.question_id }}</span></td>
+                    <td>
+                        <div class="q-snippet"><strong>Q:</strong> {{ rec.question|truncate(70) }}</div>
+                        <div class="ans-snippet"><strong>A:</strong> {{ rec.student_answer|truncate(110) }}</div>
+                    </td>
+                    {% if batch.has_human_grades %}
+                    <td>
+                        {% if rec.human_grade is not none %}
+                        <span class="score-grade human-score">{{ "%.2f"|format(rec.human_grade) }}</span>
+                        {% else %}
+                        &mdash;
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    <td>{{ "%.2f"|format(rec.v0_baseline_grade) if rec.v0_baseline_grade is not none else 'ERR' }}</td>
+                    <td>{{ "%.2f"|format(rec.v1_base_grade) if rec.v1_base_grade is not none else 'ERR' }}</td>
+                    <td>{{ "%.2f"|format(rec.v2_historical_grade) if rec.v2_historical_grade is not none else 'ERR' }}</td>
+                    <td>
+                        <strong class="text-success">{{ "%.2f"|format(rec.v3_overhaul_grade) if rec.v3_overhaul_grade is not none else 'ERR' }}</strong>
+                    </td>
+                    {% if batch.has_human_grades %}
+                    <td>
+                        {% if rec.error is defined %}
+                        <span class="error-badge {% if rec.error > 0 %}error-pos{% elif rec.error < 0 %}error-neg{% else %}error-zero{% endif %}">
+                            {% if rec.error > 0 %}+{% endif %}{{ "%.2f"|format(rec.error) }}
+                        </span>
+                        {% else %}
+                        &mdash;
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

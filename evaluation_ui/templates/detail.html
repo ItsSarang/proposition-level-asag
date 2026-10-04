@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}Answer #{{ answer_index + 1 }} Detailed Trace &bull; ASAG Evaluation Lab{% endblock %}
+
+{% block content %}
+<div class="view-header flex-between">
+    <div>
+        <div class="breadcrumb">
+            <a href="{{ url_for('results_overview', eval_id=eval_id) if false else '#' }}" onclick="window.history.back(); return false;">&larr; Back to Comparison Overview</a>
+        </div>
+        <h1>Answer #{{ answer_index + 1 }} Detailed Proposition Trace & Pipeline Audit</h1>
+    </div>
+    <div class="nav-answer-controls">
+        <span class="text-muted">Answer {{ answer_index + 1 }} of {{ total_answers }}</span>
+    </div>
+</div>
+
+<!-- Context Cards -->
+<div class="card prompt-summary-card">
+    <div class="summary-field">
+        <span class="field-label">Question:</span>
+        <div class="field-text">{{ question }}</div>
+    </div>
+    <div class="summary-field">
+        <span class="field-label">Reference Answer:</span>
+        <div class="field-text">{{ reference_answer }}</div>
+    </div>
+    <div class="summary-field highlight-field">
+        <span class="field-label">Student Answer Evaluated:</span>
+        <div class="field-text strong-text">{{ detail.student_answer }}</div>
+    </div>
+</div>
+
+<!-- Phase 8: Model Comparison Visualization -->
+<div class="card model-comparison-card">
+    <div class="card-header">
+        <h3>Model Comparison (Grade Scale: 0.0 &ndash; 5.0)</h3>
+    </div>
+    <div class="comparison-viz-grid">
+        <div class="bar-chart-container">
+            {% set s0 = detail.systems.v0_baseline %}
+            {% set s1 = detail.systems.v1_base_asag %}
+            {% set s2 = detail.systems.v2_historical_proposed %}
+            {% set s3 = detail.systems.v3_current_proposed %}
+
+            <!-- Bar V0 -->
+            <div class="bar-row">
+                <div class="bar-label">V0: TF-IDF Baseline</div>
+                <div class="bar-track">
+                    <div class="bar-fill bar-v0" style="width: {{ (s0.grade / 5.0 * 100)|round(1) }}%;"></div>
+                </div>
+                <div class="bar-val">{{ "%.2f"|format(s0.grade) }} / 5.0</div>
+            </div>
+
+            <!-- Bar V1 -->
+            <div class="bar-row">
+                <div class="bar-label">V1: Base ASAG (Clausal Coverage)</div>
+                <div class="bar-track">
+                    <div class="bar-fill bar-v1" style="width: {{ (s1.grade / 5.0 * 100)|round(1) }}%;"></div>
+                </div>
+                <div class="bar-val">{{ "%.2f"|format(s1.grade) }} / 5.0</div>
+            </div>
+
+            <!-- Bar V2 -->
+            <div class="bar-row">
+                <div class="bar-label">V2: Historical Proposed (Linear)</div>
+                <div class="bar-track">
+                    <div class="bar-fill bar-v2" style="width: {{ (s2.proposed_grade / 5.0 * 100)|round(1) }}%;"></div>
+                </div>
+                <div class="bar-val">{{ "%.2f"|format(s2.proposed_grade) }} / 5.0</div>
+            </div>
+
+            <!-- Bar V3 -->
+            <div class="bar-row highlight-row">
+                <div class="bar-label">V3: Current Proposed (Saturating)</div>
+                <div class="bar-track">
+                    <div class="bar-fill bar-v3" style="width: {{ (s3.final_grade / 5.0 * 100)|round(1) }}%;"></div>
+                </div>
+                <div class="bar-val strong-val">{{ "%.2f"|format(s3.final_grade) }} / 5.0</div>
+            </div>
+        </div>
+
+        <div class="numerical-summary-table">
+            <table class="lab-table compact-table">
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>Normalized</th>
+                        <th>Grade</th>
+                        <th>Base Coverage</th>
+                        <th>Net Adjustment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>V0: TF-IDF</strong></td>
+                        <td>{{ "%.4f"|format(s0.normalized_score) }}</td>
+                        <td>{{ "%.2f"|format(s0.grade) }}</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td><strong>V1: Base ASAG</strong></td>
+                        <td>{{ "%.4f"|format(s1.normalized_score) }}</td>
+                        <td>{{ "%.2f"|format(s1.grade) }}</td>
+                        <td>{{ "%.4f"|format(s1.normalized_score) }}</td>
+                        <td>+0.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>V2: Historical Proposed</strong></td>
+                        <td>{{ "%.4f"|format(s2.proposed_normalized) }}</td>
+                        <td>{{ "%.2f"|format(s2.proposed_grade) }}</td>
+                        <td>{{ "%.4f"|format(s2.base_normalized) }}</td>
+                        <td class="{% if s2.net_adjustment > 0 %}text-success{% elif s2.net_adjustment < 0 %}text-danger{% endif %}">
+                            {% if s2.net_adjustment > 0 %}+{% endif %}{{ "%.4f"|format(s2.net_adjustment) }}
+                        </td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td><strong>V3: Current Proposed</strong></td>
+                        <td><strong>{{ "%.4f"|format(s3.final_normalized) }}</strong></td>
+                        <td><strong>{{ "%.2f"|format(s3.final_grade) }}</strong></td>
+                        <td>{{ "%.4f"|format(s3.base_normalized) }}</td>
+                        <td class="{% if s3.net_adjustment > 0 %}text-success{% elif s3.net_adjustment < 0 %}text-danger{% endif %}">
+                            {% if s3.net_adjustment > 0 %}+{% endif %}{{ "%.4f"|format(s3.net_adjustment) }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Phase 5: Proposition Trace Table -->
+<div class="card table-card">
+    <div class="card-header flex-between">
+        <div>
+            <h3>Proposition-Level Reasoning Trace</h3>
+            <span class="text-muted">Itemized audit of all extracted propositions and classifications</span>
+        </div>
+        <div class="prop-legend">
+            <span class="badge badge-matched">MATCHED</span>
+            <span class="badge badge-correct">CORRECT_ADDITIONAL</span>
+            <span class="badge badge-irrelevant">IRRELEVANT</span>
+            <span class="badge badge-incorrect">INCORRECT</span>
+            <span class="badge badge-uncertain">UNCERTAIN</span>
+        </div>
+    </div>
+
+    {% if detail.proposition_trace %}
+    <div class="table-responsive">
+        <table class="lab-table proposition-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">Student Proposition</th>
+                    <th style="width: 10%;">Status</th>
+                    <th style="width: 22%;">Best Match / Reference Proposition</th>
+                    <th style="width: 15%;">Semantic Evidence</th>
+                    <th style="width: 12%;">Entailment / Compatibility</th>
+                    <th style="width: 14%;">Classification</th>
+                    <th style="width: 5%;">Score Effect</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prop in detail.proposition_trace %}
+                <tr class="prop-row-{{ prop.classification|lower }}">
+                    <td>
+                        <span class="prop-statement">"{{ prop.student_statement }}"</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-{{ prop.status|lower }}">{{ prop.status }}</span>
+                    </td>
+                    <td>
+                        <span class="ref-statement">{{ prop.best_match_reference }}</span>
+                    </td>
+                    <td>
+                        <span class="evidence-text">{{ prop.semantic_evidence }}</span>
+                    </td>
+                    <td>
+                        <span class="compat-text">{{ prop.entailment_compatibility }}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-class-{{ prop.classification|lower }}">{{ prop.classification }}</span>
+                    </td>
+                    <td>
+                        <span class="score-effect-badge">{{ prop.score_effect }}</span>
+                    </td>
+                </tr>
+                <tr class="prop-rationale-row">
+                    <td colspan="7">
+                        <div class="rationale-container">
+                            <span class="rationale-tag">System Rationale:</span>
+                            <span class="rationale-body">{{ prop.rationale }}</span>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        No proposition-level traces available for this response.
+    </div>
+    {% endif %}
+</div>
+
+<!-- Phase 6: Expandable Research Pipeline Trace -->
+<div class="card pipeline-card">
+    <div class="card-header flex-between">
+        <div>
+            <h3>Expandable Research Pipeline Audit (Stages 1 &ndash; 11)</h3>
+            <span class="text-muted">Inspect intermediate representations across the end-to-end NLP grading architecture</span>
+        </div>
+        <div>
+            <button type="button" class="btn btn-sm btn-outline" id="toggleAllStagesBtn">Expand All Stages</button>
+        </div>
+    </div>
+
+    <div class="pipeline-stages-list">
+        {% for stage in detail.pipeline_trace %}
+        <div class="stage-accordion-item" id="stage-{{ stage.stage_id }}">
+            <button class="stage-header" type="button" onclick="toggleStage('{{ stage.stage_id }}')">
+                <span class="stage-indicator">{{ stage.stage_id }}</span>
+                <span class="stage-title"><strong>{{ stage.title }}</strong></span>
+                <span class="stage-concept text-muted">{{ stage.concept }}</span>
+                <span class="stage-status-badge badge badge-{{ stage.status|lower }}">{{ stage.status }}</span>
+                <span class="stage-chevron" id="chevron-{{ stage.stage_id }}">&#9662;</span>
+            </button>
+            <div class="stage-content" id="content-{{ stage.stage_id }}" style="display: none;">
+                <div class="stage-body">
+                    <pre class="json-code"><code>{{ stage.data|tojson(indent=2) }}</code></pre>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function toggleStage(stageId) {
+        const content = document.getElementById('content-' + stageId);
+        const chevron = document.getElementById('chevron-' + stageId);
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            chevron.innerHTML = '&#9652;';
+        } else {
+            content.style.display = 'none';
+            chevron.innerHTML = '&#9662;';
+        }
+    }
+
+    document.getElementById('toggleAllStagesBtn').addEventListener('click', function() {
+        const isExpanding = this.innerText.includes('Expand');
+        document.querySelectorAll('.stage-content').forEach(el => {
+            el.style.display = isExpanding ? 'block' : 'none';
+        });
+        document.querySelectorAll('.stage-chevron').forEach(el => {
+            el.innerHTML = isExpanding ? '&#9652;' : '&#9662;';
+        });
+        this.innerText = isExpanding ? 'Collapse All Stages' : 'Expand All Stages';
+    });
+</script>
+{% endblock %}

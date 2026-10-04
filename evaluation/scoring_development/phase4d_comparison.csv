@@ -1,0 +1,41 @@
+case_id,base_score,phase4b_model_d,phase4d_auto_model_d,predicted_severity,expected_dev_severity,score_difference,severity_agreement,explanation
+PK-01,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+PK-02,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+PK-03,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+PK-04,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+PK-05,1.0,4.75,5.0,NONE,MINOR,0.25,False,"Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+PK-06,1.0,2.5,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+PK-07,1.0,4.5,5.0,NONE,MINOR,0.5,False,"Epistemic divergence (+0.50): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+PK-08,1.0,2.5,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+PK-09,0.8333,2.0833,2.0833,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.08/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+PK-10,0.8333,3.9167,4.1667,NONE,MINOR,0.25,False,"Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+BST-01,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+BST-02,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+BST-03,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+BST-04,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+BST-05,1.0,4.75,5.0,NONE,MINOR,0.25,False,"Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+BST-06,1.0,2.5,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+BST-07,1.0,1.9,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.6,True,Score divergence (+0.60): Phase 4B Model D (1.90) vs Phase 4D (2.50).
+BST-08,0.8333,2.0833,2.0833,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.08/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+CMP-01,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+CMP-02,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+CMP-03,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+CMP-04,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+CMP-05,1.0,4.75,5.0,NONE,MINOR,0.25,False,"Epistemic divergence (+0.25): unstated peripheral fact classified as UNCERTAIN by reference-grounded pipeline (producing 0.0 penalty), whereas Phase 4B applied manual override deduction."
+CMP-06,1.0,2.5,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+CMP-07,1.0,1.9,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.6,True,Score divergence (+0.60): Phase 4B Model D (1.90) vs Phase 4D (2.50).
+CMP-08,0.8333,2.0833,4.1667,NONE,CORE_CONTRADICTION,2.0834,False,Score divergence (+2.08): Phase 4B Model D (2.08) vs Phase 4D (4.17).
+MIX-01,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+MIX-02,1.0,2.9167,2.9167,CORE_CONTRADICTION,CORE_CONTRADICTION,-0.0,True,Exact score agreement (2.92/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+MIX-03,1.0,5.0,5.0,NONE,NONE,0.0,True,Exact score agreement (5.00/5.00); automatic severity matches expected label (NONE).
+MIX-04,1.0,2.5,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Exact score agreement (2.50/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+MIX-05,1.0,2.25,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.25,True,Score divergence (+0.25): Phase 4B Model D (2.25) vs Phase 4D (2.50).
+MIX-06,1.0,5.0,5.0,NONE,MINOR,0.0,False,Exact score agreement (5.00/5.00); severity difference had neutral score impact.
+MIX-07,1.0,2.9167,2.9167,CORE_CONTRADICTION,CORE_CONTRADICTION,-0.0,True,Exact score agreement (2.92/5.00); automatic severity matches expected label (CORE_CONTRADICTION).
+PK-MOD,1.0,N/A,5.0,NONE,MODERATE,0.0,False,Phase 4D dedicated extension case; no direct Phase 4B antecedent.
+BST-MOD,1.0,N/A,5.0,NONE,MODERATE,0.0,False,Phase 4D dedicated extension case; no direct Phase 4B antecedent.
+CMP-MOD,1.0,N/A,5.0,NONE,MODERATE,0.0,False,Phase 4D dedicated extension case; no direct Phase 4B antecedent.
+PK-ADV-01,1.0,N/A,5.0,UNRESOLVED,UNRESOLVED,0.0,True,Phase 4D dedicated extension case; no direct Phase 4B antecedent.
+BST-ADV-01,1.0,N/A,5.0,NONE,UNRESOLVED,0.0,False,Phase 4D dedicated extension case; no direct Phase 4B antecedent.
+CMP-ADV-01,1.0,N/A,5.0,NONE,UNRESOLVED,0.0,False,Phase 4D dedicated extension case; no direct Phase 4B antecedent.
+BST-CORE-MULTI,1.0,N/A,2.5,CORE_CONTRADICTION,CORE_CONTRADICTION,0.0,True,Phase 4D dedicated extension case; no direct Phase 4B antecedent.

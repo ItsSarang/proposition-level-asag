@@ -1,0 +1,21 @@
+{
+  "version": "V0",
+  "name": "TF-IDF Baseline",
+  "records_evaluated": 2273,
+  "metrics": {
+    "system_name": "V0: TF-IDF Baseline",
+    "n_samples": 2273,
+    "mae": 2.6571,
+    "rmse": 2.9178,
+    "pearson_r": 0.4184,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.4424,
+    "spearman_p": 0.0,
+    "qwk": 0.1151,
+    "ground_truth_mean": 4.1839,
+    "ground_truth_std": 1.0964,
+    "predicted_mean": 1.5316,
+    "predicted_std": 1.157
+  },
+  "status": "FROZEN"
+}

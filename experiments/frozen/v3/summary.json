@@ -1,0 +1,21 @@
+{
+  "version": "V3",
+  "name": "Enhanced Proposition-Level ASAG",
+  "records_evaluated": 2273,
+  "metrics": {
+    "system_name": "V3: Current Proposed ASAG",
+    "n_samples": 2273,
+    "mae": 3.5955,
+    "rmse": 3.8862,
+    "pearson_r": 0.2037,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.2007,
+    "spearman_p": 0.0,
+    "qwk": 0.0396,
+    "ground_truth_mean": 4.1839,
+    "ground_truth_std": 1.0964,
+    "predicted_mean": 0.6042,
+    "predicted_std": 1.2893
+  },
+  "status": "FROZEN"
+}

@@ -1,0 +1,228 @@
+{
+  "timestamp": "2026-10-03T08:03:56.131847+00:00",
+  "dataset_version": "UNT CS Short Answer Dataset v2.0 (Mohler et al., 2011)",
+  "active_records_total": 2273,
+  "evaluated_count": 100,
+  "results": {
+    "A_BASE_ASAG": {
+      "condition_key": "A_BASE_ASAG",
+      "description": "Baseline: Simplified Base ASAG (clausal triples, V1 comparator, greedy matching)",
+      "config": {
+        "name": "A_BASE_ASAG",
+        "description": "Baseline: Simplified Base ASAG (clausal triples, V1 comparator, greedy matching)",
+        "use_hybrid_representation": false,
+        "semantic_matcher_version": "v1",
+        "matching_strategy": "greedy",
+        "use_question_relevance": false,
+        "use_property_contradiction": false,
+        "enable_proposed_scoring": false
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 0.65,
+      "metrics": {
+        "system_name": "A_BASE_ASAG",
+        "n_samples": 100,
+        "mae": 3.4583,
+        "rmse": 3.701,
+        "pearson_r": -0.1079,
+        "pearson_p": 0.285153,
+        "spearman_rho": -0.1646,
+        "spearman_p": 0.101787,
+        "qwk": -0.0113,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.115,
+        "predicted_std": 0.5869
+      }
+    },
+    "B_BASE_PLUS_HYBRID": {
+      "condition_key": "B_BASE_PLUS_HYBRID",
+      "description": "Base ASAG + Hybrid Proposition Representation (recovers nominal fragments & infinitives)",
+      "config": {
+        "name": "B_BASE_PLUS_HYBRID",
+        "description": "Base ASAG + Hybrid Proposition Representation (recovers nominal fragments & infinitives)",
+        "use_hybrid_representation": true,
+        "semantic_matcher_version": "v1",
+        "matching_strategy": "greedy",
+        "use_question_relevance": false,
+        "use_property_contradiction": false,
+        "enable_proposed_scoring": false
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 0.83,
+      "metrics": {
+        "system_name": "B_BASE_PLUS_HYBRID",
+        "n_samples": 100,
+        "mae": 3.0906,
+        "rmse": 3.4294,
+        "pearson_r": 0.2041,
+        "pearson_p": 0.041718,
+        "spearman_rho": 0.1244,
+        "spearman_p": 0.217379,
+        "qwk": 0.0499,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.4827,
+        "predicted_std": 1.255
+      }
+    },
+    "C_BASE_PLUS_SEMANTIC_V2": {
+      "condition_key": "C_BASE_PLUS_SEMANTIC_V2",
+      "description": "Base ASAG + Semantic Matcher V2 (multi-tier derivation & domain equivalences)",
+      "config": {
+        "name": "C_BASE_PLUS_SEMANTIC_V2",
+        "description": "Base ASAG + Semantic Matcher V2 (multi-tier derivation & domain equivalences)",
+        "use_hybrid_representation": false,
+        "semantic_matcher_version": "v2",
+        "matching_strategy": "greedy",
+        "use_question_relevance": false,
+        "use_property_contradiction": false,
+        "enable_proposed_scoring": false
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 0.64,
+      "metrics": {
+        "system_name": "C_BASE_PLUS_SEMANTIC_V2",
+        "n_samples": 100,
+        "mae": 3.4567,
+        "rmse": 3.7006,
+        "pearson_r": -0.108,
+        "pearson_p": 0.284693,
+        "spearman_rho": -0.1646,
+        "spearman_p": 0.101787,
+        "qwk": -0.0113,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.1117,
+        "predicted_std": 0.5684
+      }
+    },
+    "D_BASE_PLUS_GLOBAL_MATCHING": {
+      "condition_key": "D_BASE_PLUS_GLOBAL_MATCHING",
+      "description": "Base ASAG + Global Bipartite Matching (Hungarian algorithm)",
+      "config": {
+        "name": "D_BASE_PLUS_GLOBAL_MATCHING",
+        "description": "Base ASAG + Global Bipartite Matching (Hungarian algorithm)",
+        "use_hybrid_representation": false,
+        "semantic_matcher_version": "v1",
+        "matching_strategy": "global",
+        "use_question_relevance": false,
+        "use_property_contradiction": false,
+        "enable_proposed_scoring": false
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 0.64,
+      "metrics": {
+        "system_name": "D_BASE_PLUS_GLOBAL_MATCHING",
+        "n_samples": 100,
+        "mae": 3.4583,
+        "rmse": 3.701,
+        "pearson_r": -0.1079,
+        "pearson_p": 0.285153,
+        "spearman_rho": -0.1646,
+        "spearman_p": 0.101787,
+        "qwk": -0.0113,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.115,
+        "predicted_std": 0.5869
+      }
+    },
+    "E_BASE_PLUS_QUESTION_RELEVANCE": {
+      "condition_key": "E_BASE_PLUS_QUESTION_RELEVANCE",
+      "description": "Base ASAG + Question-Aware Relevance Filtering",
+      "config": {
+        "name": "E_BASE_PLUS_QUESTION_RELEVANCE",
+        "description": "Base ASAG + Question-Aware Relevance Filtering",
+        "use_hybrid_representation": false,
+        "semantic_matcher_version": "v1",
+        "matching_strategy": "greedy",
+        "use_question_relevance": true,
+        "use_property_contradiction": false,
+        "enable_proposed_scoring": true,
+        "scoring_strategy": "SATURATING"
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 1.44,
+      "metrics": {
+        "system_name": "E_BASE_PLUS_QUESTION_RELEVANCE",
+        "n_samples": 100,
+        "mae": 3.3268,
+        "rmse": 3.5762,
+        "pearson_r": -0.0644,
+        "pearson_p": 0.524324,
+        "spearman_rho": -0.0142,
+        "spearman_p": 0.888288,
+        "qwk": -0.0048,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.2465,
+        "predicted_std": 0.6129
+      }
+    },
+    "F_BASE_PLUS_PROPERTY_CONTRADICTION": {
+      "condition_key": "F_BASE_PLUS_PROPERTY_CONTRADICTION",
+      "description": "Base ASAG + Property & Antonym Contradiction Detection",
+      "config": {
+        "name": "F_BASE_PLUS_PROPERTY_CONTRADICTION",
+        "description": "Base ASAG + Property & Antonym Contradiction Detection",
+        "use_hybrid_representation": false,
+        "semantic_matcher_version": "v1",
+        "matching_strategy": "greedy",
+        "use_question_relevance": false,
+        "use_property_contradiction": true,
+        "enable_proposed_scoring": true,
+        "scoring_strategy": "SATURATING"
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 1.44,
+      "metrics": {
+        "system_name": "F_BASE_PLUS_PROPERTY_CONTRADICTION",
+        "n_samples": 100,
+        "mae": 3.3268,
+        "rmse": 3.5762,
+        "pearson_r": -0.0644,
+        "pearson_p": 0.524324,
+        "spearman_rho": -0.0142,
+        "spearman_p": 0.888288,
+        "qwk": -0.0048,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.2465,
+        "predicted_std": 0.6129
+      }
+    },
+    "G_FULL_OVERHAULED_SYSTEM": {
+      "condition_key": "G_FULL_OVERHAULED_SYSTEM",
+      "description": "Full Overhauled System: Hybrid Rep + Semantic V2 + Global Match + Relevance + Contradiction + Saturating Bounded Scoring",
+      "config": {
+        "name": "G_FULL_OVERHAULED_SYSTEM",
+        "description": "Full Overhauled System: Hybrid Rep + Semantic V2 + Global Match + Relevance + Contradiction + Saturating Bounded Scoring",
+        "use_hybrid_representation": true,
+        "semantic_matcher_version": "v2",
+        "matching_strategy": "global",
+        "use_question_relevance": true,
+        "use_property_contradiction": true,
+        "enable_proposed_scoring": true,
+        "scoring_strategy": "SATURATING"
+      },
+      "sample_count": 100,
+      "elapsed_seconds": 1.84,
+      "metrics": {
+        "system_name": "G_FULL_OVERHAULED_SYSTEM",
+        "n_samples": 100,
+        "mae": 2.971,
+        "rmse": 3.2994,
+        "pearson_r": 0.2407,
+        "pearson_p": 0.015862,
+        "spearman_rho": 0.2321,
+        "spearman_p": 0.020147,
+        "qwk": 0.056,
+        "ground_truth_mean": 3.53,
+        "ground_truth_std": 1.2386,
+        "predicted_mean": 0.5973,
+        "predicted_std": 1.2146
+      }
+    }
+  }
+}

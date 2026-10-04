@@ -1,0 +1,9 @@
+{
+  "version": "V4",
+  "name": "Severity-Aware Proposition ASAG",
+  "scale": 5.0,
+  "scorer": "Model D",
+  "sigma_core_threshold": 0.7,
+  "core_invalidation_discount": 0.5,
+  "status": "FROZEN"
+}

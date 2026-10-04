@@ -1,0 +1,21 @@
+{
+  "version": "V2",
+  "name": "Proposition-Level ASAG",
+  "records_evaluated": 2273,
+  "metrics": {
+    "system_name": "V2: Historical Proposed ASAG",
+    "n_samples": 2273,
+    "mae": 3.2176,
+    "rmse": 3.5179,
+    "pearson_r": 0.1342,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.0765,
+    "spearman_p": 0.000262,
+    "qwk": 0.0239,
+    "ground_truth_mean": 4.1839,
+    "ground_truth_std": 1.0964,
+    "predicted_mean": 0.999,
+    "predicted_std": 1.1726
+  },
+  "status": "FROZEN"
+}

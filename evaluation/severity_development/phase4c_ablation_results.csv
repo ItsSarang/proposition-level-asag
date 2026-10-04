@@ -1,0 +1,6 @@
+ablation_variant,accuracy,macro_precision,macro_recall,macro_f1,core_contradiction_f1,moderate_f1,minor_f1,unresolved_f1
+Variant_A,0.8431,0.7167,0.7333,0.7132,0.9091,0.8571,0.8,0.0
+Variant_B,0.8431,0.7193,0.7333,0.7142,0.9375,0.8333,0.8,0.0
+Variant_C,0.8039,0.6989,0.7067,0.6899,0.8387,0.8108,0.8,0.0
+Variant_D,0.3922,0.3381,0.4267,0.3434,0.5263,0.1905,0.0,0.0
+Variant_E,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
