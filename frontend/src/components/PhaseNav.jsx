@@ -12,8 +12,8 @@ export const PHASES = [
 
 export default function PhaseNav({ activePhase, onSelectPhase, isAnalysisActive }) {
   return (
-    <div className="w-full py-2 px-6 flex items-center justify-center border-b border-slate-200/60 bg-white/70 backdrop-blur-xs">
-      <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center text-xs font-mono">
+    <div className="w-full py-2.5 px-6 flex items-center justify-center">
+      <div className="inline-flex items-center gap-1.5 sm:gap-2.5 px-4 py-1.5 rounded-full border border-slate-200/80 bg-white/90 shadow-xs text-xs font-mono backdrop-blur-sm">
         {PHASES.map((phase, index) => {
           const isActive = activePhase === phase.id;
           const isAvailable = isAnalysisActive || phase.id === '01';
@@ -25,20 +25,22 @@ export default function PhaseNav({ activePhase, onSelectPhase, isAnalysisActive 
                 disabled={!isAvailable}
                 className={`px-3 py-1 rounded-full transition-all flex items-center gap-1.5 ${
                   isActive
-                    ? 'bg-indigo-600 text-white font-medium shadow-xs ring-2 ring-indigo-200/50'
+                    ? phase.id === '01'
+                      ? 'bg-indigo-100 text-indigo-700 font-semibold'
+                      : 'bg-indigo-700 text-white font-medium shadow-xs'
                     : isAvailable
-                    ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer'
-                    : 'text-slate-300 cursor-not-allowed'
+                    ? 'text-slate-500 hover:text-slate-800 cursor-pointer'
+                    : 'text-slate-400 cursor-not-allowed opacity-60'
                 }`}
               >
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className={`w-1.5 h-1.5 rounded-full ${phase.id === '01' ? 'bg-indigo-600' : 'bg-white'}`} />
                 )}
                 <span>{phase.label}</span>
               </button>
 
               {index < PHASES.length - 1 && (
-                <span className="text-slate-300 select-none text-[10px]">→</span>
+                <span className="text-slate-300 select-none text-[11px]">→</span>
               )}
             </React.Fragment>
           );

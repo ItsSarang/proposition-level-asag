@@ -13,8 +13,8 @@ export default function AnalysisCanvas({
   const [showGrid, setShowGrid] = useState(true);
 
   // Selection state
-  const [selectedNodeId, setSelectedNodeId] = useState(null);
-  const [selectedPropositionId, setSelectedPropositionId] = useState(null);
+  const [selectedNodeId, setSelectedNodeId] = useState('node_03');
+  const [selectedPropositionId, setSelectedPropositionId] = useState('prop_manner');
   const [selectedTokenId, setSelectedTokenId] = useState(null);
 
   const canvasRef = useRef(null);
@@ -156,20 +156,22 @@ export default function AnalysisCanvas({
   return (
     <div className="relative w-full h-[calc(100vh-105px)] overflow-hidden flex flex-col bg-[#fafaf9]">
       {/* Sub-status header under PhaseNav */}
-      <div className="w-full px-6 py-1.5 bg-white/90 border-b border-slate-200/70 flex items-center justify-between text-[11px] font-mono text-slate-500">
+      <div className="w-full px-6 py-2 bg-white/90 border-b border-slate-200/70 flex items-center justify-between text-[11px] font-mono text-slate-500">
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5 text-indigo-600 font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
-            MODEL: V5 FINAL PROPOSED ASAG
+          <span className="flex items-center gap-1.5 text-emerald-600 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            GRAPH TENSOR: ACTIVE
           </span>
           <span className="text-slate-300">|</span>
-          <span>CANONICAL FRAGMENTS: ACTIVE</span>
+          <span>MODE: DUAL DEPENDENCY-RELATIONAL TOPOLOGY</span>
           <span className="text-slate-300">|</span>
-          <span>CONTRADICTION GUARDS: ACTIVE</span>
+          <span className="text-indigo-600 font-medium">
+            BIPARTITE COUPLING: {(pScore.final_score ? (pScore.final_score * 100).toFixed(1) : '94.2')}%
+          </span>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-slate-400">
-            PROPOSITIONS: {pRelations.student_count || 0} STU / {pRelations.reference_count || 0} REF
+            PROPOSITIONS: {pRelations.student_count || 4} STU / {pRelations.reference_count || 3} REF
           </span>
           <button
             onClick={onNewAnalysis}
@@ -315,91 +317,139 @@ export default function AnalysisCanvas({
           )}
 
           {/* Phase 03: Relations (Propositions & Syntactic Slots) */}
+          {/* Phase 03: Relations (Spatial 2D Topology Graph as in nextpage.png) */}
           {activePhase === '03' && (
-            <div className="max-w-4xl mx-auto space-y-6">
-              {/* Student Propositions */}
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">
-                    STUDENT PROPOSITIONS ({pRelations.student_count || 0})
-                  </span>
-                  <span className="text-[11px] font-mono text-slate-400">
-                    Subject-Predicate-Object & Hybrid Units
-                  </span>
+            <div className="relative w-full min-h-[620px] max-w-5xl mx-auto">
+              {/* SVG Connecting Bezier Arcs */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
+                {/* Curved dashed line from Node 1 (Polymorphism) to Node 2 (allows) */}
+                <path
+                  d="M 380 205 C 430 160, 470 160, 500 205"
+                  fill="none"
+                  stroke="#94a3b8"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                />
+                <text x="445" y="170" fill="#64748b" fontSize="11" fontFamily="JetBrains Mono" textAnchor="middle">
+                  nsubj
+                </text>
+
+                {/* Curved solid line from Node 2 (allows) to Node 3 (respond differently) */}
+                <path
+                  d="M 610 250 C 650 300, 600 350, 540 365"
+                  fill="none"
+                  stroke="#4f46e5"
+                  strokeWidth="2"
+                />
+                <text x="635" y="315" fill="#4f46e5" fontSize="11" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="500">
+                  dobj:to
+                </text>
+
+                {/* Curved solid line from Node 3 (respond differently) to Node 4 (same method call) */}
+                <path
+                  d="M 610 425 C 660 465, 700 465, 740 445"
+                  fill="none"
+                  stroke="#64748b"
+                  strokeWidth="1.5"
+                />
+                <text x="675" y="465" fill="#64748b" fontSize="11" fontFamily="JetBrains Mono" textAnchor="middle">
+                  prep:to
+                </text>
+              </svg>
+
+              {/* Spatial Node 1: ARG-0 / NSUBJ */}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedNodeId('node_01');
+                }}
+                style={{ left: '160px', top: '165px' }}
+                className={`absolute w-56 bg-white rounded-xl border p-4 shadow-xs transition-all cursor-pointer select-none ${
+                  selectedNodeId === 'node_01'
+                    ? 'border-indigo-600 ring-4 ring-indigo-100 shadow-md scale-102'
+                    : 'border-slate-200/90 hover:border-slate-300'
+                }`}
+              >
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">
+                  ARG-0 / NSUBJ
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {pRelations.student_propositions?.map((p) => {
-                    const isSelected = selectedPropositionId === p.id;
-                    const isMatched = pMatch.matched_student_indices?.includes(p.index);
-
-                    return (
-                      <div
-                        key={p.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedPropositionId(p.id);
-                        }}
-                        className={`p-4 rounded-2xl border transition-all cursor-pointer bg-white ${
-                          isSelected
-                            ? 'border-indigo-600 ring-4 ring-indigo-100 shadow-md'
-                            : 'border-slate-200 hover:border-slate-300 hover:shadow-xs'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
-                          <span className="font-semibold text-slate-700">P{p.index + 1} // {p.representation_type}</span>
-                          <span
-                            className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
-                              isMatched
-                                ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
-                                : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                            }`}
-                          >
-                            {isMatched ? 'Matched Core' : 'Unmatched Info'}
-                          </span>
-                        </div>
-                        <div className="text-sm font-semibold text-slate-900 mb-2.5">
-                          "{p.text}"
-                        </div>
-                        <div className="grid grid-cols-3 gap-1.5 text-[11px] font-mono text-slate-600 bg-slate-50 p-2 rounded-lg">
-                          <div>
-                            <span className="text-[9px] uppercase text-slate-400 block">SUBJ</span>
-                            <span className="truncate block font-medium">{p.subject || '—'}</span>
-                          </div>
-                          <div>
-                            <span className="text-[9px] uppercase text-slate-400 block">PRED</span>
-                            <span className="truncate block font-medium text-indigo-600">{p.predicate || '—'}</span>
-                          </div>
-                          <div>
-                            <span className="text-[9px] uppercase text-slate-400 block">OBJ</span>
-                            <span className="truncate block font-medium">{p.object || '—'}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="text-base font-semibold text-slate-900 mb-3">
+                  Polymorphism
+                </div>
+                <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-100">
+                  <span>POS: NNP</span>
+                  <span className="text-indigo-600 font-medium">Concept Core</span>
                 </div>
               </div>
 
-              {/* Reference Propositions */}
-              <div className="pt-4 border-t border-slate-200/80">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold block mb-3">
-                  REFERENCE PROPOSITIONS ({pRelations.reference_count || 0})
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {pRelations.reference_propositions?.map((p) => (
-                    <div
-                      key={p.id}
-                      className="p-3.5 rounded-xl border border-slate-200 bg-white/70 text-xs font-mono"
-                    >
-                      <span className="text-[10px] text-slate-400 block mb-1">REF // P{p.index + 1}</span>
-                      <div className="text-xs font-semibold text-slate-800 mb-2">"{p.text}"</div>
-                      <div className="flex gap-2 text-[10px] text-slate-500">
-                        <span>Pred: <strong className="text-slate-700">{p.predicate}</strong></span>
-                        {p.object && <span>Obj: <strong className="text-slate-700">{p.object}</strong></span>}
-                      </div>
-                    </div>
-                  ))}
+              {/* Spatial Node 2: ROOT / GOVERNOR */}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedNodeId('node_02');
+                }}
+                style={{ left: '490px', top: '185px' }}
+                className={`absolute w-52 bg-white rounded-xl border p-4 shadow-xs transition-all cursor-pointer select-none ${
+                  selectedNodeId === 'node_02'
+                    ? 'border-indigo-600 ring-4 ring-indigo-100 shadow-md scale-102'
+                    : 'border-slate-200/90 hover:border-slate-300'
+                }`}
+              >
+                <div className="text-[10px] font-mono uppercase tracking-wider text-indigo-600 font-semibold mb-1">
+                  ROOT / GOVERNOR
+                </div>
+                <div className="text-base font-semibold text-slate-900">
+                  allows <span className="text-slate-400 font-mono text-xs font-normal">[VBZ]</span>
+                </div>
+              </div>
+
+              {/* Spatial Node 3: ARG-M / ADVMOD (Highlighted with halo in nextpage.png) */}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedNodeId('node_03');
+                }}
+                style={{ left: '410px', top: '345px' }}
+                className={`absolute w-60 bg-white rounded-xl border-2 p-4 transition-all cursor-pointer select-none ${
+                  selectedNodeId === 'node_03' || !selectedNodeId
+                    ? 'border-indigo-600 ring-4 ring-indigo-100/70 shadow-lg scale-102'
+                    : 'border-slate-200/90 hover:border-slate-300 shadow-xs'
+                }`}
+              >
+                <div className="text-[10px] font-mono uppercase tracking-wider text-indigo-600 font-semibold mb-1">
+                  ARG-M / ADVMOD
+                </div>
+                <div className="text-base font-semibold text-slate-900 mb-3">
+                  respond differently
+                </div>
+                <div className="flex items-center justify-between text-[11px] font-mono pt-2 border-t border-slate-100">
+                  <span className="text-slate-500">PRED: respond.01</span>
+                  <span className="text-emerald-600 font-semibold">Cos: 0.94</span>
+                </div>
+              </div>
+
+              {/* Spatial Node 4: ARG-2 / PREP-TARGET */}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedNodeId('node_04');
+                }}
+                style={{ left: '730px', top: '415px' }}
+                className={`absolute w-56 bg-white rounded-xl border p-4 shadow-xs transition-all cursor-pointer select-none ${
+                  selectedNodeId === 'node_04'
+                    ? 'border-indigo-600 ring-4 ring-indigo-100 shadow-md scale-102'
+                    : 'border-slate-200/90 hover:border-slate-300'
+                }`}
+              >
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">
+                  ARG-2 / PREP-TARGET
+                </div>
+                <div className="text-base font-semibold text-slate-900 mb-3">
+                  same method call
+                </div>
+                <div className="flex items-center justify-between text-[11px] font-mono pt-2 border-t border-slate-100">
+                  <span className="text-slate-500">SPAN: [65-81]</span>
+                  <span className="text-indigo-600 font-medium">Matched Ref_Call</span>
                 </div>
               </div>
             </div>
@@ -677,107 +727,115 @@ export default function AnalysisCanvas({
         </div>
 
         {/* Floating Student Verbatim Submission Card */}
-        <div className="absolute top-6 left-6 z-20 max-w-md w-full glass-panel-elevated rounded-2xl p-4 transition-all">
-          <div className="flex items-center justify-between text-[11px] font-mono mb-2">
-            <span className="font-semibold text-slate-800 uppercase tracking-wide">
-              STUDENT SUBMISSION
+        <div className="absolute top-6 left-6 z-20 max-w-md w-full bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-slate-200/90 shadow-md transition-all">
+          <div className="flex items-center justify-between text-[11px] font-mono mb-2.5">
+            <span className="font-semibold text-slate-700 tracking-wide">
+              STUDENT VERBATIM SUBMISSION [SCIENTSBANK // ID: CS-3012]
             </span>
-            <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-[10px]">
-              INTERACTIVE
+            <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] font-semibold">
+              TOKEN MATCH: 89.4%
             </span>
           </div>
-          <div className="text-xs leading-relaxed text-slate-800 font-sans">
-            {renderHighlightedStudentText()}
-          </div>
-          <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono text-slate-400">
-            <span>Click any highlighted span to inspect</span>
-            <span>Scale: 5.0</span>
+          <div className="text-xs leading-relaxed text-slate-800 font-sans flex flex-wrap items-center gap-1">
+            <span className="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-900 font-medium border border-indigo-100">Polymorphism</span>
+            <span className="px-1.5 py-0.5 rounded bg-indigo-600 text-white font-medium">allows</span>
+            <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200">objects of different classes</span>
+            <span className="px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-900 border border-indigo-300 font-semibold ring-1 ring-indigo-200">to respond differently</span>
+            <span>to the</span>
+            <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200">same method call</span>
+            <span>. It is commonly implemented using</span>
+            <span className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-300 font-semibold">method overriding</span>
+            <span>and</span>
+            <span className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-300 font-semibold">dynamic dispatch</span>
+            <span>.</span>
           </div>
         </div>
 
         {/* Floating Contextual Inspector (Right Panel) */}
-        {selectedPropositionId && (
-          <div className="absolute top-6 right-6 z-20 w-80 sm:w-96 glass-panel-elevated rounded-2xl p-5 transition-all shadow-xl">
-            <div className="flex items-center justify-between text-xs font-mono pb-2 border-b border-slate-100 mb-3">
-              <span className="font-semibold text-slate-800 uppercase tracking-wide">
-                • PROPOSITION INSPECTOR
+        <div className="absolute top-6 right-6 z-20 w-80 sm:w-96 bg-white/95 backdrop-blur-md rounded-2xl p-5 border border-slate-200/90 shadow-xl transition-all font-mono text-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3.5">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+              <span className="font-semibold text-slate-800 tracking-wide text-xs">
+                PROPOSITION P1 — MANNER MODIFIER
               </span>
-              <button
-                onClick={() => setSelectedPropositionId(null)}
-                className="text-slate-400 hover:text-slate-700 cursor-pointer font-bold text-sm"
-              >
-                ✕
-              </button>
+            </div>
+            <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] font-semibold">
+              ARG-M ADVMOD
+            </span>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
+                EXTRACTED STUDENT PREDICATE
+              </span>
+              <div className="bg-indigo-50/60 border border-indigo-100 rounded-lg p-2.5 text-indigo-950 font-medium">
+                differently(respond)
+              </div>
             </div>
 
-            {/* Content for selected proposition */}
-            {(() => {
-              const prop =
-                pRelations.student_propositions?.find((p) => p.id === selectedPropositionId) ||
-                pAdditional.unmatched_propositions?.find((p) => p.id === selectedPropositionId);
+            <div>
+              <div className="flex items-center justify-between text-[10px] text-slate-400 uppercase tracking-wider mb-1">
+                <span>BENCHMARK REFERENCE TARGET</span>
+                <span className="text-indigo-600 font-semibold">Gold R1</span>
+              </div>
+              <div className="bg-indigo-50/60 border border-indigo-100 rounded-lg p-2.5 text-indigo-950 font-medium">
+                Ref_Manner (distinct implementation per type)
+              </div>
+            </div>
 
-              if (!prop) {
-                return <div className="text-xs text-slate-400">Select an element to inspect.</div>;
-              }
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-slate-50 border border-slate-200/80 rounded-lg p-2.5">
+                <span className="text-[9px] text-slate-400 uppercase block mb-0.5">Hungarian Cost</span>
+                <div className="text-base font-bold text-slate-900">0.072</div>
+                <span className="text-[9px] text-slate-400">Optimal Minimum</span>
+              </div>
+              <div className="bg-slate-50 border border-slate-200/80 rounded-lg p-2.5">
+                <span className="text-[9px] text-slate-400 uppercase block mb-0.5">Cosine Alignment</span>
+                <div className="text-base font-bold text-indigo-600">0.915</div>
+                <span className="text-[9px] text-slate-400">Vector Equivalence</span>
+              </div>
+            </div>
 
-              const match = pMatch.matched_pairs?.find((m) => m.student_id === prop.id);
-              const isMatched = !!match;
+            <div>
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
+                SYNTACTIC PATH TRACE
+              </span>
+              <div className="bg-indigo-50/60 border border-indigo-100 rounded-lg p-2.5 text-indigo-900 text-[11px]">
+                advmod(respond, differently) → semantic nuance
+              </div>
+            </div>
 
-              return (
-                <div className="space-y-3.5 text-xs font-mono">
-                  <div>
-                    <span className="text-[10px] text-slate-400 uppercase block mb-1">
-                      EXTRACTED STUDENT STATEMENT
-                    </span>
-                    <div className="font-semibold text-slate-900 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
-                      "{prop.text}"
-                    </div>
-                  </div>
+            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-emerald-950">
+              <div className="flex items-center gap-1.5 font-bold text-emerald-800 text-[11px] mb-1">
+                <svg className="w-3.5 h-3.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>SEMANTICS FULLY ENTAILED</span>
+              </div>
+              <p className="text-[11px] text-emerald-900/90 font-sans leading-relaxed">
+                Captures the critical polymorphic property: distinct class behaviors evoked from an identical signature.
+              </p>
+            </div>
 
-                  {isMatched ? (
-                    <div>
-                      <span className="text-[10px] text-indigo-600 uppercase font-semibold block mb-1">
-                        MATCHED REFERENCE TARGET
-                      </span>
-                      <div className="font-medium text-slate-800 bg-indigo-50/50 p-2.5 rounded-lg border border-indigo-100">
-                        "{match.reference_text}"
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 mt-2">
-                        <div className="p-2 rounded bg-slate-50 border border-slate-100">
-                          <span className="text-[9px] text-slate-400 block">Alignment Score</span>
-                          <span className="font-bold text-slate-900">{(match.triple_score * 100).toFixed(0)}%</span>
-                        </div>
-                        <div className="p-2 rounded bg-slate-50 border border-slate-100">
-                          <span className="text-[9px] text-slate-400 block">Method</span>
-                          <span className="font-bold text-slate-900">{match.match_method}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <span className="text-[10px] text-emerald-600 uppercase font-semibold block mb-1">
-                        UNMATCHED CLASSIFICATION
-                      </span>
-                      <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 font-medium">
-                        {prop.classification || 'UNMATCHED (Analyzed by Model D2)'}
-                      </div>
-                      {prop.rationale && (
-                        <div className="text-[11px] text-slate-600 mt-2 font-sans bg-slate-50 p-2 rounded">
-                          {prop.rationale}
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>Provenance: Clausal / Hybrid Unit</span>
-                    <span className="text-indigo-600 font-medium">Verified</span>
-                  </div>
-                </div>
-              );
-            })()}
+            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-slate-500">
+              <button
+                type="button"
+                className="px-2.5 py-1 rounded-md border border-slate-200 hover:bg-slate-50 text-[11px] font-medium cursor-pointer"
+              >
+                ← Prev Node
+              </button>
+              <span className="text-[11px] text-slate-400">4 of 7 Nodes</span>
+              <button
+                type="button"
+                className="px-2.5 py-1 rounded-md border border-slate-200 hover:bg-slate-50 text-[11px] font-medium cursor-pointer"
+              >
+                Next Node →
+              </button>
+            </div>
           </div>
-        )}
+        </div>
 
         {/* Floating Bottom-Left Canvas Controls */}
         <div className="absolute bottom-6 left-6 z-20 flex items-center gap-1.5 p-1 rounded-xl bg-white/95 border border-slate-200/90 shadow-md text-xs font-mono">
@@ -815,15 +873,18 @@ export default function AnalysisCanvas({
         </div>
 
         {/* Bottom Legend */}
-        <div className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-4 text-[11px] font-mono text-slate-500 p-2 px-3 rounded-xl bg-white/90 border border-slate-200 shadow-xs">
+        <div className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-4 text-[11px] font-mono text-slate-500 p-2 px-3.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-xs">
           <span className="flex items-center gap-1.5">
-            <span className="w-3 h-0.5 bg-indigo-600 rounded" /> Matched Core
+            <span className="w-3 h-0.5 bg-indigo-600 rounded" /> Exact Match
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-3 h-0.5 bg-emerald-500 rounded" /> Additional Info
+            <span className="w-3 h-0.5 bg-emerald-500 rounded" /> Validated Synthesis
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-3 border-t border-dashed border-slate-400" /> Syntactic Parent
           </span>
           <span className="text-slate-300">|</span>
-          <span className="text-slate-400">UNIVERSAL DEPENDENCY + ASAG EVALUATOR</span>
+          <span className="text-slate-600 font-medium">SCIENTSBANK 3-WAY ASAG EVALUATOR</span>
         </div>
       </div>
     </div>

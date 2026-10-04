@@ -50,26 +50,16 @@ export default function WorkbenchInput({
   const currentPreset = PRESETS.find((p) => p.id === selectedPresetId);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-8 flex flex-col items-center">
-      {/* Top Header Section */}
-      <div className="text-center mb-8">
-        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900 mb-2">
-          Grade a Short Answer
-        </h1>
-        <p className="text-sm text-slate-500 max-w-md mx-auto">
-          Inspect how a student's answer is interpreted, matched, and scored through interpretable dependency and proposition analysis.
-        </p>
-      </div>
-
+    <div className="w-full max-w-4xl mx-auto px-4 py-6 flex flex-col items-center">
       {/* Preset / Input Controls Bar */}
-      <div className="w-full mb-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        <div className="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200/80">
+      <div className="w-full mb-3 flex items-center justify-between">
+        <div className="inline-flex rounded-xl bg-slate-100/90 p-1 border border-slate-200/80">
           <button
             type="button"
             onClick={() => handleSelectPreset(selectedPresetId)}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5 transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               !isCustomMode
-                ? 'bg-white text-slate-900 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200/60'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -84,9 +74,9 @@ export default function WorkbenchInput({
           <button
             type="button"
             onClick={handleCustomModeToggle}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5 transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               isCustomMode
-                ? 'bg-white text-slate-900 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200/60'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -108,17 +98,17 @@ export default function WorkbenchInput({
 
       {/* Preset Selector Dropdown Bar */}
       {!isCustomMode && (
-        <div className="w-full mb-6 p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-          <div className="flex items-center gap-2 text-slate-500">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400">BENCHMARK CORPUS:</span>
+        <div className="w-full mb-5 p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between gap-2 text-xs font-mono">
+          <div className="flex items-center gap-3 text-slate-500 flex-1">
+            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-medium">BENCHMARK CORPUS:</span>
             <select
               value={selectedPresetId}
               onChange={(e) => handleSelectPreset(e.target.value)}
-              className="bg-slate-50 border border-slate-200 rounded-md px-2.5 py-1 text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="bg-slate-50 border border-slate-200/90 rounded-lg px-3 py-1.5 text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-indigo-500 text-xs"
             >
               {PRESETS.map((p) => (
                 <option key={p.id} value={p.id}>
-                  {p.title} ({p.domain.split('//')[1]?.trim() || 'CS'})
+                  {p.title}
                 </option>
               ))}
             </select>
@@ -129,7 +119,7 @@ export default function WorkbenchInput({
 
       {/* Error / Validation Notification */}
       {error && (
-        <div className="w-full mb-6 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-mono flex items-center gap-2">
+        <div className="w-full mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-mono flex items-center gap-2">
           <svg className="w-4 h-4 text-rose-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="12" cy="12" r="10" />
             <line x1="12" x2="12" y1="8" y2="12" />
@@ -140,9 +130,9 @@ export default function WorkbenchInput({
       )}
 
       {/* Central Input Document Card */}
-      <div className="w-full bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden divide-y divide-slate-100">
+      <div className="w-full bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden divide-y divide-slate-100">
         {/* 01 // QUESTION */}
-        <div className="p-6 transition-colors focus-within:bg-slate-50/50">
+        <div className="p-6 transition-colors focus-within:bg-slate-50/40">
           <div className="flex items-center justify-between text-xs font-mono mb-2.5">
             <div className="flex items-center gap-2">
               <span className="text-slate-400 font-medium">01 //</span>
@@ -150,20 +140,20 @@ export default function WorkbenchInput({
             </div>
             <span className="text-slate-400 text-[11px]">Prompt / Query</span>
           </div>
-          <div className="relative pl-3 border-l-2 border-slate-200 focus-within:border-slate-400 transition-colors">
+          <div className="relative pl-4 border-l-2 border-slate-200 focus-within:border-slate-400 transition-colors">
             <textarea
               rows={2}
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Enter the question prompt..."
-              className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none resize-y leading-relaxed font-sans"
+              className="w-full bg-transparent text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-y leading-relaxed font-sans"
             />
           </div>
         </div>
 
         {/* 02 // REFERENCE ANSWER */}
-        <div className="p-6 transition-colors focus-within:bg-slate-50/50">
+        <div className="p-6 transition-colors focus-within:bg-slate-50/40">
           <div className="flex items-center justify-between text-xs font-mono mb-2.5">
             <div className="flex items-center gap-2">
               <span className="text-slate-400 font-medium">02 //</span>
@@ -171,53 +161,55 @@ export default function WorkbenchInput({
             </div>
             <span className="text-slate-400 text-[11px]">Gold Ground Truth</span>
           </div>
-          <div className="relative pl-3 border-l-2 border-slate-200 focus-within:border-slate-400 transition-colors">
+          <div className="relative pl-4 border-l-2 border-slate-200 focus-within:border-slate-400 transition-colors">
             <textarea
               rows={3}
               value={referenceAnswer}
               onChange={(e) => setReferenceAnswer(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Enter the instructor reference answer..."
-              className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none resize-y leading-relaxed font-sans"
+              className="w-full bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none resize-y leading-relaxed font-sans"
             />
           </div>
         </div>
 
         {/* 03 // STUDENT ANSWER */}
-        <div className="p-6 bg-indigo-50/20 transition-colors focus-within:bg-indigo-50/40">
+        <div className="p-6 transition-colors">
           <div className="flex items-center justify-between text-xs font-mono mb-2.5">
             <div className="flex items-center gap-2">
-              <span className="text-indigo-500 font-medium">03 //</span>
+              <span className="text-indigo-600 font-medium">03 //</span>
               <span className="font-semibold text-indigo-900 uppercase tracking-wide">STUDENT ANSWER</span>
-              <span className="px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[10px] font-mono">
+              <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] font-mono font-medium">
                 Primary Subject
               </span>
             </div>
             <span className="text-slate-400 text-[11px]">Candidate Text Area</span>
           </div>
-          <div className="relative pl-3 border-l-2 border-indigo-600 transition-colors">
-            <textarea
-              rows={4}
-              value={studentAnswer}
-              onChange={(e) => setStudentAnswer(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Enter the student's answer to inspect..."
-              className="w-full bg-transparent text-sm text-slate-900 font-medium placeholder:text-slate-400 focus:outline-none resize-y leading-relaxed font-sans"
-            />
+          <div className="relative pl-4 border-l-2 border-indigo-600 transition-colors">
+            <div className="bg-[#fafaf9]/80 border border-slate-200/80 rounded-xl p-3.5 focus-within:border-indigo-400 focus-within:bg-white transition-all">
+              <textarea
+                rows={4}
+                value={studentAnswer}
+                onChange={(e) => setStudentAnswer(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter the student's answer to inspect..."
+                className="w-full bg-transparent text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-y leading-relaxed font-sans"
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Action Button at Bottom */}
-      <div className="mt-8 flex flex-col items-center gap-3">
+      <div className="mt-8 flex flex-col items-center">
         <button
           type="button"
           onClick={onAnalyze}
           disabled={isLoading}
-          className={`px-7 py-3 rounded-xl bg-slate-900 text-white font-mono text-xs font-semibold tracking-wider uppercase shadow-md transition-all flex items-center gap-3 ${
+          className={`px-7 py-3 rounded-xl bg-[#0f172a] text-white font-mono text-xs font-semibold tracking-wider uppercase shadow-md transition-all flex items-center gap-3 cursor-pointer ${
             isLoading
               ? 'opacity-70 cursor-wait'
-              : 'hover:bg-slate-800 hover:shadow-indigo-500/20 hover:ring-2 hover:ring-indigo-500/40 active:scale-[0.98]'
+              : 'hover:bg-slate-800 hover:shadow-indigo-500/20 active:scale-[0.98]'
           }`}
         >
           {isLoading ? (
@@ -247,10 +239,6 @@ export default function WorkbenchInput({
             </>
           )}
         </button>
-
-        <p className="text-[11px] font-mono text-slate-400">
-          Universal Dependencies • Clausal Triples • Bipartite Entailment • Model D2
-        </p>
       </div>
     </div>
   );
