@@ -1,7 +1,7 @@
 """FastAPI application entry point for ASAG Backend."""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.routes import health, models, grading
+from backend.api.routes import health, models, grading, analysis
 
 app = FastAPI(
     title="Proposition-Level ASAG API",
@@ -21,6 +21,7 @@ app.add_middleware(
 app.include_router(health.router, prefix="/api", tags=["Health"])
 app.include_router(models.router, prefix="/api", tags=["Models"])
 app.include_router(grading.router, prefix="/api", tags=["Grading"])
+app.include_router(analysis.router, prefix="/api", tags=["Analysis"])
 
 @app.get("/")
 def root():
