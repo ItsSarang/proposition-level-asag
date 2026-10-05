@@ -188,10 +188,61 @@ class ASAGAnalysisService:
                         "target_text": tok.text,
                     })
 
+        ref_tokens: List[Dict[str, Any]] = []
+        ref_dependencies: List[Dict[str, Any]] = []
+
+        global_ref_idx = 0
+        for sent_idx, sent in enumerate(ref_parsed.sentences):
+            sent_start = reference_text.find(sent.original_text)
+            if sent_start < 0:
+                sent_start = 0
+
+            sent_token_map = {}
+            for tok in sent.tokens:
+                char_start = sent_start + tok.char_offset
+                char_end = char_start + len(tok.text)
+
+                tok_dict = {
+                    "id": f"r_tok_{global_ref_idx}",
+                    "token_index": tok.index,
+                    "global_index": global_ref_idx,
+                    "sentence_index": sent_idx,
+                    "text": tok.text,
+                    "lemma": tok.lemma,
+                    "pos": tok.pos,
+                    "tag": tok.tag,
+                    "dep": tok.dep,
+                    "head_index": tok.head_index,
+                    "head_text": tok.head_text,
+                    "char_start": char_start,
+                    "char_end": char_end,
+                    "is_root": tok.is_root,
+                    "is_stop": tok.is_stop,
+                }
+                ref_tokens.append(tok_dict)
+                sent_token_map[tok.index] = global_ref_idx
+                global_ref_idx += 1
+
+            for tok in sent.tokens:
+                if tok.head_index != tok.index and tok.head_index in sent_token_map:
+                    head_global = sent_token_map[tok.head_index]
+                    child_global = sent_token_map[tok.index]
+                    ref_dependencies.append({
+                        "id": f"ref_dep_{child_global}_{head_global}",
+                        "source": head_global,
+                        "target": child_global,
+                        "label": tok.dep,
+                        "source_text": tok.head_text,
+                        "target_text": tok.text,
+                    })
+
         return {
             "student_tokens": student_tokens,
             "student_dependencies": student_dependencies,
             "student_sentence_count": len(stu_parsed.sentences),
+            "reference_tokens": ref_tokens,
+            "reference_dependencies": ref_dependencies,
+            "reference_sentence_count": len(ref_parsed.sentences),
         }
 
     def _build_relations_phase(

@@ -2,9 +2,9 @@
 Grading Service coordinating model execution and response serialization.
 
 Decouples API route handlers from model registry and evaluation logic.
+Pure Python service without external web framework coupling.
 """
 from typing import Any, Dict, Optional
-from backend.api.schemas.grading_schema import GradingRequest, GradingResponse
 from backend.services.model_registry import BackendModelRegistry
 from common.types import GradingResult
 
@@ -25,34 +25,48 @@ class GradingService:
         """
         self.registry = registry or BackendModelRegistry()
 
-    def grade_answer(self, req: GradingRequest) -> GradingResponse:
+    def grade(
+        self,
+        question: str,
+        reference_answer: str,
+        student_answer: str,
+        model_id: str = "V5",
+        scale: float = 5.0,
+    ) -> Dict[str, Any]:
         """
-        Grade a student answer using the model version specified in the request.
+        Grade a student answer using the model version specified.
 
         Parameters
         ----------
-        req : GradingRequest
-            Structured request payload containing model version and input texts.
+        question : str
+            The prompt or query.
+        reference_answer : str
+            Instructor benchmark reference.
+        student_answer : str
+            Student candidate answer.
+        model_id : str, default="V5"
+            Model key (V0, V1, V2, V3, V4, V5).
+        scale : float, default=5.0
+            Maximum score scale.
 
         Returns
         -------
-        GradingResponse
-            Serialized response containing score, scaled grade, and explanation.
+        Dict[str, Any]
+            Serialized evaluation result.
         """
-        model = self.registry.get_model(req.model, scale=req.scale)
+        model = self.registry.get_model(model_id, scale=scale)
         res: GradingResult = model.evaluate(
-            question=req.question,
-            reference_answer=req.reference_answer,
-            student_answer=req.student_answer,
+            question=question,
+            reference_answer=reference_answer,
+            student_answer=student_answer,
         )
-        return GradingResponse(
-            model_version=res.model_version,
-            question=res.question,
-            reference_answer=res.reference_answer,
-            student_answer=res.student_answer,
-            normalized_score=res.normalized_score,
-            grade=res.grade,
-            max_points=res.max_points,
-            explanation=res.explanation,
-            metadata=None,  # Avoid transmitting bulky internal parse graphs over HTTP
-        )
+        return {
+            "model_version": res.model_version,
+            "question": res.question,
+            "reference_answer": res.reference_answer,
+            "student_answer": res.student_answer,
+            "normalized_score": res.normalized_score,
+            "grade": res.grade,
+            "max_points": res.max_points,
+            "explanation": res.explanation,
+        }

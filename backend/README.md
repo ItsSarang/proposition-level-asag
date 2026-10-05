@@ -1,7 +1,7 @@
-# Backend API Adapter
+# Backend API Adapter (Flask)
 
 ## Role & Architecture
-This directory contains the Python backend API adapter for the Automatic Short Answer Grading (ASAG) research engine.
+This directory contains the lightweight Flask backend API adapter for the Automatic Short Answer Grading (ASAG) research engine.
 
 ### Strict Architectural Separation
 - **The backend is ONLY an API adapter.**
@@ -12,9 +12,9 @@ This directory contains the Python backend API adapter for the Automatic Short A
 Frontend (React/Vite)
        │ HTTP (JSON)
        ▼
-Backend API (FastAPI)
+Backend API (Flask + CORS)
        │
-GradingService
+GradingService / ASAGAnalysisService
        │
 ModelRegistry (`models/registry.py`)
        │
@@ -23,12 +23,16 @@ ModelRegistry (`models/registry.py`)
   V0        V1        V2        V3        V4        V5
 ```
 
-## Endpoints
-- `GET /api/health`: Health status.
-- `GET /api/models`: List available models (V0 through V5) and metadata.
-- `POST /api/grade`: Grade a student answer using a selected model version.
+## Running the Backend
+```bash
+source .venv/bin/activate
+python backend/main.py
+```
+Server runs on `http://localhost:8000` with CORS enabled for the React frontend.
 
-## Deployment Notes (Vercel / Serverless)
-- Heavy NLP dependencies (spaCy `en_core_web_sm`, NLTK WordNet) require ~100-200MB memory.
-- If deployed on Vercel Serverless Functions, ensure memory is configured to 1024MB+ and python runtime dependencies are pre-warmed.
-- For production or self-hosted deployment, running `uvicorn backend.main:app --port 8000` is recommended.
+## Endpoints
+- `GET /`: API overview and root metadata.
+- `GET /api/health`: Health status.
+- `GET /api/models`: List available models (V0 through V5).
+- `POST /api/analyze`: 7-phase deep proposition inspection for ASAG Lab Workbench.
+- `POST /api/grade`: Direct evaluation across models V0–V5.

@@ -1,129 +1,236 @@
-import React, { useState } from 'react';
+import { useState, useEffect, Component } from 'react';
 import Header from './components/Header';
-import PhaseNav from './components/PhaseNav';
-import WorkbenchInput from './components/WorkbenchInput';
-import AnalysisCanvas from './components/AnalysisCanvas';
+import WorkbenchPage from './pages/WorkbenchPage';
 import ResearchPage from './pages/ResearchPage';
-import DocsPage from './pages/DocsPage';
 import { analyzeAnswer } from './services/api';
+import { buildParseGraph } from './services/dependencyParser';
+import { PRESETS } from './data/presets';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('ASAG Workbench Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-[#f7f4ed]">
+          <div className="max-w-lg bg-[#fdfcf9] p-6 rounded-2xl border border-rose-300 shadow-sm text-left">
+            <h3 className="text-base font-bold text-rose-800 mb-1">
+              Workbench Render Issue
+            </h3>
+            <p className="text-xs font-mono text-[#706b63] mb-3">
+              {this.state.error?.message || 'An unexpected error occurred while rendering the canvas.'}
+            </p>
+            <button
+              type="button"
+              onClick={() => this.setState({ hasError: false, error: null })}
+              className="px-3.5 py-1.5 bg-[#1e1c19] text-[#f7f4ed] rounded-lg text-xs font-mono cursor-pointer"
+            >
+              Retry Render
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+const initialInput = {
+  question: PRESETS[0].question,
+  referenceAnswer: PRESETS[0].referenceAnswer,
+  studentAnswer: PRESETS[0].studentAnswer,
+};
+
+const initialGraph = {
+  nodes: [],
+  edges: [],
+  textTokens: [],
+  targetText: initialInput.studentAnswer,
+  targetMode: 'student',
+  sentenceCount: 1,
+  activeSentenceIndex: 0,
+  isOffline: false,
+};
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('workbench');
+  const [activeTab, setActiveTab] = useState('workbench');
   const [activePhase, setActivePhase] = useState('01');
+  const [hasAnalysis, setHasAnalysis] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
-  // Input state
-  const [question, setQuestion] = useState('');
-  const [referenceAnswer, setReferenceAnswer] = useState('');
-  const [studentAnswer, setStudentAnswer] = useState('');
+  const [analysisInput, setAnalysisInput] = useState(initialInput);
+  const [apiResult, setApiResult] = useState(null);
+  const [parseMode, setParseMode] = useState('student');
+  const [activeSentenceIndex, setActiveSentenceIndex] = useState(0);
 
-  // Analysis state
-  const [analysisData, setAnalysisData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [parseData, setParseData] = useState(initialGraph);
+  const [zoom, setZoom] = useState(1);
+  const [showGrid] = useState(true);
+  const [fitTrigger, setFitTrigger] = useState(0);
+  const [selectedNode, setSelectedNode] = useState(null);
 
-  const handleAnalyze = async () => {
-    if (!question.trim()) {
-      setError('Please provide a Question prompt.');
-      return;
-    }
-    if (!referenceAnswer.trim()) {
-      setError('Please provide an Instructor Reference Answer.');
-      return;
-    }
-    if (!studentAnswer.trim()) {
-      setError("Please provide a Student's Answer to analyze.");
-      return;
-    }
-
-    setError(null);
-    setIsLoading(true);
+  const runAnalysis = async (inputData) => {
+    setLoading(true);
+    setStatusMessage('Running V5 proposition & dependency analysis engine...');
+    setAnalysisInput(inputData);
 
     try {
-      const data = await analyzeAnswer({
-        question,
-        referenceAnswer,
-        studentAnswer,
-        scale: 5.0,
+      const apiResponse = await analyzeAnswer({
+        question: inputData.question,
+        referenceAnswer: inputData.referenceAnswer,
+        studentAnswer: inputData.studentAnswer,
       });
-      setAnalysisData(data);
-      // Start in Phase 03 Relations or Phase 01 Input
-      setActivePhase('03');
-    } catch (err) {
-      setError(err.message || 'An error occurred during ASAG analysis.');
+
+      if (apiResponse && apiResponse.status === 'SUCCESS') {
+        setApiResult(apiResponse);
+        const graph = buildParseGraph(inputData, apiResponse, parseMode, activeSentenceIndex);
+        setParseData(graph);
+        setSelectedNode(graph.nodes[0] || null);
+        setFitTrigger((c) => c + 1);
+      } else {
+        setApiResult(null);
+        setParseData({
+          nodes: [],
+          edges: [],
+          textTokens: [],
+          targetText: inputData.studentAnswer,
+          targetMode: parseMode,
+          sentenceCount: 0,
+          activeSentenceIndex: 0,
+          isOffline: true,
+        });
+        setSelectedNode(null);
+      }
+    } catch {
+      setApiResult(null);
+      setParseData({
+        nodes: [],
+        edges: [],
+        textTokens: [],
+        targetText: inputData.studentAnswer,
+        targetMode: parseMode,
+        sentenceCount: 0,
+        activeSentenceIndex: 0,
+        isOffline: true,
+      });
+      setSelectedNode(null);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
+      setStatusMessage('');
+      setHasAnalysis(true);
     }
   };
 
-  const handleResetWorkbench = () => {
-    setAnalysisData(null);
-    setActivePhase('01');
-    setError(null);
+  useEffect(() => {
+    runAnalysis(initialInput);
+  }, []);
+
+  const handleAnalyze = (inputData) => {
+    setActivePhase('02');
+
+    const isSameInput =
+      apiResult &&
+      analysisInput?.question === inputData.question &&
+      analysisInput?.referenceAnswer === inputData.referenceAnswer &&
+      analysisInput?.studentAnswer === inputData.studentAnswer;
+
+    if (!isSameInput) {
+      runAnalysis(inputData);
+    } else {
+      const graph = buildParseGraph(inputData, apiResult, parseMode, activeSentenceIndex);
+      setParseData(graph);
+      setSelectedNode(graph.nodes[0] || null);
+      setFitTrigger((c) => c + 1);
+    }
+  };
+
+  const handleSwitchParseMode = (mode) => {
+    setParseMode(mode);
+    setActiveSentenceIndex(0);
+    if (apiResult) {
+      const graph = buildParseGraph(analysisInput, apiResult, mode, 0);
+      setParseData(graph);
+      setSelectedNode(graph.nodes[0] || null);
+    }
+  };
+
+  const handleSwitchSentence = (sentIdx) => {
+    setActiveSentenceIndex(sentIdx);
+    if (apiResult) {
+      const graph = buildParseGraph(analysisInput, apiResult, parseMode, sentIdx);
+      setParseData(graph);
+      setSelectedNode(graph.nodes[0] || null);
+    }
+  };
+
+  const handleResetFit = () => {
+    setFitTrigger((c) => c + 1);
+  };
+
+  const handleSelectNodeIndex = (index) => {
+    if (parseData?.nodes?.[index]) {
+      setSelectedNode(parseData.nodes[index]);
+    }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fafaf9] text-slate-800 font-sans selection:bg-indigo-100 selection:text-indigo-900">
-      {/* Global Minimal Header */}
+    <div className="h-screen flex flex-col text-[#1e1c19] overflow-hidden bg-[#f7f4ed]">
       <Header
-        currentTab={currentTab}
-        onTabChange={setCurrentTab}
-        hasActiveAnalysis={!!analysisData}
-        onResetWorkbench={handleResetWorkbench}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        activePhase={activePhase}
+        onPhaseChange={setActivePhase}
+        hasAnalysis={hasAnalysis}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 flex flex-col">
-        {currentTab === 'workbench' && (
-          <>
-            {analysisData ? (
-              <div className="flex-1 flex flex-col">
-                <PhaseNav
-                  activePhase={activePhase}
-                  onSelectPhase={setActivePhase}
-                  isAnalysisActive={true}
-                />
-                <AnalysisCanvas
-                  analysisData={analysisData}
-                  activePhase={activePhase}
-                  onPhaseChange={setActivePhase}
-                  onNewAnalysis={handleResetWorkbench}
-                />
-              </div>
-            ) : (
-              <div className="flex-1 flex flex-col justify-center">
-                <PhaseNav
-                  activePhase="01"
-                  onSelectPhase={() => {}}
-                  isAnalysisActive={false}
-                />
-                <WorkbenchInput
-                  question={question}
-                  setQuestion={setQuestion}
-                  referenceAnswer={referenceAnswer}
-                  setReferenceAnswer={setReferenceAnswer}
-                  studentAnswer={studentAnswer}
-                  setStudentAnswer={setStudentAnswer}
-                  onAnalyze={handleAnalyze}
-                  isLoading={isLoading}
-                  error={error}
-                />
-              </div>
-            )}
-          </>
-        )}
+      {activeTab === 'workbench' && (
+        <ErrorBoundary>
+          <WorkbenchPage
+            activePhase={activePhase}
+            loading={loading}
+            statusMessage={statusMessage}
+            onAnalyze={handleAnalyze}
+            parseData={parseData}
+            parseMode={parseMode}
+            onSwitchParseMode={handleSwitchParseMode}
+            activeSentenceIndex={activeSentenceIndex}
+            onSwitchSentence={handleSwitchSentence}
+            selectedNode={selectedNode}
+            onSelectNode={setSelectedNode}
+            onSelectNodeIndex={handleSelectNodeIndex}
+            zoom={zoom}
+            onZoomChange={setZoom}
+            showGrid={showGrid}
+            fitTrigger={fitTrigger}
+            onResetFit={handleResetFit}
+            onRetryConnection={() => runAnalysis(analysisInput)}
+          />
+        </ErrorBoundary>
+      )}
 
-        {currentTab === 'research' && <ResearchPage />}
-        {currentTab === 'docs' && <DocsPage />}
-      </main>
+      {activeTab === 'research' && <ResearchPage />}
 
-      {/* Subtle Footer */}
-      {!analysisData && (
-        <footer className="w-full py-4 px-6 border-t border-slate-200/60 bg-white/50 text-[11px] font-mono text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-            <span>ASAG Lab Research</span>
+      {activePhase === '01' && activeTab === 'workbench' && (
+        <footer className="w-full border-t border-[#dfd8c8] py-4 bg-transparent mt-auto shrink-0">
+          <div className="max-w-[1080px] mx-auto px-6 flex items-center justify-between text-[11px] font-mono text-[#8c8477]">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              <span>ASAG Lab Research</span>
+            </div>
+            <span>Autonomous Short Answer Grading — Universal Dependencies + Semantic Graphs</span>
           </div>
-          <div>Autonomous Short Answer Grading — Universal Dependencies + Semantic Graphs</div>
         </footer>
       )}
     </div>

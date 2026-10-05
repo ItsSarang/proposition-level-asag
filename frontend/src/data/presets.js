@@ -1,67 +1,53 @@
-/**
- * Demonstration presets for ASAG Lab Workbench.
- * Note: Clearly labelled as demonstration examples, not research datasets.
- */
-
 export const PRESETS = [
   {
-    id: "polymorphism",
-    corpusName: "Polymorphism mechanisms in Object-Oriented Programming",
-    domain: "Computer Science // Object-Oriented Design",
-    title: "Polymorphism Mechanisms (OOP)",
-    tag: "Core + Validated Synthesis",
-    question: "What is polymorphism in object-oriented programming, and what mechanisms facilitate it?",
-    referenceAnswer: "Polymorphism allows objects of different classes to be treated through a common interface, responding to the same method invocation with class-specific behaviors.",
-    studentAnswer: "Polymorphism allows objects of different classes to respond differently to the same method call. It is commonly implemented using method overriding and dynamic dispatch in languages like Java.",
+    id: 'primary_key',
+    label: 'Relational Databases: Purpose of a Primary Key',
+    question:
+      'What is the purpose of a primary key in a relational database?',
+    referenceAnswer:
+      'A primary key uniquely identifies each record in a table.',
+    studentAnswer:
+      'A primary key uniquely identifies each record in a table and cannot contain NULL values.',
   },
   {
-    id: "pk_correct_extra",
-    corpusName: "Relational Database Integrity & Primary Keys",
-    domain: "Computer Science // Database Systems",
-    title: "Primary Key: Correct Additional Info",
-    tag: "Correct Extra (+Bonus)",
-    question: "What is the purpose of a primary key?",
-    referenceAnswer: "A primary key uniquely identifies each record in a table.",
-    studentAnswer: "A primary key uniquely identifies each record in a table and cannot contain NULL values.",
+    id: 'polymorphism',
+    label: 'Object-Oriented Programming: Polymorphism Mechanisms',
+    question:
+      'What is polymorphism in object-oriented programming, and what mechanisms facilitate it?',
+    referenceAnswer:
+      'Polymorphism allows objects of different classes to respond to the same method call with class-specific behaviors through dynamic dispatch.',
+    studentAnswer:
+      'Polymorphism allows objects of different classes to respond differently to the same method call. It is commonly implemented using method overriding and dynamic dispatch in languages like Java.',
   },
   {
-    id: "pk_incorrect_extra",
-    corpusName: "Relational Database Integrity & Primary Keys",
-    domain: "Computer Science // Database Systems",
-    title: "Primary Key: Incorrect Contradiction",
-    tag: "Misconception (-Penalty)",
-    question: "What is the purpose of a primary key?",
-    referenceAnswer: "A primary key uniquely identifies each record in a table.",
-    studentAnswer: "A primary key uniquely identifies each record in a table and can contain duplicate values.",
+    id: 'stack_heap',
+    label: 'Systems Programming: Stack vs Heap Memory Allocation',
+    question:
+      'What is the difference between stack and heap memory allocation in C++?',
+    referenceAnswer:
+      'Stack memory is managed automatically by the compiler for local variables, while heap memory is dynamically allocated and freed by the programmer at runtime.',
+    studentAnswer:
+      'Stack memory is allocated automatically for local function variables, whereas heap memory is allocated dynamically at runtime using pointers and must be manually deallocated.',
   },
   {
-    id: "pk_irrelevant_extra",
-    corpusName: "Relational Database Integrity & Primary Keys",
-    domain: "Computer Science // Database Systems",
-    title: "Primary Key: Irrelevant Additional Info",
-    tag: "Irrelevant (Zero Effect)",
-    question: "What is the purpose of a primary key?",
-    referenceAnswer: "A primary key uniquely identifies each record in a table.",
-    studentAnswer: "A primary key uniquely identifies each record in a table. SQL was developed in the 1970s.",
+    id: 'recursion',
+    label: 'Data Structures: Role of a Base Case in Recursion',
+    question:
+      'What is the role of a base case in a recursive function?',
+    referenceAnswer:
+      'A base case provides the termination condition that stops recursion and prevents infinite execution.',
+    studentAnswer:
+      'The base case terminates the recursive calls by returning a direct value without further self-invocation, preventing stack overflow.',
   },
   {
-    id: "bst",
-    corpusName: "Binary Search Tree Invariant & Structure",
-    domain: "Computer Science // Data Structures",
-    title: "Binary Search Tree Ordering",
-    tag: "Domain Synthesis",
-    question: "What is a binary search tree?",
-    referenceAnswer: "A binary search tree is a binary tree where the left child of a node has a key less than the parent and the right child has a key greater than the parent.",
-    studentAnswer: "A binary tree where nodes to the left are smaller and nodes to the right are greater than the root. An AVL tree is a balanced binary search tree.",
-  },
-  {
-    id: "compiler",
-    corpusName: "Compiler Translation & Machine Code",
-    domain: "Computer Science // Systems",
-    title: "Compiler Function Paraphrase",
-    tag: "Exact Entailment",
-    question: "What is a compiler?",
-    referenceAnswer: "A compiler converts high-level source code into machine code.",
-    studentAnswer: "A compiler translates high-level programming language code into executable machine code.",
+    id: 'variable_scope',
+    label: 'Programming Fundamentals: Scope of Local Variables',
+    question:
+      'What is the scope of a local variable in a function?',
+    referenceAnswer:
+      'A local variable is accessible only within the function or block in which it is declared.',
+    studentAnswer:
+      'A local variable has local scope and can only be accessed inside the specific block or function where it is defined.',
   },
 ];
+

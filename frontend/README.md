@@ -1,19 +1,16 @@
-# Frontend Application (React + Vite)
+# React + Vite
 
-## Overview
-This directory contains the future React + Vite demonstration and evaluation UI for the Proposition-Level ASAG research project.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Architecture
-- **Completely Independent**: The frontend contains zero NLP models or python dependencies.
-- **API-Driven**: All grading and comparison actions interact with the Python backend API (`POST /api/grade`, `GET /api/models`).
-- **Pages**:
-  - `Home`: Project introduction and thesis research question overview.
-  - `Grading`: Interactive short answer grading interface with model selector (V0–V5).
-  - `Model Comparison`: Side-by-side evaluation comparison across all 6 model versions.
-  - `Explanation Trace`: Visual audit graph showing proposition extraction, alignment, and score adjustments.
-  - `Research Results`: Interactive charts and tables of the Mohler benchmark evaluation.
+Currently, two official plugins are available:
 
-## Deployment (Vercel)
-Configured for automatic deployment to Vercel via `vercel.json` and `vite.config.js`.
-Build command: `npm run build`
-Output directory: `dist`
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

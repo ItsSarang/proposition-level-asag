@@ -2,7 +2,7 @@
 Backend adapter for Central Model Registry.
 
 Provides an isolated service boundary for accessing the models package from
-FastAPI route controllers.
+backend route controllers.
 """
 from typing import Any, Dict, List
 from models.registry import get_model as _get_model, list_models as _list_models
