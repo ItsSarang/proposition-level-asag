@@ -202,6 +202,8 @@ export default function App() {
             loading={loading}
             statusMessage={statusMessage}
             onAnalyze={handleAnalyze}
+            apiResult={apiResult}
+            analysisInput={analysisInput}
             parseData={parseData}
             parseMode={parseMode}
             onSwitchParseMode={handleSwitchParseMode}
