@@ -46,7 +46,7 @@ export default function PropositionBar({
                   : 'text-[#706b63] hover:text-[#1e1c19]'
               }`}
             >
-              Student Propositions ({studentCount})
+              Student Answer
             </button>
             <button
               type="button"
@@ -57,9 +57,15 @@ export default function PropositionBar({
                   : 'text-[#706b63] hover:text-[#1e1c19]'
               }`}
             >
-              Reference Propositions ({referenceCount})
+              Reference Answer
             </button>
           </div>
+        </div>
+
+        <div className="hidden sm:flex items-center gap-1.5 text-[11.5px] font-mono text-[#706b63]">
+          <span className="font-semibold text-indigo-900">EXTRACT</span>
+          <span className="text-[#a89e8f]">—</span>
+          <span>Convert syntactic structure into propositions</span>
         </div>
       </div>
 

@@ -7,7 +7,7 @@ export default function CanvasControls({
   onResetFit,
 }) {
   return (
-    <div className="absolute bottom-5 left-6 z-20 h-9 flex items-center gap-1 bg-[#f4f0e8]/95 backdrop-blur-md px-2.5 rounded-xl border border-[#dfd8c8] shadow-xs text-xs font-mono select-none">
+    <div className="h-9 flex items-center gap-1 bg-[#f4f0e8]/95 backdrop-blur-md px-2.5 rounded-xl border border-[#dfd8c8] shadow-xs text-xs font-mono select-none pointer-events-auto">
       <button
         type="button"
         onClick={onZoomOut}

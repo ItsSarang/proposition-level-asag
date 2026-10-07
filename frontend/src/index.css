@@ -23,3 +23,6 @@ body {
   background-size: 24px 24px;
 }
 
+.ease-asag-morph {
+  transition-timing-function: cubic-bezier(0.45, 0.05, 0.15, 0.98);
+}

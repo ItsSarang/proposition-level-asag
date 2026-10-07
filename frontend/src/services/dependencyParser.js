@@ -63,6 +63,15 @@ function getRoleMetadata(dep, pos) {
       border: 'border-teal-200',
     };
   }
+  if (d === 'det') {
+    return {
+      label: 'DETERMINER',
+      code: d,
+      bg: 'bg-stone-50',
+      text: 'text-stone-700',
+      border: 'border-stone-200',
+    };
+  }
   if (pos && pos.startsWith('V')) {
     return {
       label: 'PREDICATE',
@@ -99,6 +108,7 @@ function getRoleDescription(dep, text, headText) {
   if (d === 'xcomp') return `Open clausal complement verb subordinate to governor "${head}".`;
   if (d === 'advmod') return `Adverbial modifier characterizing the semantic manner of "${head}".`;
   if (d === 'pobj') return `Object of preposition attached to governor "${head}".`;
+  if (d === 'det') return `Determiner specifying the grammatical reference or scope of "${head}".`;
   return `Syntactic dependent attached to governor "${head}" with relation "${dep}".`;
 }
 
@@ -114,6 +124,7 @@ function getNodeMeaning(dep, text, headText) {
   if (d === 'pobj') return `Object of preposition attached to governor "${head}".`;
   if (d === 'prep') return `Relational preposition linking governor "${head}" to its contextual object.`;
   if (d === 'neg') return `Inverts the truth condition and polarity of predicate "${head}".`;
+  if (d === 'det') return `Determiner introducing and scoping the nominal entity "${head}".`;
   return `Syntactic dependent attached to governor "${head}" with relation "${dep}".`;
 }
 
@@ -129,6 +140,7 @@ function getNodeAsagRole(dep, pos) {
   if (d === 'pobj') return 'Prepositional Object';
   if (d === 'neg') return 'Polarity Inversion';
   if (d === 'xcomp' || d === 'ccomp') return 'Subordinate Predicate';
+  if (d === 'det') return 'Determiner / Scope';
   if (pos && pos.startsWith('V')) return 'Predicate Action';
   if (pos && pos.startsWith('N')) return 'Nominal Entity';
   return 'Syntactic Dependent';
@@ -469,7 +481,7 @@ export function buildParseGraph(
     if (sentTokens.length > 0) activeTokens = sentTokens;
   }
 
-  const minorDeps = ['punct', 'det'];
+  const minorDeps = ['punct'];
   const coreFiltered = activeTokens.filter((t) => {
     const d = (t.dep || '').toLowerCase();
     return !minorDeps.includes(d) || t.is_root || d === 'root';
@@ -543,9 +555,7 @@ export function buildParseGraph(
   const textTokens = [];
 
   if (sortedTokens.length > 0 && sortedTokens[0].charStart !== undefined) {
-    const sentStart = sortedTokens[0].charStart;
-    const sentEnd = sortedTokens[sortedTokens.length - 1].charEnd;
-    let cursor = sentStart;
+    let cursor = 0;
 
     sortedTokens.forEach((tok, idx) => {
       if (tok.charStart > cursor) {
@@ -569,10 +579,10 @@ export function buildParseGraph(
       cursor = tok.charEnd;
     });
 
-    if (cursor < sentEnd) {
+    if (cursor < targetText.length) {
       textTokens.push({
         id: `gap-end`,
-        raw: targetText.substring(cursor, sentEnd),
+        raw: targetText.substring(cursor, targetText.length),
         isWord: false,
         nodeId: null,
         dep: null,

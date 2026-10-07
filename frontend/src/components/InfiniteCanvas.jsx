@@ -8,11 +8,16 @@ export default function InfiniteCanvas({
   contentWidth,
   contentHeight,
   fitTrigger = 0,
+  allowWheelZoom = true,
 }) {
   const containerRef = useRef(null);
   const [offset, setOffset] = useState({ x: 60, y: 40 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isFitting, setIsFitting] = useState(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
+  const fitTimerRef = useRef(null);
+  const zoomRef = useRef(zoom);
+  zoomRef.current = zoom;
 
   const handleFit = useCallback(() => {
     if (!containerRef.current || !contentWidth || !contentHeight) {
@@ -45,10 +50,16 @@ export default function InfiniteCanvas({
     const newOffsetX = Math.max(20, Math.round((containerW - scaledW) / 2));
     const newOffsetY = Math.max(20, Math.round((containerH - scaledH) / 2));
 
+    setIsFitting(true);
     setOffset({ x: newOffsetX, y: newOffsetY });
-    if (onZoomChange) {
+    if (onZoomChange && Math.abs(zoomRef.current - idealZoom) > 0.01) {
       onZoomChange(idealZoom);
     }
+
+    if (fitTimerRef.current) clearTimeout(fitTimerRef.current);
+    fitTimerRef.current = setTimeout(() => {
+      setIsFitting(false);
+    }, 1150);
   }, [contentWidth, contentHeight, onZoomChange]);
 
   useEffect(() => {
@@ -56,6 +67,19 @@ export default function InfiniteCanvas({
       handleFit();
     }
   }, [fitTrigger, handleFit]);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+          handleFit();
+        }
+      }
+    });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [handleFit]);
 
   const handleMouseDown = (e) => {
     if (e.button !== 0) return;
@@ -97,6 +121,13 @@ export default function InfiniteCanvas({
 
   const handleWheel = (e) => {
     e.preventDefault();
+    if (!allowWheelZoom) {
+      setOffset((prev) => ({
+        ...prev,
+        y: prev.y - e.deltaY,
+      }));
+      return;
+    }
     if (!onZoomChange) return;
     const delta = e.deltaY < 0 ? 0.08 : -0.08;
     const newZoom = Math.min(Math.max(zoom + delta, 0.35), 2.2);
@@ -113,9 +144,14 @@ export default function InfiniteCanvas({
       } ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
     >
       <div
-        className="absolute origin-top-left transition-transform duration-75 ease-out"
+        className="absolute origin-top-left"
         style={{
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
+          transition: isDragging
+            ? 'none'
+            : isFitting
+            ? 'transform 1.1s cubic-bezier(0.45, 0.05, 0.15, 0.98)'
+            : 'transform 75ms ease-out',
         }}
       >
         {children}

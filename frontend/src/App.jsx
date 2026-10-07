@@ -1,4 +1,4 @@
-import { useState, useEffect, Component } from 'react';
+import { useState, useEffect, useCallback, Component } from 'react';
 import Header from './components/Header';
 import WorkbenchPage from './pages/WorkbenchPage';
 import ResearchPage from './pages/ResearchPage';
@@ -50,6 +50,7 @@ const initialInput = {
   question: PRESETS[0].question,
   referenceAnswer: PRESETS[0].referenceAnswer,
   studentAnswer: PRESETS[0].studentAnswer,
+  presetId: PRESETS[0].id,
 };
 
 const initialGraph = {
@@ -134,7 +135,9 @@ export default function App() {
   };
 
   useEffect(() => {
-    runAnalysis(initialInput);
+    if (initialInput.question && initialInput.question.trim()) {
+      runAnalysis(initialInput);
+    }
   }, []);
 
   const handleAnalyze = (inputData) => {
@@ -175,9 +178,9 @@ export default function App() {
     }
   };
 
-  const handleResetFit = () => {
+  const handleResetFit = useCallback(() => {
     setFitTrigger((c) => c + 1);
-  };
+  }, []);
 
   const handleSelectNodeIndex = (index) => {
     if (parseData?.nodes?.[index]) {
@@ -199,6 +202,7 @@ export default function App() {
         <ErrorBoundary>
           <WorkbenchPage
             activePhase={activePhase}
+            onPhaseChange={setActivePhase}
             loading={loading}
             statusMessage={statusMessage}
             onAnalyze={handleAnalyze}
@@ -223,18 +227,6 @@ export default function App() {
       )}
 
       {activeTab === 'research' && <ResearchPage />}
-
-      {activePhase === '01' && activeTab === 'workbench' && (
-        <footer className="w-full border-t border-[#dfd8c8] py-4 bg-transparent mt-auto shrink-0">
-          <div className="max-w-[1080px] mx-auto px-6 flex items-center justify-between text-[11px] font-mono text-[#8c8477]">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-              <span>ASAG Lab Research</span>
-            </div>
-            <span>Autonomous Short Answer Grading — Universal Dependencies + Semantic Graphs</span>
-          </div>
-        </footer>
-      )}
     </div>
   );
 }

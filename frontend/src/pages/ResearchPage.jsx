@@ -34,24 +34,32 @@ export default function ResearchPage() {
             <p className="mb-3">
               The architecture builds upon the textual entailment and dependency triple approach proposed by
               Basak, Naskar, &amp; Gelbukh (2019, DOI: 10.3233/JIFS-179038). The pipeline decomposes into
-              seven transparent phases:
+              six transparent phases:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
               <div className="p-3 rounded-xl bg-[#f4f0e8] border border-[#dfd8c8]">
-                <span className="font-semibold text-[#1e1c19] block mb-1">Phase 01–02: Syntactic Dependencies</span>
+                <span className="font-semibold text-[#1e1c19] block mb-1">01: Input</span>
+                Evaluation prompt, reference ground truth, and student assertion capture.
+              </div>
+              <div className="p-3 rounded-xl bg-[#f4f0e8] border border-[#dfd8c8]">
+                <span className="font-semibold text-[#1e1c19] block mb-1">02: Dependencies</span>
                 Universal Dependencies parsing extracts relational arcs and governor-dependent roles.
               </div>
               <div className="p-3 rounded-xl bg-[#f4f0e8] border border-[#dfd8c8]">
-                <span className="font-semibold text-[#1e1c19] block mb-1">Phase 03: Clausal Propositions</span>
+                <span className="font-semibold text-[#1e1c19] block mb-1">03: Propositions</span>
                 Relational subject-predicate-object triples and argument structures are isolated.
               </div>
               <div className="p-3 rounded-xl bg-[#f4f0e8] border border-[#dfd8c8]">
-                <span className="font-semibold text-[#1e1c19] block mb-1">Phase 04–05: Matching &amp; Entailment</span>
-                Lexical-semantic alignment computes proposition satisfaction and polarity agreement.
+                <span className="font-semibold text-[#1e1c19] block mb-1">04: Alignment</span>
+                Bipartite lexical-semantic alignment matches student propositions to reference items.
               </div>
               <div className="p-3 rounded-xl bg-[#f4f0e8] border border-[#dfd8c8]">
-                <span className="font-semibold text-[#1e1c19] block mb-1">Phase 06–07: Proposition Grading</span>
-                Unmatched propositions are classified into additional or misconception categories.
+                <span className="font-semibold text-[#1e1c19] block mb-1">05: Assessment</span>
+                Evaluates propositional textual entailment and classifies unmatched assertions.
+              </div>
+              <div className="p-3 rounded-xl bg-[#f4f0e8] border border-[#dfd8c8]">
+                <span className="font-semibold text-[#1e1c19] block mb-1">06: Result</span>
+                Synthesizes Base ASAG coverage with proposition modulations into the final grade.
               </div>
             </div>
           </section>

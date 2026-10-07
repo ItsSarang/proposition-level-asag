@@ -1,5 +1,12 @@
 export const PRESETS = [
   {
+    id: 'none',
+    label: 'None (Custom Input)',
+    question: '',
+    referenceAnswer: '',
+    studentAnswer: '',
+  },
+  {
     id: 'primary_key',
     label: 'Relational Databases: Purpose of a Primary Key',
     question:

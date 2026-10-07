@@ -7,7 +7,7 @@ export default function DetailPanel({
 }) {
   if (!selectedNode) {
     return (
-      <aside className="hidden lg:flex flex-col w-84 bg-[#f4f0e8] border-l border-[#dfd8c8] p-6 text-[#7a7266] text-xs font-mono">
+      <aside className="hidden lg:flex flex-col h-full w-full bg-[#f4f0e8] border-l border-[#dfd8c8] p-6 text-[#7a7266] text-xs font-mono">
         Select any dependency node to inspect syntactic and lexical details.
       </aside>
     );
@@ -17,7 +17,7 @@ export default function DetailPanel({
   const totalNodes = nodes.length;
 
   return (
-    <aside className="hidden lg:flex flex-col w-84 bg-[#f4f0e8] border-l border-[#dfd8c8] shrink-0 select-none">
+    <aside className="hidden lg:flex flex-col h-full w-full bg-[#f4f0e8] border-l border-[#dfd8c8] shrink-0 select-none">
       <div className="p-6 flex-1 overflow-y-auto flex flex-col">
         <div>
           <div className="mb-1.5">
