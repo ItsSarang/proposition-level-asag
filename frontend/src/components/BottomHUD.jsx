@@ -1,3 +1,4 @@
+import { ChevronRight } from 'lucide-react';
 import CanvasControls from './CanvasControls';
 
 const PHASES = [
@@ -33,7 +34,7 @@ export default function BottomHUD({
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2 flex items-center pointer-events-auto">
-        <div className="h-9 px-2.5 flex items-center gap-1 sm:gap-1.5 bg-[#f4f0e8]/95 backdrop-blur-md rounded-xl border border-[#dfd8c8] shadow-xs text-xs font-mono">
+        <div className="h-9 p-[3px] flex items-center gap-0.5 sm:gap-1 bg-[#f4f0e8]/95 backdrop-blur-md rounded-xl border border-[#dfd8c8] shadow-xs text-xs font-mono">
           {PHASES.map((phase, idx) => {
             const isActive = activePhase === phase.id;
             const isClickable = phase.id === '01' || hasAnalysis;
@@ -56,29 +57,41 @@ export default function BottomHUD({
                   <button
                     type="button"
                     onClick={() => onPhaseChange && onPhaseChange(phase.id)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#e6e0d2] border border-[#d2c9b6] text-indigo-900 font-bold tracking-tight shadow-2xs cursor-pointer"
+                    className="h-7 px-3 inline-flex items-center justify-center rounded-lg bg-[#fdfcf9] border border-[#d8d0bf] shadow-2xs cursor-pointer transition-all"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-700 animate-pulse" />
-                    <span>{phase.id} {phase.name}</span>
+                    <span className="font-mono text-[11px] font-semibold text-indigo-900/80 mr-1.5 leading-none">
+                      {phase.id}
+                    </span>
+                    <span className="font-sans text-[12px] font-semibold text-[#1e1c19] tracking-normal leading-none">
+                      {phase.name}
+                    </span>
                   </button>
                 ) : isClickable ? (
                   <button
                     type="button"
                     onClick={() => onPhaseChange && onPhaseChange(phase.id)}
-                    className="px-2.5 py-1 rounded-lg text-[#706b63] hover:text-[#1e1c19] hover:bg-[#ece6d9] transition-all cursor-pointer font-medium"
+                    className="h-7 px-2.5 inline-flex items-center justify-center rounded-lg border border-transparent text-[#706b63] hover:text-[#1e1c19] hover:bg-[#eae4d6]/70 transition-all cursor-pointer font-medium"
                   >
-                    <span>{phase.id} {phase.name}</span>
+                    <span className="font-mono text-[11px] text-[#8c8477] mr-1.5 leading-none">
+                      {phase.id}
+                    </span>
+                    <span className="font-sans text-[12px] font-medium leading-none">
+                      {phase.name}
+                    </span>
                   </button>
                 ) : (
-                  <span className="px-2.5 py-1 text-[#b5ab9b] select-none cursor-not-allowed font-normal">
-                    <span>{phase.id} {phase.name}</span>
+                  <span className="h-7 px-2.5 inline-flex items-center justify-center rounded-lg text-[#b5ab9b] select-none cursor-not-allowed font-normal">
+                    <span className="font-mono text-[11px] mr-1.5 leading-none">
+                      {phase.id}
+                    </span>
+                    <span className="font-sans text-[12px] font-normal leading-none">
+                      {phase.name}
+                    </span>
                   </span>
                 )}
 
                 {idx < PHASES.length - 1 && (
-                  <span className="text-[#a89e8f] font-mono text-[13px] font-semibold mx-1 select-none">
-                    →
-                  </span>
+                  <ChevronRight size={14} className="text-[#a89e8f] shrink-0 select-none mx-0.5" />
                 )}
               </div>
             );

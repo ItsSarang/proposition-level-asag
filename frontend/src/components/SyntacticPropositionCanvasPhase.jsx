@@ -720,29 +720,6 @@ export default function SyntacticPropositionCanvasPhase({
     }
   }, [activePhase])
 
-  const handleSkip = () => {
-    if (activePhase === "02") {
-      setStage("PHASE_02")
-      setP2FadeIn(true)
-      setBoundariesOpacity(0)
-    } else if (activePhase === "04") {
-      setP4AnimStage("STEP_4_SETTLED")
-      setP4RefCardsVisible(true)
-      setRevealedMatchCount(matchedPairs.length)
-      setShowUnmatchedStatus(true)
-    } else if (activePhase === "05") {
-      setP5AnimStage("STEP_5_SETTLED")
-      setP5RefCardsVisible(true)
-      setP5RevealedMatchCount(matchedPairs.length)
-    } else if (activePhase === "06") {
-      setP6AnimStage("STEP_5_SETTLED")
-      setP6ScoringVisible(true)
-    } else {
-      setStage("SETTLED")
-      setBoundariesOpacity(1)
-    }
-  }
-
   const isPhase01 = activePhase === "01"
   const isPhase02 = activePhase === "02"
   const isPhase03 = activePhase === "03"
@@ -974,14 +951,6 @@ export default function SyntacticPropositionCanvasPhase({
     }
     return set
   }, [selectedNode, edges, isPhase02, stage])
-
-  const isTransitioning =
-    stage === "STEP_1_FADE" ||
-    stage === "STEP_2_MOVE" ||
-    stage === "REVERSE_MOVE" ||
-    (isPhase04 && p4AnimStage !== "STEP_4_SETTLED") ||
-    (isPhase05 && p5AnimStage !== "STEP_5_SETTLED") ||
-    (isPhase06 && (!p6ScoringVisible || p6AnimStage !== "STEP_5_SETTLED"))
 
   const maxLaneWidth = laneLayouts.length > 0 ? laneLayouts[0].laneWidth : 760
 
@@ -1704,18 +1673,6 @@ export default function SyntacticPropositionCanvasPhase({
 
       <div className="flex-1 flex min-h-0 relative w-full overflow-hidden">
         <div className="relative flex-1 h-full min-w-0 overflow-hidden">
-          {isTransitioning && (
-            <div className="absolute top-4 right-6 z-30 pointer-events-auto">
-              <button
-                type="button"
-                onClick={handleSkip}
-                className="text-[11.5px] font-mono text-[#706b63] hover:text-[#1e1c19] px-3 py-1.5 rounded-lg border border-[#dfd8c8] bg-[#fdfcf9] shadow-xs cursor-pointer transition-all active:scale-95"
-              >
-                Skip animation →
-              </button>
-            </div>
-          )}
-
           <InfiniteCanvas
             zoom={zoom}
             onZoomChange={onZoomChange}

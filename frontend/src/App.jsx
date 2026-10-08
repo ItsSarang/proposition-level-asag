@@ -140,6 +140,45 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (activeTab !== 'workbench') return;
+
+    const handleKeyDown = (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+
+      const activeEl = document.activeElement;
+      const isInput =
+        activeEl &&
+        (activeEl.tagName === 'INPUT' ||
+          activeEl.tagName === 'TEXTAREA' ||
+          activeEl.isContentEditable ||
+          activeEl.getAttribute?.('contenteditable') === 'true');
+      if (isInput) return;
+
+      const PHASE_ORDER = ['01', '02', '03', '04', '05', '06'];
+      const curIdx = PHASE_ORDER.indexOf(activePhase);
+      if (curIdx === -1) return;
+
+      if (e.key === 'ArrowRight') {
+        if (!hasAnalysis && curIdx === 0) return;
+        if (curIdx < PHASE_ORDER.length - 1) {
+          e.preventDefault();
+          setActivePhase(PHASE_ORDER[curIdx + 1]);
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (curIdx > 0) {
+          e.preventDefault();
+          setActivePhase(PHASE_ORDER[curIdx - 1]);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeTab, activePhase, hasAnalysis]);
+
   const handleAnalyze = (inputData) => {
     setActivePhase('02');
 
