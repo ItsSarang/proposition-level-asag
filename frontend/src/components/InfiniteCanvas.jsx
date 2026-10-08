@@ -7,8 +7,11 @@ export default function InfiniteCanvas({
   showGrid = true,
   contentWidth,
   contentHeight,
+  contentBounds = null,
   fitTrigger = 0,
   allowWheelZoom = true,
+  phaseKey = '',
+  onCanvasClick,
 }) {
   const containerRef = useRef(null);
   const [offset, setOffset] = useState({ x: 60, y: 40 });
@@ -17,7 +20,9 @@ export default function InfiniteCanvas({
   const dragStartRef = useRef({ x: 0, y: 0 });
   const fitTimerRef = useRef(null);
   const zoomRef = useRef(zoom);
-  zoomRef.current = zoom;
+  useEffect(() => {
+    zoomRef.current = zoom;
+  }, [zoom]);
 
   const handleFit = useCallback(() => {
     if (!containerRef.current || !contentWidth || !contentHeight) {
@@ -29,26 +34,31 @@ export default function InfiniteCanvas({
     const containerW = containerRef.current.clientWidth;
     const containerH = containerRef.current.clientHeight;
 
-    const padX = 40;
+    const padX = 52;
     const padY = 40;
     const availW = Math.max(100, containerW - padX * 2);
     const availH = Math.max(100, containerH - padY * 2);
 
-    const scaleX = availW / contentWidth;
-    const scaleY = availH / contentHeight;
+    const bMinX = contentBounds ? contentBounds.minX : 0;
+    const bMinY = contentBounds ? contentBounds.minY : 0;
+    const bMaxX = contentBounds ? contentBounds.maxX : contentWidth;
+    const bMaxY = contentBounds ? contentBounds.maxY : contentHeight;
+
+    const boundW = Math.max(1, bMaxX - bMinX);
+    const boundH = Math.max(1, bMaxY - bMinY);
+
+    const scaleX = availW / boundW;
+    const scaleY = availH / boundH;
     let idealZoom = Math.min(scaleX, scaleY);
 
-    if (idealZoom >= 0.85) {
+    if (idealZoom >= 1.0) {
       idealZoom = 1.0;
     } else {
-      idealZoom = Math.max(0.55, Number(idealZoom.toFixed(2)));
+      idealZoom = Math.max(0.45, Math.min(1.0, Number(idealZoom.toFixed(2))));
     }
 
-    const scaledW = contentWidth * idealZoom;
-    const scaledH = contentHeight * idealZoom;
-
-    const newOffsetX = Math.max(20, Math.round((containerW - scaledW) / 2));
-    const newOffsetY = Math.max(20, Math.round((containerH - scaledH) / 2));
+    const newOffsetX = Math.max(24 - bMinX * idealZoom, Math.round((containerW - (bMinX + bMaxX) * idealZoom) / 2));
+    const newOffsetY = Math.max(20 - bMinY * idealZoom, Math.round((containerH - (bMinY + bMaxY) * idealZoom) / 2));
 
     setIsFitting(true);
     setOffset({ x: newOffsetX, y: newOffsetY });
@@ -60,7 +70,7 @@ export default function InfiniteCanvas({
     fitTimerRef.current = setTimeout(() => {
       setIsFitting(false);
     }, 1150);
-  }, [contentWidth, contentHeight, onZoomChange]);
+  }, [contentWidth, contentHeight, contentBounds, onZoomChange]);
 
   useEffect(() => {
     if (fitTrigger > 0) {
@@ -68,18 +78,65 @@ export default function InfiniteCanvas({
     }
   }, [fitTrigger, handleFit]);
 
+  const prevPhaseKeyRef = useRef('');
+  useEffect(() => {
+    if (phaseKey && phaseKey !== prevPhaseKeyRef.current) {
+      prevPhaseKeyRef.current = phaseKey;
+      handleFit();
+      const t1 = setTimeout(() => {
+        handleFit();
+      }, 350);
+      const t2 = setTimeout(() => {
+        handleFit();
+      }, 750);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    }
+  }, [phaseKey, handleFit]);
+
+  const prevDimensionsRef = useRef({ width: 0, height: 0 });
+  const resizeDebounceRef = useRef(null);
   useEffect(() => {
     if (!containerRef.current) return;
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+        const { width, height } = entry.contentRect;
+        if (width <= 0 || height <= 0) continue;
+        const prevW = prevDimensionsRef.current.width;
+        const prevH = prevDimensionsRef.current.height;
+        const diffW = Math.abs(width - prevW);
+        const diffH = Math.abs(height - prevH);
+
+        if (prevW === 0 && prevH === 0) {
+          prevDimensionsRef.current = { width, height };
           handleFit();
+          continue;
+        }
+
+        if (diffW > 4 || diffH > 4) {
+          prevDimensionsRef.current = { width, height };
+          handleFit();
+          if (resizeDebounceRef.current) clearTimeout(resizeDebounceRef.current);
+          resizeDebounceRef.current = setTimeout(() => {
+            handleFit();
+          }, 260);
         }
       }
     });
     observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [handleFit]);
+    return () => {
+      observer.disconnect();
+      if (resizeDebounceRef.current) clearTimeout(resizeDebounceRef.current);
+    };
+  }, [handleFit, phaseKey]);
+
+  const handleClick = (e) => {
+    if (!e.target.closest('button, select, input, textarea, a, [data-interactive="true"]')) {
+      if (onCanvasClick) onCanvasClick(e);
+    }
+  };
 
   const handleMouseDown = (e) => {
     if (e.button !== 0) return;
@@ -138,6 +195,7 @@ export default function InfiniteCanvas({
     <div
       ref={containerRef}
       onMouseDown={handleMouseDown}
+      onClick={handleClick}
       onWheel={handleWheel}
       className={`relative flex-1 w-full h-full overflow-hidden select-none ${
         showGrid ? 'dot-grid' : 'bg-[#f7f4ed]'

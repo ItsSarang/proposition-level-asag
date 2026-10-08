@@ -214,7 +214,7 @@ function layoutHierarchicalGraph(rawNodes, rawEdges = []) {
     }
   });
 
-  for (const [pId, cIds] of childrenMap.entries()) {
+  for (const cIds of childrenMap.values()) {
     cIds.sort((a, b) => {
       const nodeA = nodeMap.get(a);
       const nodeB = nodeMap.get(b);

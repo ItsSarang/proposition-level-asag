@@ -110,15 +110,6 @@ export default function WorkbenchCard({
   return (
     <div className="w-full flex flex-col items-center select-none">
       <div className="bg-[#fdfcf9] rounded-2xl border border-[#dfd8c8] shadow-[0_4px_24px_-4px_rgba(50,40,30,0.06)] overflow-hidden w-full max-w-[880px] p-7 sm:p-9 flex flex-col gap-5">
-        <div className="text-center pb-1">
-          <div className="text-[13px] font-mono font-bold tracking-wider text-indigo-900 uppercase">
-            01 INPUT
-          </div>
-          <div className="text-[13px] font-serif italic text-[#706b63] mt-0.5">
-            What was asked?
-          </div>
-        </div>
-
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-mono uppercase tracking-wider text-[#706b63] font-semibold">
             Evaluation Preset

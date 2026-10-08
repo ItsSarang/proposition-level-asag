@@ -57,12 +57,6 @@ export default function AnswerBar({
             </div>
           )}
         </div>
-
-        <div className="hidden sm:flex items-center gap-1.5 text-[11.5px] font-mono text-[#706b63]">
-          <span className="font-semibold text-indigo-900">STRUCTURE</span>
-          <span className="text-[#a89e8f]">—</span>
-          <span>Parse the answer into syntactic relationships</span>
-        </div>
       </div>
 
       <div className="text-[14px] leading-relaxed text-[#1e1c19] font-sans max-h-20 overflow-y-auto">

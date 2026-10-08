@@ -3,6 +3,11 @@
 @theme {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-handwriting: 'Caveat', cursive, sans-serif;
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
 }
 
 html, body, #root {

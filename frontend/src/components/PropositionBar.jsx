@@ -1,8 +1,6 @@
 export default function PropositionBar({
   propMode = 'student',
   onSwitchPropMode,
-  studentCount = 0,
-  referenceCount = 0,
   fullText = '',
   selectedProp,
 }) {
@@ -33,8 +31,8 @@ export default function PropositionBar({
   }
 
   return (
-    <div className="w-full bg-[#f4f0e8]/95 border-b border-[#dfd8c8] px-6 py-3 select-none shrink-0 shadow-2xs">
-      <div className="flex items-center justify-between gap-3 mb-2.5">
+    <div className="w-full bg-[#f4f0e8]/95 border-b border-[#dfd8c8] px-6 py-3 select-none shrink-0 shadow-2xs min-h-[102px] flex flex-col justify-between">
+      <div className="flex items-center justify-between gap-3 mb-2">
         <div className="flex items-center gap-2.5">
           <div className="inline-flex items-center bg-[#e6e0d2] p-0.5 rounded-lg border border-[#d8d0bf] text-[13px] font-mono">
             <button
@@ -61,19 +59,13 @@ export default function PropositionBar({
             </button>
           </div>
         </div>
-
-        <div className="hidden sm:flex items-center gap-1.5 text-[11.5px] font-mono text-[#706b63]">
-          <span className="font-semibold text-indigo-900">EXTRACT</span>
-          <span className="text-[#a89e8f]">—</span>
-          <span>Convert syntactic structure into propositions</span>
-        </div>
       </div>
 
-      <div className="text-[14px] leading-relaxed text-[#1e1c19] font-sans max-h-20 overflow-y-auto">
+      <div className="text-[14px] leading-relaxed text-[#1e1c19] font-sans max-h-20 min-h-[28px] overflow-y-auto">
         {highlighted ? (
           <>
             <span className="text-[#423e38]">{before}</span>
-            <span className="inline-block px-1.5 py-0.5 mx-0.5 rounded text-[13.5px] font-semibold border border-[#3730a3] bg-[#3730a3] text-white shadow-xs">
+            <span className="inline px-1.5 py-0.5 mx-0.5 rounded text-[13.5px] font-semibold border border-[#3730a3] bg-[#3730a3] text-white shadow-xs">
               {highlighted}
             </span>
             <span className="text-[#423e38]">{after}</span>

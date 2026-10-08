@@ -1,160 +1,78 @@
 export default function AssessmentBar({
-  activeView = 'entailment',
-  onSwitchView,
-  entailmentFilter = 'ALL',
-  onSwitchEntailmentFilter,
-  additionalFilter = 'ALL',
-  onSwitchAdditionalFilter,
-  totalEntailments = 0,
-  entailsCount = 0,
-  uncertainEntailCount = 0,
-  contradictsCount = 0,
-  totalUnmatched = 0,
-  correctCount = 0,
-  irrelevantCount = 0,
-  incorrectCount = 0,
-  uncertainAddCount = 0,
+  answerMode = 'student',
+  onSwitchAnswerMode,
+  fullText = '',
+  highlightProp = null,
 }) {
-  return (
-    <div className="w-full bg-[#f4f0e8]/95 border-b border-[#dfd8c8] px-6 py-3 select-none shrink-0 shadow-2xs">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-2.5">
-        <div className="flex items-center gap-1.5 p-0.5 bg-[#e6e0d2] rounded-xl border border-[#d8d0bf] w-fit">
-          <button
-            type="button"
-            onClick={() => onSwitchView && onSwitchView('entailment')}
-            className={`px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer ${
-              activeView === 'entailment'
-                ? 'bg-[#faf8f4] text-[#1e1c19] font-bold shadow-xs'
-                : 'text-[#706b63] hover:text-[#1e1c19]'
-            }`}
-          >
-            Matched Entailment ({totalEntailments})
-          </button>
-          <button
-            type="button"
-            onClick={() => onSwitchView && onSwitchView('additional')}
-            className={`px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer ${
-              activeView === 'additional'
-                ? 'bg-[#faf8f4] text-[#1e1c19] font-bold shadow-xs'
-                : 'text-[#706b63] hover:text-[#1e1c19]'
-            }`}
-          >
-            Additional Information ({totalUnmatched})
-          </button>
-        </div>
+  const charStart = highlightProp?.char_start;
+  const charEnd = highlightProp?.char_end;
 
-        {activeView === 'entailment' ? (
-          <div className="flex flex-wrap items-center gap-1.5">
+  let before = fullText;
+  let highlighted = '';
+  let after = '';
+
+  if (
+    typeof charStart === 'number' &&
+    typeof charEnd === 'number' &&
+    charStart >= 0 &&
+    charEnd > charStart &&
+    charEnd <= fullText.length
+  ) {
+    before = fullText.slice(0, charStart);
+    highlighted = fullText.slice(charStart, charEnd);
+    after = fullText.slice(charEnd);
+  } else if (highlightProp?.text) {
+    const idx = fullText.toLowerCase().indexOf(highlightProp.text.toLowerCase());
+    if (idx >= 0) {
+      before = fullText.slice(0, idx);
+      highlighted = fullText.slice(idx, idx + highlightProp.text.length);
+      after = fullText.slice(idx + highlightProp.text.length);
+    }
+  }
+
+  return (
+    <div className="w-full bg-[#f4f0e8]/95 border-b border-[#dfd8c8] px-6 py-3 select-none shrink-0 shadow-2xs min-h-[102px] flex flex-col justify-between">
+      <div className="flex items-center justify-between gap-3 mb-2">
+        <div className="flex items-center gap-2.5">
+          <div className="inline-flex items-center bg-[#e6e0d2] p-0.5 rounded-lg border border-[#d8d0bf] text-[13px] font-mono">
             <button
               type="button"
-              onClick={() => onSwitchEntailmentFilter('ALL')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                entailmentFilter === 'ALL'
-                  ? 'bg-[#1e1c19] text-[#f7f4ed] font-semibold'
-                  : 'bg-[#faf8f4] text-[#706b63] hover:text-[#1e1c19] border border-[#dfd8c8]'
+              onClick={() => onSwitchAnswerMode && onSwitchAnswerMode('student')}
+              className={`px-3.5 py-1.5 rounded-md transition-all cursor-pointer ${
+                answerMode === 'student'
+                  ? 'bg-[#faf8f4] text-indigo-900 font-semibold shadow-xs'
+                  : 'text-[#706b63] hover:text-[#1e1c19]'
               }`}
             >
-              All ({totalEntailments})
+              Student Answer
             </button>
             <button
               type="button"
-              onClick={() => onSwitchEntailmentFilter('ENTAILS')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                entailmentFilter === 'ENTAILS'
-                  ? 'bg-emerald-800 text-white font-semibold'
-                  : 'bg-[#faf8f4] text-emerald-800 hover:bg-emerald-50 border border-emerald-200'
+              onClick={() => onSwitchAnswerMode && onSwitchAnswerMode('reference')}
+              className={`px-3.5 py-1.5 rounded-md transition-all cursor-pointer ${
+                answerMode === 'reference'
+                  ? 'bg-[#faf8f4] text-indigo-900 font-semibold shadow-xs'
+                  : 'text-[#706b63] hover:text-[#1e1c19]'
               }`}
             >
-              Entails ({entailsCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => onSwitchEntailmentFilter('UNCERTAIN')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                entailmentFilter === 'UNCERTAIN'
-                  ? 'bg-amber-800 text-white font-semibold'
-                  : 'bg-[#faf8f4] text-amber-900 hover:bg-amber-50 border border-amber-200'
-              }`}
-            >
-              Uncertain ({uncertainEntailCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => onSwitchEntailmentFilter('CONTRADICTS')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                entailmentFilter === 'CONTRADICTS'
-                  ? 'bg-rose-800 text-white font-semibold'
-                  : 'bg-[#faf8f4] text-rose-800 hover:bg-rose-50 border border-rose-200'
-              }`}
-            >
-              Contradicts ({contradictsCount})
-            </button>
-          </div>
-        ) : (
-          <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => onSwitchAdditionalFilter('ALL')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                additionalFilter === 'ALL'
-                  ? 'bg-[#1e1c19] text-[#f7f4ed] font-semibold'
-                  : 'bg-[#faf8f4] text-[#706b63] hover:text-[#1e1c19] border border-[#dfd8c8]'
-              }`}
-            >
-              All ({totalUnmatched})
-            </button>
-            <button
-              type="button"
-              onClick={() => onSwitchAdditionalFilter('CORRECT_ADDITIONAL')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                additionalFilter === 'CORRECT_ADDITIONAL'
-                  ? 'bg-emerald-800 text-white font-semibold'
-                  : 'bg-[#faf8f4] text-emerald-800 hover:bg-emerald-50 border border-emerald-200'
-              }`}
-            >
-              Correct ({correctCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => onSwitchAdditionalFilter('IRRELEVANT')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                additionalFilter === 'IRRELEVANT'
-                  ? 'bg-[#555047] text-white font-semibold'
-                  : 'bg-[#faf8f4] text-[#555047] hover:bg-[#ede8dc] border border-[#dfd8c8]'
-              }`}
-            >
-              Irrelevant ({irrelevantCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => onSwitchAdditionalFilter('INCORRECT')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                additionalFilter === 'INCORRECT'
-                  ? 'bg-rose-800 text-white font-semibold'
-                  : 'bg-[#faf8f4] text-rose-800 hover:bg-rose-50 border border-rose-200'
-              }`}
-            >
-              Incorrect ({incorrectCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => onSwitchAdditionalFilter('UNCERTAIN')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                additionalFilter === 'UNCERTAIN'
-                  ? 'bg-amber-800 text-white font-semibold'
-                  : 'bg-[#faf8f4] text-amber-900 hover:bg-amber-50 border border-amber-200'
-              }`}
-            >
-              Uncertain ({uncertainAddCount})
+              Reference Answer
             </button>
           </div>
-        )}
+        </div>
       </div>
 
-      <div className="text-[13px] leading-relaxed text-[#706b63] font-sans">
-        {activeView === 'entailment'
-          ? 'Propositional textual entailment evaluates whether matched student propositions entail, contradict, or remain uncertain relative to reference criteria.'
-          : 'Proposition-level classification evaluates unmatched student assertions as correct additional information, irrelevant facts, or domain misconceptions.'}
+      <div className="text-[14px] leading-relaxed text-[#1e1c19] font-sans max-h-20 min-h-[28px] overflow-y-auto">
+        {highlighted ? (
+          <>
+            <span className="text-[#423e38]">{before}</span>
+            <span className="inline px-1.5 py-0.5 mx-0.5 rounded text-[13.5px] font-semibold border border-[#3730a3] bg-[#3730a3] text-white shadow-xs">
+              {highlighted}
+            </span>
+            <span className="text-[#423e38]">{after}</span>
+          </>
+        ) : (
+          <span className="text-[#1e1c19]">{fullText}</span>
+        )}
       </div>
     </div>
   );

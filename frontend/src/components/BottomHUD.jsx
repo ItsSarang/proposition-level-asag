@@ -1,6 +1,6 @@
 import CanvasControls from './CanvasControls';
 
-export const PHASES = [
+const PHASES = [
   { id: '01', name: 'Input', question: 'What was asked?' },
   { id: '02', name: 'Dependencies', question: 'How is the answer structured?' },
   { id: '03', name: 'Propositions', question: 'What information was extracted?' },

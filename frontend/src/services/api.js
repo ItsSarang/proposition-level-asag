@@ -22,7 +22,9 @@ export async function analyzeAnswer({ question, referenceAnswer, studentAnswer, 
     if (res.ok) {
       return await res.json();
     }
-  } catch {}
+  } catch (err) {
+    void err;
+  }
 
   if (!API_BASE) {
     try {
@@ -38,7 +40,9 @@ export async function analyzeAnswer({ question, referenceAnswer, studentAnswer, 
       if (fallbackRes.ok) {
         return await fallbackRes.json();
       }
-    } catch {}
+    } catch (err) {
+      void err;
+    }
   }
 
   return null;
