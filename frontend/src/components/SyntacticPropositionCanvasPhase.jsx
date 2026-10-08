@@ -25,8 +25,8 @@ const PHASE_ANNOTATION_CONFIG = {
     title: "DEPENDENCIES",
     description: "Parse the answer into syntactic relationships",
     connector: "right-down",
-    left: "44px",
-    top: "16px",
+    left: "-380px",
+    top: "-30px",
     titleSize: "22px",
     descSize: "17px",
   },
@@ -1015,10 +1015,49 @@ export default function SyntacticPropositionCanvasPhase({
     unmatchedStudentProps.length,
   ])
 
+  const phase02Anno = useMemo(() => {
+    const cfg = PHASE_ANNOTATION_CONFIG["02"]
+    const offsetLeft = parseFloat(cfg?.left) || 0
+    const offsetTop = parseFloat(cfg?.top) || 0
+
+    if (!parseData?.nodes || parseData.nodes.length === 0) {
+      return {
+        left: "44px",
+        top: "16px",
+        leftNum: 44,
+        topNum: 16,
+        connector: "right-down",
+      }
+    }
+
+    const root =
+      parseData.nodes.find(
+        (n) => (n.dep || "").toLowerCase() === "root" || n.isRoot,
+      ) || parseData.nodes[0]
+
+    const rx = typeof root?.x === "number" ? root.x : 0
+    const ry = typeof root?.y === "number" ? root.y : 0
+
+    const leftNum = Math.round(rx + offsetLeft)
+    const topNum = Math.round(ry + offsetTop)
+
+    return {
+      left: `${leftNum}px`,
+      top: `${topNum}px`,
+      leftNum,
+      topNum,
+      connector: "right-down",
+    }
+  }, [parseData?.nodes])
+
   const contentBounds = useMemo(() => {
     const anno = PHASE_ANNOTATION_CONFIG[activePhase]
-    const aLeft = parseFloat(anno?.left) || 0
-    const aTop = parseFloat(anno?.top) || 0
+    const aLeft =
+      isPhase02 && phase02Anno
+        ? phase02Anno.leftNum
+        : parseFloat(anno?.left) || 0
+    const aTop =
+      isPhase02 && phase02Anno ? phase02Anno.topNum : parseFloat(anno?.top) || 0
     const aWidth = 360
     const aHeight = 64
 
@@ -1087,6 +1126,7 @@ export default function SyntacticPropositionCanvasPhase({
     referenceProps.length,
     p5Section2Top,
     unmatchedStudentProps.length,
+    phase02Anno,
   ])
 
   const getP5StudentPos = useCallback(
@@ -1702,22 +1742,30 @@ export default function SyntacticPropositionCanvasPhase({
               className="relative select-none"
             >
               {Object.entries(PHASE_ANNOTATION_CONFIG).map(
-                ([phaseKey, cfg]) => (
-                  <PhaseAnnotation
-                    key={`phase-anno-${phaseKey}`}
-                    number={cfg.number}
-                    title={cfg.title}
-                    description={cfg.description}
-                    connector={cfg.connector}
-                    titleSize={cfg.titleSize}
-                    descSize={cfg.descSize}
-                    visible={activePhase === phaseKey}
-                    style={{
-                      left: cfg.left,
-                      top: cfg.top,
-                    }}
-                  />
-                ),
+                ([phaseKey, cfg]) => {
+                  const isP2 = phaseKey === "02"
+                  const left = isP2 && phase02Anno ? phase02Anno.left : cfg.left
+                  const top = isP2 && phase02Anno ? phase02Anno.top : cfg.top
+                  const connector =
+                    isP2 && phase02Anno ? phase02Anno.connector : cfg.connector
+
+                  return (
+                    <PhaseAnnotation
+                      key={`phase-anno-${phaseKey}`}
+                      number={cfg.number}
+                      title={cfg.title}
+                      description={cfg.description}
+                      connector={connector}
+                      titleSize={cfg.titleSize}
+                      descSize={cfg.descSize}
+                      visible={activePhase === phaseKey}
+                      style={{
+                        left,
+                        top,
+                      }}
+                    />
+                  )
+                },
               )}
 
               <div
