@@ -94,6 +94,10 @@ class PropertyContradictionDetector:
             {"ascending", "increasing", "nondecreasing"},
             {"descending", "decreasing", "nonincreasing"},
         ),
+        "access_pattern": (
+            {"random", "direct", "arbitrary", "indexed"},
+            {"sequential", "linear", "serial"},
+        ),
     }
 
     def __init__(self, wn_corpus: Optional[Any] = None) -> None:
@@ -122,6 +126,11 @@ class PropertyContradictionDetector:
         val_evidence = self._check_property_value_conflict(student_prop, reference_props)
         if val_evidence.is_contradicted:
             return val_evidence
+
+        # 1b. Check for Inverted Containment Contradiction (e.g. array is in elements)
+        inv_contain_ev = self._check_containment_inverted(student_prop, reference_props)
+        if inv_contain_ev.is_contradicted:
+            return inv_contain_ev
 
         # 2. Check for Direct Polarity Clash on Semantically Aligned Predicates
         neg_evidence = self._check_explicit_negation_conflict(student_prop, reference_props)
@@ -176,6 +185,63 @@ class PropertyContradictionDetector:
         words = set(re.findall(r"\b\w+\b", combined))
         return combined, words
 
+    @staticmethod
+    def _are_entity_qualifiers_incompatible(
+        mods1: Optional[Sequence[str]], mods2: Optional[Sequence[str]]
+    ) -> bool:
+        from proposed_asag.proposition.core_recovery.core_paraphrase_recovery import (
+            CoreParaphraseRecoverer,
+        )
+        return CoreParaphraseRecoverer.are_entity_qualifiers_incompatible(mods1, mods2)
+
+    def _is_converse_relation(
+        self, stu_prop: RobustProposition, ref_prop: RobustProposition
+    ) -> bool:
+        """
+        Check if student and reference express an equivalent converse relation
+        (e.g., A < B <=> B > A, or A is above B <=> B is below A, or Container contains Element).
+        """
+        from proposed_asag.proposition.core_recovery.core_paraphrase_recovery import (
+            CoreParaphraseRecoverer,
+        )
+        recoverer = CoreParaphraseRecoverer()
+        score, _ = recoverer._check_converse_equivalence(stu_prop, ref_prop)
+        if score >= 0.55:
+            return True
+        c_score, _ = recoverer._check_containment_converse_bridge(stu_prop, ref_prop)
+        return c_score >= 0.55
+
+    def _check_containment_inverted(
+        self, stu_prop: RobustProposition, ref_props: List[RobustProposition]
+    ) -> ContradictionEvidence:
+        from proposed_asag.proposition.core_recovery.core_paraphrase_recovery import (
+            CoreParaphraseRecoverer,
+        )
+        recoverer = CoreParaphraseRecoverer()
+        for ref in ref_props:
+            if recoverer._check_containment_inverted(stu_prop, ref):
+                return ContradictionEvidence(
+                    is_contradicted=True,
+                    contradiction_type=ContradictionType.VALUE_CONFLICT,
+                    conflicting_entity=stu_prop.subject or "entity",
+                    conflicting_property="containment_direction",
+                    conflicting_value="inverted container and contained roles",
+                    evidence_strength=0.90,
+                    explanation=(
+                        f"Inverted containment conflict: student asserts that container "
+                        f"'{stu_prop.subject}' is contained within its elements."
+                    ),
+                )
+        return ContradictionEvidence(
+            is_contradicted=False,
+            contradiction_type=ContradictionType.NONE,
+            conflicting_entity=None,
+            conflicting_property=None,
+            conflicting_value=None,
+            evidence_strength=0.0,
+            explanation="",
+        )
+
     def _check_property_value_conflict(
         self,
         stu_prop: RobustProposition,
@@ -183,14 +249,29 @@ class PropertyContradictionDetector:
     ) -> ContradictionEvidence:
         """
         Detect mutual exclusion in domain properties (e.g., unique vs duplicate).
-        Also accounts for negation + antonym equivalence (e.g. 'not fixed' == 'variable').
+        Also accounts for negation + antonym equivalence (e.g. 'not fixed' == 'variable'),
+        entity compatibility, and converse relational equivalence.
         """
+        from base_asag.semantic.domain_lexicon import are_domain_equivalent
+
         stu_text, stu_words = self._get_prop_text_and_words(stu_prop)
         is_stu_negated = (stu_prop.polarity == Polarity.NEGATIVE)
 
         for ref in ref_props:
             ref_text, ref_words = self._get_prop_text_and_words(ref)
             is_ref_negated = (ref.polarity == Polarity.NEGATIVE)
+
+            # 1. Entity Qualifier Gate:
+            ref_smods = ref.properties.get("subject_modifiers", [])
+            stu_smods = stu_prop.properties.get("subject_modifiers", [])
+            if self._are_entity_qualifiers_incompatible(ref_smods, stu_smods):
+                continue
+
+            # 2. Converse Equivalence Gate:
+            # If student and reference form an equivalent converse relation (e.g. A < B <=> B > A),
+            # opposite comparative values on swapped entities do NOT contradict!
+            if self._is_converse_relation(stu_prop, ref):
+                continue
 
             for prop_name, (set_a, set_b) in self.INCOMPATIBLE_VALUE_SETS.items():
                 ref_val_a = self._match_value_set(ref_text, ref_words, set_a)
@@ -248,18 +329,76 @@ class PropertyContradictionDetector:
         """
         Check for explicit negation polarity clash on matching subject-predicate pairs.
         """
+        from base_asag.semantic.domain_lexicon import are_domain_equivalent
+
         for ref in ref_props:
+            # Entity Qualifier Gate:
+            ref_smods = ref.properties.get("subject_modifiers", [])
+            stu_smods = stu_prop.properties.get("subject_modifiers", [])
+            if self._are_entity_qualifiers_incompatible(ref_smods, stu_smods):
+                continue
+
             # Check subject alignment
             subj_match = False
-            if stu_prop.subject_lemma and ref.subject_lemma:
-                subj_match = (stu_prop.subject_lemma.lower() == ref.subject_lemma.lower())
-            elif not stu_prop.subject_lemma and not ref.subject_lemma:
+            s_stu = (stu_prop.subject_lemma or "").lower()
+            s_ref = (ref.subject_lemma or "").lower()
+            if s_stu and s_ref:
+                subj_match = (s_stu == s_ref) or are_domain_equivalent(s_stu, s_ref)
+            elif not s_stu and not s_ref:
                 subj_match = True
 
             # Check predicate alignment
-            pred_match = (stu_prop.predicate_lemma.lower() == ref.predicate_lemma.lower())
+            p_stu = (stu_prop.predicate_lemma or "").lower()
+            p_ref = (ref.predicate_lemma or "").lower()
+            pred_match = (p_stu == p_ref) or are_domain_equivalent(p_stu, p_ref)
+            if not pred_match and self.wn and p_stu and p_ref:
+                try:
+                    syns_stu = set(self.wn.synsets(p_stu, pos=self.wn.VERB))
+                    syns_ref = set(self.wn.synsets(p_ref, pos=self.wn.VERB))
+                    if syns_stu.intersection(syns_ref):
+                        pred_match = True
+                except Exception:
+                    pass
 
-            if subj_match and pred_match:
+            # Check object alignment if both specify an object
+            obj_match = True
+            o_stu = (stu_prop.object_lemma or "").lower()
+            o_ref = (ref.object_lemma or "").lower()
+            if o_stu and o_ref:
+                obj_match = (o_stu == o_ref) or are_domain_equivalent(o_stu, o_ref)
+                if not obj_match and self.wn:
+                    try:
+                        syns_stu = set(self.wn.synsets(o_stu, pos=self.wn.NOUN))
+                        syns_ref = set(self.wn.synsets(o_ref, pos=self.wn.NOUN))
+                        if syns_stu.intersection(syns_ref):
+                            obj_match = True
+                    except Exception:
+                        pass
+            elif o_ref and not o_stu and ref.representation_type.value in ("SPO", "PASSIVE_SPO"):
+                obj_match = False
+
+            # Prepositional Target Check:
+            # If both specify prepositional arguments, they must be directed at matching targets
+            # for negation to constitute a direct contradiction.
+            # E.g., 'not allocated on heap' vs 'allocated on stack' does NOT contradict because targets differ.
+            stu_prep_args = stu_prop.properties.get("prepositional_arguments", [])
+            ref_prep_args = ref.properties.get("prepositional_arguments", [])
+            if stu_prep_args and ref_prep_args:
+                has_matching_target = False
+                for p_stu_arg in stu_prep_args:
+                    for p_ref_arg in ref_prep_args:
+                        if isinstance(p_stu_arg, (list, tuple)) and isinstance(p_ref_arg, (list, tuple)):
+                            noun_stu = str(p_stu_arg[1]).lower().strip(" .?!,:;")
+                            noun_ref = str(p_ref_arg[1]).lower().strip(" .?!,:;")
+                            if noun_stu == noun_ref or are_domain_equivalent(noun_stu, noun_ref):
+                                has_matching_target = True
+                                break
+                    if has_matching_target:
+                        break
+                if not has_matching_target:
+                    continue
+
+            if subj_match and pred_match and obj_match:
                 if stu_prop.polarity != ref.polarity:
                     return ContradictionEvidence(
                         is_contradicted=True,

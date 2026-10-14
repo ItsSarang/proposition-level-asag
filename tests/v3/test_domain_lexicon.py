@@ -12,14 +12,18 @@ from base_asag.semantic.domain_lexicon import (
 from base_asag.semantic.semantic_matcher_v2 import SemanticMatcherV2
 
 
-def test_domain_lexicon_contains_thirteen_keys():
+def test_domain_lexicon_contains_expected_keys():
     expected_terms = {
         "record", "row", "convert", "translate", "instantiate",
         "create", "prototype", "definition", "terminate",
-        "deallocate", "free", "subroutine", "function"
+        "deallocate", "free", "subroutine", "function",
+        "declare", "define",
+        "table", "relation", "column", "attribute",
+        "pop", "remove", "push", "insert",
+        "element", "item", "add",
     }
     assert set(DOMAIN_LEXICAL_EQUIVALENCES.keys()) == expected_terms
-    assert len(DOMAIN_LEXICAL_EQUIVALENCES) == 13
+    assert len(DOMAIN_LEXICAL_EQUIVALENCES) == len(expected_terms)
 
 
 def test_domain_lexicon_symmetry():

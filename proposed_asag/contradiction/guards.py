@@ -17,6 +17,7 @@ Guards Implemented:
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
@@ -196,31 +197,49 @@ class ContradictionGuardPipeline:
         """
         conf_prop = (raw_ev.conflicting_property or "").lower()
         conf_val = (raw_ev.conflicting_value or "").lower()
-        stu_subj = (student_prop.subject_lemma or "").lower()
-        stu_obj = (student_prop.object_lemma or "").lower()
-        stu_text = (student_prop.source_text or "").lower()
 
-        for coord_set in COORDINATE_CATEGORICAL_SETS:
-            # Check if both conflicting values belong to the same coordinate set
-            has_prop = any(item in conf_prop for item in coord_set) or any(item in stu_text for item in coord_set)
-            has_val = any(item in conf_val for item in coord_set)
-
-            if has_prop and has_val:
-                # The student is using a coordinate term from the set.
-                # If student is describing the coordinate category itself (e.g. public members vs private members),
-                # it is an orthogonal description, not a self-contradiction.
-                return ContradictionEvidence(
-                    is_contradicted=False,
-                    contradiction_type=ContradictionType.NONE,
-                    conflicting_entity=None,
-                    conflicting_property=None,
-                    conflicting_value=None,
-                    evidence_strength=0.0,
-                    explanation=(
-                        f"GUARDED: Coordinate categorical terms in non-conflicting context "
-                        f"('{conf_prop}' vs '{conf_val}' in categorical set)."
-                    ),
+        # If conflicting_value is formatted as "student 'X' vs reference 'Y'", extract exact values
+        val_matches = re.findall(r"'([^']+)'", raw_ev.conflicting_value or "")
+        if len(val_matches) >= 2:
+            v_stu, v_ref = val_matches[0].lower(), val_matches[1].lower()
+            for coord_set in COORDINATE_CATEGORICAL_SETS:
+                if v_stu in coord_set and v_ref in coord_set:
+                    return ContradictionEvidence(
+                        is_contradicted=False,
+                        contradiction_type=ContradictionType.NONE,
+                        conflicting_entity=None,
+                        conflicting_property=None,
+                        conflicting_value=None,
+                        evidence_strength=0.0,
+                        explanation=(
+                            f"GUARDED: Coordinate categorical terms in non-conflicting context "
+                            f"('{v_stu}' vs '{v_ref}' in categorical set)."
+                        ),
+                    )
+        else:
+            for coord_set in COORDINATE_CATEGORICAL_SETS:
+                # Require word-boundary matching to avoid substring leaks (e.g. 'value' in 'duplicate values')
+                matched_prop = next(
+                    (item for item in coord_set if re.search(r"\b" + re.escape(item) + r"\b", conf_prop)),
+                    None,
                 )
+                matched_val = next(
+                    (item for item in coord_set if re.search(r"\b" + re.escape(item) + r"\b", conf_val)),
+                    None,
+                )
+                if matched_prop and matched_val:
+                    return ContradictionEvidence(
+                        is_contradicted=False,
+                        contradiction_type=ContradictionType.NONE,
+                        conflicting_entity=None,
+                        conflicting_property=None,
+                        conflicting_value=None,
+                        evidence_strength=0.0,
+                        explanation=(
+                            f"GUARDED: Coordinate categorical terms in non-conflicting context "
+                            f"('{matched_prop}' vs '{matched_val}' in categorical set)."
+                        ),
+                    )
 
         return None
 
@@ -245,22 +264,50 @@ class ContradictionGuardPipeline:
         is_comparison_prompt = any(
             w in q_lower for w in ("difference", "different", "compare", "distinguish", "versus", "vs")
         )
+        if not is_comparison_prompt:
+            return None
 
-        entity_sim = self._compare(s_stu, conf_entity)
-        if entity_sim < 0.45:
-            # The student proposition applies to a distinct entity from the conflicting reference entity!
-            return ContradictionEvidence(
-                is_contradicted=False,
-                contradiction_type=ContradictionType.NONE,
-                conflicting_entity=None,
-                conflicting_property=None,
-                conflicting_value=None,
-                evidence_strength=0.0,
-                explanation=(
-                    f"GUARDED: Contrastive subjects (assertion applies to '{s_stu}', "
-                    f"whereas reference entity is '{conf_entity}'; distinct entities in comparison)."
-                ),
-            )
+        # Do not guard if the contradiction is an explicit non-converse argument reversal
+        if raw_ev.explanation and "NON_CONVERSE_ARGUMENT_REVERSAL" in raw_ev.explanation:
+            return None
+
+        o_stu = (
+            student_prop.properties.get("comparative_target_lemma")
+            or student_prop.object_lemma
+            or ""
+        ).lower()
+
+        for ref in reference_props:
+            s_ref = (ref.subject_lemma or ref.subject or "").lower()
+            o_ref = (
+                ref.properties.get("comparative_target_lemma")
+                or ref.object_lemma
+                or ""
+            ).lower()
+
+            # If both propositions compare the same two entities with swapped roles,
+            # this is an argument reversal, not independent assertions about distinct entities.
+            if o_stu and o_ref:
+                sim_s_o = self._compare(s_stu, o_ref)
+                sim_o_s = self._compare(o_stu, s_ref)
+                if sim_s_o >= 0.45 and sim_o_s >= 0.45:
+                    return None
+
+            if s_ref:
+                sim = self._compare(s_stu, s_ref)
+                if sim < 0.45:
+                    return ContradictionEvidence(
+                        is_contradicted=False,
+                        contradiction_type=ContradictionType.NONE,
+                        conflicting_entity=None,
+                        conflicting_property=None,
+                        conflicting_value=None,
+                        evidence_strength=0.0,
+                        explanation=(
+                            f"GUARDED: Contrastive subjects (assertion applies to '{s_stu}', "
+                            f"whereas reference entity is '{s_ref}'; distinct entities in comparison)."
+                        ),
+                    )
 
         return None
 
@@ -272,22 +319,39 @@ class ContradictionGuardPipeline:
         """
         Guard 4: Adverbial or prepositional qualification is not a direct contradiction.
         """
-        # If contradiction was triggered purely on an adverbial qualifier
         prep_args = student_prop.properties.get("prepositional_arguments", [])
         pred_mods = student_prop.properties.get("predicate_modifiers", [])
-        qualifiers = set(pred_mods + [item[1].lower() for item in prep_args if len(item) == 2])
+        qualifiers = set([str(m).lower() for m in pred_mods] + [item[1].lower() for item in prep_args if len(item) == 2])
 
-        scope_words = {"default", "initially", "inside", "outside", "heap", "stack", "locally", "globally"}
-        if qualifiers.intersection(scope_words) and raw_ev.contradiction_type == ContradictionType.LEXICAL_ANTONYM:
-            return ContradictionEvidence(
-                is_contradicted=False,
-                contradiction_type=ContradictionType.NONE,
-                conflicting_entity=None,
-                conflicting_property=None,
-                conflicting_value=None,
-                evidence_strength=0.0,
-                explanation=f"GUARDED: Scope qualification (qualifier in {qualifiers.intersection(scope_words)}).",
-            )
+        # Manner adverbs that scope explicit negation (e.g. 'not deallocated automatically')
+        manner_qualifiers = {"automatically", "implicitly", "manually", "by default", "default"}
+        if raw_ev.contradiction_type in (ContradictionType.EXPLICIT_NEGATION, "EXPLICIT_NEGATION"):
+            matched_manner = qualifiers.intersection(manner_qualifiers)
+            if matched_manner:
+                return ContradictionEvidence(
+                    is_contradicted=False,
+                    contradiction_type=ContradictionType.NONE,
+                    conflicting_entity=None,
+                    conflicting_property=None,
+                    conflicting_value=None,
+                    evidence_strength=0.0,
+                    explanation=f"GUARDED: Manner qualification (negation scoped by {matched_manner}).",
+                )
+
+        # Spatial / lexical scope words that guard antonym conflicts (e.g. local vs global)
+        scope_words = {"default", "initially", "inside", "outside", "locally", "globally"}
+        if raw_ev.contradiction_type in (ContradictionType.ANTONYM_CONFLICT, "ANTONYM_CONFLICT"):
+            matched_scope = qualifiers.intersection(scope_words)
+            if matched_scope:
+                return ContradictionEvidence(
+                    is_contradicted=False,
+                    contradiction_type=ContradictionType.NONE,
+                    conflicting_entity=None,
+                    conflicting_property=None,
+                    conflicting_value=None,
+                    evidence_strength=0.0,
+                    explanation=f"GUARDED: Scope qualification (qualifier in {matched_scope}).",
+                )
 
         return None
 
@@ -301,7 +365,12 @@ class ContradictionGuardPipeline:
         if w1_c == w2_c:
             return 1.0
 
-        if hasattr(self.comparator, "similarity"):
+        if hasattr(self.comparator, "compare"):
+            rel = self.comparator.compare(w1_c, w2_c)
+            if hasattr(rel, "similarity_score"):
+                return float(rel.similarity_score)
+            return float(rel)
+        elif hasattr(self.comparator, "similarity"):
             return float(self.comparator.similarity(w1_c, w2_c))
         elif hasattr(self.comparator, "compare_lemmas"):
             return float(self.comparator.compare_lemmas(w1_c, w2_c))

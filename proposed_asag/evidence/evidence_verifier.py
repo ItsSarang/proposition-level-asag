@@ -31,7 +31,9 @@ class PropositionEvidenceVerifier:
         Verify proposition against domain knowledge resources.
         Returns explicit VerificationEvidence with provenance and academic citation.
         """
-        match_result = self.domain_knowledge.find_matching_rule(proposition)
+        match_result = self.domain_knowledge.find_matching_rule(
+            proposition, question=question, context=reference_answer
+        )
 
         if match_result is not None:
             rule, slot_evidence = match_result

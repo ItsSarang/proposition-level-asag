@@ -67,7 +67,6 @@ class PolarityDetector:
         "nor",
         "cannot",
         "none",
-        "without",
     }
 
     def detect(
@@ -121,6 +120,10 @@ class PolarityDetector:
 
                 # Check direct children of predicate
                 for child in sentence.get_children(pred_tok):
+                    # Prepositions (e.g. "without") introduce adjuncts and must not negate the governing predicate
+                    if child.dep in ("prep", "agent"):
+                        continue
+
                     if (
                         child.dep == "neg"
                         or child.lemma.lower() in self.NEGATION_LEMMAS

@@ -64,8 +64,8 @@ class ASAGAnalysisService:
         ref_parsed: ParsedDocument = self.parser.parse_document(r)
 
         # Extract propositions
-        stu_props: List[RobustProposition] = self.pipeline.canonical_ref_extractor.extract_document(
-            stu_parsed, s, question=q
+        stu_props: List[RobustProposition] = self.pipeline.hybrid_extractor.extract_document(
+            stu_parsed, s
         )
         ref_props: List[RobustProposition] = self.pipeline.canonical_ref_extractor.extract_document(
             ref_parsed, r, question=q
@@ -86,10 +86,12 @@ class ASAGAnalysisService:
         relations_data = self._build_relations_phase(s, stu_props, r, ref_props)
 
         # Phase 04: Match (Bipartite Alignment)
-        match_data = self._build_match_phase(relations_data, stu_props, ref_props)
+        match_data, matching_res = self._build_match_phase(relations_data, stu_props, ref_props)
 
         # Phase 05: Entailment (Propositional Entailment)
-        entailment_data = self._build_entailment_phase(match_data, stu_parsed, ref_parsed)
+        entailment_data = self._build_entailment_phase(
+            match_data, matching_res, stu_parsed, ref_parsed
+        )
 
         # Phase 06: Additional Information (Unmatched Information Evaluation)
         additional_data = self._build_additional_phase(
@@ -260,31 +262,61 @@ class ASAGAnalysisService:
                 if p.char_start >= 0 and p.char_end > p.char_start
                 else p.source_text
             )
+
+            # Format predicate to visibly reflect negation operator when polarity is negative
+            pred_text = p.predicate
+            neg_mods = [
+                m for m in p.properties.get("predicate_modifiers", [])
+                if m.lower() in ("never", "not", "n't", "no", "cannot", "hardly", "scarcely", "barely")
+            ]
+            pol_val = getattr(p.polarity, "value", str(p.polarity))
+            if pol_val == "NEGATIVE":
+                if neg_mods and neg_mods[0].lower() not in pred_text.lower():
+                    pred_text = f"{neg_mods[0]} {pred_text}"
+                elif not neg_mods and "not" not in pred_text.lower() and "never" not in pred_text.lower():
+                    pred_text = f"not {pred_text}"
+
             student_propositions.append({
                 "id": f"stu_p_{idx}",
                 "index": idx,
                 "text": p.source_text,
                 "span_text": span_text,
                 "subject": p.subject,
-                "predicate": p.predicate,
+                "predicate": pred_text,
+                "predicate_head": p.predicate,
+                "predicate_modifiers": p.properties.get("predicate_modifiers", []),
                 "object": p.object,
                 "representation_type": p.representation_type.value,
-                "polarity": p.polarity,
+                "polarity": pol_val,
                 "char_start": p.char_start,
                 "char_end": p.char_end,
             })
 
         reference_propositions: List[Dict[str, Any]] = []
         for idx, p in enumerate(ref_props):
+            pred_text = p.predicate
+            neg_mods = [
+                m for m in p.properties.get("predicate_modifiers", [])
+                if m.lower() in ("never", "not", "n't", "no", "cannot", "hardly", "scarcely", "barely")
+            ]
+            pol_val = getattr(p.polarity, "value", str(p.polarity))
+            if pol_val == "NEGATIVE":
+                if neg_mods and neg_mods[0].lower() not in pred_text.lower():
+                    pred_text = f"{neg_mods[0]} {pred_text}"
+                elif not neg_mods and "not" not in pred_text.lower() and "never" not in pred_text.lower():
+                    pred_text = f"not {pred_text}"
+
             reference_propositions.append({
                 "id": f"ref_p_{idx}",
                 "index": idx,
                 "text": p.source_text,
                 "subject": p.subject,
-                "predicate": p.predicate,
+                "predicate": pred_text,
+                "predicate_head": p.predicate,
+                "predicate_modifiers": p.properties.get("predicate_modifiers", []),
                 "object": p.object,
                 "representation_type": p.representation_type.value,
-                "polarity": p.polarity,
+                "polarity": pol_val,
             })
 
         return {
@@ -299,7 +331,7 @@ class ASAGAnalysisService:
         relations_data: Dict[str, Any],
         stu_props: List[RobustProposition],
         ref_props: List[RobustProposition],
-    ) -> Dict[str, Any]:
+    ) -> Tuple[Dict[str, Any], Any]:
         """Build bipartite matching alignments between reference and student propositions."""
         from proposed_asag.overhauled_pipeline import robust_prop_to_relation
 
@@ -337,7 +369,7 @@ class ASAGAnalysisService:
             f"ref_p_{idx}" for idx in range(len(ref_props)) if idx not in matched_ref_indices
         ]
 
-        return {
+        match_data = {
             "matched_pairs": matched_pairs,
             "matched_student_indices": list(matched_stu_indices),
             "matched_reference_indices": list(matched_ref_indices),
@@ -347,39 +379,42 @@ class ASAGAnalysisService:
             "unmatched_student_count": len(unmatched_student_ids),
             "unmatched_reference_count": len(unmatched_reference_ids),
         }
+        return match_data, matching_res
 
     def _build_entailment_phase(
         self,
         match_data: Dict[str, Any],
+        matching_res: Any,
         stu_parsed: ParsedDocument,
         ref_parsed: ParsedDocument,
     ) -> Dict[str, Any]:
-        """Evaluate textual entailment status for aligned proposition pairs."""
+        """Evaluate textual entailment status for aligned proposition pairs using Base ASAG Entailment Analyzer."""
         entailment_evaluations: List[Dict[str, Any]] = []
 
-        for pair in match_data["matched_pairs"]:
-            sim = pair["triple_score"]
-            if sim >= 0.70:
-                status = "ENTAILS"
-                evidence = "Student proposition semantically satisfies and entails the reference concept."
-            elif sim >= 0.40:
-                status = "UNCERTAIN"
-                evidence = "Partial lexical or semantic overlap; propositional entailment is plausible but uncertain."
-            else:
-                status = "CONTRADICTS"
-                evidence = "Substantial semantic divergence from reference content."
+        entail_res_list = self.pipeline.base_pipeline.entailment_analyzer.evaluate_matching_result(
+            matching_res, ref_parsed, stu_parsed
+        )
 
+        for pair, entail_res in zip(match_data["matched_pairs"], entail_res_list):
+            evidence_text = (
+                "; ".join(entail_res.reasons)
+                if entail_res.reasons
+                else "Entailment evaluation completed."
+            )
             entailment_evaluations.append({
                 "match_id": pair["id"],
                 "reference_id": pair["reference_id"],
                 "student_id": pair["student_id"],
                 "reference_text": pair["reference_text"],
                 "student_text": pair["student_text"],
-                "status": status,
-                "confidence": sim,
-                "evidence": evidence,
+                "status": entail_res.relation,
+                "confidence": round(entail_res.confidence, 4),
+                "evidence": evidence_text,
+                "reference_polarity": entail_res.reference_polarity,
+                "student_polarity": entail_res.student_polarity,
                 "subject_similarity": pair["subject_similarity"],
                 "predicate_similarity": pair["predicate_similarity"],
+                "reasons": entail_res.reasons,
             })
 
         return {
@@ -441,11 +476,17 @@ class ASAGAnalysisService:
         recovered_core_items = []
         if result.core_recovery_result:
             for rec in result.core_recovery_result.recovered_propositions:
+                ref_txt = (
+                    rec.reference_proposition.source_text
+                    if rec.reference_proposition is not None
+                    else ""
+                )
                 recovered_core_items.append({
                     "student_text": rec.student_proposition.source_text,
-                    "reference_text": rec.reference_proposition.source_text,
+                    "reference_text": ref_txt,
                     "confidence": round(rec.confidence, 4),
-                    "rationale": rec.rationale,
+                    "reason": rec.reason,
+                    "status": rec.status,
                 })
 
         return {
@@ -487,5 +528,6 @@ class ASAGAnalysisService:
             "is_clipped_upper": score_res.is_clipped_upper,
             "is_clipped_lower": score_res.is_clipped_lower,
             "itemized_trace": itemized_trace,
+            "reference_requirements": [r.to_dict() for r in result.reference_requirements],
             "explanation": score_res.explanation,
         }

@@ -199,11 +199,7 @@ class RobustPropositionExtractor:
         children = parsed_sent.get_children(pred_token)
 
         # Polarity detection
-        polarity = Polarity.POSITIVE
-        for c in children:
-            if c.dep == "neg" or c.lemma.lower() in ("not", "never", "no", "n't"):
-                polarity = Polarity.NEGATIVE
-                break
+        polarity = self._detect_polarity(pred_token, children, rel, parsed_sent)
 
         # Modality detection
         modality = self._detect_modality(pred_token, children)
@@ -474,6 +470,17 @@ class RobustPropositionExtractor:
 
         # Find direct object
         obj = next((c for c in children if c.dep in ("dobj", "obj", "attr")), None)
+        if obj is None:
+            obj = next(
+                (
+                    c
+                    for c in children
+                    if c.pos in ("NOUN", "PROPN", "PRON")
+                    and c.dep in ("npadvmod", "dep")
+                    and c.index > pred.index
+                ),
+                None,
+            )
 
         # Check for prepositional complement
         prep = next((c for c in children if c.dep == "prep"), None)
@@ -497,7 +504,15 @@ class RobustPropositionExtractor:
         if target_obj:
             dep_evidence.append(target_obj.dep)
 
-        polarity = Polarity.NEGATIVE if any(c.dep == "neg" for c in children) else Polarity.POSITIVE
+        polarity = (
+            Polarity.NEGATIVE
+            if any(
+                (c.dep == "neg" or c.lemma.lower() in ("not", "never", "no", "neither", "nor", "none", "cannot") or "n't" in c.text.lower())
+                for c in children
+                if c.dep not in ("prep", "agent")
+            )
+            else Polarity.POSITIVE
+        )
         modality = self._detect_modality(pred, children)
 
         # Collect prepositional arguments from pred and target_obj
@@ -679,6 +694,75 @@ class RobustPropositionExtractor:
                 if lemma in ("would",):
                     return Modality.UNCERTAIN
         return Modality.ASSERTED
+
+    def _detect_polarity(
+        self,
+        pred_token: ParsedToken,
+        children: Sequence[ParsedToken],
+        rel: DependencyRelation,
+        parsed_sent: ParsedSentence,
+    ) -> Polarity:
+        """Detect grammatical or lexical negation on the proposition."""
+        # 1. Predicate token itself
+        pred_text_lower = pred_token.text.lower()
+        pred_lemma_lower = pred_token.lemma.lower()
+        if (
+            pred_lemma_lower in ("not", "never", "no", "neither", "nor", "none", "cannot")
+            or "n't" in pred_text_lower
+            or pred_text_lower == "cannot"
+        ):
+            return Polarity.NEGATIVE
+
+        # 2. Predicate direct children (excluding prepositions)
+        for c in children:
+            if c.dep in ("prep", "agent"):
+                continue
+            if (
+                c.dep == "neg"
+                or c.lemma.lower() in ("not", "never", "no", "neither", "nor", "none", "cannot")
+                or "n't" in c.text.lower()
+            ):
+                return Polarity.NEGATIVE
+
+            # Auxiliaries attached to predicate (e.g. does -> n't)
+            if c.dep in ("aux", "auxpass"):
+                for gc in parsed_sent.get_children(c):
+                    if (
+                        gc.dep == "neg"
+                        or gc.lemma.lower() in ("not", "never", "no", "neither", "nor", "none", "cannot")
+                        or "n't" in gc.text.lower()
+                    ):
+                        return Polarity.NEGATIVE
+
+        # 3. Subject nominal determiners (e.g. "No key identifies...")
+        if rel.subject_index is not None and 0 <= rel.subject_index < len(parsed_sent.tokens):
+            subj_tok = parsed_sent.tokens[rel.subject_index]
+            for c in parsed_sent.get_children(subj_tok):
+                if (
+                    c.dep in ("det", "neg")
+                    and c.lemma.lower() in ("no", "neither", "none")
+                ):
+                    return Polarity.NEGATIVE
+
+        # 4. Object nominal determiners (e.g. "...identifies no records")
+        if rel.object_index is not None and 0 <= rel.object_index < len(parsed_sent.tokens):
+            obj_tok = parsed_sent.tokens[rel.object_index]
+            for c in parsed_sent.get_children(obj_tok):
+                if (
+                    c.dep in ("det", "neg")
+                    and c.lemma.lower() in ("no", "neither", "none")
+                ):
+                    return Polarity.NEGATIVE
+
+        # 5. Lexical fallback on surface tokens
+        if any(w in ("not", "never", "neither", "nor", "cannot") or "n't" in w for w in rel.predicate.lower().split()):
+            return Polarity.NEGATIVE
+        if any(w in ("no", "neither", "none") for w in rel.subject.lower().split()):
+            return Polarity.NEGATIVE
+        if rel.object and any(w in ("no", "neither", "none") for w in rel.object.lower().split()):
+            return Polarity.NEGATIVE
+
+        return Polarity.POSITIVE
 
     def _compute_token_span(
         self, token_indices: List[int], parsed_sent: ParsedSentence, doc_text: str

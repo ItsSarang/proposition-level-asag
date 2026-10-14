@@ -62,6 +62,7 @@ frontend/references/
 # IDE & Editor settings
 .vscode/
 .idea/
+.ipynb_checkpoints/
 *.swp
 *.swo
 *~

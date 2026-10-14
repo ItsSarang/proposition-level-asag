@@ -132,39 +132,44 @@ class CanonicalReferenceExtractor:
             children = parsed_sent.get_children(root)
 
             # Fragment Type 1: Non-finite / infinitive verb root (e.g. "deallocates memory")
-            if root.pos in ("VERB", "AUX"):
+            has_clausal_subject = any(
+                c.dep in ("nsubj", "nsubjpass", "csubj", "csubjpass") for c in children
+            )
+            if root.pos in ("VERB", "AUX") and not has_clausal_subject:
                 infinitive_props = self._extract_verb_fragment(
                     root, children, parsed_sent, sentence_index, doc_text
                 )
                 props.extend(infinitive_props)
 
-            # Fragment Type 2: Noun with Prepositional Complement (e.g. "root of tree")
-            if root.pos in ("NOUN", "PROPN"):
-                noun_prep_props = self._extract_noun_prep_complement(
-                    root, children, parsed_sent, sentence_index, doc_text
-                )
-                props.extend(noun_prep_props)
+            # Fragment Types 2-5: Standalone non-sentential fragments (only when clausal extraction yields no relations)
+            if not canonical_relations:
+                # Fragment Type 2: Noun with Prepositional Complement (e.g. "root of tree")
+                if root.pos in ("NOUN", "PROPN"):
+                    noun_prep_props = self._extract_noun_prep_complement(
+                        root, children, parsed_sent, sentence_index, doc_text
+                    )
+                    props.extend(noun_prep_props)
 
-            # Fragment Type 3: Entity-property / Noun-adjective (e.g. "dynamic size", "random access")
-            if root.pos in ("NOUN", "PROPN"):
-                prop_props = self._extract_entity_property_fragment(
-                    root, children, parsed_sent, sentence_index, doc_text
-                )
-                props.extend(prop_props)
+                # Fragment Type 3: Entity-property / Noun-adjective (e.g. "dynamic size", "random access")
+                if root.pos in ("NOUN", "PROPN"):
+                    prop_props = self._extract_entity_property_fragment(
+                        root, children, parsed_sent, sentence_index, doc_text
+                    )
+                    props.extend(prop_props)
 
-            # Fragment Type 4: Coordinate nominal list (e.g. "Abstraction and reusability")
-            if root.pos in ("NOUN", "PROPN") or any(c.dep == "conj" for c in children):
-                coord_props = self._extract_coordinate_concepts(
-                    root, children, parsed_sent, sentence_index, doc_text
-                )
-                props.extend(coord_props)
+                # Fragment Type 4: Coordinate nominal list (e.g. "Abstraction and reusability")
+                if root.pos in ("NOUN", "PROPN") or any(c.dep == "conj" for c in children):
+                    coord_props = self._extract_coordinate_concepts(
+                        root, children, parsed_sent, sentence_index, doc_text
+                    )
+                    props.extend(coord_props)
 
-            # Fragment Type 5: Prepositional phrase root (e.g. "At the main function", "by reference")
-            if root.pos in ("ADP", "SCONJ") or root.dep == "prep":
-                prep_props = self._extract_prepositional_root(
-                    root, children, parsed_sent, sentence_index, doc_text
-                )
-                props.extend(prep_props)
+                # Fragment Type 5: Prepositional phrase root (e.g. "At the main function", "by reference")
+                if root.pos in ("ADP", "SCONJ") or root.dep == "prep":
+                    prep_props = self._extract_prepositional_root(
+                        root, children, parsed_sent, sentence_index, doc_text
+                    )
+                    props.extend(prep_props)
 
         # 3. Check for xcomp purpose / complement clauses (e.g. 'A destructor is used to deallocate memory')
         xcomp_props = self._extract_xcomp_clauses(parsed_sent, sentence_index, doc_text)

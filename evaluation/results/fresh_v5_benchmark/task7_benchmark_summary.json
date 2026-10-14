@@ -1,0 +1,459 @@
+{
+  "benchmark_name": "Task 7: Fresh Benchmark Evaluation of Current V0, V1, and V5",
+  "git_commit": "379117b4f0a889288474e8c9a6375bd18b782082",
+  "timestamp": "2026-10-13T13:37:48.044822+00:00",
+  "total_records": 2273,
+  "execution_time_seconds": 125.85,
+  "failures": 0,
+  "interventions_summary": {
+    "total_recovered_core_propositions": 241,
+    "total_guarded_contradictions": 37
+  },
+  "subsets": {
+    "overall": {
+      "subset_name": "Full Active Dataset (N=2,273)",
+      "n_samples": 2273,
+      "metrics": {
+        "v0_baseline": {
+          "system_name": "V0: TF-IDF Baseline",
+          "n_samples": 2273,
+          "mae": 2.6571,
+          "rmse": 2.9178,
+          "pearson_r": 0.4184,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.4424,
+          "spearman_p": 0.0,
+          "qwk": 0.1151,
+          "ground_truth_mean": 4.1839,
+          "ground_truth_std": 1.0964,
+          "predicted_mean": 1.5316,
+          "predicted_std": 1.157
+        },
+        "v1_base_asag": {
+          "system_name": "V1: Base ASAG",
+          "n_samples": 2273,
+          "mae": 3.8041,
+          "rmse": 4.0365,
+          "pearson_r": 0.1383,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.1179,
+          "spearman_p": 0.0,
+          "qwk": 0.018,
+          "ground_truth_mean": 4.1839,
+          "ground_truth_std": 1.0964,
+          "predicted_mean": 0.3925,
+          "predicted_std": 1.0117
+        },
+        "v5_full": {
+          "system_name": "V5: Current Proposition-Level ASAG",
+          "n_samples": 2273,
+          "mae": 3.4391,
+          "rmse": 3.7622,
+          "pearson_r": 0.2487,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.2779,
+          "spearman_p": 0.0,
+          "qwk": 0.0552,
+          "ground_truth_mean": 4.1839,
+          "ground_truth_std": 1.0964,
+          "predicted_mean": 0.7782,
+          "predicted_std": 1.4674
+        }
+      },
+      "distributions": {
+        "human": {
+          "mean": 4.1839,
+          "std": 1.0966,
+          "min": 0.0,
+          "max": 5.0
+        },
+        "v0_baseline": {
+          "mean": 1.5316,
+          "std": 1.1572,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -2.6523,
+          "pct_near_zero": 19.62,
+          "pct_exactly_zero": 8.49,
+          "pct_high_grade": 4.53
+        },
+        "v1_base_asag": {
+          "mean": 0.3925,
+          "std": 1.012,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.7914,
+          "pct_near_zero": 82.14,
+          "pct_exactly_zero": 81.39,
+          "pct_high_grade": 2.55
+        },
+        "v5_full": {
+          "mean": 0.7782,
+          "std": 1.4677,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.4057,
+          "pct_near_zero": 69.38,
+          "pct_exactly_zero": 66.34,
+          "pct_high_grade": 8.53
+        }
+      }
+    },
+    "assignments_1_10": {
+      "subset_name": "Assignments 1-10 (N=1,721)",
+      "n_samples": 1721,
+      "metrics": {
+        "v0_baseline": {
+          "system_name": "V0: TF-IDF Baseline",
+          "n_samples": 1721,
+          "mae": 2.6472,
+          "rmse": 2.9073,
+          "pearson_r": 0.4177,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.4451,
+          "spearman_p": 0.0,
+          "qwk": 0.1126,
+          "ground_truth_mean": 4.1784,
+          "ground_truth_std": 1.0689,
+          "predicted_mean": 1.5353,
+          "predicted_std": 1.1701
+        },
+        "v1_base_asag": {
+          "system_name": "V1: Base ASAG",
+          "n_samples": 1721,
+          "mae": 3.8019,
+          "rmse": 4.0192,
+          "pearson_r": 0.1336,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.1227,
+          "spearman_p": 0.0,
+          "qwk": 0.0166,
+          "ground_truth_mean": 4.1784,
+          "ground_truth_std": 1.0689,
+          "predicted_mean": 0.3899,
+          "predicted_std": 0.9672
+        },
+        "v5_full": {
+          "system_name": "V5: Current Proposition-Level ASAG",
+          "n_samples": 1721,
+          "mae": 3.4203,
+          "rmse": 3.7373,
+          "pearson_r": 0.2559,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.2873,
+          "spearman_p": 0.0,
+          "qwk": 0.0558,
+          "ground_truth_mean": 4.1784,
+          "ground_truth_std": 1.0689,
+          "predicted_mean": 0.7887,
+          "predicted_std": 1.4607
+        }
+      },
+      "distributions": {
+        "human": {
+          "mean": 4.1784,
+          "std": 1.0692,
+          "min": 0.0,
+          "max": 5.0
+        },
+        "v0_baseline": {
+          "mean": 1.5353,
+          "std": 1.1705,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -2.6431,
+          "pct_near_zero": 19.52,
+          "pct_exactly_zero": 7.84,
+          "pct_high_grade": 4.94
+        },
+        "v1_base_asag": {
+          "mean": 0.3899,
+          "std": 0.9674,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.7885,
+          "pct_near_zero": 81.29,
+          "pct_exactly_zero": 80.3,
+          "pct_high_grade": 1.98
+        },
+        "v5_full": {
+          "mean": 0.7887,
+          "std": 1.4611,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.3897,
+          "pct_near_zero": 68.56,
+          "pct_exactly_zero": 65.31,
+          "pct_high_grade": 8.43
+        }
+      }
+    },
+    "exams_11_12": {
+      "subset_name": "Exams 11-12 (N=552)",
+      "n_samples": 552,
+      "metrics": {
+        "v0_baseline": {
+          "system_name": "V0: TF-IDF Baseline",
+          "n_samples": 552,
+          "mae": 2.6877,
+          "rmse": 2.9502,
+          "pearson_r": 0.424,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.4338,
+          "spearman_p": 0.0,
+          "qwk": 0.1226,
+          "ground_truth_mean": 4.2011,
+          "ground_truth_std": 1.1778,
+          "predicted_mean": 1.5202,
+          "predicted_std": 1.1148
+        },
+        "v1_base_asag": {
+          "system_name": "V1: Base ASAG",
+          "n_samples": 552,
+          "mae": 3.8111,
+          "rmse": 4.0898,
+          "pearson_r": 0.1496,
+          "pearson_p": 0.000421,
+          "spearman_rho": 0.1097,
+          "spearman_p": 0.009926,
+          "qwk": 0.0223,
+          "ground_truth_mean": 4.2011,
+          "ground_truth_std": 1.1778,
+          "predicted_mean": 0.4008,
+          "predicted_std": 1.1395
+        },
+        "v5_full": {
+          "system_name": "V5: Current Proposition-Level ASAG",
+          "n_samples": 552,
+          "mae": 3.4977,
+          "rmse": 3.8387,
+          "pearson_r": 0.2298,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.2516,
+          "spearman_p": 0.0,
+          "qwk": 0.0534,
+          "ground_truth_mean": 4.2011,
+          "ground_truth_std": 1.1778,
+          "predicted_mean": 0.7455,
+          "predicted_std": 1.4876
+        }
+      },
+      "distributions": {
+        "human": {
+          "mean": 4.2011,
+          "std": 1.1788,
+          "min": 0.0,
+          "max": 5.0
+        },
+        "v0_baseline": {
+          "mean": 1.5202,
+          "std": 1.1158,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -2.6809,
+          "pct_near_zero": 19.93,
+          "pct_exactly_zero": 10.51,
+          "pct_high_grade": 3.26
+        },
+        "v1_base_asag": {
+          "mean": 0.4008,
+          "std": 1.1406,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.8003,
+          "pct_near_zero": 84.78,
+          "pct_exactly_zero": 84.78,
+          "pct_high_grade": 4.35
+        },
+        "v5_full": {
+          "mean": 0.7455,
+          "std": 1.4889,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.4556,
+          "pct_near_zero": 71.92,
+          "pct_exactly_zero": 69.57,
+          "pct_high_grade": 8.88
+        }
+      }
+    },
+    "sentential_reference_subset": {
+      "subset_name": "Sentential Reference Subset (N=1,341)",
+      "n_samples": 1341,
+      "metrics": {
+        "v0_baseline": {
+          "system_name": "V0: TF-IDF Baseline",
+          "n_samples": 1341,
+          "mae": 2.7464,
+          "rmse": 2.9427,
+          "pearson_r": 0.3743,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.3591,
+          "spearman_p": 0.0,
+          "qwk": 0.0685,
+          "ground_truth_mean": 4.1957,
+          "ground_truth_std": 1.0243,
+          "predicted_mean": 1.451,
+          "predicted_std": 0.8566
+        },
+        "v1_base_asag": {
+          "system_name": "V1: Base ASAG",
+          "n_samples": 1341,
+          "mae": 3.552,
+          "rmse": 3.816,
+          "pearson_r": 0.1975,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.1968,
+          "spearman_p": 0.0,
+          "qwk": 0.0326,
+          "ground_truth_mean": 4.1957,
+          "ground_truth_std": 1.0243,
+          "predicted_mean": 0.6654,
+          "predicted_std": 1.2464
+        },
+        "v5_full": {
+          "system_name": "V5: Current Proposition-Level ASAG",
+          "n_samples": 1341,
+          "mae": 3.5973,
+          "rmse": 3.8445,
+          "pearson_r": 0.2058,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.2189,
+          "spearman_p": 0.0,
+          "qwk": 0.0341,
+          "ground_truth_mean": 4.1957,
+          "ground_truth_std": 1.0243,
+          "predicted_mean": 0.6198,
+          "predicted_std": 1.205
+        }
+      },
+      "distributions": {
+        "human": {
+          "mean": 4.1957,
+          "std": 1.0246,
+          "min": 0.0,
+          "max": 5.0
+        },
+        "v0_baseline": {
+          "mean": 1.451,
+          "std": 0.8569,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -2.7447,
+          "pct_near_zero": 14.02,
+          "pct_exactly_zero": 3.21,
+          "pct_high_grade": 0.75
+        },
+        "v1_base_asag": {
+          "mean": 0.6654,
+          "std": 1.2469,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.5304,
+          "pct_near_zero": 69.72,
+          "pct_exactly_zero": 68.46,
+          "pct_high_grade": 4.33
+        },
+        "v5_full": {
+          "mean": 0.6198,
+          "std": 1.2054,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.576,
+          "pct_near_zero": 70.25,
+          "pct_exactly_zero": 65.7,
+          "pct_high_grade": 4.85
+        }
+      }
+    },
+    "non_sentential_reference_subset": {
+      "subset_name": "Non-Sentential Reference Subset (N=932)",
+      "n_samples": 932,
+      "metrics": {
+        "v0_baseline": {
+          "system_name": "V0: TF-IDF Baseline",
+          "n_samples": 932,
+          "mae": 2.5286,
+          "rmse": 2.8816,
+          "pearson_r": 0.4681,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.5342,
+          "spearman_p": 0.0,
+          "qwk": 0.1781,
+          "ground_truth_mean": 4.1668,
+          "ground_truth_std": 1.1923,
+          "predicted_mean": 1.6476,
+          "predicted_std": 1.4785
+        },
+        "v1_base_asag": {
+          "system_name": "V1: Base ASAG",
+          "n_samples": 932,
+          "mae": 4.1668,
+          "rmse": 4.3341,
+          "pearson_r": null,
+          "pearson_p": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "qwk": 0.0,
+          "ground_truth_mean": 4.1668,
+          "ground_truth_std": 1.1923,
+          "predicted_mean": 0.0,
+          "predicted_std": 0.0
+        },
+        "v5_full": {
+          "system_name": "V5: Current Proposition-Level ASAG",
+          "n_samples": 932,
+          "mae": 3.2114,
+          "rmse": 3.6404,
+          "pearson_r": 0.2951,
+          "pearson_p": 0.0,
+          "spearman_rho": 0.3483,
+          "spearman_p": 0.0,
+          "qwk": 0.0879,
+          "ground_truth_mean": 4.1668,
+          "ground_truth_std": 1.1923,
+          "predicted_mean": 1.0061,
+          "predicted_std": 1.7534
+        }
+      },
+      "distributions": {
+        "human": {
+          "mean": 4.1668,
+          "std": 1.1929,
+          "min": 0.0,
+          "max": 5.0
+        },
+        "v0_baseline": {
+          "mean": 1.6476,
+          "std": 1.4793,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -2.5192,
+          "pct_near_zero": 27.68,
+          "pct_exactly_zero": 16.09,
+          "pct_high_grade": 9.98
+        },
+        "v1_base_asag": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "descriptive_bias": -4.1668,
+          "pct_near_zero": 100.0,
+          "pct_exactly_zero": 100.0,
+          "pct_high_grade": 0.0
+        },
+        "v5_full": {
+          "mean": 1.0061,
+          "std": 1.7543,
+          "min": 0.0,
+          "max": 5.0,
+          "descriptive_bias": -3.1608,
+          "pct_near_zero": 68.13,
+          "pct_exactly_zero": 67.27,
+          "pct_high_grade": 13.84
+        }
+      }
+    }
+  }
+}

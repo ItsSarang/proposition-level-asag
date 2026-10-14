@@ -1,11 +1,3 @@
-"""
-Flask Application alias for ASAG Backend.
-
-Allows running via either:
-    python backend/main.py
-or:
-    python backend/app.py
-"""
 import os
 from backend.main import app
 

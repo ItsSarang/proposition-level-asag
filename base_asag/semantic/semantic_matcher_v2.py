@@ -212,6 +212,58 @@ class SemanticMatcherV2:
             else:
                 return v1_rel
 
+        # Tier 5b: Fallback when POS is unspecified: search across WordNet synsets
+        if v1_rel.semantic_relation == "POS_INCOMPATIBLE" and src_pos is None and tgt_pos is None:
+            s1_all = self.wn.synsets(s_lem)
+            t1_all = self.wn.synsets(t_lem)
+            common = set(s1_all).intersection(set(t1_all))
+            if common:
+                shared = next(iter(common))
+                return SemanticRelation(
+                    source_text=src_text,
+                    target_text=tgt_text,
+                    source_lemma=src_lemma,
+                    target_lemma=tgt_lemma,
+                    source_pos=None,
+                    target_pos=None,
+                    exact_match=False,
+                    lemma_match=False,
+                    pos_compatible=True,
+                    semantic_relation="WORDNET_SYNONYM",
+                    similarity_score=1.0,
+                    method="wordnet_synonym",
+                    synset_source=shared.name(),
+                    synset_target=shared.name(),
+                )
+            best_sim = 0.0
+            best_s1 = None
+            best_s2 = None
+            for s1 in s1_all:
+                for s2 in t1_all:
+                    if s1.pos() == s2.pos():
+                        sim = s1.path_similarity(s2) or 0.0
+                        if sim > best_sim:
+                            best_sim = sim
+                            best_s1 = s1
+                            best_s2 = s2
+            if best_sim >= self.path_similarity_threshold:
+                return SemanticRelation(
+                    source_text=src_text,
+                    target_text=tgt_text,
+                    source_lemma=src_lemma,
+                    target_lemma=tgt_lemma,
+                    source_pos=None,
+                    target_pos=None,
+                    exact_match=False,
+                    lemma_match=False,
+                    pos_compatible=True,
+                    semantic_relation="WORDNET_PATH",
+                    similarity_score=round(best_sim, 6),
+                    method="wordnet_path",
+                    synset_source=best_s1.name() if best_s1 else None,
+                    synset_target=best_s2.name() if best_s2 else None,
+                )
+
         # Tier 6: Optional Distributional Vector Similarity
         if self.distributional_model is not None:
             dist_sim = self._compute_distributional_similarity(s_lem, t_lem)

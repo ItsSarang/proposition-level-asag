@@ -494,3 +494,145 @@ def test_r20_unsupported_fragment_no_hallucination(canon_extractor, empty_or_noi
     """R20: Unsupported noise or empty fragments must return empty list (no hallucinations)."""
     props = canon_extractor.extract_document(original_text=empty_or_noise)
     assert len(props) == 0, f"R20 violated: fabricated {len(props)} propositions for noise '{empty_or_noise}'"
+
+
+# ----------------------------------------------------------------------------
+# R21: Complete clausal sentence does not generate spurious unanchored verb fragments
+# ----------------------------------------------------------------------------
+def test_r21_clausal_sentence_no_spurious_verb_fragments(canon_extractor):
+    """R21: A finite clause with subject must not produce duplicate unanchored verb fragments."""
+    text = "A primary key uniquely identifies each record in a table."
+    props = canon_extractor.extract_document(original_text=text)
+    assert len(props) == 1, f"Expected exactly 1 clausal proposition, got {len(props)}: {[p.source_text for p in props]}"
+    assert props[0].subject == "key"
+    assert props[0].predicate == "identifies"
+    assert props[0].object == "record"
+
+
+# ----------------------------------------------------------------------------
+# R22: Explicit contradiction of core reference claim produces zero grade
+# ----------------------------------------------------------------------------
+def test_r22_explicit_contradiction_of_essential_claim_zero_grade():
+    """R22: Explicit negation of the essential reference claim invalidates core credit (Grade 0.0)."""
+    pipeline = Experiment5Pipeline()
+    q = "What is the purpose of a primary key in a relational database?"
+    ref = "A primary key uniquely identifies each record in a table."
+    stu = "A primary key never identifies each record in a table."
+
+    result = pipeline.evaluate(q, ref, stu)
+
+    assert result.base_score_effective == 0.0, f"Expected effective base score 0.0, got {result.base_score_effective}"
+    assert result.final_grade == 0.0, f"Expected final grade 0.0, got {result.final_grade}"
+    assert result.score_result.has_core_invalidation is True
+    assert result.score_result.core_contradiction_count >= 1
+    assert any(
+        item.classification == "INCORRECT" and item.severity_level == "CORE_CONTRADICTION"
+        for item in result.score_result.itemized_adjustments
+    )
+
+
+# ----------------------------------------------------------------------------
+# R23: Contrast cases for contradiction vs valid answers
+# ----------------------------------------------------------------------------
+def test_r23_contrast_cases_for_contradiction_and_valid_answers():
+    """R23: Explicit contradiction receives 0.0 while correct and additive answers receive full credit."""
+    pipeline = Experiment5Pipeline()
+    q = "What is the purpose of a primary key in a relational database?"
+    ref = "A primary key uniquely identifies each record in a table."
+
+    # 1. Exact / clean correct answer
+    res_clean = pipeline.evaluate(q, ref, "A primary key uniquely identifies each record in a table.")
+    assert res_clean.final_grade == 5.0
+    assert res_clean.score_result.core_contradiction_count == 0
+
+    # 2. Correct answer + valid additional information
+    res_valid_add = pipeline.evaluate(
+        q, ref, "A primary key uniquely identifies each record in a table and cannot contain NULL values."
+    )
+    assert res_valid_add.final_grade == 5.0
+    assert res_valid_add.score_result.core_contradiction_count == 0
+
+    # 3. Correct answer + irrelevant additional information
+    res_irrel = pipeline.evaluate(
+        q, ref, "A primary key uniquely identifies each record in a table. SQL was created in 1970."
+    )
+    assert res_irrel.final_grade == 5.0
+    assert res_irrel.score_result.core_contradiction_count == 0
+
+    # 4. Explicit contradiction of core claim
+    res_contra = pipeline.evaluate(q, ref, "A primary key never identifies each record in a table.")
+    assert res_contra.final_grade == 0.0
+    assert res_contra.score_result.core_contradiction_count == 1
+    assert res_contra.score_result.has_core_invalidation is True
+
+
+# ----------------------------------------------------------------------------
+# R24: Copula-adjective to passive verb alternation recovery
+# ----------------------------------------------------------------------------
+def test_r24_copula_adjective_verb_bridge(parser, hybrid_extractor, canon_extractor, core_recoverer):
+    """R24: 'X is accessible' alternates semantically with 'X can be accessed'."""
+    ref_text = "A local variable is accessible only within the function or block in which it is declared."
+    stu_text = "A local variable can only be accessed inside the function or block where it is defined."
+
+    ref_doc = parser.parse_document(ref_text)
+    stu_doc = parser.parse_document(stu_text)
+
+    ref_props = canon_extractor.extract_document(ref_doc, ref_text)
+    stu_props = hybrid_extractor.extract_document(stu_doc, stu_text)
+
+    # ref_props[0] is 'variable is accessible'
+    # stu_props[0] is 'variable accessed None'
+    score, ev = core_recoverer._check_copula_adjective_verb_bridge(stu_props[0], ref_props[0])
+    assert score >= 0.70, f"Expected copula-verb score >= 0.70, got {score}: {ev}"
+    assert ev.get("copula_adjective") == "accessible"
+    assert ev.get("verbal_predicate") == "access"
+
+
+# ----------------------------------------------------------------------------
+# R25: Domain equivalence recovery for declare <-> define
+# ----------------------------------------------------------------------------
+def test_r25_declare_define_domain_equivalence_recovery(core_recoverer):
+    """R25: 'declare' and 'define' are recognized as equivalent in variable scoping contexts."""
+    sim = core_recoverer._compare_lemmas("declare", "define", pos="VERB")
+    assert sim >= 0.75, f"Expected similarity >= 0.75, got {sim}"
+
+    sim_rev = core_recoverer._compare_lemmas("define", "declare", pos="VERB")
+    assert sim_rev >= 0.75, f"Expected symmetric similarity >= 0.75, got {sim_rev}"
+
+
+# ----------------------------------------------------------------------------
+# R26: Example B correct paraphrase receives substantial credit
+# ----------------------------------------------------------------------------
+def test_r26_example_b_correct_paraphrase_substantial_credit():
+    """R26: Correct paraphrase with syntactic alternation and lexical variation receives >= 3.5/5.0."""
+    pipeline = Experiment5Pipeline()
+    q = "What is the scope of a local variable in a function?"
+    ref = "A local variable is accessible only within the function or block in which it is declared."
+    stu = "A local variable has local scope and can only be accessed inside the specific block or function where it is defined."
+
+    result = pipeline.evaluate(q, ref, stu)
+
+    assert result.final_grade >= 3.5, f"Expected final grade >= 3.5/5.0, got {result.final_grade}"
+    assert result.base_score_effective >= 0.70, f"Expected effective base coverage >= 0.70, got {result.base_score_effective}"
+    assert result.recovered_core_count >= 1, f"Expected at least 1 recovered core paraphrase, got {result.recovered_core_count}"
+    assert result.score_result.core_contradiction_count == 0
+
+
+# ----------------------------------------------------------------------------
+# R27: Contrast cases for Example B copula-adjective and scoping
+# ----------------------------------------------------------------------------
+def test_r27_example_b_contrast_cases(parser, hybrid_extractor, canon_extractor, core_recoverer):
+    """R27: Unrelated actions must not falsely bridge to copula-adjective propositions."""
+    ref_text = "A local variable is accessible only within the function."
+    unrelated_stu = "A local variable was destroyed."
+
+    ref_doc = parser.parse_document(ref_text)
+    stu_doc = parser.parse_document(unrelated_stu)
+
+    ref_props = canon_extractor.extract_document(ref_doc, ref_text)
+    stu_props = hybrid_extractor.extract_document(stu_doc, unrelated_stu)
+
+    score, ev = core_recoverer._check_copula_adjective_verb_bridge(stu_props[0], ref_props[0])
+    assert score == 0.0 or score < core_recoverer.recovery_threshold, (
+        f"Unrelated action 'destroyed' should not bridge to 'accessible': got score={score}"
+    )

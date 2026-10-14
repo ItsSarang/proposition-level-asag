@@ -197,6 +197,11 @@ class SeverityAwareScorer:
         minor_penalties: List[float] = []
         items: List[SeverityItemizedAdjustment] = []
 
+        # Deduplication tracking: prevent repeated claims from compounding bonuses or penalties
+        seen_correct_rules: set[str] = set()
+        unique_correct_props: List[Any] = []
+        seen_contradiction_keys: set[str] = set()
+
         for p in props:
             cls = p.classification
             if cls == AdditionalInfoClass.MATCHED_BY_BASE_ASAG:
@@ -213,8 +218,29 @@ class SeverityAwareScorer:
                 ))
 
             elif cls == AdditionalInfoClass.CORRECT_ADDITIONAL:
-                n_correct += 1
-                # Deferred until pos_adj is computed
+                rule_key = (
+                    p.verification_evidence.rule_id
+                    if p.verification_evidence and p.verification_evidence.rule_id
+                    else f"{p.proposition.subject_lemma}_{p.proposition.predicate_lemma}_{p.proposition.object_lemma}_{p.proposition.polarity.value}"
+                )
+                if rule_key in seen_correct_rules:
+                    # Repeated mention of an already credited fact/rule: do not multiply bonus
+                    items.append(
+                        SeverityItemizedAdjustment(
+                            proposition_text=p.proposition.source_text,
+                            classification=cls.value,
+                            severity_level="NONE",
+                            severity_score=0.0,
+                            contradiction_type="NONE",
+                            evidence_strength=p.verification_evidence.confidence if p.verification_evidence else 1.0,
+                            adjustment_value=0.0,
+                            rationale=f"CORRECT_ADDITIONAL (REPEATED): Repeated mention of already credited property rule '{rule_key}'; bonus awarded once.",
+                        )
+                    )
+                else:
+                    seen_correct_rules.add(rule_key)
+                    unique_correct_props.append(p)
+                    n_correct += 1
 
             elif cls == AdditionalInfoClass.IRRELEVANT:
                 n_irrelevant += 1
@@ -243,76 +269,101 @@ class SeverityAwareScorer:
                 ))
 
             elif cls == AdditionalInfoClass.INCORRECT:
-                n_incorrect += 1
-                # AUTOMATIC SEVERITY ESTIMATION
-                sev_res = self.severity_estimator.estimate(
-                    contradiction_evidence=p.contradiction_evidence,
-                    student_prop=p.proposition,
-                    reference_props=ref_props,
-                    question=question,
-                    domain=domain,
+                contra_key = (
+                    f"{p.contradiction_evidence.conflicting_property}_{p.contradiction_evidence.conflicting_value}"
+                    if (p.contradiction_evidence and p.contradiction_evidence.conflicting_property)
+                    else (
+                        f"{p.contradiction_evidence.conflicting_entity}_{p.contradiction_evidence.conflicting_property}_{p.contradiction_evidence.conflicting_value}"
+                        if p.contradiction_evidence
+                        else f"{p.proposition.subject_lemma}_{p.proposition.predicate_lemma}_{p.proposition.object_lemma}"
+                    )
                 )
-                sev_lvl = sev_res.severity.value
-                sev_score = sev_res.severity_score
-                ev_dict = sev_res.evidence.to_dict()
-
-                if sev_res.severity == SeverityLevel.UNRESOLVED:
-                    # Adjacent entity confusion or unresolved contradiction
-                    items.append(SeverityItemizedAdjustment(
-                        proposition_text=p.proposition.source_text,
-                        classification=cls.value,
-                        severity_level=sev_lvl,
-                        severity_score=sev_score,
-                        contradiction_type=sev_res.evidence.contradiction_type,
-                        evidence_strength=sev_res.evidence.evidence_strength,
-                        adjustment_value=0.0,
-                        rationale=f"UNRESOLVED contradiction ({sev_res.explanation}); produces zero deduction on target entity.",
-                        severity_evidence=ev_dict,
-                    ))
-
-                elif sev_res.severity == SeverityLevel.NONE or sev_score <= 0.0:
-                    items.append(SeverityItemizedAdjustment(
-                        proposition_text=p.proposition.source_text,
-                        classification=cls.value,
-                        severity_level="NONE",
-                        severity_score=0.0,
-                        contradiction_type="NONE",
-                        evidence_strength=0.0,
-                        adjustment_value=0.0,
-                        rationale=f"Non-contradictory proposition ({sev_res.explanation}); neutral effect (0.0 adjustment).",
-                        severity_evidence=ev_dict,
-                    ))
-
-                elif sev_score >= self.sigma_core_threshold:
-                    # Core defining contradiction
-                    core_contradiction_count += 1
-                    items.append(SeverityItemizedAdjustment(
-                        proposition_text=p.proposition.source_text,
-                        classification=cls.value,
-                        severity_level=sev_lvl,
-                        severity_score=sev_score,
-                        contradiction_type=sev_res.evidence.contradiction_type,
-                        evidence_strength=sev_res.evidence.evidence_strength,
-                        adjustment_value=-self.core_invalidation_discount,
-                        rationale=f"CORE INVALIDATION: {sev_res.explanation}",
-                        severity_evidence=ev_dict,
-                    ))
-
+                if contra_key in seen_contradiction_keys:
+                    # Repeated mention of an already penalized contradiction: penalty applied once
+                    items.append(
+                        SeverityItemizedAdjustment(
+                            proposition_text=p.proposition.source_text,
+                            classification=cls.value,
+                            severity_level="NONE",
+                            severity_score=0.0,
+                            contradiction_type="NONE",
+                            evidence_strength=0.0,
+                            adjustment_value=0.0,
+                            rationale=f"INCORRECT (REPEATED): Repeated mention of already penalized contradiction ('{contra_key}'); penalty applied once.",
+                        )
+                    )
                 else:
-                    # Minor or moderate contradiction
-                    deduction = self.minor_penalty_weight * sev_score
-                    minor_penalties.append(deduction)
-                    items.append(SeverityItemizedAdjustment(
-                        proposition_text=p.proposition.source_text,
-                        classification=cls.value,
-                        severity_level=sev_lvl,
-                        severity_score=sev_score,
-                        contradiction_type=sev_res.evidence.contradiction_type,
-                        evidence_strength=sev_res.evidence.evidence_strength,
-                        adjustment_value=-deduction,
-                        rationale=f"{sev_lvl} DEDUCTION (-{deduction:.4f}): {sev_res.explanation}",
-                        severity_evidence=ev_dict,
-                    ))
+                    seen_contradiction_keys.add(contra_key)
+                    n_incorrect += 1
+                    # AUTOMATIC SEVERITY ESTIMATION
+                    sev_res = self.severity_estimator.estimate(
+                        contradiction_evidence=p.contradiction_evidence,
+                        student_prop=p.proposition,
+                        reference_props=ref_props,
+                        question=question,
+                        domain=domain,
+                    )
+                    sev_lvl = sev_res.severity.value
+                    sev_score = sev_res.severity_score
+                    ev_dict = sev_res.evidence.to_dict()
+
+                    if sev_res.severity == SeverityLevel.UNRESOLVED:
+                        # Adjacent entity confusion or unresolved contradiction
+                        items.append(SeverityItemizedAdjustment(
+                            proposition_text=p.proposition.source_text,
+                            classification=cls.value,
+                            severity_level=sev_lvl,
+                            severity_score=sev_score,
+                            contradiction_type=sev_res.evidence.contradiction_type,
+                            evidence_strength=sev_res.evidence.evidence_strength,
+                            adjustment_value=0.0,
+                            rationale=f"UNRESOLVED contradiction ({sev_res.explanation}); produces zero deduction on target entity.",
+                            severity_evidence=ev_dict,
+                        ))
+
+                    elif sev_res.severity == SeverityLevel.NONE or sev_score <= 0.0:
+                        items.append(SeverityItemizedAdjustment(
+                            proposition_text=p.proposition.source_text,
+                            classification=cls.value,
+                            severity_level="NONE",
+                            severity_score=0.0,
+                            contradiction_type="NONE",
+                            evidence_strength=0.0,
+                            adjustment_value=0.0,
+                            rationale=f"Non-contradictory proposition ({sev_res.explanation}); neutral effect (0.0 adjustment).",
+                            severity_evidence=ev_dict,
+                        ))
+
+                    elif sev_score >= self.sigma_core_threshold:
+                        # Core defining contradiction
+                        core_contradiction_count += 1
+                        items.append(SeverityItemizedAdjustment(
+                            proposition_text=p.proposition.source_text,
+                            classification=cls.value,
+                            severity_level=sev_lvl,
+                            severity_score=sev_score,
+                            contradiction_type=sev_res.evidence.contradiction_type,
+                            evidence_strength=sev_res.evidence.evidence_strength,
+                            adjustment_value=-self.core_invalidation_discount,
+                            rationale=f"CORE INVALIDATION: {sev_res.explanation}",
+                            severity_evidence=ev_dict,
+                        ))
+
+                    else:
+                        # Minor or moderate contradiction
+                        deduction = self.minor_penalty_weight * sev_score
+                        minor_penalties.append(deduction)
+                        items.append(SeverityItemizedAdjustment(
+                            proposition_text=p.proposition.source_text,
+                            classification=cls.value,
+                            severity_level=sev_lvl,
+                            severity_score=sev_score,
+                            contradiction_type=sev_res.evidence.contradiction_type,
+                            evidence_strength=sev_res.evidence.evidence_strength,
+                            adjustment_value=-deduction,
+                            rationale=f"{sev_lvl} DEDUCTION (-{deduction:.4f}): {sev_res.explanation}",
+                            severity_evidence=ev_dict,
+                        ))
 
         # 1. Core Invalidation
         has_core_invalidation = (core_contradiction_count > 0)
@@ -328,20 +379,19 @@ class SeverityAwareScorer:
             raw_bonus = self.max_positive_bonus * (scaled_n / (1.0 + scaled_n))
             pos_adj = min(raw_bonus, core_effective * 0.50)
 
-        # 3. Itemize correct additional propositions
-        for p in props:
-            if p.classification == AdditionalInfoClass.CORRECT_ADDITIONAL:
-                bonus_per_item = pos_adj / max(1, n_correct)
-                items.append(SeverityItemizedAdjustment(
-                    proposition_text=p.proposition.source_text,
-                    classification=p.classification.value,
-                    severity_level="NONE",
-                    severity_score=0.0,
-                    contradiction_type="NONE",
-                    evidence_strength=p.verification_evidence.confidence if p.verification_evidence else 1.0,
-                    adjustment_value=bonus_per_item,
-                    rationale=f"CORRECT_ADDITIONAL: Gated positive bonus (+{bonus_per_item:.4f}).",
-                ))
+        # 3. Itemize unique correct additional propositions
+        for p in unique_correct_props:
+            bonus_per_item = pos_adj / max(1, n_correct)
+            items.append(SeverityItemizedAdjustment(
+                proposition_text=p.proposition.source_text,
+                classification=p.classification.value,
+                severity_level="NONE",
+                severity_score=0.0,
+                contradiction_type="NONE",
+                evidence_strength=p.verification_evidence.confidence if p.verification_evidence else 1.0,
+                adjustment_value=bonus_per_item,
+                rationale=f"CORRECT_ADDITIONAL: Gated positive bonus (+{bonus_per_item:.4f}).",
+            ))
 
         # 4. Aggregations and Final Grade
         minor_pen_sum = sum(minor_penalties)

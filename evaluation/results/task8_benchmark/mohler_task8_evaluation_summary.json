@@ -1,0 +1,808 @@
+{
+  "benchmark_run_timestamp": "2026-10-13T15:55:02.443558+00:00",
+  "git_revision": "379117b4f0a889288474e8c9a6375bd18b782082",
+  "elapsed_seconds": 213.79,
+  "total_active_records": 2273,
+  "full_failures": 0,
+  "core_failures": 0,
+  "total_recovered_core_propositions": 241,
+  "total_guarded_contradictions": 26,
+  "delta_analysis": {
+    "n_evaluated_with_task7": 2273,
+    "n_improved_score": 141,
+    "n_reduced_score": 7,
+    "n_unchanged_score": 2125,
+    "n_previously_zero_now_positive": 93,
+    "target_case_pointer_q6_1": [
+      {
+        "student_index": 0,
+        "student_text": "Its a location in memory that contains the memory address of another location in memory that contains information.",
+        "human_score": 5.0,
+        "task7_grade": 1.8333,
+        "v5_full_grade": 1.8333,
+        "delta": 0.0
+      },
+      {
+        "student_index": 1,
+        "student_text": "A pointer is a variable that contains a memory address as its value.",
+        "human_score": 5.0,
+        "task7_grade": 0.0,
+        "v5_full_grade": 5.0,
+        "delta": 5.0
+      },
+      {
+        "student_index": 2,
+        "student_text": "A pointer is a variable which stores the address of another variable.",
+        "human_score": 5.0,
+        "task7_grade": 1.3333,
+        "v5_full_grade": 1.3333,
+        "delta": 0.0
+      },
+      {
+        "student_index": 3,
+        "student_text": "Pointers are variables that contain as their values memory addresses of other variables.",
+        "human_score": 5.0,
+        "task7_grade": 4.75,
+        "v5_full_grade": 4.75,
+        "delta": 0.0
+      },
+      {
+        "student_index": 4,
+        "student_text": "A data type whose value refers to another value stored elsewhere in the computer memory using its address.",
+        "human_score": 4.5,
+        "task7_grade": 0.0,
+        "v5_full_grade": 0.0,
+        "delta": 0.0
+      }
+    ],
+    "target_case_merge_sort_q11_10": [
+      {
+        "student_index": 0,
+        "student_text": "It uses the divide and conqure technique recursively and then when merging back together it compares each element together in a sorted list, this is done by reversing the divide and conquer technique",
+        "human_score": 5.0,
+        "task7_grade": 1.1171,
+        "v5_full_grade": 1.1171,
+        "delta": -0.0
+      },
+      {
+        "student_index": 1,
+        "student_text": "A merge sort works by removing all items to sepperate memory locations and merging them back together in order.",
+        "human_score": 3.5,
+        "task7_grade": 0.5417,
+        "v5_full_grade": 0.5417,
+        "delta": -0.0
+      },
+      {
+        "student_index": 2,
+        "student_text": "It divides the array into two halves, sorts each half, then merges the two halves together.",
+        "human_score": 5.0,
+        "task7_grade": 1.096,
+        "v5_full_grade": 3.7753,
+        "delta": 2.6793
+      },
+      {
+        "student_index": 3,
+        "student_text": "Divide into two sublists and then those sublists break into length 1, then merges the sublists sorted.",
+        "human_score": 5.0,
+        "task7_grade": 0.0,
+        "v5_full_grade": 1.0952,
+        "delta": 1.0952
+      },
+      {
+        "student_index": 4,
+        "student_text": "Merge sort uses the \"divide and conquer\" idea where it divides the array in half multiple times and then joins each element of the array back into one sorted array. This is one of the best sorting algorithms besides Quicksort.",
+        "human_score": 5.0,
+        "task7_grade": 0.0,
+        "v5_full_grade": 1.5833,
+        "delta": 1.5833
+      }
+    ]
+  },
+  "subsets": {
+    "full_active": {
+      "description": "Full Active Dataset (N=2,273)",
+      "n_records": 2273,
+      "models": {
+        "V0": {
+          "metrics": {
+            "system_name": "V0",
+            "n_samples": 2273,
+            "mae": 2.6571,
+            "rmse": 2.9178,
+            "pearson_r": 0.4184,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.4424,
+            "spearman_p": 0.0,
+            "qwk": 0.1151,
+            "ground_truth_mean": 4.1839,
+            "ground_truth_std": 1.0964,
+            "predicted_mean": 1.5316,
+            "predicted_std": 1.157
+          },
+          "distribution": {
+            "mean": 1.5316,
+            "std": 1.1572,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -2.6523,
+            "pct_near_zero": 19.62,
+            "pct_exactly_zero": 8.49,
+            "pct_high_grade": 4.53
+          }
+        },
+        "V1": {
+          "metrics": {
+            "system_name": "V1",
+            "n_samples": 2273,
+            "mae": 3.8041,
+            "rmse": 4.0365,
+            "pearson_r": 0.1383,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.1179,
+            "spearman_p": 0.0,
+            "qwk": 0.018,
+            "ground_truth_mean": 4.1839,
+            "ground_truth_std": 1.0964,
+            "predicted_mean": 0.3925,
+            "predicted_std": 1.0117
+          },
+          "distribution": {
+            "mean": 0.3925,
+            "std": 1.012,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.7914,
+            "pct_near_zero": 82.14,
+            "pct_exactly_zero": 81.39,
+            "pct_high_grade": 2.55
+          }
+        },
+        "V5_Core_Only": {
+          "metrics": {
+            "system_name": "V5_Core_Only",
+            "n_samples": 2273,
+            "mae": 3.3319,
+            "rmse": 3.6708,
+            "pearson_r": 0.2625,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2824,
+            "spearman_p": 0.0,
+            "qwk": 0.0619,
+            "ground_truth_mean": 4.1839,
+            "ground_truth_std": 1.0964,
+            "predicted_mean": 0.8899,
+            "predicted_std": 1.5148
+          },
+          "distribution": {
+            "mean": 0.8899,
+            "std": 1.5152,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.294,
+            "pct_near_zero": 64.5,
+            "pct_exactly_zero": 61.72,
+            "pct_high_grade": 9.11
+          }
+        },
+        "V5_Full": {
+          "metrics": {
+            "system_name": "V5_Full",
+            "n_samples": 2273,
+            "mae": 3.3358,
+            "rmse": 3.6745,
+            "pearson_r": 0.2616,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.282,
+            "spearman_p": 0.0,
+            "qwk": 0.0615,
+            "ground_truth_mean": 4.1839,
+            "ground_truth_std": 1.0964,
+            "predicted_mean": 0.886,
+            "predicted_std": 1.5138
+          },
+          "distribution": {
+            "mean": 0.886,
+            "std": 1.5142,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.2979,
+            "pct_near_zero": 64.76,
+            "pct_exactly_zero": 61.72,
+            "pct_high_grade": 9.11
+          }
+        },
+        "Task7_V5": {
+          "metrics": {
+            "system_name": "Task7_V5",
+            "n_samples": 2273,
+            "mae": 3.4391,
+            "rmse": 3.7622,
+            "pearson_r": 0.2487,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2779,
+            "spearman_p": 0.0,
+            "qwk": 0.0551,
+            "ground_truth_mean": 4.1839,
+            "ground_truth_std": 1.0964,
+            "predicted_mean": 0.7782,
+            "predicted_std": 1.4674
+          },
+          "distribution": {
+            "mean": 0.7782,
+            "std": 1.4677,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.4057,
+            "pct_near_zero": 69.38,
+            "pct_exactly_zero": 66.34,
+            "pct_high_grade": 8.53
+          }
+        }
+      }
+    },
+    "assignments_1_10": {
+      "description": "Assignments 1-10 (N=1,721)",
+      "n_records": 1721,
+      "models": {
+        "V0": {
+          "metrics": {
+            "system_name": "V0",
+            "n_samples": 1721,
+            "mae": 2.6472,
+            "rmse": 2.9073,
+            "pearson_r": 0.4177,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.4451,
+            "spearman_p": 0.0,
+            "qwk": 0.1126,
+            "ground_truth_mean": 4.1784,
+            "ground_truth_std": 1.0689,
+            "predicted_mean": 1.5353,
+            "predicted_std": 1.1701
+          },
+          "distribution": {
+            "mean": 1.5353,
+            "std": 1.1705,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -2.6431,
+            "pct_near_zero": 19.52,
+            "pct_exactly_zero": 7.84,
+            "pct_high_grade": 4.94
+          }
+        },
+        "V1": {
+          "metrics": {
+            "system_name": "V1",
+            "n_samples": 1721,
+            "mae": 3.8019,
+            "rmse": 4.0192,
+            "pearson_r": 0.1336,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.1227,
+            "spearman_p": 0.0,
+            "qwk": 0.0166,
+            "ground_truth_mean": 4.1784,
+            "ground_truth_std": 1.0689,
+            "predicted_mean": 0.3899,
+            "predicted_std": 0.9672
+          },
+          "distribution": {
+            "mean": 0.3899,
+            "std": 0.9674,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.7885,
+            "pct_near_zero": 81.29,
+            "pct_exactly_zero": 80.3,
+            "pct_high_grade": 1.98
+          }
+        },
+        "V5_Core_Only": {
+          "metrics": {
+            "system_name": "V5_Core_Only",
+            "n_samples": 1721,
+            "mae": 3.3442,
+            "rmse": 3.6754,
+            "pearson_r": 0.2602,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2874,
+            "spearman_p": 0.0,
+            "qwk": 0.0599,
+            "ground_truth_mean": 4.1784,
+            "ground_truth_std": 1.0689,
+            "predicted_mean": 0.8704,
+            "predicted_std": 1.5032
+          },
+          "distribution": {
+            "mean": 0.8704,
+            "std": 1.5036,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.3079,
+            "pct_near_zero": 65.14,
+            "pct_exactly_zero": 61.71,
+            "pct_high_grade": 9.18
+          }
+        },
+        "V5_Full": {
+          "metrics": {
+            "system_name": "V5_Full",
+            "n_samples": 1721,
+            "mae": 3.3491,
+            "rmse": 3.6797,
+            "pearson_r": 0.2592,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2871,
+            "spearman_p": 0.0,
+            "qwk": 0.0594,
+            "ground_truth_mean": 4.1784,
+            "ground_truth_std": 1.0689,
+            "predicted_mean": 0.8656,
+            "predicted_std": 1.5017
+          },
+          "distribution": {
+            "mean": 0.8656,
+            "std": 1.5022,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.3128,
+            "pct_near_zero": 65.43,
+            "pct_exactly_zero": 61.71,
+            "pct_high_grade": 9.18
+          }
+        },
+        "Task7_V5": {
+          "metrics": {
+            "system_name": "Task7_V5",
+            "n_samples": 1721,
+            "mae": 3.4203,
+            "rmse": 3.7373,
+            "pearson_r": 0.2559,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2873,
+            "spearman_p": 0.0,
+            "qwk": 0.0557,
+            "ground_truth_mean": 4.1784,
+            "ground_truth_std": 1.0689,
+            "predicted_mean": 0.7887,
+            "predicted_std": 1.4607
+          },
+          "distribution": {
+            "mean": 0.7887,
+            "std": 1.4611,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.3897,
+            "pct_near_zero": 68.56,
+            "pct_exactly_zero": 65.31,
+            "pct_high_grade": 8.43
+          }
+        }
+      }
+    },
+    "exams_11_12": {
+      "description": "Exams 11-12 (N=552)",
+      "n_records": 552,
+      "models": {
+        "V0": {
+          "metrics": {
+            "system_name": "V0",
+            "n_samples": 552,
+            "mae": 2.6877,
+            "rmse": 2.9502,
+            "pearson_r": 0.424,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.4338,
+            "spearman_p": 0.0,
+            "qwk": 0.1226,
+            "ground_truth_mean": 4.2011,
+            "ground_truth_std": 1.1778,
+            "predicted_mean": 1.5202,
+            "predicted_std": 1.1148
+          },
+          "distribution": {
+            "mean": 1.5202,
+            "std": 1.1158,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -2.6809,
+            "pct_near_zero": 19.93,
+            "pct_exactly_zero": 10.51,
+            "pct_high_grade": 3.26
+          }
+        },
+        "V1": {
+          "metrics": {
+            "system_name": "V1",
+            "n_samples": 552,
+            "mae": 3.8111,
+            "rmse": 4.0898,
+            "pearson_r": 0.1496,
+            "pearson_p": 0.000421,
+            "spearman_rho": 0.1097,
+            "spearman_p": 0.009926,
+            "qwk": 0.0223,
+            "ground_truth_mean": 4.2011,
+            "ground_truth_std": 1.1778,
+            "predicted_mean": 0.4008,
+            "predicted_std": 1.1395
+          },
+          "distribution": {
+            "mean": 0.4008,
+            "std": 1.1406,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.8003,
+            "pct_near_zero": 84.78,
+            "pct_exactly_zero": 84.78,
+            "pct_high_grade": 4.35
+          }
+        },
+        "V5_Core_Only": {
+          "metrics": {
+            "system_name": "V5_Core_Only",
+            "n_samples": 552,
+            "mae": 3.2934,
+            "rmse": 3.6567,
+            "pearson_r": 0.2687,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2549,
+            "spearman_p": 0.0,
+            "qwk": 0.0681,
+            "ground_truth_mean": 4.2011,
+            "ground_truth_std": 1.1778,
+            "predicted_mean": 0.9506,
+            "predicted_std": 1.5489
+          },
+          "distribution": {
+            "mean": 0.9506,
+            "std": 1.5503,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.2505,
+            "pct_near_zero": 62.5,
+            "pct_exactly_zero": 61.78,
+            "pct_high_grade": 8.88
+          }
+        },
+        "V5_Full": {
+          "metrics": {
+            "system_name": "V5_Full",
+            "n_samples": 552,
+            "mae": 3.2944,
+            "rmse": 3.658,
+            "pearson_r": 0.2682,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2545,
+            "spearman_p": 0.0,
+            "qwk": 0.0678,
+            "ground_truth_mean": 4.2011,
+            "ground_truth_std": 1.1778,
+            "predicted_mean": 0.9495,
+            "predicted_std": 1.5492
+          },
+          "distribution": {
+            "mean": 0.9495,
+            "std": 1.5507,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.2516,
+            "pct_near_zero": 62.68,
+            "pct_exactly_zero": 61.78,
+            "pct_high_grade": 8.88
+          }
+        },
+        "Task7_V5": {
+          "metrics": {
+            "system_name": "Task7_V5",
+            "n_samples": 552,
+            "mae": 3.4977,
+            "rmse": 3.8387,
+            "pearson_r": 0.2298,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2517,
+            "spearman_p": 0.0,
+            "qwk": 0.0534,
+            "ground_truth_mean": 4.2011,
+            "ground_truth_std": 1.1778,
+            "predicted_mean": 0.7455,
+            "predicted_std": 1.4876
+          },
+          "distribution": {
+            "mean": 0.7455,
+            "std": 1.4889,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.4556,
+            "pct_near_zero": 71.92,
+            "pct_exactly_zero": 69.57,
+            "pct_high_grade": 8.88
+          }
+        }
+      }
+    },
+    "sentential_ref": {
+      "description": "Sentential Reference Subset (N=1,341)",
+      "n_records": 1341,
+      "models": {
+        "V0": {
+          "metrics": {
+            "system_name": "V0",
+            "n_samples": 1341,
+            "mae": 2.7464,
+            "rmse": 2.9427,
+            "pearson_r": 0.3743,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.3591,
+            "spearman_p": 0.0,
+            "qwk": 0.0685,
+            "ground_truth_mean": 4.1957,
+            "ground_truth_std": 1.0243,
+            "predicted_mean": 1.451,
+            "predicted_std": 0.8566
+          },
+          "distribution": {
+            "mean": 1.451,
+            "std": 0.8569,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -2.7447,
+            "pct_near_zero": 14.02,
+            "pct_exactly_zero": 3.21,
+            "pct_high_grade": 0.75
+          }
+        },
+        "V1": {
+          "metrics": {
+            "system_name": "V1",
+            "n_samples": 1341,
+            "mae": 3.552,
+            "rmse": 3.816,
+            "pearson_r": 0.1975,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.1968,
+            "spearman_p": 0.0,
+            "qwk": 0.0326,
+            "ground_truth_mean": 4.1957,
+            "ground_truth_std": 1.0243,
+            "predicted_mean": 0.6654,
+            "predicted_std": 1.2464
+          },
+          "distribution": {
+            "mean": 0.6654,
+            "std": 1.2469,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.5304,
+            "pct_near_zero": 69.72,
+            "pct_exactly_zero": 68.46,
+            "pct_high_grade": 4.33
+          }
+        },
+        "V5_Core_Only": {
+          "metrics": {
+            "system_name": "V5_Core_Only",
+            "n_samples": 1341,
+            "mae": 3.4453,
+            "rmse": 3.7194,
+            "pearson_r": 0.2295,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2377,
+            "spearman_p": 0.0,
+            "qwk": 0.0433,
+            "ground_truth_mean": 4.1957,
+            "ground_truth_std": 1.0243,
+            "predicted_mean": 0.7765,
+            "predicted_std": 1.3069
+          },
+          "distribution": {
+            "mean": 0.7765,
+            "std": 1.3073,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.4193,
+            "pct_near_zero": 63.68,
+            "pct_exactly_zero": 59.28,
+            "pct_high_grade": 5.74
+          }
+        },
+        "V5_Full": {
+          "metrics": {
+            "system_name": "V5_Full",
+            "n_samples": 1341,
+            "mae": 3.452,
+            "rmse": 3.7255,
+            "pearson_r": 0.2278,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2369,
+            "spearman_p": 0.0,
+            "qwk": 0.0426,
+            "ground_truth_mean": 4.1957,
+            "ground_truth_std": 1.0243,
+            "predicted_mean": 0.7698,
+            "predicted_std": 1.3043
+          },
+          "distribution": {
+            "mean": 0.7698,
+            "std": 1.3048,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.426,
+            "pct_near_zero": 64.13,
+            "pct_exactly_zero": 59.28,
+            "pct_high_grade": 5.74
+          }
+        },
+        "Task7_V5": {
+          "metrics": {
+            "system_name": "Task7_V5",
+            "n_samples": 1341,
+            "mae": 3.5973,
+            "rmse": 3.8445,
+            "pearson_r": 0.2058,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.2189,
+            "spearman_p": 0.0,
+            "qwk": 0.0341,
+            "ground_truth_mean": 4.1957,
+            "ground_truth_std": 1.0243,
+            "predicted_mean": 0.6198,
+            "predicted_std": 1.205
+          },
+          "distribution": {
+            "mean": 0.6198,
+            "std": 1.2054,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.576,
+            "pct_near_zero": 70.25,
+            "pct_exactly_zero": 65.7,
+            "pct_high_grade": 4.85
+          }
+        }
+      }
+    },
+    "non_sentential_ref": {
+      "description": "Non-Sentential Reference Subset (N=932)",
+      "n_records": 932,
+      "models": {
+        "V0": {
+          "metrics": {
+            "system_name": "V0",
+            "n_samples": 932,
+            "mae": 2.5286,
+            "rmse": 2.8816,
+            "pearson_r": 0.4681,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.5342,
+            "spearman_p": 0.0,
+            "qwk": 0.1781,
+            "ground_truth_mean": 4.1668,
+            "ground_truth_std": 1.1923,
+            "predicted_mean": 1.6476,
+            "predicted_std": 1.4785
+          },
+          "distribution": {
+            "mean": 1.6476,
+            "std": 1.4793,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -2.5192,
+            "pct_near_zero": 27.68,
+            "pct_exactly_zero": 16.09,
+            "pct_high_grade": 9.98
+          }
+        },
+        "V1": {
+          "metrics": {
+            "system_name": "V1",
+            "n_samples": 932,
+            "mae": 4.1668,
+            "rmse": 4.3341,
+            "pearson_r": null,
+            "pearson_p": null,
+            "spearman_rho": null,
+            "spearman_p": null,
+            "qwk": 0.0,
+            "ground_truth_mean": 4.1668,
+            "ground_truth_std": 1.1923,
+            "predicted_mean": 0.0,
+            "predicted_std": 0.0
+          },
+          "distribution": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "descriptive_bias": -4.1668,
+            "pct_near_zero": 100.0,
+            "pct_exactly_zero": 100.0,
+            "pct_high_grade": 0.0
+          }
+        },
+        "V5_Core_Only": {
+          "metrics": {
+            "system_name": "V5_Core_Only",
+            "n_samples": 932,
+            "mae": 3.1687,
+            "rmse": 3.5998,
+            "pearson_r": 0.2985,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.3382,
+            "spearman_p": 0.0,
+            "qwk": 0.0897,
+            "ground_truth_mean": 4.1668,
+            "ground_truth_std": 1.1923,
+            "predicted_mean": 1.0531,
+            "predicted_std": 1.7589
+          },
+          "distribution": {
+            "mean": 1.0531,
+            "std": 1.7599,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.1137,
+            "pct_near_zero": 65.67,
+            "pct_exactly_zero": 65.24,
+            "pct_high_grade": 13.95
+          }
+        },
+        "V5_Full": {
+          "metrics": {
+            "system_name": "V5_Full",
+            "n_samples": 932,
+            "mae": 3.1687,
+            "rmse": 3.5998,
+            "pearson_r": 0.2985,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.3382,
+            "spearman_p": 0.0,
+            "qwk": 0.0897,
+            "ground_truth_mean": 4.1668,
+            "ground_truth_std": 1.1923,
+            "predicted_mean": 1.0531,
+            "predicted_std": 1.7589
+          },
+          "distribution": {
+            "mean": 1.0531,
+            "std": 1.7599,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.1137,
+            "pct_near_zero": 65.67,
+            "pct_exactly_zero": 65.24,
+            "pct_high_grade": 13.95
+          }
+        },
+        "Task7_V5": {
+          "metrics": {
+            "system_name": "Task7_V5",
+            "n_samples": 932,
+            "mae": 3.2114,
+            "rmse": 3.6404,
+            "pearson_r": 0.2951,
+            "pearson_p": 0.0,
+            "spearman_rho": 0.3483,
+            "spearman_p": 0.0,
+            "qwk": 0.0877,
+            "ground_truth_mean": 4.1668,
+            "ground_truth_std": 1.1923,
+            "predicted_mean": 1.0061,
+            "predicted_std": 1.7534
+          },
+          "distribution": {
+            "mean": 1.0061,
+            "std": 1.7543,
+            "min": 0.0,
+            "max": 5.0,
+            "descriptive_bias": -3.1608,
+            "pct_near_zero": 68.13,
+            "pct_exactly_zero": 67.27,
+            "pct_high_grade": 13.84
+          }
+        }
+      }
+    }
+  }
+}

@@ -293,12 +293,19 @@ def _collect_modifiers(parsed_sentence: ParsedSentence, head_tok: ParsedToken) -
 
 
 def _collect_predicate_modifiers(parsed_sentence: ParsedSentence, pred_tok: ParsedToken) -> Tuple[str, ...]:
-    """Collect adverbial modifier lemmas attached to pred_tok."""
-    mods = [
-        c.lemma.lower()
+    """Collect adverbial and negation modifier lemmas attached to pred_tok."""
+    mods: List[str] = []
+    stack = [
+        c
         for c in parsed_sentence.get_children(pred_tok)
-        if c.dep in ("advmod", "npadvmod") and c.dep != "punct"
+        if c.dep in ("advmod", "npadvmod", "neg") and c.dep != "punct"
     ]
+    while stack:
+        curr = stack.pop(0)
+        mods.append(curr.lemma.lower())
+        for child in parsed_sentence.get_children(curr):
+            if child.dep in ("advmod", "npadvmod", "neg") and child.dep != "punct":
+                stack.append(child)
     return tuple(mods)
 
 
@@ -484,6 +491,17 @@ class DependencyTripleExtractor:
                     (c for c in children if c.dep in ("dobj", "obj", "attr", "acomp")),
                     None
                 )
+                if obj is None:
+                    obj = next(
+                        (
+                            c
+                            for c in children
+                            if c.pos in ("NOUN", "PROPN", "PRON")
+                            and c.dep in ("npadvmod", "dep")
+                            and c.index > pred.index
+                        ),
+                        None,
+                    )
 
                 raw_prep_args = _collect_prep_arguments(parsed_sentence, pred)
                 if obj is not None:

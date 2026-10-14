@@ -113,7 +113,10 @@ class CuratedDomainKnowledge:
         return self._rules
 
     def find_matching_rule(
-        self, proposition: RobustProposition
+        self,
+        proposition: RobustProposition,
+        question: str = "",
+        context: str = "",
     ) -> Optional[Tuple[DomainPropertyRule, Dict[str, Any]]]:
         """
         Evaluate proposition against curated rules.
@@ -143,6 +146,10 @@ class CuratedDomainKnowledge:
                 pred_idx_lem = proposition.source_text.lower().find(proposition.predicate_lemma.lower())
                 if pred_idx_lem > 0:
                     subj_tokens.update(re.findall(r"\b[A-Za-z0-9_]+\b", proposition.source_text[:pred_idx_lem].lower()))
+
+        PRONOUNS = {"it", "they", "this", "these", "-pron-"}
+        is_pronoun_subj = bool(proposition.subject_lemma and proposition.subject_lemma.lower() in PRONOUNS)
+        context_str = f"{question} {context}".lower()
 
         # 2. Collect predicate tokens/lemmas
         pred_tokens: Set[str] = set()
@@ -186,12 +193,23 @@ class CuratedDomainKnowledge:
 
             # Step C: Target entity check (whole-token match against target_entity_lemmas)
             entity_matches = [e for e in rule.target_entity_lemmas if e in subj_tokens]
+            if not entity_matches and is_pronoun_subj and context_str:
+                # Anaphoric subject inherits target entity from question/reference context
+                context_entity_matches = [e for e in rule.target_entity_lemmas if re.search(r"\b" + re.escape(e) + r"\b", context_str)]
+                if context_entity_matches:
+                    entity_matches = context_entity_matches
+
             if not entity_matches:
                 continue
 
             # Step D1: Required entity modifiers check (e.g. 'primary' for PK_NOT_NULL)
             if rule.required_entity_modifiers:
                 req_found = [m for m in rule.required_entity_modifiers if m in subj_tokens]
+                if not req_found and is_pronoun_subj and context_str:
+                    # Anaphoric pronoun inherits required entity modifiers from discourse context
+                    context_req = [m for m in rule.required_entity_modifiers if re.search(r"\b" + re.escape(m) + r"\b", context_str)]
+                    if context_req:
+                        req_found = context_req
                 if not req_found:
                     continue
 
@@ -237,7 +255,7 @@ class CuratedDomainKnowledge:
         Rescues domain-relevant propositions from lexical question-overlap false negatives.
         """
         # If the proposition directly satisfies a rule, it is inherently applicable
-        if self.find_matching_rule(proposition) is not None:
+        if self.find_matching_rule(proposition, question=question, context=reference_answer) is not None:
             return True
 
         context_text = f"{question} {reference_answer}".lower()
@@ -259,6 +277,9 @@ class CuratedDomainKnowledge:
         if "prep_phrase_lemmas" in proposition.properties:
             prop_tokens.update(t.lower() for t in proposition.properties["prep_phrase_lemmas"])
 
+        PRONOUNS = {"it", "they", "this", "these", "-pron-"}
+        is_pronoun_subj = bool(proposition.subject_lemma and proposition.subject_lemma.lower() in PRONOUNS)
+
         for rule in self._rules:
             # 1. Does the assessment question/reference connect to this rule domain?
             topic_set = set(rule.domain_topic_lemmas)
@@ -266,10 +287,20 @@ class CuratedDomainKnowledge:
             if not context_overlap:
                 continue
 
-            # 2. Does the student proposition connect to this rule domain or entity?
-            rule_domain_and_entities = topic_set.union(rule.target_entity_lemmas)
-            prop_overlap = prop_tokens.intersection(rule_domain_and_entities)
-            if prop_overlap:
+            # 2. Does the student proposition connect to this rule's target entity or property?
+            # Must connect to the target entity or specific property concepts of the rule,
+            # NOT just arbitrary background container words like "table" or "database".
+            rule_target_concepts = set(rule.target_entity_lemmas)
+            if rule.required_entity_modifiers:
+                rule_target_concepts.update(rule.required_entity_modifiers)
+            rule_prop_concepts = set(rule.object_lemmas)
+
+            prop_target_overlap = prop_tokens.intersection(rule_target_concepts)
+            prop_prop_overlap = prop_tokens.intersection(rule_prop_concepts)
+
+            if (prop_target_overlap and prop_prop_overlap) or (is_pronoun_subj and prop_prop_overlap):
+                return True
+            if prop_target_overlap and (prop_tokens & set(rule.predicate_lemmas)):
                 return True
 
         return False

@@ -1,0 +1,44 @@
+{
+  "benchmark": "Task 7: Fresh Benchmark Evaluation",
+  "timestamp": "2026-10-13T13:37:48.067458+00:00",
+  "git_commit": "379117b4f0a889288474e8c9a6375bd18b782082",
+  "dataset": {
+    "name": "University of North Texas Computer Science Short Answer Dataset v2.0",
+    "citation": "Mohler, M., Bunescu, R., & Mihalcea, R. (2011). Learning to grade short answer questions. ACL 2011.",
+    "total_questions": 87,
+    "active_questions": 81,
+    "total_records": 2442,
+    "active_records_evaluated": 2273,
+    "target_variable": "score_ave (0.0 to 5.0 scale)"
+  },
+  "models_evaluated": {
+    "V0": {
+      "name": "TF-IDF Baseline",
+      "module": "models.v0_tfidf.predictor.V0Predictor",
+      "scale": 5.0
+    },
+    "V1": {
+      "name": "Base ASAG (Basak et al. 2019-inspired)",
+      "module": "models.v1_base_asag.pipeline.BaseASAGPipeline",
+      "scale": 5.0
+    },
+    "V5": {
+      "name": "Current Proposition-Level ASAG",
+      "module": "proposed_asag.pipeline_v5.Experiment5Pipeline",
+      "variant": "V5",
+      "scale": 5.0,
+      "features": {
+        "core_paraphrase_recovery": true,
+        "canonical_fragments": true,
+        "contradiction_guards": true,
+        "model_d2_scoring": true,
+        "deduplication": true
+      }
+    }
+  },
+  "artifact_paths": {
+    "results_csv": "evaluation/results/fresh_v5_benchmark/task7_benchmark_results.csv",
+    "summary_json": "evaluation/results/fresh_v5_benchmark/task7_benchmark_summary.json",
+    "config_json": "evaluation/results/fresh_v5_benchmark/task7_benchmark_config.json"
+  }
+}

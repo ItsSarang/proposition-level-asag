@@ -32,6 +32,8 @@ class QuestionAnalysis:
     focus_lemmas: Tuple[str, ...]
     predicates: Tuple[str, ...]
     entities: Tuple[str, ...]
+    primary_entities: Tuple[str, ...] = ()
+    domain_context: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -41,6 +43,8 @@ class QuestionAnalysis:
             "focus_lemmas": list(self.focus_lemmas),
             "predicates": list(self.predicates),
             "entities": list(self.entities),
+            "primary_entities": list(self.primary_entities),
+            "domain_context": list(self.domain_context),
         }
 
 
@@ -83,6 +87,14 @@ class QuestionAnalyzer:
         "between", "of", "and", "or", "to", "from", "program", "c++"
     }
 
+    INQUIRY_TERMS = {
+        "purpose", "role", "function", "definition", "advantage",
+        "disadvantage", "concept", "meaning", "operation", "use",
+        "importance", "goal", "objective"
+    }
+
+    DOMAIN_PREPS = {"in", "within", "inside", "under"}
+
     def __init__(self, parser: Optional[DependencyParser] = None) -> None:
         self._parser = parser or DependencyParser(model_name="en_core_web_sm")
 
@@ -114,6 +126,9 @@ class QuestionAnalyzer:
         predicates: List[str] = []
         entities: List[str] = []
 
+        domain_context: Set[str] = set()
+        primary_entities: Set[str] = set()
+
         for sent in parsed.sentences:
             for tok in sent.tokens:
                 lemma = tok.lemma.lower()
@@ -131,6 +146,50 @@ class QuestionAnalyzer:
                         focus_terms.append(text)
                         focus_lemmas.append(lemma)
 
+                # Extract domain context from DOMAIN_PREPS
+                if tok.text.lower() in self.DOMAIN_PREPS and tok.dep in ("prep", "adp"):
+                    for c_idx in tok.children_indices:
+                        child = sent.tokens[c_idx]
+                        if child.dep in ("pobj", "pcomp") and child.lemma.lower() not in self.STOP_WORDS:
+                            domain_context.add(child.lemma.lower())
+                            for sub_idx in child.children_indices:
+                                sub = sent.tokens[sub_idx]
+                                if sub.dep in ("amod", "compound") and sub.lemma.lower() not in self.STOP_WORDS:
+                                    domain_context.add(sub.lemma.lower())
+
+            # Extract primary queried entities
+            found_inquiry = False
+            for tok in sent.tokens:
+                if tok.lemma.lower() in self.INQUIRY_TERMS:
+                    for c_idx in tok.children_indices:
+                        child = sent.tokens[c_idx]
+                        if child.text.lower() == "of" and child.dep in ("prep", "adp"):
+                            for sub_idx in child.children_indices:
+                                sub = sent.tokens[sub_idx]
+                                if sub.dep in ("pobj", "pcomp") and sub.lemma.lower() not in self.STOP_WORDS:
+                                    primary_entities.add(sub.lemma.lower())
+                                    for s_c_idx in sub.children_indices:
+                                        s_c = sent.tokens[s_c_idx]
+                                        if s_c.dep in ("amod", "compound") and s_c.lemma.lower() not in self.STOP_WORDS:
+                                            primary_entities.add(s_c.lemma.lower())
+                                    found_inquiry = True
+
+            if not found_inquiry:
+                for tok in sent.tokens:
+                    if tok.dep in ("nsubj", "nsubjpass", "attr", "dobj", "compound") and tok.pos in ("NOUN", "PROPN"):
+                        lem = tok.lemma.lower()
+                        if lem not in self.STOP_WORDS and lem not in self.INQUIRY_TERMS and lem not in domain_context:
+                            primary_entities.add(lem)
+                            for c_idx in tok.children_indices:
+                                c = sent.tokens[c_idx]
+                                if c.dep in ("amod", "compound") and c.lemma.lower() not in self.STOP_WORDS:
+                                    primary_entities.add(c.lemma.lower())
+
+            if not primary_entities:
+                for e in entities:
+                    if e not in domain_context and e not in self.INQUIRY_TERMS and e not in self.STOP_WORDS:
+                        primary_entities.add(e)
+
         return QuestionAnalysis(
             question_text=question_text,
             question_type=q_type,
@@ -138,6 +197,8 @@ class QuestionAnalyzer:
             focus_lemmas=tuple(focus_lemmas),
             predicates=tuple(predicates),
             entities=tuple(entities),
+            primary_entities=tuple(sorted(primary_entities)),
+            domain_context=tuple(sorted(domain_context)),
         )
 
 
@@ -243,14 +304,44 @@ class QuestionAwareRelevanceAnalyzer:
 
         is_relevant = evidence_strength >= self.relevance_threshold
 
-        explanation = (
-            f"Concept overlap={concept_overlap:.2f} ({len(context_concept_matches)} matched), "
-            f"Question similarity={question_similarity:.2f}, "
-            f"Predicate relevance={predicate_relevance:.2f}, "
-            f"Question type='{q_analysis.question_type}', "
-            f"Evidence strength={evidence_strength:.2f} "
-            f"({'RELEVANT' if is_relevant else 'IRRELEVANT'} against threshold {self.relevance_threshold})"
+        # Check primary entities vs background domain context
+        primary_set = set(q_analysis.primary_entities)
+        domain_set = set(q_analysis.domain_context)
+
+        PRONOUN_LEMMAS = {"it", "they", "this", "these", "-pron-"}
+        has_pronoun_subject = bool(
+            proposition.subject_lemma and proposition.subject_lemma.lower() in PRONOUN_LEMMAS
         )
+
+        primary_matches = prop_concepts & primary_set
+        domain_matches = prop_concepts & domain_set
+
+        # If question has an established primary entity and background domain context:
+        # A proposition that only mentions background domain context (e.g. "relational database")
+        # without mentioning the primary queried entity ("primary key") is a peripheral domain remark.
+        is_background_domain_only = False
+        if primary_set and domain_set and domain_matches and not primary_matches and not has_pronoun_subject:
+            non_domain_matches = (prop_concepts & target_focus) - domain_set
+            if not non_domain_matches:
+                is_background_domain_only = True
+                evidence_strength = min(0.20, evidence_strength)
+                is_relevant = False
+
+        if is_background_domain_only:
+            explanation = (
+                f"Proposition discusses background domain context ({', '.join(sorted(domain_matches))}) "
+                f"but does not address the queried concept ({', '.join(sorted(primary_set))}). "
+                f"Classified as IRRELEVANT (neutral off-topic remark)."
+            )
+        else:
+            explanation = (
+                f"Concept overlap={concept_overlap:.2f} ({len(context_concept_matches)} matched), "
+                f"Question similarity={question_similarity:.2f}, "
+                f"Predicate relevance={predicate_relevance:.2f}, "
+                f"Question type='{q_analysis.question_type}', "
+                f"Evidence strength={evidence_strength:.2f} "
+                f"({'RELEVANT' if is_relevant else 'IRRELEVANT'} against threshold {self.relevance_threshold})"
+            )
 
         return RelevanceEvidence(
             question_similarity=question_similarity,

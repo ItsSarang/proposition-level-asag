@@ -62,9 +62,51 @@ DOMAIN_EQUIVALENCE_RATIONALE: Dict[str, str] = {
         "In introductory CS, 'function', 'method', 'procedure', and 'subroutine' are "
         "frequently paired across procedural and object-oriented paradigms."
     ),
+    "declare": (
+        "In variable scoping and programming languages, 'declare' and 'define' are often "
+        "used by students interchangeably to describe variable creation and specification in a block or function scope."
+    ),
+    "define": (
+        "In programming languages and variable scoping, 'define' is used interchangeably "
+        "with 'declare' regarding variable allocation and specification."
+    ),
+    "table": (
+        "In relational databases, 'table' and 'relation' are standard technical synonyms "
+        "originating from Codd's relational model."
+    ),
+    "relation": (
+        "In relational database theory, 'relation' is the formal term for a tabular structure or 'table'."
+    ),
+    "column": (
+        "In databases and tables, 'column', 'attribute', and 'field' denote vertical data dimensions."
+    ),
+    "attribute": (
+        "In relational database theory and modeling, 'attribute' is synonymous with a table 'column' or 'field'."
+    ),
+    "pop": (
+        "In stack data structures, 'pop' refers to removing the top element."
+    ),
+    "remove": (
+        "In stack data structures, 'remove' describes the pop operation taking off the top element."
+    ),
+    "push": (
+        "In stack data structures, 'push' refers to inserting or adding an element to the top."
+    ),
+    "insert": (
+        "In stack data structures, 'insert' describes pushing or placing an element on top."
+    ),
+    "element": (
+        "In data structures (arrays, stacks, lists), 'element' and 'item' refer to the constituent data members stored in the container."
+    ),
+    "item": (
+        "In collections and data structures, 'item' is used synonymously with 'element' or 'entry'."
+    ),
+    "add": (
+        "In collection operations (push, enqueue, append), 'add' describes inserting a new element."
+    ),
 }
 
-# 13 Curated Domain Lexical Equivalences
+# Curated Domain Lexical Equivalences
 DOMAIN_LEXICAL_EQUIVALENCES: Dict[str, Set[str]] = {
     "record": {"row", "tuple", "entry"},
     "row": {"record", "tuple", "entry"},
@@ -79,6 +121,19 @@ DOMAIN_LEXICAL_EQUIVALENCES: Dict[str, Set[str]] = {
     "free": {"deallocate", "release"},
     "subroutine": {"function", "method", "procedure"},
     "function": {"subroutine", "method", "procedure"},
+    "declare": {"define"},
+    "define": {"declare"},
+    "table": {"relation"},
+    "relation": {"table"},
+    "column": {"attribute", "field"},
+    "attribute": {"column", "field"},
+    "pop": {"remove"},
+    "remove": {"pop"},
+    "push": {"insert", "add"},
+    "insert": {"push", "add"},
+    "add": {"push", "insert"},
+    "element": {"item"},
+    "item": {"element"},
 }
 
 

@@ -102,6 +102,10 @@ class InterpretableSeverityEstimator:
         "PRIMARY_KEY": {"uniqueness", "nullability"},
         "BST": {"relative_size", "sort_order", "ordering"},
         "COMPILER": {"translation", "execution_discipline", "translate"},
+        "ARRAY": {"size_mutability", "access_pattern", "contiguous"},
+        "STACK": {"access_discipline"},
+        "QUEUE": {"access_discipline"},
+        "DESTRUCTOR": {"deallocation", "cleanup", "memory"},
     }
 
     # Canonical entities and incompatible/confused entity pairs
@@ -109,12 +113,20 @@ class InterpretableSeverityEstimator:
         "PRIMARY_KEY": {"primary key", "key", "pk"},
         "BST": {"binary search tree", "bst"},
         "COMPILER": {"compiler"},
+        "ARRAY": {"array", "vector"},
+        "STACK": {"stack"},
+        "QUEUE": {"queue"},
+        "DESTRUCTOR": {"destructor"},
     }
 
     CONFUSED_ENTITIES: Dict[str, Set[str]] = {
         "PRIMARY_KEY": {"foreign key", "candidate key", "super key"},
         "BST": {"binary tree", "general binary tree", "b-tree", "trie"},
         "COMPILER": {"interpreter", "assembler", "linker", "loader"},
+        "ARRAY": {"linked list", "list"},
+        "STACK": {"queue", "deque"},
+        "QUEUE": {"stack", "priority queue"},
+        "DESTRUCTOR": {"constructor"},
     }
 
     # Peripheral cues: naming, extensions, formatting, dates, syntax styles, colors, implementation details

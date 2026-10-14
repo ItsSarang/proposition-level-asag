@@ -1,0 +1,14 @@
+{
+  "output_dir": "/Users/sarang/Dev/College/MIT_WPU/Projects/AIES/proposition-level-asag/evaluation/results/task8_benchmark",
+  "task7_csv": "/Users/sarang/Dev/College/MIT_WPU/Projects/AIES/proposition-level-asag/evaluation/results/fresh_v5_benchmark/task7_benchmark_results.csv",
+  "exp4_csv": "/Users/sarang/Dev/College/MIT_WPU/Projects/AIES/proposition-level-asag/evaluation/experiments/experiment_4/experiment_4_results.csv",
+  "dataset_active_count": 2273,
+  "git_revision": "379117b4f0a889288474e8c9a6375bd18b782082",
+  "models_evaluated": [
+    "V0",
+    "V1",
+    "V5_Core_Only",
+    "V5_Full",
+    "Task7_V5"
+  ]
+}
