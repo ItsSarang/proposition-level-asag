@@ -1,21 +1,21 @@
-"""Integration tests for Central Model Registry and unified V0-V5 evaluation."""
+"""Integration tests for Central Model Registry and unified V0, V1, V5 evaluation."""
 import pytest
 from common.types import GradingResult
 from models.registry import get_model, list_models, get_metadata
 
 def test_list_models():
     models = list_models()
-    assert len(models) == 6
+    assert len(models) == 3
     versions = [m["version"] for m in models]
-    assert versions == ["V0", "V1", "V2", "V3", "V4", "V5"]
+    assert versions == ["V0", "V1", "V5"]
     for m in models:
-        assert m["status"] == "FROZEN"
+        assert m["status"] == "ACTIVE"
 
 def test_get_metadata():
     meta = get_metadata("V5")
     assert meta is not None
     assert meta.version == "V5"
-    assert "Final" in meta.name
+    assert "Proposed" in meta.name
 
     meta_none = get_metadata("V99")
     assert meta_none is None
@@ -24,7 +24,7 @@ def test_get_model_invalid():
     with pytest.raises(ValueError):
         get_model("V99")
 
-@pytest.mark.parametrize("version", ["V0", "V1", "V2", "V3", "V4", "V5"])
+@pytest.mark.parametrize("version", ["V0", "V1", "V5"])
 def test_all_models_unified_evaluate(version):
     q = "What is the purpose of a primary key?"
     r = "A primary key uniquely identifies each record in a table."

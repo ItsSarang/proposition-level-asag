@@ -68,7 +68,7 @@ def health_check():
         "status": "healthy",
         "framework": "Flask",
         "service": "asag-backend",
-        "models_available": ["V0", "V1", "V2", "V3", "V4", "V5"],
+        "models_available": ["V0", "V1", "V5"],
     })
 
 

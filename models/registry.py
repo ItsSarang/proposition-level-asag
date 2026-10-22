@@ -1,13 +1,10 @@
 """
 Central Model Registry for Proposition-Level ASAG Research Project.
 
-Enables seamless model discovery and instantiation across V0 through V5:
-- V0: TF-IDF Baseline
-- V1: Base ASAG (Basak et al. 2019-inspired)
-- V2: Proposition-Level ASAG (Historical System 3)
-- V3: Enhanced Proposition-Level ASAG (System 4 Overhaul)
-- V4: Severity-Aware Proposition ASAG (Experiment 4)
-- V5: Final Proposition-Level ASAG (Experiment 5)
+Enables seamless model discovery and instantiation across the three benchmarked systems:
+- V0: TF-IDF Baseline (Model 1)
+- V1: Base ASAG (Basak et al. 2019-inspired) (Model 2)
+- V5: Proposed Proposition-Level ASAG (Model 3)
 """
 
 from dataclasses import dataclass
@@ -25,50 +22,26 @@ class ModelMetadata:
 MODELS: Dict[str, ModelMetadata] = {
     "V0": ModelMetadata(
         version="V0",
-        name="TF-IDF Baseline",
+        name="Model 1 — TF-IDF Baseline",
         description="Simple TF-IDF + cosine similarity lexical baseline.",
-        status="FROZEN",
+        status="ACTIVE",
         pipeline_module="models.v0_tfidf.predictor.V0Predictor",
         config={"scale": 5.0},
     ),
     "V1": ModelMetadata(
         version="V1",
-        name="Base ASAG (Basak et al. 2019-inspired)",
+        name="Model 2 — Base ASAG (Basak et al. 2019-inspired)",
         description="Classical semantic/dependency clausal triple ASAG pipeline.",
-        status="FROZEN",
+        status="ACTIVE",
         pipeline_module="models.v1_base_asag.pipeline.BaseASAGPipeline",
         config={"scale": 5.0, "threshold": 0.55},
     ),
-    "V2": ModelMetadata(
-        version="V2",
-        name="Proposition-Level ASAG",
-        description="Proposition-level extension for unmatched student info (Stages 11-14).",
-        status="FROZEN",
-        pipeline_module="models.v2_proposition_asag.pipeline.V2Pipeline",
-        config={"scale": 5.0},
-    ),
-    "V3": ModelMetadata(
-        version="V3",
-        name="Enhanced Proposition-Level ASAG",
-        description="Multi-tier semantic matching, Hungarian bipartite assignment, and bounded scoring.",
-        status="FROZEN",
-        pipeline_module="models.v3_enhanced_proposition_asag.pipeline.OverhauledASAGPipeline",
-        config={"scale": 5.0, "matching": "global_optimal"},
-    ),
-    "V4": ModelMetadata(
-        version="V4",
-        name="Severity-Aware Proposition ASAG",
-        description="Experiment 4 severity-aware contradiction analysis with Model D scoring.",
-        status="FROZEN",
-        pipeline_module="models.v4_severity_aware.pipeline.SeverityAwarePipeline",
-        config={"scale": 5.0, "scorer": "Model D"},
-    ),
     "V5": ModelMetadata(
         version="V5",
-        name="Final Proposition-Level ASAG",
-        description="Final proposed model with core recovery, canonical fragments, guards, and Model D2.",
-        status="FROZEN",
-        pipeline_module="models.v5_final.pipeline.Experiment5Pipeline",
+        name="Model 3 — Proposed Proposition-Level ASAG",
+        description="Proposed model with canonical fragments, core paraphrase recovery, contradiction guards, and 4-way classification.",
+        status="ACTIVE",
+        pipeline_module="models.v5_proposed.pipeline.Experiment5Pipeline",
         config={"scale": 5.0, "scorer": "Model D2", "core_recovery": True, "guards": True},
     ),
 }
@@ -77,7 +50,7 @@ class ModelRegistry:
     """
     Central discovery, configuration, and instantiation registry for ASAG models.
 
-    Supports versions V0 through V5, providing a uniform discovery layer so that
+    Supports the three benchmarked systems (V0, V1, V5), providing a uniform discovery layer so that
     evaluation runners, backend APIs, and CLI tools do not depend on internal
     pipeline paths.
     """

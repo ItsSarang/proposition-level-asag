@@ -25,7 +25,7 @@ from base_asag.dependency.parser import DependencyParser, ParsedDocument
 from base_asag.representation.hybrid import RobustProposition
 from models.registry import get_model
 from proposed_asag.classification.robust_classifier import AdditionalInfoClass
-from proposed_asag.pipeline_v5 import Experiment5Pipeline, Experiment5Result
+from models.v5_proposed.pipeline import Experiment5Pipeline, Experiment5Result
 
 logger = logging.getLogger(__name__)
 
@@ -57,7 +57,10 @@ class ASAGAnalysisService:
             raise ValueError("Question, reference answer, and student answer are all required.")
 
         # Execute V5 evaluation
-        result: Experiment5Result = self.pipeline.evaluate(q, r, s)
+        if hasattr(self.pipeline, "evaluate_raw"):
+            result: Experiment5Result = self.pipeline.evaluate_raw(q, r, s)
+        else:
+            result: Experiment5Result = self.pipeline.evaluate(q, r, s)
 
         # Parse documents for token-level dependency trees
         stu_parsed: ParsedDocument = self.parser.parse_document(s)
@@ -502,16 +505,28 @@ class ASAGAnalysisService:
         result: Experiment5Result,
         scale: float = 5.0,
     ) -> Dict[str, Any]:
-        """Build Model D2 scoring breakdown and explanation trace."""
+        """Build Model D2 scoring breakdown and explanation trace with scale-consistent values."""
         score_res = result.score_result
+
+        # Scale adjustments to grade-point scale (e.g. 0.50 normalized * 5.0 = 2.50 points)
+        # to ensure Base (5.00) + Additional (0.00) - Penalties (2.50) = Final (2.50) displays consistently.
+        pos_adj_pts = round(score_res.positive_adjustment * scale, 2)
+        neg_adj_pts = round(score_res.negative_adjustment * scale, 2)
+        net_adj_pts = round(score_res.net_adjustment * scale, 2)
 
         itemized_trace = []
         for adj in score_res.itemized_adjustments:
+            if adj.severity_level == "CORE_CONTRADICTION" and adj.adjustment_value != 0:
+                item_adj_pts = -round((score_res.base_score - score_res.core_effective_score) * scale, 2)
+            else:
+                item_adj_pts = round(adj.adjustment_value * scale, 2)
+
             itemized_trace.append({
                 "proposition_text": adj.proposition_text,
                 "classification": adj.classification,
                 "severity_level": adj.severity_level,
-                "adjustment_value": adj.adjustment_value,
+                "adjustment_value": item_adj_pts,
+                "normalized_adjustment": round(adj.adjustment_value, 4),
                 "rationale": adj.rationale,
             })
 
@@ -519,9 +534,12 @@ class ASAGAnalysisService:
             "base_score_raw": round(result.base_score_raw, 4),
             "base_score_effective": round(result.base_score_effective, 4),
             "base_grade": round(result.base_score_effective * scale, 2),
-            "positive_adjustment": round(score_res.positive_adjustment, 4),
-            "negative_adjustment": round(score_res.negative_adjustment, 4),
-            "net_adjustment": round(score_res.net_adjustment, 4),
+            "positive_adjustment": pos_adj_pts,
+            "negative_adjustment": neg_adj_pts,
+            "net_adjustment": net_adj_pts,
+            "normalized_positive_adjustment": round(score_res.positive_adjustment, 4),
+            "normalized_negative_adjustment": round(score_res.negative_adjustment, 4),
+            "normalized_net_adjustment": round(score_res.net_adjustment, 4),
             "final_score": round(result.final_score, 4),
             "final_grade": round(result.final_grade, 2),
             "max_points": scale,

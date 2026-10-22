@@ -1,0 +1,530 @@
+{
+  "benchmark_metadata": {
+    "total_records": 2273,
+    "scale_max": 5.0,
+    "models_evaluated": [
+      {
+        "id": "V0",
+        "name": "Model 1: TF-IDF Baseline (Cosine Sim)",
+        "paradigm": "Lexical Vector Overlap"
+      },
+      {
+        "id": "V1",
+        "name": "Model 2: Base ASAG (Basak-inspired)",
+        "paradigm": "Clausal Dependency Triples"
+      },
+      {
+        "id": "V5_Symbolic",
+        "name": "Model 3a: Proposed ASAG (Symbolic)",
+        "paradigm": "Proposition-Level Symbolic + Rules"
+      },
+      {
+        "id": "V5_Calibrated",
+        "name": "Model 3b: Proposed ASAG (Calibrated)",
+        "paradigm": "Calibrated Hybrid Proposition-Lexical"
+      }
+    ]
+  },
+  "subsets": {
+    "full_active": {
+      "name": "Full Active Benchmark",
+      "n_samples": 2273,
+      "pct_of_dataset": 100.0,
+      "description": "Entire active evaluation benchmark without omitted ordering/selection tasks",
+      "ground_truth": {
+        "mean": 4.1839,
+        "std": 1.0964
+      },
+      "models": {
+        "V0": {
+          "system_id": "V0",
+          "name": "Model 1: TF-IDF Baseline",
+          "metrics": {
+            "mae": 2.6571,
+            "rmse": 2.9178,
+            "pearson_r": 0.4184,
+            "pearson_p": 4.98549268427204e-97,
+            "spearman_rho": 0.4424,
+            "spearman_p": 1.4084876586081727e-109,
+            "qwk": 0.1151
+          },
+          "distribution": {
+            "mean": 1.5316,
+            "std": 1.157,
+            "descriptive_bias": -2.6523,
+            "pct_exactly_zero": 8.49,
+            "pct_near_zero": 19.62,
+            "pct_middle": 75.85,
+            "pct_high_grade": 4.53
+          }
+        },
+        "V1": {
+          "system_id": "V1",
+          "name": "Model 2: Base ASAG (Basak et al.)",
+          "metrics": {
+            "mae": 3.8041,
+            "rmse": 4.0365,
+            "pearson_r": 0.1383,
+            "pearson_p": 3.578065955844871e-11,
+            "spearman_rho": 0.1179,
+            "spearman_p": 1.7471240022677145e-08,
+            "qwk": 0.018
+          },
+          "distribution": {
+            "mean": 0.3925,
+            "std": 1.0117,
+            "descriptive_bias": -3.7914,
+            "pct_exactly_zero": 81.39,
+            "pct_near_zero": 82.14,
+            "pct_middle": 15.31,
+            "pct_high_grade": 2.55
+          }
+        },
+        "V5_Symbolic": {
+          "system_id": "V5_Symbolic",
+          "name": "Model 3a: Proposed ASAG (Symbolic)",
+          "metrics": {
+            "mae": 3.3358,
+            "rmse": 3.6745,
+            "pearson_r": 0.2616,
+            "pearson_p": 6.891493261541651e-37,
+            "spearman_rho": 0.282,
+            "spearman_p": 7.873691427021503e-43,
+            "qwk": 0.0614
+          },
+          "distribution": {
+            "mean": 0.886,
+            "std": 1.5138,
+            "descriptive_bias": -3.2979,
+            "pct_exactly_zero": 61.72,
+            "pct_near_zero": 64.76,
+            "pct_middle": 26.13,
+            "pct_high_grade": 9.11
+          }
+        },
+        "V5_Calibrated": {
+          "system_id": "V5_Calibrated",
+          "name": "Model 3b: Proposed ASAG (Calibrated Hybrid)",
+          "metrics": {
+            "mae": 1.1929,
+            "rmse": 1.8242,
+            "pearson_r": 0.4574,
+            "pearson_p": 6.839717215255916e-118,
+            "spearman_rho": 0.4715,
+            "spearman_p": 3.81387279532397e-126,
+            "qwk": 0.3557
+          },
+          "distribution": {
+            "mean": 3.4847,
+            "std": 1.8756,
+            "descriptive_bias": -0.6992,
+            "pct_exactly_zero": 16.98,
+            "pct_near_zero": 17.2,
+            "pct_middle": 22.22,
+            "pct_high_grade": 60.58
+          }
+        }
+      }
+    },
+    "assignments_1_10": {
+      "name": "Assignments 1\u201310",
+      "n_samples": 1721,
+      "pct_of_dataset": 75.71,
+      "description": "Regular homework assignments covering fundamental C++ programming",
+      "ground_truth": {
+        "mean": 4.1784,
+        "std": 1.0689
+      },
+      "models": {
+        "V0": {
+          "system_id": "V0",
+          "name": "Model 1: TF-IDF Baseline",
+          "metrics": {
+            "mae": 2.6472,
+            "rmse": 2.9073,
+            "pearson_r": 0.4177,
+            "pearson_p": 1.2118626093009235e-73,
+            "spearman_rho": 0.4451,
+            "spearman_p": 1.7117435498494037e-84,
+            "qwk": 0.1126
+          },
+          "distribution": {
+            "mean": 1.5353,
+            "std": 1.1701,
+            "descriptive_bias": -2.6431,
+            "pct_exactly_zero": 7.84,
+            "pct_near_zero": 19.52,
+            "pct_middle": 75.54,
+            "pct_high_grade": 4.94
+          }
+        },
+        "V1": {
+          "system_id": "V1",
+          "name": "Model 2: Base ASAG (Basak et al.)",
+          "metrics": {
+            "mae": 3.8019,
+            "rmse": 4.0192,
+            "pearson_r": 0.1336,
+            "pearson_p": 2.643802677297138e-08,
+            "spearman_rho": 0.1227,
+            "spearman_p": 3.2620708608225105e-07,
+            "qwk": 0.0166
+          },
+          "distribution": {
+            "mean": 0.3899,
+            "std": 0.9672,
+            "descriptive_bias": -3.7885,
+            "pct_exactly_zero": 80.3,
+            "pct_near_zero": 81.29,
+            "pct_middle": 16.73,
+            "pct_high_grade": 1.98
+          }
+        },
+        "V5_Symbolic": {
+          "system_id": "V5_Symbolic",
+          "name": "Model 3a: Proposed ASAG (Symbolic)",
+          "metrics": {
+            "mae": 3.3491,
+            "rmse": 3.6797,
+            "pearson_r": 0.2592,
+            "pearson_p": 8.039904659400857e-28,
+            "spearman_rho": 0.2871,
+            "spearman_p": 5.269063203336062e-34,
+            "qwk": 0.0593
+          },
+          "distribution": {
+            "mean": 0.8656,
+            "std": 1.5017,
+            "descriptive_bias": -3.3128,
+            "pct_exactly_zero": 61.71,
+            "pct_near_zero": 65.43,
+            "pct_middle": 25.39,
+            "pct_high_grade": 9.18
+          }
+        },
+        "V5_Calibrated": {
+          "system_id": "V5_Calibrated",
+          "name": "Model 3b: Proposed ASAG (Calibrated Hybrid)",
+          "metrics": {
+            "mae": 1.21,
+            "rmse": 1.8281,
+            "pearson_r": 0.4535,
+            "pearson_p": 4.872443019481481e-88,
+            "spearman_rho": 0.4735,
+            "spearman_p": 6.959158867309286e-97,
+            "qwk": 0.3441
+          },
+          "distribution": {
+            "mean": 3.4656,
+            "std": 1.8727,
+            "descriptive_bias": -0.7127,
+            "pct_exactly_zero": 16.79,
+            "pct_near_zero": 16.97,
+            "pct_middle": 23.36,
+            "pct_high_grade": 59.67
+          }
+        }
+      }
+    },
+    "exams_11_12": {
+      "name": "Exams 11\u201312",
+      "n_samples": 552,
+      "pct_of_dataset": 24.29,
+      "description": "Midterm and final exam questions requiring synthetic explanations",
+      "ground_truth": {
+        "mean": 4.2011,
+        "std": 1.1778
+      },
+      "models": {
+        "V0": {
+          "system_id": "V0",
+          "name": "Model 1: TF-IDF Baseline",
+          "metrics": {
+            "mae": 2.6877,
+            "rmse": 2.9502,
+            "pearson_r": 0.424,
+            "pearson_p": 1.6933696501812893e-25,
+            "spearman_rho": 0.4338,
+            "spearman_p": 9.728573519627019e-27,
+            "qwk": 0.1226
+          },
+          "distribution": {
+            "mean": 1.5202,
+            "std": 1.1148,
+            "descriptive_bias": -2.6809,
+            "pct_exactly_zero": 10.51,
+            "pct_near_zero": 19.93,
+            "pct_middle": 76.81,
+            "pct_high_grade": 3.26
+          }
+        },
+        "V1": {
+          "system_id": "V1",
+          "name": "Model 2: Base ASAG (Basak et al.)",
+          "metrics": {
+            "mae": 3.8111,
+            "rmse": 4.0898,
+            "pearson_r": 0.1496,
+            "pearson_p": 0.0004210900458023108,
+            "spearman_rho": 0.1097,
+            "spearman_p": 0.009925536831899028,
+            "qwk": 0.0223
+          },
+          "distribution": {
+            "mean": 0.4008,
+            "std": 1.1395,
+            "descriptive_bias": -3.8003,
+            "pct_exactly_zero": 84.78,
+            "pct_near_zero": 84.78,
+            "pct_middle": 10.87,
+            "pct_high_grade": 4.35
+          }
+        },
+        "V5_Symbolic": {
+          "system_id": "V5_Symbolic",
+          "name": "Model 3a: Proposed ASAG (Symbolic)",
+          "metrics": {
+            "mae": 3.2944,
+            "rmse": 3.658,
+            "pearson_r": 0.2682,
+            "pearson_p": 1.5065389539751493e-10,
+            "spearman_rho": 0.2545,
+            "spearman_p": 1.3125066207944498e-09,
+            "qwk": 0.0678
+          },
+          "distribution": {
+            "mean": 0.9495,
+            "std": 1.5492,
+            "descriptive_bias": -3.2516,
+            "pct_exactly_zero": 61.78,
+            "pct_near_zero": 62.68,
+            "pct_middle": 28.44,
+            "pct_high_grade": 8.88
+          }
+        },
+        "V5_Calibrated": {
+          "system_id": "V5_Calibrated",
+          "name": "Model 3b: Proposed ASAG (Calibrated Hybrid)",
+          "metrics": {
+            "mae": 1.1394,
+            "rmse": 1.8119,
+            "pearson_r": 0.4694,
+            "pearson_p": 1.358693977196183e-31,
+            "spearman_rho": 0.4572,
+            "spearman_p": 7.199868412941663e-30,
+            "qwk": 0.3898
+          },
+          "distribution": {
+            "mean": 3.544,
+            "std": 1.8832,
+            "descriptive_bias": -0.6571,
+            "pct_exactly_zero": 17.57,
+            "pct_near_zero": 17.93,
+            "pct_middle": 18.66,
+            "pct_high_grade": 63.41
+          }
+        }
+      }
+    },
+    "sentential_ref": {
+      "name": "Sentential Reference Questions",
+      "n_samples": 1341,
+      "pct_of_dataset": 59.0,
+      "description": "Questions where the reference answer forms a complete grammatical clause",
+      "ground_truth": {
+        "mean": 4.1957,
+        "std": 1.0243
+      },
+      "models": {
+        "V0": {
+          "system_id": "V0",
+          "name": "Model 1: TF-IDF Baseline",
+          "metrics": {
+            "mae": 2.7464,
+            "rmse": 2.9427,
+            "pearson_r": 0.3743,
+            "pearson_p": 7.379449831094172e-46,
+            "spearman_rho": 0.3591,
+            "spearman_p": 4.343588470298627e-42,
+            "qwk": 0.0685
+          },
+          "distribution": {
+            "mean": 1.451,
+            "std": 0.8566,
+            "descriptive_bias": -2.7447,
+            "pct_exactly_zero": 3.21,
+            "pct_near_zero": 14.02,
+            "pct_middle": 85.23,
+            "pct_high_grade": 0.75
+          }
+        },
+        "V1": {
+          "system_id": "V1",
+          "name": "Model 2: Base ASAG (Basak et al.)",
+          "metrics": {
+            "mae": 3.552,
+            "rmse": 3.816,
+            "pearson_r": 0.1975,
+            "pearson_p": 2.9587705791451955e-13,
+            "spearman_rho": 0.1968,
+            "spearman_p": 3.5535015107365154e-13,
+            "qwk": 0.0326
+          },
+          "distribution": {
+            "mean": 0.6654,
+            "std": 1.2464,
+            "descriptive_bias": -3.5304,
+            "pct_exactly_zero": 68.46,
+            "pct_near_zero": 69.72,
+            "pct_middle": 25.95,
+            "pct_high_grade": 4.33
+          }
+        },
+        "V5_Symbolic": {
+          "system_id": "V5_Symbolic",
+          "name": "Model 3a: Proposed ASAG (Symbolic)",
+          "metrics": {
+            "mae": 3.452,
+            "rmse": 3.7255,
+            "pearson_r": 0.2278,
+            "pearson_p": 3.073072560355659e-17,
+            "spearman_rho": 0.2369,
+            "spearman_p": 1.4436874827383013e-18,
+            "qwk": 0.0426
+          },
+          "distribution": {
+            "mean": 0.7698,
+            "std": 1.3043,
+            "descriptive_bias": -3.426,
+            "pct_exactly_zero": 59.28,
+            "pct_near_zero": 64.13,
+            "pct_middle": 30.13,
+            "pct_high_grade": 5.74
+          }
+        },
+        "V5_Calibrated": {
+          "system_id": "V5_Calibrated",
+          "name": "Model 3b: Proposed ASAG (Calibrated Hybrid)",
+          "metrics": {
+            "mae": 1.0894,
+            "rmse": 1.6428,
+            "pearson_r": 0.3835,
+            "pearson_p": 3.134518080551386e-48,
+            "spearman_rho": 0.3757,
+            "spearman_p": 3.3478527170693357e-46,
+            "qwk": 0.3085
+          },
+          "distribution": {
+            "mean": 3.7178,
+            "std": 1.648,
+            "descriptive_bias": -0.4779,
+            "pct_exactly_zero": 10.29,
+            "pct_near_zero": 10.51,
+            "pct_middle": 25.28,
+            "pct_high_grade": 64.21
+          }
+        }
+      }
+    },
+    "non_sentential_ref": {
+      "name": "Non-Sentential Reference Questions",
+      "n_samples": 932,
+      "pct_of_dataset": 41.0,
+      "description": "Questions where reference answer is a non-finite clause or nominal fragment",
+      "ground_truth": {
+        "mean": 4.1668,
+        "std": 1.1923
+      },
+      "models": {
+        "V0": {
+          "system_id": "V0",
+          "name": "Model 1: TF-IDF Baseline",
+          "metrics": {
+            "mae": 2.5286,
+            "rmse": 2.8816,
+            "pearson_r": 0.4681,
+            "pearson_p": 6.299770287270302e-52,
+            "spearman_rho": 0.5342,
+            "spearman_p": 7.078360493427326e-70,
+            "qwk": 0.1781
+          },
+          "distribution": {
+            "mean": 1.6476,
+            "std": 1.4785,
+            "descriptive_bias": -2.5192,
+            "pct_exactly_zero": 16.09,
+            "pct_near_zero": 27.68,
+            "pct_middle": 62.34,
+            "pct_high_grade": 9.98
+          }
+        },
+        "V1": {
+          "system_id": "V1",
+          "name": "Model 2: Base ASAG (Basak et al.)",
+          "metrics": {
+            "mae": 4.1668,
+            "rmse": 4.3341,
+            "pearson_r": null,
+            "pearson_p": null,
+            "spearman_rho": null,
+            "spearman_p": null,
+            "qwk": 0.0
+          },
+          "distribution": {
+            "mean": 0.0,
+            "std": 0.0,
+            "descriptive_bias": -4.1668,
+            "pct_exactly_zero": 100.0,
+            "pct_near_zero": 100.0,
+            "pct_middle": 0.0,
+            "pct_high_grade": 0.0
+          }
+        },
+        "V5_Symbolic": {
+          "system_id": "V5_Symbolic",
+          "name": "Model 3a: Proposed ASAG (Symbolic)",
+          "metrics": {
+            "mae": 3.1687,
+            "rmse": 3.5998,
+            "pearson_r": 0.2985,
+            "pearson_p": 1.2276009247822921e-20,
+            "spearman_rho": 0.3383,
+            "spearman_p": 2.2091152829001515e-26,
+            "qwk": 0.0896
+          },
+          "distribution": {
+            "mean": 1.0531,
+            "std": 1.7589,
+            "descriptive_bias": -3.1137,
+            "pct_exactly_zero": 65.24,
+            "pct_near_zero": 65.67,
+            "pct_middle": 20.39,
+            "pct_high_grade": 13.95
+          }
+        },
+        "V5_Calibrated": {
+          "system_id": "V5_Calibrated",
+          "name": "Model 3b: Proposed ASAG (Calibrated Hybrid)",
+          "metrics": {
+            "mae": 1.3417,
+            "rmse": 2.0573,
+            "pearson_r": 0.5359,
+            "pearson_p": 2.08745620749259e-70,
+            "spearman_rho": 0.5827,
+            "spearman_p": 7.404111211967949e-86,
+            "qwk": 0.3935
+          },
+          "distribution": {
+            "mean": 3.1492,
+            "std": 2.1167,
+            "descriptive_bias": -1.0176,
+            "pct_exactly_zero": 26.61,
+            "pct_near_zero": 26.82,
+            "pct_middle": 17.81,
+            "pct_high_grade": 55.36
+          }
+        }
+      }
+    }
+  }
+}

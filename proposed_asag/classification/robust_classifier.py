@@ -27,6 +27,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 from base_asag.representation.hybrid import RobustProposition
 from proposed_asag.contradiction.property_contradiction import (
     ContradictionEvidence,
+    ContradictionType,
     PropertyContradictionDetector,
 )
 from proposed_asag.evidence import (
@@ -257,6 +258,44 @@ class RobustAdditionalInfoClassifier:
                     verification_evidence=verification_ev,
                 )
             else:
+                # Check for direct domain knowledge rule contradiction (opposite polarity of verified rule)
+                conflict_match = self.evidence_verifier.domain_knowledge.find_conflicting_rule(
+                    proposition, question=question, context=f"{question} {reference_answer}"
+                )
+                if conflict_match is not None:
+                    c_rule, c_slots = conflict_match
+                    domain_contra_ev = ContradictionEvidence(
+                        is_contradicted=True,
+                        contradiction_type=ContradictionType.VALUE_CONFLICT,
+                        conflicting_entity=proposition.subject or c_rule.target_entity_lemmas[0],
+                        conflicting_property=c_rule.property_category,
+                        conflicting_value=f"asserts opposite of domain rule '{c_rule.rule_id}'",
+                        evidence_strength=0.90,
+                        explanation=(
+                            f"Domain knowledge contradiction on rule '{c_rule.rule_id}' ({c_rule.property_category}): "
+                            f"{c_rule.rationale}"
+                        ),
+                    )
+                    return ClassifiedProposition(
+                        proposition=proposition,
+                        classification=AdditionalInfoClass.INCORRECT,
+                        relevance_evidence=rel_evidence,
+                        contradiction_evidence=domain_contra_ev,
+                        score_effect=0.0,
+                        rationale=f"INCORRECT: Contradicts domain property rule '{c_rule.rule_id}' - {c_rule.rationale}",
+                        verification_evidence=VerificationEvidence(
+                            status=EvidenceStatus.CONTRADICTED,
+                            source=EvidenceSource.DOMAIN_KNOWLEDGE_BASE,
+                            rule_id=c_rule.rule_id,
+                            target_entity=c_rule.target_entity_lemmas[0],
+                            target_property=c_rule.property_category,
+                            confidence=0.90,
+                            rationale=c_rule.rationale,
+                            academic_citation=c_rule.academic_citation,
+                            slot_matches=c_slots,
+                        ),
+                    )
+
                 return ClassifiedProposition(
                     proposition=proposition,
                     classification=AdditionalInfoClass.UNCERTAIN,

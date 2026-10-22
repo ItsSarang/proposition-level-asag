@@ -17,6 +17,7 @@ Supports clean execution of all 5 experimental variants:
 
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass, field
 from enum import Enum
@@ -159,11 +160,19 @@ class Experiment5Pipeline:
         enable_contradiction_guards: Optional[bool] = None,
         scoring_model: Optional[str] = None,
         enable_additional_info: bool = True,
+        enable_hybrid_lexical: bool = False,
+        enable_calibration: bool = False,
+        hybrid_alpha: float = 0.25,
+        calibration_params: Optional[Dict[str, float]] = None,
     ) -> None:
         if isinstance(variant, str):
             variant = Experiment5Variant(variant)
         self.variant = variant
         self.enable_additional_info = enable_additional_info
+        self.enable_hybrid_lexical = enable_hybrid_lexical
+        self.enable_calibration = enable_calibration
+        self.hybrid_alpha = hybrid_alpha
+        self.calibration_params = calibration_params or {"k": 15.0, "x0": 0.05}
 
         # Configure switches according to variant unless explicitly overridden
         if variant == Experiment5Variant.V4:
@@ -610,6 +619,94 @@ class Experiment5Pipeline:
         final_norm = score_res.final_score
         final_grade = score_res.final_grade
 
+        lexical_similarity: Optional[float] = None
+        hybrid_score_raw: Optional[float] = None
+        if self.enable_hybrid_lexical:
+            # Check content word overlap to prevent stop-word leakage on completely off-topic text
+            stu_tokens = set(re.findall(r"\b[a-zA-Z0-9_]+\b", student_answer.lower()))
+            ref_tokens = set(re.findall(r"\b[a-zA-Z0-9_]+\b", reference_answer.lower()))
+            _COMMON_STOPS = {
+                "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are",
+                "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by",
+                "did", "do", "does", "doing", "down", "during", "each", "few", "for", "from", "further",
+                "had", "has", "have", "having", "he", "her", "here", "hers", "herself", "him", "himself",
+                "his", "how", "i", "if", "in", "into", "is", "it", "its", "itself", "me", "more", "most",
+                "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other",
+                "our", "ours", "ourselves", "out", "over", "own", "same", "she", "should", "so", "some",
+                "such", "than", "that", "the", "their", "theirs", "them", "themselves", "then", "there",
+                "these", "they", "this", "those", "through", "to", "too", "under", "until", "up", "very",
+                "was", "we", "were", "what", "when", "where", "which", "while", "who", "whom", "why", "with", "you", "your"
+            }
+            content_overlap = (stu_tokens - _COMMON_STOPS) & (ref_tokens - _COMMON_STOPS)
+
+            from baseline.tfidf_cosine.baseline import TfidfCosineBaseline
+            if not hasattr(self, "_tfidf_baseline"):
+                self._tfidf_baseline = TfidfCosineBaseline(lowercase=True)
+
+            if not content_overlap and score_res.core_effective_score <= 0.0 and score_res.counts.get("correct_additional", 0) == 0:
+                lexical_similarity = 0.0
+                raw_hybrid = 0.0
+            else:
+                lexical_similarity = float(self._tfidf_baseline.similarity(reference_answer, student_answer))
+                raw_hybrid = float(self.hybrid_alpha * score_res.final_score + (1.0 - self.hybrid_alpha) * lexical_similarity)
+            hybrid_score_raw = raw_hybrid
+            if self.enable_calibration:
+                k = float(self.calibration_params.get("k", 15.0))
+                x0 = float(self.calibration_params.get("x0", 0.05))
+                # Zero-anchored sigmoid mapping [0.0, 1.0] -> [0.0, 5.0]
+                def _raw_s(v: float) -> float:
+                    try:
+                        return 1.0 / (1.0 + math.exp(-k * (v - x0)))
+                    except OverflowError:
+                        return 0.0 if (-k * (v - x0)) > 0 else 1.0
+                s_val = _raw_s(raw_hybrid)
+                s_0 = _raw_s(0.0)
+                s_1 = _raw_s(1.0)
+                denom = s_1 - s_0
+                if denom <= 0.0:
+                    calib_grade = raw_hybrid * 5.0
+                else:
+                    calib_grade = max(0.0, min(5.0, (s_val - s_0) / denom * 5.0))
+
+                # Post-calibration core contradiction deduction
+                if score_res.has_core_invalidation:
+                    calib_grade *= ((1.0 - self.model_d2_scorer.core_invalidation_discount) ** score_res.core_contradiction_count)
+
+                final_grade = float(max(0.0, min(5.0, calib_grade)))
+                final_norm = float(max(0.0, min(1.0, final_grade / 5.0)))
+            else:
+                if score_res.has_core_invalidation:
+                    raw_hybrid *= ((1.0 - self.model_d2_scorer.core_invalidation_discount) ** score_res.core_contradiction_count)
+                final_norm = float(max(0.0, min(1.0, raw_hybrid)))
+                final_grade = float(final_norm * 5.0)
+        elif self.enable_calibration:
+            k = float(self.calibration_params.get("k", 15.0))
+            x0 = float(self.calibration_params.get("x0", 0.05))
+            def _raw_s(v: float) -> float:
+                try:
+                    return 1.0 / (1.0 + math.exp(-k * (v - x0)))
+                except OverflowError:
+                    return 0.0 if (-k * (v - x0)) > 0 else 1.0
+            s_val = _raw_s(score_res.final_score)
+            s_0 = _raw_s(0.0)
+            s_1 = _raw_s(1.0)
+            denom = s_1 - s_0
+            if denom <= 0.0:
+                calib_grade = score_res.final_score * 5.0
+            else:
+                calib_grade = max(0.0, min(5.0, (s_val - s_0) / denom * 5.0))
+            if score_res.has_core_invalidation:
+                calib_grade *= ((1.0 - self.model_d2_scorer.core_invalidation_discount) ** score_res.core_contradiction_count)
+            final_grade = float(max(0.0, min(5.0, calib_grade)))
+            final_norm = float(max(0.0, min(1.0, final_grade / 5.0)))
+
+        # Strict Contradiction Guard:
+        # If the student directly contradicts core requirements and possesses zero valid core support,
+        # lexical surface overlap cannot override the contradiction: grade is strictly 0.0.
+        if score_res.has_core_invalidation and score_res.core_effective_score <= 0.0:
+            final_grade = 0.0
+            final_norm = 0.0
+
         counts = {
             "total_ref_props": n_ref,
             "total_stu_props": len(stu_props),
@@ -670,5 +767,9 @@ class Experiment5Pipeline:
                 "enable_canonical_fragments": self.enable_canonical_fragments,
                 "enable_contradiction_guards": self.enable_contradiction_guards,
                 "scoring_model": self.scoring_model_type,
+                "enable_hybrid_lexical": self.enable_hybrid_lexical,
+                "lexical_similarity": lexical_similarity,
+                "hybrid_score_raw": hybrid_score_raw,
+                "enable_calibration": self.enable_calibration,
             },
         )

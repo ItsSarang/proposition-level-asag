@@ -98,6 +98,71 @@ class CuratedDomainKnowledge:
             forbidden_entity_modifiers=("interpreter", "assembler"),
             domain_topic_lemmas=("compiler", "compilation", "intermediate", "ir", "code", "translate"),
         ),
+        DomainPropertyRule(
+            rule_id="STACK_LIFO",
+            target_entity_lemmas=("stack",),
+            predicate_lemmas=("follow", "use", "operate", "implement", "have", "be", "process"),
+            object_lemmas=("lifo", "last"),
+            required_polarity=Polarity.POSITIVE,
+            property_category="data_structure_discipline",
+            rationale="Stacks operate under a Last-In, First-Out (LIFO) discipline where the last element inserted is the first element removed.",
+            academic_citation="Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press, Section 10.1.",
+            required_entity_modifiers=(),
+            forbidden_entity_modifiers=("queue", "deque", "priority"),
+            domain_topic_lemmas=("stack", "lifo", "push", "pop", "structure"),
+        ),
+        DomainPropertyRule(
+            rule_id="QUEUE_FIFO",
+            target_entity_lemmas=("queue",),
+            predicate_lemmas=("follow", "use", "operate", "implement", "have", "be", "process"),
+            object_lemmas=("fifo", "first"),
+            required_polarity=Polarity.POSITIVE,
+            property_category="data_structure_discipline",
+            rationale="Queues operate under a First-In, First-Out (FIFO) discipline where elements are removed in the order they were inserted.",
+            academic_citation="Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press, Section 10.1.",
+            required_entity_modifiers=(),
+            forbidden_entity_modifiers=("stack", "priority"),
+            domain_topic_lemmas=("queue", "fifo", "enqueue", "dequeue", "structure"),
+        ),
+        DomainPropertyRule(
+            rule_id="POINTER_ADDRESS",
+            target_entity_lemmas=("pointer",),
+            predicate_lemmas=("hold", "store", "contain", "point", "have", "refer", "be"),
+            object_lemmas=("address", "location"),
+            required_polarity=Polarity.POSITIVE,
+            property_category="memory_reference",
+            rationale="A pointer variable holds the memory address of another variable or object in memory.",
+            academic_citation="Kernighan, B. W., & Ritchie, D. M. (1988). The C Programming Language (2nd ed.). Prentice Hall, Chapter 5.",
+            required_entity_modifiers=(),
+            forbidden_entity_modifiers=(),
+            domain_topic_lemmas=("pointer", "address", "memory", "variable", "reference"),
+        ),
+        DomainPropertyRule(
+            rule_id="RECURSION_BASE_CASE",
+            target_entity_lemmas=("recursion", "function", "method"),
+            predicate_lemmas=("require", "need", "have", "contain", "include"),
+            object_lemmas=("base", "stopping", "termination"),
+            required_polarity=Polarity.POSITIVE,
+            property_category="recursion_termination",
+            rationale="A recursive function requires a base case to terminate recursion and prevent infinite execution.",
+            academic_citation="Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press, Section 4.3.",
+            required_entity_modifiers=("recursive", "recursion"),
+            forbidden_entity_modifiers=(),
+            domain_topic_lemmas=("recursion", "recursive", "base", "terminate", "case"),
+        ),
+        DomainPropertyRule(
+            rule_id="ARRAY_CONTIGUOUS_MEMORY",
+            target_entity_lemmas=("array",),
+            predicate_lemmas=("store", "allocate", "occupy", "place", "hold"),
+            object_lemmas=("contiguous", "sequential", "consecutive"),
+            required_polarity=Polarity.POSITIVE,
+            property_category="memory_allocation",
+            rationale="Array elements are stored in contiguous memory locations, enabling constant-time indexing.",
+            academic_citation="Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press, Section 10.1.",
+            required_entity_modifiers=(),
+            forbidden_entity_modifiers=("linked", "associative"),
+            domain_topic_lemmas=("array", "contiguous", "memory", "element", "index"),
+        ),
     )
 
     def __init__(self, rules: Optional[Sequence[DomainPropertyRule]] = None) -> None:
@@ -242,6 +307,39 @@ class CuratedDomainKnowledge:
             return rule, slot_evidence
 
         return None
+
+    def find_conflicting_rule(
+        self,
+        proposition: RobustProposition,
+        question: str = "",
+        context: str = "",
+    ) -> Optional[Tuple[DomainPropertyRule, Dict[str, Any]]]:
+        """
+        Check if proposition directly asserts the opposite polarity of an established domain rule.
+        e.g., student asserts POSITIVE 'can contain NULL' when rule requires NEGATIVE 'cannot contain NULL'.
+        """
+        inverted_polarity = (
+            Polarity.NEGATIVE if proposition.polarity == Polarity.POSITIVE else Polarity.POSITIVE
+        )
+        inverted_prop = RobustProposition(
+            subject=proposition.subject,
+            predicate=proposition.predicate,
+            object=proposition.object,
+            subject_lemma=proposition.subject_lemma,
+            predicate_lemma=proposition.predicate_lemma,
+            object_lemma=proposition.object_lemma,
+            representation_type=proposition.representation_type,
+            polarity=inverted_polarity,
+            modality=proposition.modality,
+            source_text=proposition.source_text,
+            char_start=proposition.char_start,
+            char_end=proposition.char_end,
+            sentence_index=proposition.sentence_index,
+            token_indices=proposition.token_indices,
+            dependency_evidence=proposition.dependency_evidence,
+            properties=proposition.properties,
+        )
+        return self.find_matching_rule(inverted_prop, question=question, context=context)
 
     def is_domain_applicable(
         self,

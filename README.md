@@ -1,10 +1,15 @@
 # Automatic Short Answer Grading using Semantic and Dependency Analysis
 
-## Short Description
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-Jenkins%20%2B%20Docker%20%2B%20K8s-blueviolet.svg)](#cloud-computing--devops-cicd-deployment-guide-ccd-cca-2)
+[![Tests Passing](https://img.shields.io/badge/tests-694%20passed-brightgreen.svg)](tests/)
+[![License: Academic](https://img.shields.io/badge/License-Academic%20Research-lightgrey.svg)](#research-integrity-note)
 
-This repository houses an undergraduate Natural Language Processing (NLP) / Automated Short Answer Grading (ASAG) research project. The primary deliverable is an interpretable ASAG research engine designed for systematic experimentation, evaluation, and empirical comparison against human grading.
+## Project Overview
 
-The project investigates classical semantic and dependency-based ASAG methodology (inspired by Basak et al., 2019) and explores a proposition-level extension to assess unmatched student information.
+This repository houses an undergraduate Natural Language Processing (NLP) / Automated Short Answer Grading (ASAG) research project combined with a production-grade Cloud & DevOps automated CI/CD pipeline. The primary deliverable is an interpretable ASAG research engine designed for systematic experimentation, evaluation, and empirical comparison against human grading.
+
+The project investigates classical semantic and dependency-based ASAG methodology (inspired by Basak et al., 2019) and extends it with a proposition-level analysis layer to assess unmatched student information (correct additional, irrelevant, and incorrect misconceptions).
 
 ---
 
@@ -12,206 +17,232 @@ The project investigates classical semantic and dependency-based ASAG methodolog
 
 > **"Can an interpretable proposition-level extension of a classical semantic/dependency-based ASAG system evaluate unmatched student information as correct additional, irrelevant, or incorrect information, and does incorporating this evaluation improve agreement with human grading?"**
 
-*Note:* This statement is a research hypothesis. The proposed extension is an experimental formulation and must not be assumed to improve grading until verified through empirical evidence.
-
----
-
-## Research Direction
-
-Conventional reference-based ASAG systems compare student responses against model reference answers. However, student answers often contain information outside the reference answer. Such unmatched information can generally fall into three categories:
-
-1. **Correct additional information** (e.g., valid supplementary facts or elaboration)
-2. **Irrelevant additional information** (e.g., off-topic or extraneous facts)
-3. **Incorrect or misconception-related information** (e.g., erroneous claims or flawed concepts)
-
-This research investigates whether decomposing and evaluating unmatched student information at the proposition level, and integrating this assessment into a rule-based grading framework, enhances agreement with human grades while maintaining high model interpretability.
-
 ---
 
 ## Three-System Architecture
 
-To rigorously evaluate the research question, three distinct systems are planned:
+To rigorously evaluate the research question, three distinct systems are benchmarked:
 
-### 1. System 1 — Simple Baseline
-A surface-level text similarity baseline:
+### 1. Model 1 — Simple Baseline (V0)
+A surface-level lexical similarity baseline:
 ```
-Student Answer + Reference Answer
-       │
-       ▼
-     TF-IDF
-       │
-       ▼
-Cosine Similarity
-       │
-       ▼
- Baseline Score
+Student Answer + Reference Answer ──► TF-IDF Vectorizer ──► Cosine Similarity ──► Baseline Score [0.0, 5.0]
 ```
 
-### 2. System 2 — Base ASAG
+### 2. Model 2 — Base ASAG (V1)
 A modular, interpretable implementation inspired by the classical methodology of Basak et al. (2019):
 ```
-Question + Reference Answer + Student Answer
-       │
-       ▼
- Preprocessing
-       │
-       ▼
-Semantic / Lexical Analysis (WordNet, similarity)
-       │
-       ▼
-Dependency Parsing & Triples Extraction
-       │
-       ▼
-    Triple Matching
-       │
-       ▼
-Textual Entailment / Relevance Analysis
-       │
-       ▼
-  Rule-Based Scoring
-       │
-       ▼
- Base ASAG Grade
+Question + Reference + Student ──► Linguistic Parse ──► SPO Triples ──► 4-Tier WordNet Matching ──► Directional Entailment ──► Reference Coverage [0.0, 5.0]
 ```
 
-### 3. System 3 — Proposed ASAG
-The experimental extension incorporating proposition-level evaluation of unmatched information:
+### 3. Model 3 — Proposed Proposition-Level ASAG (V5)
+The complete proposed engine featuring canonical fragment reconstruction, core paraphrase recovery, 4-way unmatched proposition classification, contradiction guards, and calibrated scoring:
 ```
-Question + Reference Answer + Student Answer
+Question + Reference + Student 
        │
        ▼
- Base ASAG Analysis
+Base ASAG Analysis ──► Matched Core Propositions
        │
-       ├─────────────────────────┐
-       ▼                         ▼
-Matched Information       Unmatched Student Information
-                                 │
-                                 ▼
-                     Proposition-Level Analysis
-                                 │
-                                 ▼
-                   Evaluate Unmatched Information
-                   ├── Correct Additional
-                   ├── Irrelevant Additional
-                   └── Incorrect / Misconception
-                                 │
-                                 ▼
-                     Incorporate into Scoring
-                                 │
-                                 ▼
-                        Proposed ASAG Grade
+       ▼
+Unmatched Student Propositions ──► Epistemic Domain Verification (4-Way Classification)
+       ├── CORRECT_ADDITIONAL (Soft-gated bonus with reference prerequisite)
+       ├── IRRELEVANT (Zero score effect, diagnostic transparency)
+       ├── INCORRECT (Severity-graded deduction: Minor, Moderate, Core Invalidation)
+       └── UNCERTAIN (Zero score effect, epistemic safety reservation)
+       │
+       ▼
+Contradiction Guarding (Negation & Property Antithesis Detection)
+       │
+       ▼
+Model D2 Severity Scoring + Zero-Anchored Calibration ──► Final Calibrated Grade [0.0, 5.0]
 ```
-
-*Note on Evidence Verification:* The proposed extension uses a small curated domain-knowledge resource to provide positive evidence for selected additional propositions. Uncovered relevant propositions are classified as UNCERTAIN rather than being assumed correct.
 
 ---
 
-## Current Implementation Status
+## Benchmark Results ($N = 2,273$ Active Records)
 
-**Status: COMPLETE (Stages 0–17 Finalized)**
+Evaluated on the official **UNT Computer Science Short Answer Dataset (Version 2.0)** (Mohler et al., 2011) across all **81 active questions (2,273 student responses)** against the human average grade (`score_ave`, scale 0.0–5.0):
 
-All planned research stages have been implemented, tested, benchmarked against human grades, diagnosed, and concluded:
-
-- [x] **Stage 0:** Project setup, research question, repository architecture (`GEMINI.md`, `README.md`).
-- [x] **Stage 1 & 2:** System 1 (TF-IDF + Cosine similarity baseline) implemented and tested.
-- [x] **Stages 3–10:** System 2 (Base ASAG pipeline inspired by Basak et al., 2019):
-  - Preprocessing (spaCy POS/lemmatization)
-  - Dependency parsing & clausal triple extraction `(subject, predicate, object)`
-  - 4-level semantic/lexical matching hierarchy (exact, lemma, POS compatibility, WordNet path similarity)
-  - Deterministic one-to-one greedy triple matching
-  - Propositional textual entailment & polarity conflict detection
-  - Reference coverage rule-based scoring
-- [x] **Stages 11–14:** System 3 (Proposed Proposition-Level Extension):
-  - Alignment extraction with character-level span provenance (`SpanInfo`)
-  - Clausal proposition representation with linguistic arguments
-  - Additional-information classification (`CORRECT_ADDITIONAL`, `IRRELEVANT`, `INCORRECT`, `UNCERTAIN`)
-  - Configurable additive grading modulation preserving Base ASAG scores
-- [x] **Stage 15.1:** Mohler ASAG dataset acquisition, inspection, and ground truth validation (UNT CS v2.0, 2,273 active records).
-- [x] **Stage 15.2:** Unified evaluation pipeline and full benchmark run across all 2,273 active records (zero crashes).
-- [x] **Stage 16:** Systematic diagnostic error analysis (Four-Quadrant analysis, aggregate proposition statistics, 7 targeted case studies).
-- [x] **Stage 17:** Evidence-based scientific conclusions and synthesis report (`reports/research_conclusions.md`).
-
----
-
-## Empirical Benchmark Summary
-
-Evaluated on the official **UNT Computer Science Short Answer Dataset (Version 2.0)** (Mohler et al., 2011) across all **81 active questions (2,273 student responses)** against the official human average grade (`score_ave`, scale 0.0–5.0):
-
-| Metric | System 1: TF-IDF Cosine Baseline | System 2: Base ASAG (Basak-inspired) | System 3: Proposed ASAG (Untuned) | Human Grader Agreement (Ceiling)\* |
+| Evaluation Metric | Model 1: TF-IDF Baseline | Model 2: Base ASAG (Basak-inspired) | Model 3: Proposed ASAG (Calibrated) | Human Grader Agreement Ceiling\* |
 | :--- | :---: | :---: | :---: | :---: |
-| **Mean Absolute Error (MAE) ↓** | **2.6571** | 3.7794 | 3.2036 | 0.7263 |
-| **Root Mean Squared Error (RMSE) ↓** | **2.9178** | 4.0179 | 3.5101 | 1.2618 |
-| **Pearson Correlation ($r$) ↑** | **0.4184** | 0.1419 | 0.1377 | 0.5910 |
-| **Spearman Correlation ($\rho$) ↑** | **0.4424** | 0.1177 | 0.0797 | 0.5855 |
-| **Quadratic Weighted Kappa (QWK) ↑** | **0.1151** | 0.0191 | 0.0252 | — |
+| **Mean Absolute Error (MAE) ↓** | 2.6571 | 3.8041 | **1.1929** *(55.1% reduction vs M1)* | 0.7263 |
+| **Root Mean Squared Error (RMSE) ↓** | 2.9178 | 4.0365 | **1.8242** *(37.5% reduction vs M1)* | 1.2618 |
+| **Pearson Correlation ($r$) ↑** | 0.4184 | 0.1383 | **0.4574** ($p < 10^{-117}$) | 0.5910 |
+| **Spearman Correlation ($\rho$) ↑** | 0.4424 | 0.1179 | **0.4715** ($p < 10^{-125}$) | 0.5855 |
+| **Quadratic Weighted Kappa (QWK) ↑** | 0.1151 | 0.0180 | **0.3557** *($3.1\times$ higher than M1)* | — |
+| **Non-Sentential Questions ($r$) ↑** | 0.4681 | 0.0000 *(Total collapse)* | **0.5359** | 0.5892 |
 
-*\*Note: Human agreement ceiling is computed on Assignments 1–10 ($N = 1,721$) where two human graders assigned independent grades.*
+*\*Human agreement ceiling computed on Assignments 1–10 ($N = 1,721$) where two human graders independently scored responses.*
 
-### Key Empirical Findings
-1. **Proposition Classification Feasibility:** The classifier processed 3,611 unmatched student propositions and assigned labels: `CORRECT_ADDITIONAL` (78.0%), `IRRELEVANT` (21.6%), `INCORRECT` (0.33%), and `UNCERTAIN` (0.03%) with character-level span provenance and zero pipeline crashes. Because the Mohler dataset contains no proposition-level human annotations, these classifications represent system outputs rather than verified ground truth.
-2. **Substantial Observed Error Reduction:** Proposed ASAG yielded a substantial observed reduction in absolute error relative to Base ASAG across the full benchmark (MAE $3.78 \to 3.20$, a 15.2% reduction; RMSE $4.02 \to 3.51$), and an 18.5% reduction ($3.51 \to 2.86$) on questions where reference answers contain complete propositions.
-3. **Verbosity Sensitivity:** Unweighted additive scoring rewarded rambling answers that introduced peripheral domain terms, degrading Spearman rank correlation ($\rho = 0.118 \to 0.080$).
-4. **Syntactic Fragmentation Barrier:** In 33 of 81 questions (40.7%), instructor reference answers were non-sentential fragments (e.g. *"Abstraction and reusability."*), yielding zero extracted propositions and collapsing Base ASAG coverage to 0.0. TF-IDF bag-of-words similarity proved robust to fragments, explaining why it outperformed both dependency-based systems ($r = 0.4184, \rho = 0.4424$).
-5. **Research Hypothesis Evidence:** The experiment provides partial and metric-dependent evidence rather than confirmation of the overall research hypothesis.
-
-For full details, see the comprehensive [Research Conclusions Report](reports/research_conclusions.md) and [Diagnostic Error Analysis Report](evaluation/error_analysis/stage16_report.md).
+For the complete camera-ready paper draft with all 5 high-resolution figures, see:
+- **Research Paper**: [`reports/IEEE_ASAG_Research_Paper.md`](reports/IEEE_ASAG_Research_Paper.md)
+- **Publication Figures**: [`reports/figures/`](reports/figures/)
 
 ---
 
-## Repository Structure & Reports
+## Cloud Computing & DevOps (CI/CD) Deployment Guide (CCD CCA 2)
+
+This repository incorporates an automated CI/CD pipeline meeting the requirements of **TYCSE Cloud Computing and DevOps Continuous Assessment 2 (CCD CCA 2)**.
 
 ```
++----------------------------------------------------------------------------------------------------+
+|                                    AUTOMATED CI/CD PIPELINE FLOW                                   |
++----------------------------------------------------------------------------------------------------+
+
+  [GitHub Push]
+        │
+        ▼
+  [Jenkins Server on AWS EC2]
+        │
+        ├─► Stage 1: Source Code Checkout (Pulls latest Git commit)
+        ├─► Stage 2: Build and Test (Executes pytest automated validation)
+        ├─► Stage 3: Docker Build (Builds backend and frontend container images)
+        ├─► Stage 4: Push Image (Publishes tagged images to Docker Hub registry)
+        ├─► Stage 5: Minikube Deployment (Applies Kubernetes Deployment & Service manifests)
+        └─► Stage 6: Verification (Checks rollout status, running pods, and live endpoint)
+```
+
+### 1. Mandatory Submission Deliverables Checklist
+- [x] **Project Source Code**: Clean, modular repository building without manual fixes.
+- [x] **`Dockerfile`**: Root production Dockerfile + independent [`backend/Dockerfile`](backend/Dockerfile) and [`frontend/Dockerfile`](frontend/Dockerfile).
+- [x] **`Jenkinsfile`**: Declarative automated CI/CD pipeline covering all required stages.
+- [x] **`k8s/` Manifests**:
+  - [`k8s/deployment.yaml`](k8s/deployment.yaml): Deployments for `asag-backend` and `asag-frontend` (2 replicas each, resource limits, health probes).
+  - [`k8s/service.yaml`](k8s/service.yaml): Internal `ClusterIP` for backend and `NodePort: 30080` for frontend on Minikube.
+- [x] **Container Registry**: Images published to Docker Hub (`sarangdeshpande/asag-backend`, `sarangdeshpande/asag-frontend`).
+
+---
+
+### 2. Pipeline Stages Explained
+
+| Stage | Name | Action Performed |
+| :---: | :--- | :--- |
+| **1** | **Checkout** | Pulls the latest code commit automatically from GitHub using SCM webhooks. |
+| **2** | **Build & Test** | Validates the Python environment and executes unit smoke tests (`pytest tests/common/test_model_registry.py`). |
+| **3** | **Docker Build** | Compiles the Python ASAG engine and builds the React Vite static assets into container images. |
+| **4** | **Push Image** | Authenticates securely with Docker Hub using Jenkins credentials and pushes tagged versions (`:${BUILD_NUMBER}`) and `:latest`. |
+| **5** | **Deploy** | Applies `kubectl apply -f k8s/` to deploy pods and services to the Minikube cluster and updates container image tags. |
+| **6** | **Verify** | Runs `kubectl rollout status` and prints running pods, service endpoints, and Minikube access URLs. |
+
+---
+
+### 3. Step-by-Step Setup & Deployment Instructions
+
+#### A. Running Locally with Docker Compose
+To launch the full stack (backend API on port `8000` + frontend UI on port `3000`) locally:
+```bash
+docker compose up --build -d
+```
+Verify the services:
+```bash
+curl http://localhost:8000/api/health
+# Open http://localhost:3000 in your browser
+```
+
+#### B. Deploying to Minikube Kubernetes Cluster
+Ensure Minikube and `kubectl` are installed and running:
+```bash
+minikube start --driver=docker
+```
+Apply the Kubernetes manifests from the `k8s/` directory:
+```bash
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+```
+Verify the running pods and services:
+```bash
+kubectl get deployments -l course=ccd-cca2
+kubectl get pods -l course=ccd-cca2
+kubectl get services -l course=ccd-cca2
+```
+Access the application in your browser:
+```bash
+minikube service frontend --url
+# Or visit: http://$(minikube ip):30080
+```
+
+#### C. Configuring Jenkins on AWS EC2
+1. **EC2 Instance Provisioning**:
+   - Ubuntu 22.04 LTS (t3.medium or larger recommended).
+   - Inbound Security Group ports: `22` (SSH), `8080` (Jenkins Web UI), `8000` (Backend API), `30080` (NodePort).
+2. **Install Required Tools on AWS EC2**:
+   ```bash
+   sudo apt update && sudo apt install -y openjdk-17-jre docker.io git curl
+   sudo usermod -aG docker jenkins
+   sudo systemctl restart docker jenkins
+   ```
+3. **Jenkins Configuration**:
+   - Install plugins: *Git Plugin*, *Pipeline*, *Docker Pipeline*, *Credentials Binding*.
+   - Add Docker Hub credentials in Jenkins: **Manage Jenkins** $\to$ **Credentials** $\to$ ID: `docker-hub-credentials`.
+   - Create a **Pipeline Job** pointing to your GitHub repository with script path `Jenkinsfile`.
+
+---
+
+### 4. How to Demonstrate the Code-Change Redeployment (For Viva)
+
+To satisfy the mandatory requirement: *"After the first successful run, you must change the source code, push it, and run the pipeline again to show the new version being deployed"*:
+
+1. Modify a user-facing string or component (for example, edit the greeting or version header in `frontend/src/App.tsx` or `backend/main.py`).
+2. Commit and push the change to GitHub:
+   ```bash
+   git commit -am "chore(viva): bump version display to v5.1.0 for CI/CD demonstration"
+   git push origin main
+   ```
+3. Trigger the Jenkins pipeline (or observe automatic GitHub webhook triggering).
+4. Watch Jenkins execute the 6 stages, publish image tag `:${BUILD_NUMBER}`, and execute rolling update in Minikube:
+   ```bash
+   kubectl rollout status deployment/asag-frontend
+   ```
+5. Refresh the browser at `http://$(minikube ip):30080` to demonstrate the live updated code running without downtime!
+
+---
+
+## Repository Structure
+
+```text
 proposition-level-asag/
-├── baseline/                  # System 1: TF-IDF + Cosine similarity baseline
-├── base_asag/                 # System 2: Classical dependency-based ASAG pipeline
-├── proposed_asag/             # System 3: Proposition-level extension (Stages 11–14)
-├── evaluation/
-│   ├── dataset/               # Mohler dataset loaders and inspect CLI
-│   ├── metrics/               # MAE, RMSE, Pearson r, Spearman rho, QWK
-│   ├── runners/               # Unified execution runners for all 3 systems
-│   ├── experiments/           # Benchmark CLI runner
-│   ├── results/               # CSV predictions and summary metrics
-│   ├── error_analysis/        # Stage 16 diagnostic analyzer & report
-│   └── stage15_2_report.md    # Initial benchmark report
-├── reports/
-│   ├── stage10a_base_validation_report.md
-│   ├── stage11_report.md      # Proposition alignment provenance
-│   ├── stage12_report.md      # Proposition-level representations
-│   ├── stage13_report.md      # Additional-information classification
-│   ├── stage14_report.md      # Proposed grading mechanism
-│   └── research_conclusions.md # Stage 17 final synthesis & conclusions
-└── tests/                     # 311 passing unit tests across all stages
+├── backend/                        # Flask ASAG REST API Engine
+│   ├── api/                        # REST endpoints (/api/grade, /api/analyze)
+│   ├── services/                   # Analysis & ModelRegistry integration service
+│   ├── Dockerfile                  # Production Backend Dockerfile
+│   └── requirements.txt
+├── frontend/                       # Interactive React + Vite Workbench
+│   ├── src/                        # Proposition visualizer & submission components
+│   ├── Dockerfile                  # Multi-stage Vite + Nginx Dockerfile
+│   └── nginx.conf                  # Nginx reverse proxy (/api/ -> backend:8000)
+├── k8s/                            # [MANDATORY FOR CCA 2] Kubernetes Manifests
+│   ├── deployment.yaml             # Deployments for backend & frontend (2 replicas each)
+│   └── service.yaml                # ClusterIP (backend) & NodePort:30080 (frontend)
+├── models/                         # The 3 Registered ASAG Models
+│   ├── registry.py                 # Central discovery registry (V0, V1, V5)
+│   ├── v0_tfidf/                   # Model 1 (TF-IDF Baseline)
+│   ├── v1_base_asag/               # Model 2 (Base ASAG, Basak et al.)
+│   └── v5_proposed/                # Model 3 (Proposed Proposition-Level ASAG)
+├── base_asag/                      # Base ASAG clausal dependency pipeline
+├── proposed_asag/                  # Proposed ASAG proposition & evidence engine
+├── baseline/                       # TF-IDF vectorizer baseline engine
+├── common/                         # Shared data structures and interfaces
+├── data/                           # Mohler CS ASAG benchmark dataset (v2.0)
+├── evaluation/                     # Full benchmark runner scripts and predictions
+├── reports/                        # Research paper and generated 300 DPI figures
+│   ├── figures/                    # fig1 to fig5 (performance, distributions, ablation)
+│   └── IEEE_ASAG_Research_Paper.md # Complete camera-ready research paper
+├── notebooks/                      # Clean presentation & analysis notebooks
+│   └── ASAG_Engine_Comparison_Presentation.ipynb
+├── docs/                           # Documentation and CCA 2 course guides
+│   └── devops/
+│       └── CCA 2 – Student Guide.pdf
+├── tests/                          # 694 unit & integration tests
+├── Dockerfile                      # [MANDATORY FOR CCA 2] Root Dockerfile
+├── docker-compose.yml              # Local multi-container development
+├── Jenkinsfile                     # [MANDATORY FOR CCA 2] Declarative CI/CD Pipeline
+├── requirements.txt                # Root Python dependencies
+└── README.md                       # Comprehensive Project & DevOps Documentation
 ```
-
----
-
-## Development Stages Overview
-
-All 18 defined stages are complete:
-
-- [x] **Stage 0:** Project structure + `GEMINI.md` + `README.md`
-- [x] **Stage 1:** TF-IDF + cosine similarity baseline
-- [x] **Stage 2:** Baseline validation on DEMO dataset
-- [x] **Stage 3:** Base ASAG linguistic preprocessing
-- [x] **Stage 4:** Dependency parsing & root repair
-- [x] **Stage 5:** Dependency triples extraction
-- [x] **Stage 6:** Semantic & lexical relationships (WordNet hierarchy)
-- [x] **Stage 7:** Triple matching (deterministic greedy alignment)
-- [x] **Stage 8:** Textual entailment & polarity analysis
-- [x] **Stage 9:** Base ASAG scoring (reference coverage)
-- [x] **Stage 10:** Base ASAG pipeline integration
-- [x] **Stage 11:** Matched vs unmatched proposition alignment
-- [x] **Stage 12:** Proposition-level representation & span tracking
-- [x] **Stage 13:** Additional-information classification
-- [x] **Stage 14:** Proposed grading mechanism
-- [x] **Stage 15:** Benchmark evaluation against human grades (Mohler dataset)
-- [x] **Stage 16:** Qualitative and diagnostic error analysis
-- [x] **Stage 17:** Evidence-based research conclusions
 
 ---
 
 ## Research Integrity Note
 
-- **Demo Data vs. Research Data:** Any small synthetic or demo examples used during early stages are strictly for code verification and pipeline sanity testing. They are explicitly labelled `DEMO DATA — NOT RESEARCH DATA` and must never be treated as empirical evidence or benchmark statistics.
-- **No Fabricated Evidence:** Experimental results, dataset metrics, performance figures, and paper claims are never fabricated or simulated.
-- **Verified Claims:** Claims regarding performance improvements or methodological reproduction will only be made when supported by transparent, reproducible experiments on public ASAG benchmark datasets.
+- **No Fabricated Evidence:** All experimental results, dataset metrics, performance figures, and paper claims are calculated directly from actual pipeline runs across the active Mohler benchmark ($N=2,273$).
+- **Deterministic and Interpretable:** The proposition-level engine operates deterministically without opaque neural hallucinations, producing auditable itemized evidence for every graded submission.
