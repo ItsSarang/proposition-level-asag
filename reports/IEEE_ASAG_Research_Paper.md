@@ -1,6 +1,6 @@
 # Comparative Evaluation of Lexical Overlap, Clausal Dependency Parsing, and Proposition-Level Semantic Analysis for Interpretable Automated Short Answer Grading
 
-**Sarang Deshpande**  
+**Sarang Nair**  
 Department of Computer Science and Engineering  
 MIT World Peace University (MIT-WPU), Pune, India  
 `proposition-level-asag` Undergraduate Research Project  

@@ -7,9 +7,9 @@ pipeline {
 
     environment {
         // Docker Hub repository targets
-        DOCKER_USER     = 'sarangdeshpande'
-        BACKEND_IMAGE   = 'sarangdeshpande/asag-backend'
-        FRONTEND_IMAGE  = 'sarangdeshpande/asag-frontend'
+        DOCKER_USER     = 'sarangnair'
+        BACKEND_IMAGE   = 'sarangnair/asag-backend'
+        FRONTEND_IMAGE  = 'sarangnair/asag-frontend'
         IMAGE_TAG       = "${env.BUILD_NUMBER ?: 'latest'}"
     }
 

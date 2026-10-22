@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: asag-backend
-          image: sarangdeshpande/asag-backend:latest
+          image: sarangnair/asag-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: asag-frontend
-          image: sarangdeshpande/asag-frontend:latest
+          image: sarangnair/asag-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

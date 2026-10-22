@@ -2,7 +2,7 @@
 # Meets Cloud Computing & DevOps (CCD CCA 2) Submission Standards
 FROM python:3.11-slim
 
-LABEL maintainer="Sarang Deshpande"
+LABEL maintainer="Sarang Nair"
 LABEL course="TYCSE Cloud Computing & DevOps (CCD CCA 2)"
 LABEL project="Proposition-Level Automated Short Answer Grading (ASAG)"
 

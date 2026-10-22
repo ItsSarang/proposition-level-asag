@@ -109,7 +109,7 @@ This repository incorporates an automated CI/CD pipeline meeting the requirement
 - [x] **`k8s/` Manifests**:
   - [`k8s/deployment.yaml`](k8s/deployment.yaml): Deployments for `asag-backend` and `asag-frontend` (2 replicas each, resource limits, health probes).
   - [`k8s/service.yaml`](k8s/service.yaml): Internal `ClusterIP` for backend and `NodePort: 30080` for frontend on Minikube.
-- [x] **Container Registry**: Images published to Docker Hub (`sarangdeshpande/asag-backend`, `sarangdeshpande/asag-frontend`).
+- [x] **Container Registry**: Images published to Docker Hub (`sarangnair/asag-backend`, `sarangnair/asag-frontend`).
 
 ---
 
