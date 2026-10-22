@@ -15,6 +15,7 @@ spec:
       containers:
         - name: backend
           image: itssarang/asag-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
 ---
@@ -35,5 +36,6 @@ spec:
       containers:
         - name: frontend
           image: itssarang/asag-frontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
