@@ -13,8 +13,8 @@ export default function Header({
           <span className="hidden sm:inline-block text-[11px] font-mono text-[#8c8477] border-l border-[#dfd8c8] pl-2.5">
             Proposition-Level ASAG
           </span>
-          <span className="bg-emerald-100 text-emerald-800 text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full border border-emerald-300">
-            v1.0.0 (Production)
+          <span className="bg-blue-100 text-blue-800 text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full border border-blue-300">
+            v1.0.1 (Production)
           </span>
         </div>
 
