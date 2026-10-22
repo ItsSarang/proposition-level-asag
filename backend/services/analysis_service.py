@@ -19,7 +19,7 @@ Strict Research Safety:
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from base_asag.dependency.parser import DependencyParser, ParsedDocument
 from base_asag.representation.hybrid import RobustProposition

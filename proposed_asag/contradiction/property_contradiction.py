@@ -11,7 +11,7 @@ NOT_SUPPORTED != CONTRADICTED.
 from dataclasses import dataclass, field
 from enum import Enum
 import re
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 from nltk.corpus import wordnet as wn
 from base_asag.representation.hybrid import Polarity, RobustProposition

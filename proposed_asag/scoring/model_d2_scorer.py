@@ -27,7 +27,7 @@ Preserves:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Sequence, Union
+from typing import Any, Dict, List, Optional, Sequence, Set, Union
 
 from base_asag.representation.hybrid import RobustProposition
 from evaluation.severity_development.phase4c_severity_estimator import (
