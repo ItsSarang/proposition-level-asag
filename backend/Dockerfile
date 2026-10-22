@@ -28,6 +28,7 @@ COPY base_asag/ /app/base_asag/
 COPY baseline/ /app/baseline/
 COPY common/ /app/common/
 COPY data/ /app/data/
+COPY evaluation/ /app/evaluation/
 
 # Set Python environment variables
 ENV PYTHONUNBUFFERED=1 \
