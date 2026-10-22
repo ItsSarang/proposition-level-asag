@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: sarangnair/asag-backend:latest
+          image: itssarang/asag-backend:latest
           ports:
             - containerPort: 8000
 ---
@@ -34,6 +34,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: sarangnair/asag-frontend:latest
+          image: itssarang/asag-frontend:latest
           ports:
             - containerPort: 80
