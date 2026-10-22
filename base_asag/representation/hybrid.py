@@ -21,7 +21,7 @@ Design Principles:
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 from base_asag.dependency.parser import (
     ParsedDocument,
