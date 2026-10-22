@@ -54,6 +54,7 @@ pipeline {
                 sh '''
                     kubectl get pods
                     kubectl get svc
+                    pgrep -f "port-forward.*30080:80" > /dev/null || nohup kubectl port-forward --address 0.0.0.0 service/frontend 30080:80 > /dev/null 2>&1 &
                 '''
             }
         }
